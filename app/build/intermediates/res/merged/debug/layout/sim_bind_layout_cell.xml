@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#ff000000">
+
+    <RelativeLayout
+        android:id="@+id/binding_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/button_layout">
+
+        <TextView
+            android:id="@+id/tv_bind_tip_top"
+            android:text="@string/sim_bind_tip_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20px"
+            android:paddingLeft="10px"
+            android:paddingRight="10px"
+            android:textSize="20px"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/tv_bind_tip_item_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_bind_tip_top"
+            android:paddingLeft="15px"
+            android:paddingRight="15px"
+            android:text="@string/sim_bind_tip_item_1"
+            android:textColor="#ffffff"
+            android:textSize="18px"
+            android:lineSpacingExtra="2px"
+            android:drawableLeft="@drawable/point" />
+
+        <TextView
+            android:id="@+id/tv_bind_tip_item_1_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_bind_tip_item_1"
+            android:paddingLeft="15px"
+            android:paddingRight="15px"
+            android:textColor="#ffffff"
+            android:textSize="18px"
+            android:lineSpacingExtra="2px" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_bind_tip_item_1_number"
+            android:paddingLeft="15px"
+            android:paddingRight="15px"
+            android:text="@string/sim_bind_tip_item_2"
+            android:textColor="#ffffff"
+            android:textSize="18px"
+            android:lineSpacingExtra="2px"
+            android:drawableLeft="@drawable/point"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/disable_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_above="@+id/button_layout">
+
+        <TextView
+            android:id="@+id/tv_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/sim_bind_driver_disable_default"
+            android:textColor="#ffffff"
+            android:textSize="20px" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="1px"
+            android:background="@drawable/btn_sim_bind_shutdown_left"
+            android:id="@+id/btn_shutdown" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="1px"
+            android:background="@drawable/btn_sim_bind_bind_right"
+            android:id="@+id/btn_bind" />
+    </LinearLayout>
+</RelativeLayout>

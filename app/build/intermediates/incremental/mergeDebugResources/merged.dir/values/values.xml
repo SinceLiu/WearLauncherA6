@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <string-array name="ableEnterList">
+        <item>com.readboy.wearweather</item>
+        <!--<item>com.android.settings</item>-->
+    </string-array>
+    <string-array name="app_alarm">
+        <item>闹钟</item>
+        <item>packagename</item>
+        <item>classname</item>
+    </string-array>
+    <string-array name="app_audio">
+        <item>语音</item>
+        <item>packagename</item>
+        <item>classname</item>
+    </string-array>
+    <string-array name="app_book">
+        <item>背课文</item>
+        <item>packagename</item>
+        <item>classname</item>
+    </string-array>
+    <string-array name="app_camera">
+        <item>相机</item>
+        <item>packagename</item>
+        <item>classname</item>
+    </string-array>
+    <string-array name="app_class">
+        <item>上课禁用</item>
+        <item>packagename</item>
+        <item>classname</item>
+    </string-array>
+    <string-array name="app_friend">
+        <item>好友</item>
+        <item>packagename</item>
+        <item>classname</item>
+    </string-array>
+    <string-array name="app_heart">
+        <item>心率</item>
+        <item>packagename</item>
+        <item>classname</item>
+    </string-array>
+    <string-array name="app_pedometer">
+        <item>记步</item>
+        <item>packagename</item>
+        <item>classname</item>
+    </string-array>
+    <string-array name="app_phone">
+        <item>电话</item>
+        <item>packagename</item>
+        <item>classname</item>
+    </string-array>
+    <string-array name="app_qrcode">
+        <item>二维码</item>
+        <item>packagename</item>
+        <item>classname</item>
+    </string-array>
+    <string-array name="app_run">
+        <item>跑步</item>
+        <item>packagename</item>
+        <item>classname</item>
+    </string-array>
+    <string-array name="app_schedule">
+        <item>课程表</item>
+        <item>packagename</item>
+        <item>classname</item>
+    </string-array>
+    <string-array name="app_settings">
+        <item>设置</item>
+        <item>packagename</item>
+        <item>classname</item>
+    </string-array>
+    <string-array name="app_sos">
+        <item>SOS</item>
+        <item>packagename</item>
+        <item>classname</item>
+    </string-array>
+    <string-array name="app_store">
+        <item>商城</item>
+        <item>packagename</item>
+        <item>classname</item>
+    </string-array>
+    <string-array name="app_weather">
+        <item>天气</item>
+        <item>packagename</item>
+        <item>classname</item>
+    </string-array>
+    <string-array name="app_wechat">
+        <item>微聊</item>
+        <item>packagename</item>
+        <item>classname</item>
+    </string-array>
+    <string-array name="app_word">
+        <item>背单词</item>
+        <item>packagename</item>
+        <item>classname</item>
+    </string-array>
+    <string-array name="dial_preview_array">
+        <item>@drawable/dial_overview_type_a</item>
+        <item>@drawable/dial_overview_type_b</item>
+        <item>@drawable/dial_overview_type_c</item>
+        <item>@drawable/dial_overview_type_d</item>
+        <item>@drawable/dial_overview_type_e</item>
+        <item>@drawable/dial_overview_type_f</item>
+        <item>@drawable/dial_overview_type_g</item>
+        <item>@drawable/dial_overview_type_h</item>
+        <item>@drawable/dial_overview_type_i</item>
+        <item>@drawable/dial_overview_type_j</item>
+        <item>@drawable/dial_overview_type_k</item>
+    </string-array>
+    <string-array name="excludePackageList">
+        <item>com.android.documentsui</item>
+        <item>com.sohu.inputmethod.sogou</item>
+        <!--<item>org.chromium.webview_shell</item>-->
+        <!--<item>com.example.wifitest</item>-->
+        <!--<item>com.qualcomm.qti.watchmessenger</item>-->
+        <!--<item>com.android.calendar</item>-->
+        <!--<item>com.android.deskclock</item>-->
+        <!--<item>com.android.email</item>-->
+        <!--<item>com.android.quicksearchbox</item>-->
+        <!--<item>com.example.wifitest</item>-->
+        <!--<item>com.qualcomm.qti.sensors.qsensortest</item>-->
+        <!--<item>com.qualcomm.qti.sensors.ui.artest</item>-->
+        <!--<item>com.qualcomm.location.qvtester</item>-->
+        <!--<item>com.qualcomm.qct.dlt</item>-->
+        <!--<item>com.qualcomm.qti.app</item>-->
+        <!--<item>com.android.nativeaudiolatency</item>-->
+        <!--<item>com.android.qlogging</item>-->
+    </string-array>
+    <integer-array name="ringer_mode_integer">
+        <item>0</item>
+        <item>1</item>
+        <item>3</item>
+        <item>2</item>
+    </integer-array>
+    <string-array name="ringer_mode_text">
+        <item>静音</item>
+        <item>仅振动</item>
+        <item>仅铃声</item>
+        <item>响铃加振动</item>
+    </string-array>
+    <string-array name="weather_style">
+        <item>晴</item>
+        <item>多云</item>
+        <item>阴</item>
+        <item>阵雨</item>
+        <item>雷阵雨</item>
+        <item>雷阵雨并伴有冰雹</item>
+        <item>雨夹雪</item>
+        <item>小雨</item>
+        <item>中雨</item>
+        <item>大雨</item>
+        <item>暴雨</item>
+        <item>大暴雨</item>
+        <item>特大暴雨</item>
+        <item>阵雪</item>
+        <item>小雪</item>
+        <item>中雪</item>
+        <item>大雪</item>
+        <item>暴雪</item>
+        <item>雾</item>
+        <item>冻雨</item>
+        <item>沙尘暴</item>
+        <item>小到中雨</item>
+        <item>中到大雨</item>
+        <item>大到暴雨</item>
+        <item>大暴雨</item>
+        <item>特大暴雨</item>
+        <item>小到中雪</item>
+        <item>中到大雪</item>
+        <item>大到暴雪</item>
+        <item>浮尘</item>
+        <item>扬沙</item>
+        <item>强沙尘暴</item>
+        <item>飑</item>
+
+        <item>龙卷风</item>
+        <item>弱高吹雪</item>
+        <item>轻雾</item>
+        <item>霾</item>
+
+        <item>未知</item>
+        <item>雨</item>
+        <item>雪</item>
+    </string-array>
+    <attr name="direction">
+        <!-- Vertical widget. -->
+        <enum name="vertical" value="0"/>
+        <!-- Horizontal widget. -->
+        <enum name="horizontal" value="1"/>
+    </attr>
+    <attr format="boolean" name="weekShort"/>
+    <bool name="allow_rotation">true</bool>
+    <bool name="config_alwaysUseCdmaRssi">false</bool>
+    <bool name="config_hspa_data_distinguishable">false</bool>
+    <bool name="config_largeHeap">false</bool>
+    <bool name="config_show4GForLTE">true</bool>
+    <bool name="config_showMin3G">false</bool>
+    <bool name="config_showPhoneRSSIForData">false</bool>
+    <bool name="config_showRotationLock">true</bool>
+    <bool name="config_useCustomClings">false</bool>
+    <bool name="config_useDropTargetDownTransition">true</bool>
+    <bool name="config_wimaxEnabled">false</bool>
+    <bool name="config_workspaceFadeAdjacentScreens">false</bool>
+    <bool name="hotseat_transpose_layout_with_orientation">true</bool>
+    <bool name="is_large_screen">false</bool>
+    <color name="background_color">#000000</color>
+    <color name="battery_level_color">#cccccc</color>
+    <color name="battery_plugged_color">#00ff00</color>
+    <color name="black">#000000</color>
+    <color name="black_light">#242424</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorCard">#e0e0e0</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="gray">#b2b0b1</color>
+    <color name="gray_dark">#464040</color>
+    <color name="white">#ffffff</color>
+    <color name="white_50a">#99ffffff</color>
+    <declare-styleable name="AnalogClock"><attr format="dimension" name="jewelRadius"/><attr format="dimension" name="jewelOffset"/><attr format="color" name="jewelColor"/><attr format="reference" name="analogDial"/><attr format="reference" name="analogHour"/><attr format="reference" name="analogMinute"/><attr format="reference" name="analogSecond"/><attr format="boolean" name="noSecond"/><attr format="boolean" name="noHour"/><attr format="boolean" name="noMinute"/></declare-styleable>
+    <declare-styleable name="AnalogDate"><attr format="reference" name="analogWeek"/><attr format="reference" name="analogMonth"/></declare-styleable>
+    <declare-styleable name="AppsCustomizePagedView"><attr format="integer" name="maxAppCellCountX"/><attr format="integer" name="maxAppCellCountY"/><attr format="dimension" name="widgetCellWidthGap"/><attr format="dimension" name="widgetCellHeightGap"/><attr format="integer" name="widgetCountX"/><attr format="integer" name="widgetCountY"/><attr format="integer" name="clingFocusedX"/><attr format="integer" name="clingFocusedY"/></declare-styleable>
+    <declare-styleable name="AutoScalingLayout"><attr format="dimension" name="designWidth"/><attr format="dimension" name="designHeight"/><attr format="boolean" name="autoScaleEnable"/><attr format="string" name="autoScaleType"/><attr format="boolean" name="preScaling"/></declare-styleable>
+    <declare-styleable name="ButtonBarContainerTheme"><attr format="reference" name="metaButtonBarStyle"/><attr format="reference" name="metaButtonBarButtonStyle"/></declare-styleable>
+    <declare-styleable name="CellLayout"><attr format="dimension" name="cellWidth"/><attr format="dimension" name="cellHeight"/><attr format="dimension" name="widthGap"/><attr format="dimension" name="heightGap"/><attr format="dimension" name="maxGap"/></declare-styleable>
+    <declare-styleable name="CircleIndicator"><attr format="dimension" name="ci_width"/><attr format="dimension" name="ci_height"/><attr format="dimension" name="ci_margin"/><attr format="reference" name="ci_animator"/><attr format="reference" name="ci_animator_reverse"/><attr format="reference" name="ci_drawable"/><attr format="reference" name="ci_drawable_unselected"/></declare-styleable>
+    <declare-styleable name="CircledImageView"><attr name="android:src"/><attr format="color" name="circle_color"/><attr format="dimension" name="circle_radius"/><attr format="dimension" name="circle_radius_pressed"/><attr format="dimension" name="circle_border_width"/><attr format="color" name="circle_border_color"/><attr format="dimension" name="circle_padding"/><attr format="dimension" name="shadow_width"/><attr format="dimension" name="image_circle_percentage"/><attr format="dimension" name="image_horizontal_offcenter_percentage"/><attr format="color" name="image_tint"/><attr format="fraction" name="circle_radius_percent"/><attr format="fraction" name="circle_radius_pressed_percent"/><attr format="enum" name="square_dimen">
+            <enum name="none" value="0"/>
+            <enum name="height" value="1"/>
+            <enum name="width" value="2"/>
+        </attr></declare-styleable>
+    <declare-styleable name="Cling"><attr format="string" name="drawIdentifier"/></declare-styleable>
+    <declare-styleable name="CustomClingText"/>
+    <declare-styleable name="CustomClingTitleText"/>
+    <declare-styleable name="DateView"><attr name="weekShort"/><attr format="boolean" name="weeknot"/><attr format="string" name="dateTemplate"/></declare-styleable>
+    <declare-styleable name="DialLayoutCell"><attr format="string" name="exampleString"/><attr format="dimension" name="exampleDimension"/><attr format="color" name="exampleColor"/><attr format="color|reference" name="exampleDrawable"/></declare-styleable>
+    <declare-styleable name="DigitClock"><attr format="integer" name="clockType"/><attr format="boolean" name="dot"/></declare-styleable>
+    <declare-styleable name="DrawableStateProxyView"><attr format="integer" name="sourceViewId"/></declare-styleable>
+    <declare-styleable name="Extra"><attr format="string" name="key"/><attr format="string" name="value"/></declare-styleable>
+    <declare-styleable name="HandleView"><attr name="direction"/></declare-styleable>
+    <declare-styleable name="HolographicLinearLayout"><attr format="integer" name="sourceImageViewId"/></declare-styleable>
+    <declare-styleable name="Hotseat"><attr name="cellCountX"/><attr name="cellCountY"/></declare-styleable>
+    <declare-styleable name="ListItemLayout"><attr format="dimension" name="pref_icon_circle_radius_focused"/><attr format="dimension" name="pref_icon_circle_radius"/><attr format="dimension" name="pref_icon_circle_border_width"/><attr format="color" name="pref_icon_circle_color_selected"/><attr format="color" name="pref_icon_circle_color"/><attr format="color" name="pref_icon_circle_border_color"/></declare-styleable>
+    <declare-styleable name="ListPreference"><attr format="string" name="pref_entries"/><attr format="string" name="pref_entryValues"/><attr format="boolean" name="pref_entryAsSummary"/></declare-styleable>
+    <declare-styleable name="PagedView"><attr format="dimension" name="pageLayoutWidthGap"/><attr format="dimension" name="pageLayoutHeightGap"/><attr format="dimension" name="pageLayoutPaddingTop"/><attr format="dimension" name="pageLayoutPaddingBottom"/><attr format="dimension" name="pageLayoutPaddingLeft"/><attr format="dimension" name="pageLayoutPaddingRight"/><attr format="dimension" name="pageSpacing"/><attr format="dimension" name="scrollIndicatorPaddingLeft"/><attr format="dimension" name="scrollIndicatorPaddingRight"/></declare-styleable>
+    <declare-styleable name="Preference"><attr format="string" name="pref_key"/><attr format="integer" name="pref_icon"/><attr format="boolean" name="pref_icon_vis"/><attr format="string" name="pref_title"/><attr format="string" name="pref_summary"/><attr format="string" name="pref_activity"/><attr format="string" name="pref_package_name"/><attr format="string" name="pref_defaultValue"/><attr format="reference" name="pref_icon_drawable"/><attr format="string" name="pref_mode_type"/></declare-styleable>
+    <declare-styleable name="RadioPreference"><attr format="reference" name="iconOnImage"/><attr format="reference" name="iconOffImage"/><attr format="string" name="titleOn"/><attr format="string" name="titleOff"/></declare-styleable>
+    <declare-styleable name="StrokedTextView"><attr format="color" name="strokeColor"/><attr format="color" name="strokeTextColor"/><attr format="float" name="strokeWidth"/></declare-styleable>
+    <declare-styleable name="SwipeLayout"><attr name="drag_edge">
+            <flag name="left" value="1"/>
+            <flag name="right" value="2"/>
+            <flag name="top" value="4"/>
+            <flag name="bottom" value="8"/>
+        </attr><attr format="dimension" name="leftEdgeSwipeOffset"/><attr format="dimension" name="rightEdgeSwipeOffset"/><attr format="dimension" name="topEdgeSwipeOffset"/><attr format="dimension" name="bottomEdgeSwipeOffset"/><attr format="enum" name="show_mode">
+            <enum name="lay_down" value="0"/>
+            <enum name="pull_out" value="1"/>
+        </attr><attr format="boolean" name="clickToClose"/></declare-styleable>
+    <declare-styleable name="SwipeMenuLayout"><attr format="reference" name="leftViewId"/><attr format="reference" name="rightViewId"/><attr format="reference" name="contentViewId"/></declare-styleable>
+    <declare-styleable name="UnreadShortcut"><attr format="string" name="unreadPackageName"/><attr format="string" name="unreadClassName"/><attr format="string" name="unreadKey"/><attr format="integer" name="unreadType"/></declare-styleable>
+    <declare-styleable name="WeekTextView"><attr format="boolean" name="weekCn"/><attr name="weekShort"/></declare-styleable>
+    <declare-styleable name="Workspace"><attr format="integer" name="defaultScreen"/><attr format="integer" name="cellCountX"/><attr format="integer" name="cellCountY"/></declare-styleable>
+    <dimen name="app_icon_size">76px</dimen>
+    <dimen name="app_list_icon_width">76px</dimen>
+    <dimen name="app_list_list_icon_left">20dp</dimen>
+    <dimen name="app_list_list_text_left">20dp</dimen>
+    <dimen name="apps_customize_cell_height">82dp</dimen>
+    <dimen name="apps_customize_cell_width">74dp</dimen>
+    <dimen name="apps_customize_max_gap">18dp</dimen>
+    <dimen name="apps_customize_widget_cell_height_gap">5dp</dimen>
+    <dimen name="apps_customize_widget_cell_width_gap">5dp</dimen>
+    <dimen name="corner_font_m_text_size">16px</dimen>
+    <dimen name="corner_font_m_text_size_min">14px</dimen>
+    <dimen name="corner_font_text_size">18px</dimen>
+    <dimen name="corner_font_text_size_min">14px</dimen>
+    <dimen name="corner_sign_m_text_height">24px</dimen>
+    <dimen name="corner_sign_m_text_width">24px</dimen>
+    <dimen name="corner_sign_padding_bottom">1dp</dimen>
+    <dimen name="corner_sign_padding_left">1dp</dimen>
+    <dimen name="corner_sign_padding_right">1dp</dimen>
+    <dimen name="corner_sign_padding_top">1dp</dimen>
+    <dimen name="corner_sign_text_height">28px</dimen>
+    <dimen name="corner_sign_text_width">28px</dimen>
+    <dimen name="dial_a_dialer_hight">56px</dimen>
+    <dimen name="dial_a_dialer_width">56px</dimen>
+    <dimen name="dial_a_wetalk_hight">56px</dimen>
+    <dimen name="dial_a_wetalk_width">56px</dimen>
+    <dimen name="dial_b_dialer_hight">56px</dimen>
+    <dimen name="dial_b_dialer_width">56px</dimen>
+    <dimen name="dial_b_wetalk_hight">56px</dimen>
+    <dimen name="dial_b_wetalk_width">56px</dimen>
+    <dimen name="dial_d_dialer_hight">50px</dimen>
+    <dimen name="dial_d_dialer_width">120px</dimen>
+    <dimen name="dial_design_height">240px</dimen>
+    <dimen name="dial_design_width">240px</dimen>
+    <dimen name="dial_m_dialer_hight">50px</dimen>
+    <dimen name="dial_m_dialer_width">50px</dimen>
+    <dimen name="dial_m_wetalk_hight">50px</dimen>
+    <dimen name="dial_m_wetalk_width">50px</dimen>
+    <dimen name="dial_o_dialer_hight">50px</dimen>
+    <dimen name="dial_o_dialer_width">120px</dimen>
+    <dimen name="mode_type_icon_width">96dp</dimen>
+    <dimen name="mode_type_list_icon_left">20dp</dimen>
+    <dimen name="mode_type_list_text_left">20dp</dimen>
+    <dimen name="month_m_hight">17px</dimen>
+    <dimen name="month_m_width">28px</dimen>
+    <dimen name="negative_list_item_height">80px</dimen>
+    <dimen name="negative_list_item_icon_left">9px</dimen>
+    <dimen name="negative_list_item_spacing">8px</dimen>
+    <dimen name="negative_list_item_text_left">16px</dimen>
+    <dimen name="negative_list_item_title_text_size">24px</dimen>
+    <dimen name="num_clock_a_dot_hight">41px</dimen>
+    <dimen name="num_clock_a_dot_width">16px</dimen>
+    <dimen name="num_clock_a_hight">41px</dimen>
+    <dimen name="num_clock_a_width">30px</dimen>
+    <dimen name="num_clock_b_hight">93px</dimen>
+    <dimen name="num_clock_b_width">34px</dimen>
+    <dimen name="num_clock_d_dot_hight">60px</dimen>
+    <dimen name="num_clock_d_dot_width">17px</dimen>
+    <dimen name="num_clock_d_hight">60px</dimen>
+    <dimen name="num_clock_d_width">42px</dimen>
+    <dimen name="num_clock_g_dot_hight">40px</dimen>
+    <dimen name="num_clock_g_dot_width">11px</dimen>
+    <dimen name="num_clock_g_hight">43px</dimen>
+    <dimen name="num_clock_g_width">34px</dimen>
+    <dimen name="num_clock_j_dot_hight">46px</dimen>
+    <dimen name="num_clock_j_dot_width">15px</dimen>
+    <dimen name="num_clock_j_hight">46px</dimen>
+    <dimen name="num_clock_j_width">35px</dimen>
+    <dimen name="num_clock_k_dot_hight">43px</dimen>
+    <dimen name="num_clock_k_dot_width">15px</dimen>
+    <dimen name="num_clock_k_hight">43px</dimen>
+    <dimen name="num_clock_k_width">32px</dimen>
+    <dimen name="num_clock_m_dot_hight">53px</dimen>
+    <dimen name="num_clock_m_dot_width">12px</dimen>
+    <dimen name="num_clock_m_hight">53px</dimen>
+    <dimen name="num_clock_m_width">26px</dimen>
+    <dimen name="num_clock_n_dot_hight">44px</dimen>
+    <dimen name="num_clock_n_dot_width">18px</dimen>
+    <dimen name="num_clock_n_hight">44px</dimen>
+    <dimen name="num_clock_n_width">33px</dimen>
+    <dimen name="num_clock_o_dot_hight">61px</dimen>
+    <dimen name="num_clock_o_dot_width">22px</dimen>
+    <dimen name="num_clock_o_hight">61px</dimen>
+    <dimen name="num_clock_o_width">43px</dimen>
+    <dimen name="status_bar_height">44px</dimen>
+    <dimen name="week_m_hight">17px</dimen>
+    <dimen name="week_m_width">28px</dimen>
+    <dimen name="workspace_spring_loaded_page_spacing">15dp</dimen>
+    <item name="btn_id_dialer" type="id"/>
+    <item name="btn_id_mms" type="id"/>
+    <item name="launcher_viewpager_pager_postion_id" type="id"/>
+    <item name="text_id_dialer_num" type="id"/>
+    <item name="text_id_mss_num" type="id"/>
+    <integer name="activity_animation_duration">400</integer>
+    <integer name="animation_duration_long">500</integer>
+    <integer name="animation_duration_normal">150</integer>
+    <integer name="animation_duration_short">200</integer>
+    <integer name="cell_count_x">2</integer>
+    <integer name="cell_count_y">2</integer>
+    <integer name="config_allAppsBatchLoadDelay">0</integer>
+    <integer name="config_allAppsBatchSize">0</integer>
+    <integer name="config_appsCustomizeDragSlopeThreshold">150</integer>
+    <integer name="config_appsCustomizeFadeInTime">250</integer>
+    <integer name="config_appsCustomizeFadeOutTime">200</integer>
+    <integer name="config_appsCustomizeSpringLoadedBgAlpha">45</integer>
+    <integer name="config_appsCustomizeWorkspaceAnimationStagger">40</integer>
+    <integer name="config_appsCustomizeWorkspaceShrinkTime">300</integer>
+    <integer name="config_appsCustomizeZoomInTime">350</integer>
+    <integer name="config_appsCustomizeZoomOutTime">600</integer>
+    <integer name="config_appsCustomizeZoomScaleFactor">7</integer>
+    <integer name="config_cameraDistance">6500</integer>
+    <integer name="config_dragFadeOutAlpha">80</integer>
+    <integer name="config_dragFadeOutDuration">250</integer>
+    <integer name="config_dragOutlineFadeTime">900</integer>
+    <integer name="config_dragOutlineMaxAlpha">128</integer>
+    <integer name="config_dropAnimMaxDist">800</integer>
+    <integer name="config_dropAnimMaxDuration">500</integer>
+    <integer name="config_dropAnimMinDuration">100</integer>
+    <integer name="config_dropTargetBgTransitionDuration">0</integer>
+    <integer name="config_flingToDeleteMinVelocity">-1500</integer>
+    <integer name="config_folderAnimDuration">120</integer>
+    <integer name="config_tabTransitionDuration">250</integer>
+    <integer name="config_workspaceAppsCustomizeAnimationStagger">100</integer>
+    <integer name="config_workspaceSpringLoadShrinkPercentage">60</integer>
+    <integer name="config_workspaceUnshrinkTime">300</integer>
+    <integer name="dial_type_a">0</integer>
+    <integer name="dial_type_b">1</integer>
+    <integer name="dial_type_c">2</integer>
+    <integer name="dial_type_d">3</integer>
+    <integer name="dial_type_e">4</integer>
+    <integer name="dial_type_f">5</integer>
+    <integer name="dial_type_g">6</integer>
+    <integer name="dial_type_h">7</integer>
+    <integer name="dial_type_i">8</integer>
+    <integer name="dial_type_j">9</integer>
+    <integer name="dial_type_k">10</integer>
+    <integer name="dial_type_l">11</integer>
+    <integer name="dial_type_m">12</integer>
+    <integer name="dial_type_n">13</integer>
+    <integer name="dial_type_o">14</integer>
+    <integer name="dial_type_p">15</integer>
+    <integer name="dial_type_q">16</integer>
+    <integer name="folder_max_count_x">4</integer>
+    <integer name="folder_max_count_y">4</integer>
+    <integer name="folder_max_num_items">16</integer>
+    <integer name="hotseat_all_apps_index">2</integer>
+    <integer name="hotseat_cell_count">0</integer>
+    <integer name="hotseat_item_scale_percentage">100</integer>
+    <integer name="unread_num_max">99</integer>
+    <integer name="view_show_duration">150</integer>
+    <plurals name="duration_days_relative">
+        <item quantity="one"><ns1:g example="1" id="count">%d</ns1:g> day ago</item>
+        <item quantity="other"><ns1:g example="2" id="count">%d</ns1:g> days ago</item>
+    </plurals>
+    <plurals name="duration_days_shortest">
+        <item quantity="one"><ns1:g example="1" id="count">%d</ns1:g>d</item>
+        <item quantity="other"><ns1:g example="2" id="count">%d</ns1:g>d</item>
+    </plurals>
+    <plurals name="duration_days_shortest_future">
+        <item quantity="one">in <ns1:g example="1" id="count">%d</ns1:g>d</item>
+        <item quantity="other">in <ns1:g example="2" id="count">%d</ns1:g>d</item>
+    </plurals>
+    <plurals name="duration_hours_relative">
+        <item quantity="one"><ns1:g example="1" id="count">%d</ns1:g> hour ago</item>
+        <item quantity="other"><ns1:g example="2" id="count">%d</ns1:g> hours ago</item>
+    </plurals>
+    <plurals name="duration_hours_shortest">
+        <item quantity="one"><ns1:g example="1" id="count">%d</ns1:g>h</item>
+        <item quantity="other"><ns1:g example="2" id="count">%d</ns1:g>h</item>
+    </plurals>
+    <plurals name="duration_hours_shortest_future">
+        <item quantity="one">in <ns1:g example="1" id="count">%d</ns1:g>h</item>
+        <item quantity="other">in <ns1:g example="2" id="count">%d</ns1:g>h</item>
+    </plurals>
+    <plurals name="duration_minutes_relative">
+        <item quantity="one"><ns1:g example="1" id="count">%d</ns1:g> minute ago</item>
+        <item quantity="other"><ns1:g example="2" id="count">%d</ns1:g> minutes ago</item>
+    </plurals>
+    <plurals name="duration_minutes_relative_future">
+        <item quantity="one">in <ns1:g example="1" id="count">%d</ns1:g> minute</item>
+        <item quantity="other">in <ns1:g example="2" id="count">%d</ns1:g> minutes</item>
+    </plurals>
+    <plurals name="duration_minutes_shortest">
+        <item quantity="one"><ns1:g example="1" id="count">%d</ns1:g>m</item>
+        <item quantity="other"><ns1:g example="2" id="count">%d</ns1:g>m</item>
+    </plurals>
+    <plurals name="duration_minutes_shortest_future">
+        <item quantity="one">in <ns1:g example="1" id="count">%d</ns1:g>m</item>
+        <item quantity="other">in <ns1:g example="2" id="count">%d</ns1:g>m</item>
+    </plurals>
+    <plurals name="duration_years_relative">
+        <item quantity="one"><ns1:g example="1" id="count">%d</ns1:g> year ago</item>
+        <item quantity="other"><ns1:g example="2" id="count">%d</ns1:g> years ago</item>
+    </plurals>
+    <plurals name="duration_years_shortest">
+        <item quantity="one"><ns1:g example="1" id="count">%d</ns1:g>y</item>
+        <item quantity="other"><ns1:g example="2" id="count">%d</ns1:g>y</item>
+    </plurals>
+    <plurals name="duration_years_shortest_future">
+        <item quantity="one">in <ns1:g example="1" id="count">%d</ns1:g>y</item>
+        <item quantity="other">in <ns1:g example="2" id="count">%d</ns1:g>y</item>
+    </plurals>
+    <string name="accessibility_airplane_mode">Airplane mode.</string>
+    <string name="accessibility_bluetooth_tether">Bluetooth tethering.</string>
+    <string name="accessibility_data_connection_3_5g">3.5G</string>
+    <string name="accessibility_data_connection_3g">3G</string>
+    <string name="accessibility_data_connection_4g">4G</string>
+    <string name="accessibility_data_connection_cdma">CDMA</string>
+    <string name="accessibility_data_connection_edge">Edge</string>
+    <string name="accessibility_data_connection_gprs">GPRS</string>
+    <string name="accessibility_data_connection_lte">LTE</string>
+    <string name="accessibility_data_one_bar">Data one bar.</string>
+    <string name="accessibility_data_signal_full">Data signal full.</string>
+    <string name="accessibility_data_three_bars">Data three bars.</string>
+    <string name="accessibility_data_two_bars">Data two bars.</string>
+    <string name="accessibility_no_data">No data.</string>
+    <string name="accessibility_no_phone">No phone.</string>
+    <string name="accessibility_no_wifi">Wifi disconnected.</string>
+    <string name="accessibility_no_wimax">No WiMAX.</string>
+    <string name="accessibility_phone_four_bars">Phone four bars.</string>
+    <string name="accessibility_phone_one_bar">Phone one bar.</string>
+    <string name="accessibility_phone_signal_full">Phone signal full.</string>
+    <string name="accessibility_phone_three_bars">Phone three bars.</string>
+    <string name="accessibility_phone_two_bars">Phone two bars.</string>
+    <string name="accessibility_wifi_name">Connected to <ns1:g example="Home Network" id="wifi">%s</ns1:g>.</string>
+    <string name="accessibility_wifi_off">Wifi off.</string>
+    <string name="accessibility_wifi_one_bar">Wifi one bar.</string>
+    <string name="accessibility_wifi_signal_full">Wifi signal full.</string>
+    <string name="accessibility_wifi_three_bars">Wifi three bars.</string>
+    <string name="accessibility_wifi_two_bars">Wifi two bars.</string>
+    <string name="accessibility_wimax_one_bar">WiMAX one bar.</string>
+    <string name="accessibility_wimax_signal_full">WiMAX signal full.</string>
+    <string name="accessibility_wimax_three_bars">WiMAX three bars.</string>
+    <string name="accessibility_wimax_two_bars">WiMAX two bars.</string>
+    <string name="app_name">WearLauncher</string>
+    <string name="battery_level_template"><ns1:g example="45" id="level">%d</ns1:g>%%</string>
+    <string name="bluetooth_tethered">Bluetooth tethered</string>
+    <string name="data_usage_disabled_dialog_enable">Re-enable data</string>
+    <string name="default_scroll_format">Page %1$d of %2$d</string>
+    <string name="ethernet_label">Ethernet</string>
+    <string name="instruction_content">欢迎使用读书郎电话手表，手表需要获得以下权限：</string>
+    <string name="instruction_li">1. 拨打电话、发送短信\n2. 获取位置信息\n3. 访问网络\n4. 打开、关闭蓝牙</string>
+    <string name="instruction_title">Hello !</string>
+    <string name="lockscreen_carrier_default">No service.</string>
+    <string name="negative_item_alarm">闹钟</string>
+    <string name="negative_item_bell">响铃方式</string>
+    <string name="negative_item_setting">设置</string>
+    <string name="negative_item_weather">天气</string>
+    <string name="notice_low_power">电量低 请尽快充电</string>
+    <string name="notice_low_power_for_phone">电量低，只能使用电话功能</string>
+    <string name="notification_delete">删除</string>
+    <string name="notification_not_msg">没有消息</string>
+    <string name="notification_title">消息提醒</string>
+    <string name="now_string_shortest">now</string>
+    <string name="sim_bind_driver_disable_default">"未使用该设备绑定的唯一SIM卡，请更换SIM卡后再使用!"</string>
+    <string name="sim_bind_fail_tip">"绑定失败，请重试"</string>
+    <string name="sim_bind_not_cmcc">"手表仅支持移动SIM卡，请关机后更换SIM卡绑定。"</string>
+    <string name="sim_bind_shut_down">"关机"</string>
+    <string name="sim_bind_succ_tip">"绑定成功"</string>
+    <string name="sim_bind_sure_bind">"确认绑定"</string>
+    <string name="sim_bind_tip_item_1">" 绑定此SIM卡"</string>
+    <string name="sim_bind_tip_item_2">" 关机后更换SIM卡使用"</string>
+    <string name="sim_bind_tip_top">"手表需要绑定唯一SIM卡，绑定后将无法更换，您可以选择"</string>
+    <string name="sim_bind_title">"温馨提示"</string>
+    <string name="sim_name_mobile">中国移动</string>
+    <string name="sim_name_telecom">中国电信</string>
+    <string name="sim_name_unicom">中国联通</string>
+    <string name="status_bar_network_name_separator" translatable="false">|</string>
+    <string name="status_bar_settings_signal_meter_disconnected">No Internet connection</string>
+    <string name="status_bar_settings_signal_meter_wifi_nossid">Wi-Fi connected</string>
+    <string name="title_activity_dual">DualActivity</string>
+    <string name="unkown">无</string>
+    <string name="unread_num_max_display">99+</string>
+    <string name="watch_main_book">学汉字</string>
+    <string name="watch_main_work">学单词</string>
+    <string name="watch_type_learn">学习</string>
+    <string name="watch_type_personal">个性</string>
+    <string name="watch_type_sport">运动</string>
+    <string name="weather_template" translatable="false">%s°C %s</string>
+    <style name="Animation"/>
+    <style name="Animation.Top">
+        <item name="android:windowEnterAnimation">@anim/activity_enter_top</item>
+        <item name="android:windowExitAnimation">@anim/activity_exit_top</item>
+        <item name="android:activityCloseExitAnimation">@anim/activity_exit_top</item>
+    </style>
+    <style name="AppTheme" parent="android:Theme.Wallpaper.NoTitleBar.Fullscreen">
+        <item name="android:windowSwipeToDismiss">false</item>
+        <!-- Customize your theme here. -->
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+    </style>
+    <style name="NotificationTheme" parent="android:Theme.Material.NoActionBar.Fullscreen">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:cacheColorHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@style/Animation.Top</item>
+        <item name="android:windowSwipeToDismiss">false</item>
+    </style>
+    <style name="appListTextView">
+        <item name="android:textSize">30sp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:textColor">@color/app_list_text_color_selector</item>
+    </style>
+    <style name="cornerSignTextView">
+        <item name="android:layout_width">@dimen/corner_sign_text_width</item>
+        <item name="android:layout_height">@dimen/corner_sign_text_height</item>
+        <item name="android:background">@drawable/unread_num_bg</item>
+        <item name="android:textSize">@dimen/corner_font_text_size</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_marginRight">-8px</item>
+        <item name="android:layout_marginTop">-8px</item>
+    </style>
+    <style name="cornerSignTextView2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/corner_sign_text_height</item>
+        <item name="android:minWidth">@dimen/corner_sign_text_width</item>
+        <item name="android:background">@drawable/corner_sign_text_bg</item>
+        <item name="android:textSize">@dimen/corner_font_text_size</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:paddingLeft">@dimen/corner_sign_padding_left</item>
+        <item name="android:paddingRight">@dimen/corner_sign_padding_right</item>
+        <item name="android:paddingTop">@dimen/corner_sign_padding_top</item>
+        <item name="android:paddingBottom">@dimen/corner_sign_padding_bottom</item>
+    </style>
+    <style name="cornerSignTextViewM">
+        <item name="android:layout_width">@dimen/corner_sign_m_text_width</item>
+        <item name="android:layout_height">@dimen/corner_sign_m_text_height</item>
+        <item name="android:textSize">@dimen/corner_font_m_text_size</item>
+        <item name="android:background">@drawable/unread_num_m_bg</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="dialog_fs">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <style name="modeTypeListTextView">
+        <item name="android:textSize">30sp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:textColor">@color/mode_type_list_text_color_selector</item>
+    </style>
+</resources>
