@@ -161,10 +161,9 @@ public class WatchController extends BroadcastReceiver {
     public void addClassDisableChangedCallback(ClassDisableChangedCallback cb){
         mClassDisableChangedCallback.add(cb);
         /*boolean show = !TextUtils.isEmpty(mClassDisableData) && isNowEnable();*/
-//        ReadboyWearManager rwm = (ReadboyWearManager)mContext.getSystemService(Context.RBW_SERVICE);
-//        boolean show = rwm.isClassForbidOpen();
-//        cb.onClassDisableChange(show);
-        cb.onClassDisableChange(false);
+        ReadboyWearManager rwm = (ReadboyWearManager)mContext.getSystemService(Context.RBW_SERVICE);
+        boolean show = rwm.isClassForbidOpen();
+        cb.onClassDisableChange(show);
     }
     public void removeClassDisableChangedCallback(ClassDisableChangedCallback cb){
         mClassDisableChangedCallback.remove(cb);
@@ -180,9 +179,8 @@ public class WatchController extends BroadcastReceiver {
 
     void classDisableChanged() {
         /*boolean show = !TextUtils.isEmpty(mClassDisableData) && isNowEnable();*/
-//        ReadboyWearManager rwm = (ReadboyWearManager)mContext.getSystemService(Context.RBW_SERVICE);
-//        boolean show = rwm.isClassForbidOpen();
-        boolean show = false;
+        ReadboyWearManager rwm = (ReadboyWearManager)mContext.getSystemService(Context.RBW_SERVICE);
+        boolean show = rwm.isClassForbidOpen();
         for(ClassDisableChangedCallback callback : mClassDisableChangedCallback) {
             callback.onClassDisableChange(show);
         }

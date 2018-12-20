@@ -2,7 +2,7 @@
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
     <string-array name="ableEnterList">
         <item>com.readboy.wearweather</item>
-        <!--<item>com.android.settings</item>-->
+        
     </string-array>
     <string-array name="app_alarm">
         <item>闹钟</item>
@@ -110,21 +110,21 @@
     <string-array name="excludePackageList">
         <item>com.android.documentsui</item>
         <item>com.sohu.inputmethod.sogou</item>
-        <!--<item>org.chromium.webview_shell</item>-->
-        <!--<item>com.example.wifitest</item>-->
-        <!--<item>com.qualcomm.qti.watchmessenger</item>-->
-        <!--<item>com.android.calendar</item>-->
-        <!--<item>com.android.deskclock</item>-->
-        <!--<item>com.android.email</item>-->
-        <!--<item>com.android.quicksearchbox</item>-->
-        <!--<item>com.example.wifitest</item>-->
-        <!--<item>com.qualcomm.qti.sensors.qsensortest</item>-->
-        <!--<item>com.qualcomm.qti.sensors.ui.artest</item>-->
-        <!--<item>com.qualcomm.location.qvtester</item>-->
-        <!--<item>com.qualcomm.qct.dlt</item>-->
-        <!--<item>com.qualcomm.qti.app</item>-->
-        <!--<item>com.android.nativeaudiolatency</item>-->
-        <!--<item>com.android.qlogging</item>-->
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </string-array>
     <integer-array name="ringer_mode_integer">
         <item>0</item>
@@ -183,9 +183,9 @@
         <item>雪</item>
     </string-array>
     <attr name="direction">
-        <!-- Vertical widget. -->
+        
         <enum name="vertical" value="0"/>
-        <!-- Horizontal widget. -->
+        
         <enum name="horizontal" value="1"/>
     </attr>
     <attr format="boolean" name="weekShort"/>
@@ -304,7 +304,7 @@
     <dimen name="month_m_hight">17px</dimen>
     <dimen name="month_m_width">28px</dimen>
     <dimen name="negative_list_item_height">80px</dimen>
-    <dimen name="negative_list_item_icon_left">9px</dimen>
+    <dimen name="negative_list_item_icon_left">11px</dimen>
     <dimen name="negative_list_item_spacing">8px</dimen>
     <dimen name="negative_list_item_text_left">16px</dimen>
     <dimen name="negative_list_item_title_text_size">24px</dimen>
@@ -512,19 +512,10 @@
     <string name="notification_not_msg">没有消息</string>
     <string name="notification_title">消息提醒</string>
     <string name="now_string_shortest">now</string>
-    <string name="sim_bind_driver_disable_default">"未使用该设备绑定的唯一SIM卡，请更换SIM卡后再使用!"</string>
-    <string name="sim_bind_fail_tip">"绑定失败，请重试"</string>
-    <string name="sim_bind_not_cmcc">"手表仅支持移动SIM卡，请关机后更换SIM卡绑定。"</string>
-    <string name="sim_bind_shut_down">"关机"</string>
-    <string name="sim_bind_succ_tip">"绑定成功"</string>
-    <string name="sim_bind_sure_bind">"确认绑定"</string>
-    <string name="sim_bind_tip_item_1">" 绑定此SIM卡"</string>
-    <string name="sim_bind_tip_item_2">" 关机后更换SIM卡使用"</string>
-    <string name="sim_bind_tip_top">"手表需要绑定唯一SIM卡，绑定后将无法更换，您可以选择"</string>
-    <string name="sim_bind_title">"温馨提示"</string>
     <string name="sim_name_mobile">中国移动</string>
     <string name="sim_name_telecom">中国电信</string>
     <string name="sim_name_unicom">中国联通</string>
+    <string name="sim_name_unknow">未知运营商</string>
     <string name="status_bar_network_name_separator" translatable="false">|</string>
     <string name="status_bar_settings_signal_meter_disconnected">No Internet connection</string>
     <string name="status_bar_settings_signal_meter_wifi_nossid">Wi-Fi connected</string>
@@ -545,10 +536,10 @@
     </style>
     <style name="AppTheme" parent="android:Theme.Wallpaper.NoTitleBar.Fullscreen">
         <item name="android:windowSwipeToDismiss">false</item>
-        <!-- Customize your theme here. -->
-        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
-        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
-        <!--<item name="colorAccent">@color/colorAccent</item>-->
+        
+        
+        
+        
     </style>
     <style name="NotificationTheme" parent="android:Theme.Material.NoActionBar.Fullscreen">
         <item name="android:windowBackground">@android:color/transparent</item>

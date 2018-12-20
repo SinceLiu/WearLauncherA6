@@ -66,6 +66,7 @@ import java.util.List;
 
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
+
 public class Launcher extends FragmentActivity implements BatteryController.BatteryStateChangeCallback,
         GestureView.MyGestureListener, WatchAppGridView.OnClickItemListener, LoaderManager.LoaderCallbacks<ArrayList<AppInfo>>,WatchController.ClassDisableChangedCallback,
         WatchController.ScreenOff {
@@ -105,7 +106,7 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
             Manifest.permission.READ_CALL_LOG,
             Manifest.permission.READ_SMS,
             Manifest.permission.READ_CONTACTS,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
     };
 
     @Override
@@ -245,7 +246,6 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         bIsTouchable = true;
         LauncherApplication.setTouchEnable(true);
         requestPermissions(sPermissions);
-        getDoNotDisturb();
         forceUpdateDate();
         dialResume();
     }
@@ -321,7 +321,7 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         if(mGestureView == null || mLowDialBaseLayout == null) return;
         if(mBatteryLevel == -1 || mBatteryLevel != level){
             mBatteryLevel = level;
-//            ReadboyWearManager rwm = (ReadboyWearManager)Launcher.this.getSystemService(Context.RBW_SERVICE);
+            ReadboyWearManager rwm = (ReadboyWearManager)Launcher.this.getSystemService(Context.RBW_SERVICE);
             PowerManager mPowerManager = (PowerManager) Launcher.this.getSystemService(Context.POWER_SERVICE);
             if(mBatteryLevel < lowPowerLevel){//low powe
                 mGestureView.setVisibility(View.INVISIBLE);
@@ -329,7 +329,7 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
                 mLowDialBaseLayout.addChangedCallback();
                 mLowDialBaseLayout.onResume();
                 mLowDialBaseLayout.setButtonEnable();
-//                rwm.setLowPowerMode(true);
+                rwm.setLowPowerMode(true);
                 if(!mPowerManager.isPowerSaveMode()){
                     mPowerManager.setPowerSaveMode(true);
                 }
@@ -339,19 +339,19 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
             } else{
                 mGestureView.setVisibility(View.VISIBLE);
                 mLowDialBaseLayout.setVisibility(View.GONE);
-//                rwm.setLowPowerMode(false);
+                rwm.setLowPowerMode(false);
                 if(mPowerManager.isPowerSaveMode()){
                     mPowerManager.setPowerSaveMode(false);
                 }
             }
         } else {
-//			ReadboyWearManager rwm = (ReadboyWearManager)Launcher.this.getSystemService(Context.RBW_SERVICE);
+			ReadboyWearManager rwm = (ReadboyWearManager)Launcher.this.getSystemService(Context.RBW_SERVICE);
             PowerManager mPowerManager = (PowerManager) Launcher.this.getSystemService(Context.POWER_SERVICE);
 			if(level < lowPowerLevel && !mPowerManager.isPowerSaveMode()) {
-//				rwm.setLowPowerMode(true);
+				rwm.setLowPowerMode(true);
 				mPowerManager.setPowerSaveMode(true);
 			} else if(level >= lowPowerLevel && mPowerManager.isPowerSaveMode()) {
-//				rwm.setLowPowerMode(false);
+				rwm.setLowPowerMode(false);
 				mPowerManager.setPowerSaveMode(false);
 			}
 		}
@@ -375,20 +375,19 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         float vDistance = e1.getY() - e2.getY();
         boolean bVerticalMove = Math.abs(velocityX) - Math.abs(velocityY) < 0;
         if(vDistance > mTouchSlopSquare / 5 && bVerticalMove && mViewPagerScrollState == ViewPager.SCROLL_STATE_IDLE){
-//            ReadboyWearManager rwm = (ReadboyWearManager)Launcher.this.getSystemService(Context.RBW_SERVICE);
-//            PersonalInfo info = rwm.getPersonalInfo();
-//            if(info != null && info.isHasSiri() == 1){
+            ReadboyWearManager rwm = (ReadboyWearManager)Launcher.this.getSystemService(Context.RBW_SERVICE);
+            PersonalInfo info = rwm.getPersonalInfo();
+            if(info != null && info.isHasSiri() == 1){
                 Log.e(TAG, "onFling: start Speech activity.");
                 Utils.startActivity(Launcher.this,"com.readboy.watch.speech","com.readboy.watch.speech.Main2Activity");
-//            } else {
-//                Utils.startActivity(Launcher.this,"com.android.settings","com.android.qrcode.MainActivity");
-//            }
+            } else {
+                Utils.startActivity(Launcher.this,"com.android.settings","com.android.qrcode.MainActivity");
+            }
             return true;
         }else if(vDistance < -mTouchSlopSquare/2 && bVerticalMove && mViewPagerScrollState == ViewPager.SCROLL_STATE_IDLE){
             /*boolean isEnable = ((LauncherApplication) LauncherApplication.getApplication()).getWatchController().isNowEnable();*/
-//            ReadboyWearManager rwm = (ReadboyWearManager)Launcher.this.getSystemService(Context.RBW_SERVICE);
-//            boolean isEnable = rwm.isClassForbidOpen();
-            boolean isEnable = false;
+            ReadboyWearManager rwm = (ReadboyWearManager)Launcher.this.getSystemService(Context.RBW_SERVICE);
+            boolean isEnable = rwm.isClassForbidOpen();
             if(isEnable){
                 ClassDisableDialog.showClassDisableDialog(Launcher.this);
                 Utils.checkAndDealWithAirPlanMode(Launcher.this);
@@ -548,16 +547,6 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         }
     };
 
-    //获取Do not disturb权限,才可进行音量操作
-    private void getDoNotDisturb(){
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
-                && !notificationManager.isNotificationPolicyAccessGranted()) {
-//            Intent intent = new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
-//            startActivity(intent);
-            Settings.System.putInt(getContentResolver(), Settings.System.DO_NOT_DISTURB, 1);
-        }
-    }
     private void requestPermissions(String[] permissions){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             for(String permission : permissions){
@@ -755,9 +744,8 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
                     public void run() {
                         /*boolean isEnable = ((LauncherApplication)
                                 LauncherApplication.getApplication()).getWatchController().isNowEnable();*/
-//			            ReadboyWearManager rwm = (ReadboyWearManager)Launcher.this.getSystemService(Context.RBW_SERVICE);
-//			            boolean isEnable = rwm.isClassForbidOpen();
-                        boolean isEnable = false;
+			            ReadboyWearManager rwm = (ReadboyWearManager)Launcher.this.getSystemService(Context.RBW_SERVICE);
+			            boolean isEnable = rwm.isClassForbidOpen();
                         Log.e("cwj", "needGoToHOme isEnable "+ isEnable);
                         if(isEnable){
                             startActivity(new Intent(Launcher.this,Launcher.class));

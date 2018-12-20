@@ -120,9 +120,8 @@ public class Utils {
         List<String> ableEnterList = Arrays.asList(context.getResources().getStringArray(
                 R.array.ableEnterList));
         /*boolean isEnable = ((LauncherApplication)LauncherApplication.getApplication()).getWatchController().isNowEnable();*/
-//        ReadboyWearManager rwm = (ReadboyWearManager)context.getSystemService(Context.RBW_SERVICE);
-//        boolean isEnable = rwm.isClassForbidOpen();
-        boolean isEnable = false;
+        ReadboyWearManager rwm = (ReadboyWearManager)context.getSystemService(Context.RBW_SERVICE);
+        boolean isEnable = rwm.isClassForbidOpen();
         if(isEnable && !ableEnterList.contains(pkg)){
             ClassDisableDialog.showClassDisableDialog(context);
             checkAndDealWithAirPlanMode(context);

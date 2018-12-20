@@ -22,7 +22,7 @@ android {
             assets.srcDirs = ['assets']
         }
 
-        instrumentTest {
+        androidTest {
             assets.srcDirs = ["tests/assets"]
             res.srcDirs = ["tests/res"]
             resources.srcDirs = ["tests/src"]

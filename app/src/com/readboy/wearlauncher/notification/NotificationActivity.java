@@ -98,7 +98,7 @@ public class NotificationActivity extends Activity {
         findViewById(R.id.btn_right).setOnTouchListener(openFactoryModeOps);
     }
 
-/// add by cwj for open factory mode @{
+    /// add by cwj for open factory mode @{
     int mMinCountdown = 5;
     int mMaxCountdown = 8;
     int mLeftCountdown = 0;
@@ -116,32 +116,34 @@ public class NotificationActivity extends Activity {
             }
         }
     };
-    private void initCount(){
+
+    private void initCount() {
         mLeftCountdown = 0;
         mRightCountdown = 0;
     }
+
     private long resetTime = 1000;
     private View.OnTouchListener openFactoryModeOps = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
-            if (motionEvent.getAction()==MotionEvent.ACTION_DOWN){
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                 switch (view.getId()) {
                     case R.id.btn_left:
                         mHandler.removeMessages(RESET_FACTORY_COUNT);
                         mHandler.sendEmptyMessageDelayed(RESET_FACTORY_COUNT, resetTime);
                         mLeftCountdown++;
-                        Log.d("FACTORY_COUNT", "mLeftCountdown:"+ mLeftCountdown
-                                +" mRightCountdown:"+ mRightCountdown);
-                        if (mLeftCountdown>mMaxCountdown)
+                        Log.d("FACTORY_COUNT", "mLeftCountdown:" + mLeftCountdown
+                                + " mRightCountdown:" + mRightCountdown);
+                        if (mLeftCountdown > mMaxCountdown)
                             initCount();
                         break;
                     case R.id.btn_right:
                         mHandler.removeMessages(RESET_FACTORY_COUNT);
-                        Log.d("FACTORY_COUNT", "mLeftCountdown:"+ mLeftCountdown
-                                +" mRightCountdown:"+ mRightCountdown);
-                        if (mLeftCountdown >=mMinCountdown&&mLeftCountdown<=mMaxCountdown) {
+                        Log.d("FACTORY_COUNT", "mLeftCountdown:" + mLeftCountdown
+                                + " mRightCountdown:" + mRightCountdown);
+                        if (mLeftCountdown >= mMinCountdown && mLeftCountdown <= mMaxCountdown) {
                             mRightCountdown++;
-                            if (mRightCountdown==mMinCountdown) {
+                            if (mRightCountdown == mMinCountdown) {
                                 openFactoryMode(NotificationActivity.this);
                                 initCount();
                             } else {
@@ -151,15 +153,20 @@ public class NotificationActivity extends Activity {
                             initCount();
                         }
                         break;
+                    default:
+                        break;
                 }
             }
             return false;
         }
     };
+
     //打开工厂模式
     private static void openFactoryMode(Context context) {
         Intent intent = new Intent("android.provider.Telephony.SECRET_CODE",
                 Uri.parse("android_secret_code://" + "83789"));
+        ComponentName componentName = new ComponentName("com.mediatek.factorymode", "com.mediatek.factorymode.EntranceReceiver");
+        intent.setComponent(componentName);
         context.sendBroadcast(intent);
     }
 /// @}
