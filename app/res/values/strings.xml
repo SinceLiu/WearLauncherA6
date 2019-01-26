@@ -4,14 +4,30 @@
     <string name="watch_type_sport">运动</string>
     <string name="watch_type_learn">学习</string>
     <string name="watch_type_personal">个性</string>
-
+    <string name="watch_app_title">应用列表</string>
     <string name="watch_main_book">学汉字</string>
     <string name="watch_main_work">学单词</string>
 
+    <string name="wetalk_title">微聊</string>
+    <string name="apps_title">应用列表</string>
+    <string name="dialer_cancel">取消</string>
+
+    <string name="negative_title">设置</string>
     <string name="negative_item_bell">响铃方式</string>
     <string name="negative_item_weather">天气</string>
     <string name="negative_item_alarm">闹钟</string>
     <string name="negative_item_setting">设置</string>
+
+    <string name="contact_title">联系人</string>
+    <string name="contact_empty">没有联系人</string>
+    <string name="video_call">视频通话</string>
+    <string name="dialer_call">拨打电话</string>
+    <string name="call_option">是否拨打\n%s电话</string>
+
+    <string name="camera_title">相机</string>
+    <string name="camera_item_photo">拍照</string>
+    <string name="camera_item_video">小视频</string>
+    <string name="camera_item_gallery">相册</string>
 
     <string name="notification_title">消息提醒</string>
     <string name="notification_delete">删除</string>

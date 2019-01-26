@@ -72,27 +72,27 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
     ArrayList<String> Package_Sort = new ArrayList<String>(){
         {
             add("com.android.dialer");
-            add("com.readboy.wetalk");
             add("com.readboy.wordstudy");
-            add("com.android.settings");
+            add("com.readboy.wearweather");
+            add("com.readboy.qrcode");
+            add("com.android.mms");
             add("com.readboy.findfriend");
             add("com.readboy.pedometer");
-            add("com.mediatek.camera");
-            add("com.android.gallery3d");
+            add("com.android.settings");
             add("com.readboy.wear.rbsos");
-
             add("com.readboy.alarmclock");
-            add("com.readboy.wearsettings");
             add("com.android.contacts");
             add("com.ccb.readboy.timetable");
             add("com.readboy.hanzixuexiwatch");
             add("com.readboy.heartratemonitor");
-            add("com.readboy.qrcode");
+            add("com.readboy.wearsettings");
             add("com.readboy.running");
             add("com.readboy.watch.speech");
             add("com.readboy.watchcamera");
-            add("com.readboy.wearweather");
             add("com.android.deskclock");
+            add("com.readboy.wetalk");
+            add("com.readboy.camera3");
+            add("com.readboy.gallery3d");
         }
     };
 

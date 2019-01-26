@@ -17,7 +17,16 @@
         <item name="android:windowSwipeToDismiss">false</item>
     </style>
 
+    <style name="SwipeToDismissTheme" parent="android:Theme.Wallpaper.NoTitleBar.Fullscreen">
+        <item name="android:windowSwipeToDismiss">true</item>
+    </style>
+
     <style name="Animation"/>
+
+    <style name="NotifcationAnimation">
+        <item name="android:windowEnterAnimation">@anim/notification_enter_top</item>
+        <item name="android:windowExitAnimation">@anim/notification_exit_top</item>
+    </style>
 
     <style name="Animation.Top">
         <item name="android:windowEnterAnimation">@anim/activity_enter_top</item>

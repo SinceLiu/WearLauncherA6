@@ -10,7 +10,7 @@
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent" android:id="@+id/content_container">
 
-        <android.support.v4.view.ViewPager
+        <com.readboy.wearlauncher.view.MyViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
@@ -20,7 +20,8 @@
         android:id="@+id/low"
         layout="@layout/dialtype_o_layout_cell"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/tv_msg_error"

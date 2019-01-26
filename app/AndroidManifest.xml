@@ -2,21 +2,27 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.readboy.wearlauncher"
     android:sharedUserId="android.uid.phone"
-    android:versionCode="180712005"
-    android:versionName="1.1">
+    android:versionCode="190125002"
+    android:versionName="2.3">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.SYSTEM_PHONE_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ANSWER_PHONE_CALLS" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <!-- <uses-permission android:name="android.permission.MANAGE_NETWORK_POLICY" /> -->
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
-
     <uses-permission android:name="android.permission.WRITE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
@@ -26,10 +32,10 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" />
     <uses-permission android:name="android.permission.STATUS_BAR_SERVICE" />
-    <uses-permission android:name="android.permission.GET_TASKS"/>
-    <uses-permission android:name="android.permission.DEVICE_POWER"/>
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-    <uses-permission android:name="android.permission.GET_APP_OPS_STATS"/>
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.DEVICE_POWER" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.GET_APP_OPS_STATS" />
     <!-- ActivityManager -->
     <uses-permission android:name="android.permission.REAL_GET_TASKS" />
     <uses-permission android:name="android.permission.GET_DETAILED_TASKS" />
@@ -44,19 +50,19 @@
     <uses-permission android:name="android.permission.MANAGE_ACTIVITY_STACKS" />
     <uses-permission android:name="android.permission.START_TASKS_FROM_RECENTS" />
 
-    <!--<uses-feature android:name="android.hardware.type.watch"/>-->
+    <!-- <uses-feature android:name="android.hardware.type.watch"/> -->
 
-    <uses-permission android:name="android.permission.SHUTDOWN"></uses-permission>
-    <uses-permission android:name="android.permission.REBOOT"></uses-permission>
-    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"></uses-permission>
+    <uses-permission android:name="android.permission.SHUTDOWN" />
+    <uses-permission android:name="android.permission.REBOOT" />
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
 
     <application
         android:name=".LauncherApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
         android:largeHeap="true"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".Launcher"
@@ -66,15 +72,20 @@
             android:stateNotNeeded="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.HOME" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.MONKEY" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".notification.NotificationActivity"
-            android:theme="@style/NotificationTheme"/>
+        <activity
+            android:name=".notification.NotificationActivity"
+            android:theme="@style/NotificationTheme" />
+        <activity android:name=".contact.CallActivity" />
+        <activity
+            android:name=".contact.CallTypeActivity"
+            android:theme="@style/SwipeToDismissTheme" />
 
         <!-- The settings provider contains Home's data, like the workspace favorites -->
         <provider
@@ -84,20 +95,25 @@
             android:readPermission="com.android.launcher.permission.READ_SETTINGS"
             android:writePermission="com.android.launcher.permission.WRITE_SETTINGS" />
 
-        <receiver android:name="com.readboy.wearlauncher.utils.WatchController">
+        <receiver android:name=".utils.WatchController">
             <intent-filter>
-                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
                 <action android:name="android.intent.action.DATE_CHANGED" />
                 <action android:name="android.intent.action.TIME_SET" />
             </intent-filter>
         </receiver>
+
         <service
-            android:name="com.readboy.wearlauncher.notification.NotificationMonitor"
-            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" >
+            android:name=".notification.NotificationMonitor"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
         </service>
+        <service
+            android:name=".utils.StartFactoryModeService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

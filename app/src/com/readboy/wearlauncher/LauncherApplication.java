@@ -89,7 +89,7 @@ public class LauncherApplication extends Application {
     public static boolean isTouchEnable() {
         return bIsTouchEnable || (Math.abs(System.currentTimeMillis() - mSetTouchEnableTime) > 1000);
     }
-    
+
     public NetworkController getNetworkController(){
     	return mNetworkController;
     }

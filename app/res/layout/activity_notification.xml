@@ -8,16 +8,6 @@
     android:paddingLeft="6px"
     android:paddingRight="6px">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="44px"
-        android:gravity="center"
-        android:background="@drawable/bg_notification_title"
-        android:text="@string/notification_title"
-        android:textColor="@android:color/white"
-        android:textSize="24px" />
-
     <com.readboy.recyclerview.swipe.SwipeMenuRecyclerView
         android:id="@+id/notification_recycler_view"
         android:layout_width="match_parent"
@@ -62,11 +52,78 @@
         android:id="@+id/btn_left"
         android:layout_width="110px"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/status_bar_height"
         android:layout_gravity="left" />
+
     <View
         android:id="@+id/btn_right"
         android:layout_width="110px"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/status_bar_height"
         android:layout_gravity="right" />
 
+    <ImageView
+        android:id="@+id/iv_class_disable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/class_disable_notification"
+        android:visibility="gone"
+        android:clickable="true"
+        />
+
+    <!--status bar-->
+    <LinearLayout
+        android:id="@+id/status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/status_bar_height"
+        android:background="#000000"
+        android:gravity="center_vertical|right"
+        android:orientation="horizontal">
+
+        <include
+            android:id="@+id/signal_cluster"
+            layout="@layout/signal_cluster_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8px" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/btn_id_classdisable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5px" />
+
+        <ImageView
+            android:id="@+id/btn_id_gps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5px" />
+
+        <ImageView
+            android:id="@+id/btn_id_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5px" />
+
+        <ImageView
+            android:id="@+id/btn_id_bluetooth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5px" />
+
+        <com.readboy.wearlauncher.battery.BatteryLevelImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5px"
+            android:layout_marginRight="8px" />
+        <!--<com.readboy.wearlauncher.battery.BatteryLevelTextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"/>-->
+    </LinearLayout>
 </com.readboy.wearlauncher.view.SwipeDismissLayout>

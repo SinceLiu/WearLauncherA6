@@ -3,6 +3,7 @@ package com.readboy.wearlauncher.notification;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.PendingIntent;
+import android.app.readboy.ReadboyWearManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -20,6 +21,7 @@ import android.os.ServiceManager;
 import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -37,8 +39,16 @@ import com.android.internal.statusbar.IStatusBarService;
 import com.readboy.recyclerview.swipe.SwipeMenuRecyclerView;
 import com.readboy.recyclerview.swipe.touch.OnItemMoveListener;
 import com.readboy.recyclerview.swipe.touch.OnItemMovementListener;
+import com.readboy.wearlauncher.Launcher;
+import com.readboy.wearlauncher.LauncherApplication;
+import com.readboy.wearlauncher.Location.LocationControllerImpl;
 import com.readboy.wearlauncher.R;
+import com.readboy.wearlauncher.alarm.AlarmController;
+import com.readboy.wearlauncher.bluetooth.BluetoothController;
+import com.readboy.wearlauncher.net.NetworkController;
+import com.readboy.wearlauncher.net.SignalClusterView;
 import com.readboy.wearlauncher.utils.Utils;
+import com.readboy.wearlauncher.utils.WatchController;
 import com.readboy.wearlauncher.view.SwipeDismissLayout;
 
 import java.util.ArrayList;
@@ -58,15 +68,16 @@ public class NotificationActivity extends Activity {
 
     private static final String TAG = "NotificationActivity";
     private NotificationReceiver mReceiver = new NotificationReceiver();
-
+    private LauncherApplication mApplication;
     private static final String ENABLED_NOTIFICATION_LISTENERS
             = Settings.Secure.ENABLED_NOTIFICATION_LISTENERS;
-
+    private LocalBroadcastManager mLocalBroadcastManager;
     SwipeDismissLayout mSwipeDismissLayout;
     private SwipeMenuRecyclerView mRecyclerView;
     private NotificationAdapter mAdapter;
     private AnimationDrawable mNoDataAnimation;
     private View mNoDataView;
+    private ImageView classDisableView;
 
     private IStatusBarService mBarService;
     private boolean isSendTo = false;
@@ -77,7 +88,23 @@ public class NotificationActivity extends Activity {
         setContentView(R.layout.activity_notification);
         assignView();
         initData();
+        mLocalBroadcastManager = LocalBroadcastManager.getInstance(this);
         registerReceiver();
+
+/**
+ * Add by lxx 2019/1/2.
+ */
+        mApplication = (LauncherApplication) getApplicationContext();
+        //bluetooth
+        initBluetoothController();
+        //alarm
+        initAlarmController();
+        //net wifi
+        initNetController();
+
+//        initGPSController();
+
+//        initClassDisable();
     }
 
     private void assignView() {
@@ -92,6 +119,8 @@ public class NotificationActivity extends Activity {
 
         mNoDataView = findViewById(R.id.no_data_parent);
         mNoDataAnimation = (AnimationDrawable) findViewById(R.id.no_data_animation).getBackground();
+        classDisableView = findViewById(R.id.iv_class_disable);
+        hideOrShowClassDisableView();
         initRecyclerView();
 
         findViewById(R.id.btn_left).setOnTouchListener(openFactoryModeOps);
@@ -134,8 +163,9 @@ public class NotificationActivity extends Activity {
                         mLeftCountdown++;
                         Log.d("FACTORY_COUNT", "mLeftCountdown:" + mLeftCountdown
                                 + " mRightCountdown:" + mRightCountdown);
-                        if (mLeftCountdown > mMaxCountdown)
+                        if (mLeftCountdown > mMaxCountdown) {
                             initCount();
+                        }
                         break;
                     case R.id.btn_right:
                         mHandler.removeMessages(RESET_FACTORY_COUNT);
@@ -163,11 +193,18 @@ public class NotificationActivity extends Activity {
 
     //打开工厂模式
     private static void openFactoryMode(Context context) {
-        Intent intent = new Intent("android.provider.Telephony.SECRET_CODE",
-                Uri.parse("android_secret_code://" + "83789"));
-        ComponentName componentName = new ComponentName("com.mediatek.factorymode", "com.mediatek.factorymode.EntranceReceiver");
-        intent.setComponent(componentName);
-        context.sendBroadcast(intent);
+//        Intent intent = new Intent("android.provider.Telephony.SECRET_CODE",
+//                Uri.parse("android_secret_code://" + "83789"));
+//        ComponentName componentName = new ComponentName("com.mediatek.factorymode", "com.mediatek.factorymode.EntranceReceiver");
+//        intent.setComponent(componentName);
+//        context.sendBroadcast(intent);
+        Intent factoryModeIntent = new Intent();
+        factoryModeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        factoryModeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        ComponentName componentName = new ComponentName("com.mediatek.factorymode", "com.mediatek.factorymode.FactoryMode");
+        factoryModeIntent.setComponent(componentName);
+        context.startActivity(factoryModeIntent);
+
     }
 /// @}
 
@@ -203,7 +240,7 @@ public class NotificationActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(mReceiver);
+        mLocalBroadcastManager.unregisterReceiver(mReceiver);
     }
 
     @Override
@@ -327,7 +364,8 @@ public class NotificationActivity extends Activity {
         Log.e(TAG, "registerReceiver: ");
         IntentFilter filter = new IntentFilter();
         filter.addAction(NotificationMonitor.ACTION_NLS_UPDATE);
-        registerReceiver(mReceiver, filter);
+        filter.addAction(Launcher.ACTION_CLASS_DISABLE_STATUS_CHANGED);
+        mLocalBroadcastManager.registerReceiver(mReceiver, filter);
     }
 
     //是否要过滤掉，禁止侧滑
@@ -365,10 +403,8 @@ public class NotificationActivity extends Activity {
     }
 
     class NotificationReceiver extends BroadcastReceiver {
-
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.e(TAG, "onReceive: action = " + intent.getAction());
             if (TextUtils.equals(intent.getAction(), NotificationMonitor.ACTION_NLS_UPDATE)) {
                 String command = intent.getStringExtra(EXTRA_COMMAND);
                 Log.e(TAG, "onReceive: command = " + command);
@@ -387,6 +423,10 @@ public class NotificationActivity extends Activity {
                     default:
                         Log.e(TAG, "onReceive: command not support, command = " + command);
                 }
+            }
+
+            if (Launcher.ACTION_CLASS_DISABLE_STATUS_CHANGED.equals(intent.getAction())) {
+                hideOrShowClassDisableView();
             }
         }
     }
@@ -414,6 +454,16 @@ public class NotificationActivity extends Activity {
     private void showNoMsgView() {
         mNoDataAnimation.start();
         mNoDataView.setVisibility(View.VISIBLE);
+    }
+
+    private void hideOrShowClassDisableView() {
+        ReadboyWearManager rwm = (ReadboyWearManager) getSystemService(Context.RBW_SERVICE);
+        boolean isEnable = rwm.isClassForbidOpen();
+        if (isEnable) {
+            classDisableView.setVisibility(View.VISIBLE);
+        } else {
+            classDisableView.setVisibility(View.GONE);
+        }
     }
 
     private static boolean isSystemNotification(StatusBarNotification sbn) {
@@ -469,7 +519,6 @@ public class NotificationActivity extends Activity {
             Notification notification = statusBarNotification.getNotification();
             int progress = notification.extras.getInt(Notification.EXTRA_PROGRESS, -1);
             int maxProgress = notification.extras.getInt(Notification.EXTRA_PROGRESS_MAX, -1);
-            Log.e(TAG, "getItemViewType: progress = " + progress + ", maxProgress = " + maxProgress);
             if (progress >= 0 && maxProgress > 0) {
                 return ITEM_TYPE_PROGRESS;
             } else {
@@ -481,13 +530,10 @@ public class NotificationActivity extends Activity {
             mNotificationsMap.clear();
             for (StatusBarNotification data : datas) {
                 String type = data.getNotification().extras.getString("extra_type", "");
-                Log.e(TAG, "updateData: key = " + data.getKey());
-                Log.e(TAG, "updateData: type = " + type + ", packagesName = " + data.getPackageName());
                 if (!shouldFilterOut(data)) {
                     mNotificationsMap.put(data.getKey(), data);
                 }
             }
-            Log.e(TAG, "updateData: size = " + mNotificationsMap.size());
             filterAndSort();
             if (mNotificationList.size() > 0) {
                 hideNoMsgView();
@@ -501,7 +547,6 @@ public class NotificationActivity extends Activity {
         void removeItem(StatusBarNotification notification) {
             StatusBarNotification sbn = mNotificationsMap.remove(notification.getKey());
             if (sbn == null) {
-                Log.e(TAG, "removeItem: notification not exit in mNotificationMap");
                 return;
             }
 
@@ -510,12 +555,10 @@ public class NotificationActivity extends Activity {
             int size = mNotificationList.size();
             for (int i = 0; i < size; i++) {
                 if (notification.getKey().equals(mNotificationList.get(i).getKey())) {
-                    Log.e(TAG, "removeItem: equals");
                     pointer = i;
                     break;
                 }
                 if (notification.getKey().contentEquals(mNotificationList.get(i).getKey())) {
-                    Log.e(TAG, "removeItem: content equals");
                     pointer = i;
                     break;
                 }
@@ -523,11 +566,8 @@ public class NotificationActivity extends Activity {
             if (pointer >= 0) {
                 mNotificationList.remove(pointer);
                 notifyItemRemoved(pointer);
-                Log.e(TAG, "removeItem: notifyItemRemoved");
             } else {
                 notifyDataSetChanged();
-                Log.e(TAG, "removeItem: notifyDataSetChanged, " +
-                        "notification null exit, key = " + notification.getKey());
             }
             //endregion
         }
@@ -683,6 +723,52 @@ public class NotificationActivity extends Activity {
             int percent = progress * 100 / maxProgress;
             mProgressTv.setText(String.valueOf(percent + "%"));
         }
+    }
+
+    /**
+     * 蓝牙
+     */
+    private void initBluetoothController() {
+        ImageView bluetoothIconView = (ImageView) findViewById(R.id.btn_id_bluetooth);
+        BluetoothController bluetoothEnabler = mApplication.getBluetoothController();
+        bluetoothEnabler.addBluetoothIconView(bluetoothIconView);
+        bluetoothEnabler.fireCallbacks();
+    }
+
+    /**
+     * 闹钟
+     */
+    private void initAlarmController() {
+        ImageView alarmIconView = (ImageView) findViewById(R.id.btn_id_alarm);
+        AlarmController alarmController = mApplication.getAlarmController();
+        alarmController.addAlarmIconView(alarmIconView);
+        alarmController.fireCallbacks();
+    }
+
+    /**
+     * 网络 信号和Wi-Fi
+     */
+    private void initNetController() {
+        NetworkController controller = mApplication.getNetworkController();
+        SignalClusterView signalCluster = (SignalClusterView) findViewById(R.id.signal_cluster);
+        controller.addSignalCluster(signalCluster);
+        controller.addNetworkSignalChangedCallback(signalCluster);
+        signalCluster.setNetworkController(controller);
+    }
+
+    /**
+     * GPS
+     */
+    private void initGPSController() {
+        ImageView gpsIconView = (ImageView) findViewById(R.id.btn_id_gps);
+        LocationControllerImpl controller = mApplication.getLocationControllerImpl();
+        controller.addIconView(gpsIconView);
+    }
+
+    private void initClassDisable() {
+        ImageView iconView = (ImageView) findViewById(R.id.btn_id_classdisable);
+        WatchController watchController = mApplication.getWatchController();
+        watchController.addClassDisableIconView(iconView);
     }
 
 }

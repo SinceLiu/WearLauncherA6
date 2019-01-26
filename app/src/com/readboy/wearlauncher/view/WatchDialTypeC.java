@@ -21,6 +21,7 @@ public class WatchDialTypeC extends DialBaseLayout {
     public WatchDialTypeC(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
+
     public WatchDialTypeC(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
@@ -72,6 +73,7 @@ public class WatchDialTypeC extends DialBaseLayout {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
     }
+
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();

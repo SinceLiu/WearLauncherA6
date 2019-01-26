@@ -23,29 +23,38 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE_TAGS := optional
 
-LOCAL_STATIC_JAVA_LIBRARIES := \
+LOCAL_STATIC_ANDROID_LIBRARIES := \
     android-support-v4 \
     android-support-v7-appcompat \
     android-support-v7-recyclerview \
     android-support-v7-palette \
-    android-support-v13
+    android-support-v13 \
+
+LOCAL_STATIC_JAVA_LIBRARIES := \
+	wearlauncher-picasso \
+	launcher-glide \
+    	launcher-baseadapter
     
 LOCAL_JAVA_LIBRARIES := telephony-common
 LOCAL_JAVA_LIBRARIES += ims-common
 
+wetalk_support_dir := ../../../../../../packages/apps/WeTalk/support
+
 LOCAL_SRC_FILES := \
     $(call all-java-files-under, src) \
-    $(call all-renderscript-files-under, src)
+    $(call all-renderscript-files-under, src) \
+    $(call all-java-files-under, $(wetalk_support_dir)/src)
 
 LOCAL_RESOURCE_DIR := \
     $(LOCAL_PATH)/res \
     frameworks/support/v7/recyclerview/res \
-    frameworks/support/v7/cardview/res
+    frameworks/support/v7/cardview/res \
+    packages/apps/WeTalk/support/res
 
 LOCAL_AAPT_FLAGS := \
     --auto-add-overlay \
     --extra-packages com.android.keyguard \
-    
+    --extra-packages com.readboy.wetalk.support
 
 LOCAL_CERTIFICATE := platform
 #LOCAL_SDK_VERSION := current
@@ -53,12 +62,14 @@ LOCAL_MIN_SDK_VERSION := 21
 LOCAL_PACKAGE_NAME := WearLauncher
 LOCAL_PRIVILEGED_MODULE := true
 LOCAL_DEX_PREOPT := false
+LOCAL_PROGUARD_ENABLED := disabled
+
+LOCAL_USE_AAPT2 := true
 
 LOCAL_OVERRIDES_PACKAGES += Launcher3 Launcher3Go
 
 ifeq ($(strip $(CENON_SIMPLIFY_VERSION)), yes)
 LOCAL_OVERRIDES_PACKAGES += \
-    AtciService \
     DataTransfer \
     AutoDialer \
     BasicDreams \
@@ -72,7 +83,6 @@ LOCAL_OVERRIDES_PACKAGES += \
     WallpaperBackup \
     PhotoTable \
     PicoTts \
-    PrintSpooler \
     LiveWallpapers \
     LiveWallpapersPicker \
     MagicSmokeWallpapers \
@@ -110,8 +120,6 @@ LOCAL_OVERRIDES_PACKAGES += \
     Stk \
     Stk1
 
-#LOCAL_PROGUARD_FLAG_FILES := proguard.flags
-
 ## set MTK_BASIC_PACKAGE
 
 LOCAL_OVERRIDES_PACKAGES += \
@@ -123,30 +131,35 @@ LOCAL_OVERRIDES_PACKAGES += \
     Calculator \
     MtkBrowser \
     MtkCalendar \
-    Music \
+    MusicBspPlus \
     MusicFX \
     FMRadio \
-    DeskClock \
-    EmergencyInfo \
+    MtkDeskClock \
     SimProcessor \
     WiFiTest \
     SensorHub \
-    MTKThermalManager \
     QuickSearchBox \
-    FileManager \
-    Contacts \
-    messaging \
-    MtkMms \
-    BatteryWarning \
     SchedulePowerOnOff \
     DownloadProviderUi \
-    SoundRecorder
-
-LOCAL_OVERRIDES_PACKAGES += LatinIME
+    FileManager \
+    MtkContacts  \
+    PrintSpooler \
+    MtkGallery2 \
+    MtkLatinIME \
+    CellBroadcastReceiver
 
 endif
 
 include $(BUILD_PACKAGE)
+
+include $(CLEAR_VARS)
+
+LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := \
+	launcher-glide:libs/glide-3.7.0.jar \
+    	launcher-baseadapter:/libs/baseadapter.jar \
+	wearlauncher-picasso:libs/picasso.jar
+
+include $(BUILD_MULTI_PREBUILT)
 
 #include $(BUILD_HOST_JAVA_LIBRARY)
 

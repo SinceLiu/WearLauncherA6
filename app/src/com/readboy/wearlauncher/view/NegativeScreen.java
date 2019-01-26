@@ -18,22 +18,12 @@ import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
-import com.readboy.wearlauncher.LauncherApplication;
-import com.readboy.wearlauncher.Location.LocationControllerImpl;
 import com.readboy.wearlauncher.R;
-import com.readboy.wearlauncher.alarm.AlarmController;
-import com.readboy.wearlauncher.bluetooth.BluetoothController;
-import com.readboy.wearlauncher.net.NetworkController;
-import com.readboy.wearlauncher.net.SignalClusterView;
 import com.readboy.wearlauncher.utils.Utils;
-import com.readboy.wearlauncher.utils.WatchController;
 
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
@@ -43,7 +33,6 @@ import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class NegativeScreen extends FrameLayout implements View.OnClickListener {
     private Context mContext;
-    private LauncherApplication mApplication;
     private TextView mRingerModeView;
     private TextView mWeatherModeView;
     ScrollView mScrollView;
@@ -58,9 +47,7 @@ public class NegativeScreen extends FrameLayout implements View.OnClickListener 
 
     public NegativeScreen(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-
         mContext = context;
-        mApplication = (LauncherApplication) context.getApplicationContext();
     }
 
     @Override
@@ -73,16 +60,6 @@ public class NegativeScreen extends FrameLayout implements View.OnClickListener 
         findViewById(R.id.settings).setOnClickListener(this);
         mRingerModeView = (TextView) findViewById(R.id.ring);
         mWeatherModeView = (TextView) findViewById(R.id.weather);
-        //bluetooth
-        initBluetoothController();
-        //alarm
-        initAlarmController();
-        //net wifi
-        initNetController();
-
-//        initGPSController();
-
-//        initClassDisable();
     }
 
     @Override
@@ -202,51 +179,7 @@ public class NegativeScreen extends FrameLayout implements View.OnClickListener 
         updateRingerMode();
     }
 
-    /**
-     * 蓝牙
-     */
-    private void initBluetoothController() {
-        ImageView bluetoothIconView = (ImageView) findViewById(R.id.btn_id_bluetooth);
-        BluetoothController bluetoothEnabler = mApplication.getBluetoothController();
-        bluetoothEnabler.addBluetoothIconView(bluetoothIconView);
-        bluetoothEnabler.fireCallbacks();
-    }
 
-    /**
-     * 闹钟
-     */
-    private void initAlarmController() {
-        ImageView alarmIconView = (ImageView) findViewById(R.id.btn_id_alarm);
-        AlarmController alarmController = mApplication.getAlarmController();
-        alarmController.addAlarmIconView(alarmIconView);
-        alarmController.fireCallbacks();
-    }
-
-    /**
-     * 网络 信号和Wi-Fi
-     */
-    private void initNetController() {
-        NetworkController controller = mApplication.getNetworkController();
-        SignalClusterView signalCluster = (SignalClusterView) findViewById(R.id.signal_cluster);
-        controller.addSignalCluster(signalCluster);
-        controller.addNetworkSignalChangedCallback(signalCluster);
-        signalCluster.setNetworkController(controller);
-    }
-
-    /**
-     * GPS
-     */
-    private void initGPSController() {
-        ImageView gpsIconView = (ImageView) findViewById(R.id.btn_id_gps);
-        LocationControllerImpl controller = mApplication.getLocationControllerImpl();
-        controller.addIconView(gpsIconView);
-    }
-
-    private void initClassDisable() {
-        ImageView iconView = (ImageView) findViewById(R.id.btn_id_classdisable);
-        WatchController watchController = mApplication.getWatchController();
-        watchController.addClassDisableIconView(iconView);
-    }
 
     private String getWeather() {
         String weather = "";

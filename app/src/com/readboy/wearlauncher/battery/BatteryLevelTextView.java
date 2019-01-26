@@ -52,7 +52,7 @@ public class BatteryLevelTextView extends TextView implements
         public void onChange(boolean selfChange, Uri uri) {
         	update();
         }
-    };
+    }
 
     public BatteryLevelTextView(Context context, AttributeSet attrs) {
         super(context, attrs);

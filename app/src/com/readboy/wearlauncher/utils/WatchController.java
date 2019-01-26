@@ -44,7 +44,7 @@ public class WatchController extends BroadcastReceiver {
     //class disable
     public static final String TAG_CLASS_DISABLED = "class_disabled";
     public static final String TAG_CLASS_DISABLED_TIME = "class_disable_time";
-    public static final String READBOY_ACTION_CLASS_DISABLE_CHANGED = "readboy.acion.CLASS_DISABLE_CHANGED";
+    public static final String READBOY_ACTION_CLASS_DISABLE_CHANGED = "readboy.action.CLASS_DISABLE_CHANGED";
     private static final SimpleDateFormat mDateFormat = new SimpleDateFormat("HH:mm");
     //Weather
     public static final String ACTION_WEATHER_RESULT = "com.readboy.wearlauncher.weather.WEATHER_RESULT";
@@ -175,6 +175,7 @@ public class WatchController extends BroadcastReceiver {
     }
     public interface ScreenOff{
         void onScreenOff();
+        void onScreenOn();
     }
 
     void classDisableChanged() {
@@ -216,7 +217,7 @@ public class WatchController extends BroadcastReceiver {
         filter.addAction(ACTION_WEATHER_RESULT);
         //step
         filter.addAction(ACTION_STEP_ADD);
-
+        filter.addAction(Intent.ACTION_SCREEN_ON);
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         context.registerReceiver(this, filter);
 
@@ -466,6 +467,10 @@ public class WatchController extends BroadcastReceiver {
         }else if(TextUtils.equals(action,Intent.ACTION_SCREEN_OFF)){
             if(mScreenOffListener != null){
                 mScreenOffListener.onScreenOff();
+            }
+        }else if(TextUtils.equals(action,Intent.ACTION_SCREEN_ON)){
+            if(mScreenOffListener != null){
+                mScreenOffListener.onScreenOn();
             }
         }
     }

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.readboy.wearlauncher.view.CameraView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/negative_screen_bg">
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:splitMotionEvents="false">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/camera_title_height"
+                android:background="@drawable/bg_title"
+                android:gravity="center"
+                android:text="@string/camera_title"
+                android:textColor="@android:color/white"
+                android:textSize="26px" />
+
+            <ImageView
+                android:id="@+id/photo"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/camera_item_height"
+                android:layout_marginTop="@dimen/camera_margin"
+                android:layout_marginLeft="@dimen/camera_margin"
+                android:layout_marginRight="@dimen/camera_margin"
+                android:background="@drawable/negative_screen_item_bg"
+                android:src="@drawable/camera_item_photo" />
+
+            <ImageView
+                android:id="@+id/video"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/camera_item_height"
+                android:layout_marginTop="@dimen/camera_margin"
+                android:layout_marginLeft="@dimen/camera_margin"
+                android:layout_marginRight="@dimen/camera_margin"
+                android:background="@drawable/negative_screen_item_bg"
+                android:src="@drawable/camera_item_video" />
+
+            <ImageView
+                android:id="@+id/gallery"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/camera_item_height"
+                android:layout_marginTop="@dimen/camera_margin"
+                android:layout_marginLeft="@dimen/camera_margin"
+                android:layout_marginRight="@dimen/camera_margin"
+                android:background="@drawable/negative_screen_item_bg"
+                android:src="@drawable/camera_item_gallery" />
+        </LinearLayout>
+    </ScrollView>
+
+</com.readboy.wearlauncher.view.CameraView>

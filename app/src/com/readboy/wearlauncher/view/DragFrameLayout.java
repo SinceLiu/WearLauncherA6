@@ -71,7 +71,6 @@ public class DragFrameLayout extends FrameLayout {
     private ViewDragHelper.Callback mCallback = new ViewDragHelper.Callback() {
         @Override
         public boolean tryCaptureView(View child, int pointerId) {
-            Log.e(TAG, "tryCaptureView: requestDisallow true");
             getParent().requestDisallowInterceptTouchEvent(true);
             return true;
         }

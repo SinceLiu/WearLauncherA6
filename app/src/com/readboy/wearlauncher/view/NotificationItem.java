@@ -4,7 +4,9 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.UserHandle;
 import android.service.notification.StatusBarNotification;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -22,9 +24,8 @@ import com.readboy.wearlauncher.Swipe.SwipeLayout;
 
 public class NotificationItem extends RelativeLayout{
     private static final String TAG = "NotificationItem";
-
+    private LocalBroadcastManager mLocalBroadcastManager;
     StatusBarNotification mStatusBarNotification;
-
     public TextView mTitleTextView;
     public DateTimeView mTimeView;
     public TextView mContentTextView;
@@ -58,6 +59,7 @@ public class NotificationItem extends RelativeLayout{
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+        mLocalBroadcastManager = LocalBroadcastManager.getInstance(getContext());
         mSwipeLayout = (SwipeLayout) findViewById(R.id.swipelayout);
         mSwipeLayout.findViewById(R.id.delete).setOnClickListener(new NotificationDelete());
         mSwipeLayout.getSurfaceView().setOnClickListener(new NotificationClicker());
@@ -106,7 +108,7 @@ public class NotificationItem extends RelativeLayout{
             Intent i = new Intent(NotificationMonitor.ACTION_NLS_CONTROL);
             i.putExtra("command","cancel");
             i.putExtra("key",sbn.getKey());
-            NotificationItem.this.getContext().sendBroadcast(i);
+            mLocalBroadcastManager.sendBroadcast(i);
             //NotificationMonitor.getNotificationMonitor().cancelNotification(sbn.getKey());
         }
     }
