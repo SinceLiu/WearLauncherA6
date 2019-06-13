@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#ff000000">
+    android:orientation="vertical">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -11,39 +10,43 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:scrollbars="none">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="10px"
-            android:paddingBottom="18px"
-            android:paddingLeft="16px"
-            android:paddingRight="16px"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dialog_instructions_padding_bottom_1"
+            android:paddingLeft="@dimen/dialog_instructions_padding_left_1"
+            android:paddingRight="@dimen/dialog_instructions_padding_right_1"
+            android:paddingTop="@dimen/dialog_instructions_padding_top_1">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="24px"
+                android:text="@string/instruction_title"
                 android:textColor="@color/white"
-                android:text="@string/instruction_title"/>
+                android:textSize="@dimen/dialog_instructions_text_size_1" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="9px"
-                android:lineSpacingExtra="6px"
+                android:layout_marginTop="@dimen/dialog_instructions_margin_top"
                 android:gravity="left"
-                android:textSize="20px"
+                android:lineSpacingExtra="@dimen/dialog_instructions_line_space"
+                android:text="@string/instruction_content"
                 android:textColor="@color/white"
-                android:text="@string/instruction_content"/>
+                android:textSize="@dimen/dialog_instructions_text_size_2" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="9px"
-                android:lineSpacingExtra="6px"
+                android:layout_marginTop="@dimen/dialog_instructions_margin_top"
                 android:gravity="left"
-                android:textSize="20px"
+                android:lineSpacingExtra="@dimen/dialog_instructions_line_space"
+                android:text="@string/instruction_li"
                 android:textColor="@color/white"
-                android:text="@string/instruction_li"/>
+                android:textSize="@dimen/dialog_instructions_text_size_2" />
         </LinearLayout>
     </ScrollView>
 
@@ -52,8 +55,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5px"
+        android:layout_marginBottom="@dimen/dialog_instructions_margin_bottom_2"
         android:orientation="horizontal">
+
         <Button
             android:id="@+id/cancel_bid"
             android:layout_width="wrap_content"
@@ -64,7 +68,7 @@
             android:id="@+id/ok_bid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_instruction_agree"/>
+            android:background="@drawable/btn_instruction_agree" />
     </LinearLayout>
 
 

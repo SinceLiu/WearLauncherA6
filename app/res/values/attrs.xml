@@ -236,9 +236,5 @@
         <attr name="rightViewId" format="reference" />
         <attr name="contentViewId" format="reference" />
     </declare-styleable>
-	
-	<!--Contact -->
-	<declare-styleable name="RImageView">
-        <attr name="borderRadius" format="dimension"/>
-    </declare-styleable>
+
 </resources>

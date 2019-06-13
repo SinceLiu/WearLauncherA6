@@ -1,4 +1,4 @@
-package com.readboy.wearlauncher.Swipe;
+package com.readboy.wearlauncher.swipe;
 
 import java.util.List;
 

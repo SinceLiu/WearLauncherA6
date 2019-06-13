@@ -1,6 +1,5 @@
 package com.readboy.wearlauncher.view;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.util.AttributeSet;

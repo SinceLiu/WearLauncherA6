@@ -4,23 +4,13 @@
     android:layout_height="match_parent"
     android:background="@drawable/watch_type_g_black_bg">
 
-    <!--<TextView-->
-        <!--android:id="@+id/week_tvid"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:textColor="#ffffff"-->
-        <!--android:textSize="16sp"-->
-        <!--android:layout_marginTop="44px"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--/>-->
-
     <TextView
         android:id="@+id/date_tvid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="22px"
-        android:layout_marginTop="196px"
-        android:textSize="20px"
+        android:layout_marginLeft="@dimen/dial_g_date_margin_left"
+        android:layout_marginTop="@dimen/dial_g_date_margin_top"
+        android:textSize="@dimen/dial_g_date_text_size"
         android:textColor="#ffffff"/>
 
     <!--time-->
@@ -28,7 +18,7 @@
         layout="@layout/digit_clock_g_layout"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_marginLeft="156px"
-        android:layout_marginTop="20px"
+        android:layout_marginLeft="@dimen/dial_g_clock_margin_left"
+        android:layout_marginTop="@dimen/dial_g_clock_margin_top"
         />
 </com.readboy.wearlauncher.view.WatchDialTypeG>

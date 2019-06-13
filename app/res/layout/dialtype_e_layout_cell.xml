@@ -14,7 +14,8 @@
         app:analogSecond="@drawable/watch_type_e_analog_second"
         app:noSecond="false"/>
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="@dimen/dial_e_dot_width"
+        android:layout_height="@dimen/dial_e_dot_height"
+        android:layout_centerInParent="true"
         android:background="@drawable/watch_type_e_analog_dot"/>
 </com.readboy.wearlauncher.view.WatchDialTypeE>

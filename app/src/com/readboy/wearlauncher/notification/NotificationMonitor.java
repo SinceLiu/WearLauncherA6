@@ -40,6 +40,7 @@ import android.os.ServiceManager;
 
 import com.android.internal.statusbar.IStatusBarService;
 import com.readboy.wearlauncher.utils.Utils;
+import com.readboy.wearlauncher.view.MyLinearLayoutManager;
 
 import java.util.ArrayList;
 
@@ -57,8 +58,7 @@ public class NotificationMonitor extends NotificationListenerService {
 
     public static final int CREATE_WINDOW = 0;
     public static final int REMOVE_WINDOW = 1;
-    public static final int UPDATE_WINDOW = 2;
-    private boolean isNotificationShown = false;
+    private boolean isNotificationEnabled = false;
 
     private LocalBroadcastManager mLocalBroadcastManager;
     private NotificationMonitorReceiver mReceiver = new NotificationMonitorReceiver();
@@ -74,7 +74,6 @@ public class NotificationMonitor extends NotificationListenerService {
     private WindowManager mWindowManager;
     private SwipeMenuRecyclerView mFloatNotificationWindow;
     private IStatusBarService mBarService;
-    private boolean isNotificationVisible;
     private long mDuration = 3000;
 
     class NotificationMonitorReceiver extends BroadcastReceiver {
@@ -109,9 +108,9 @@ public class NotificationMonitor extends NotificationListenerService {
     @Override
     public void onCreate() {
         super.onCreate();
+        logNLS("onCreate...");
         INSTANCE = this;
         mLocalBroadcastManager = LocalBroadcastManager.getInstance(this);
-        logNLS("onCreate...");
         mBarService = IStatusBarService.Stub.asInterface(
                 ServiceManager.getService(Context.STATUS_BAR_SERVICE));
         mAdapter = new FloatNotificationAdapter(this);
@@ -146,50 +145,52 @@ public class NotificationMonitor extends NotificationListenerService {
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
+        if (sbn == null) {
+            return;
+        }
         logNLS("onNotificationPosted: key = " + sbn.getKey());
         Intent intent1 = new Intent(ACTION_NLS_UPDATE);
         intent1.putExtra(EXTRA_COMMAND, COMMAND_POSTED);
         intent1.putExtra(EXTRA_NOTIFICATION, sbn);
         mLocalBroadcastManager.sendBroadcast(intent1);
 
-        if(!isNotificationShown){
-            return;
-        }
         mNotificationList.clear();
         mNotificationList.add(sbn);
-        if (sbn.getNotification().priority < Notification.PRIORITY_HIGH
-                || shouldFilterOut(sbn)) {
+        if (shouldFilterOut(sbn)) {
             return;
         }
         ReadboyWearManager rwm = (ReadboyWearManager) getSystemService(Context.RBW_SERVICE);
         boolean isEnable = rwm.isClassForbidOpen();
-        //上课禁用时不弹窗
-        if (isEnable) {
+        //上课禁用时不亮屏
+        if (!isEnable) {
+            wakeUp(this);
+        }
+        if (sbn.getNotification().priority < Notification.PRIORITY_HIGH) {
             return;
         }
-        wakeUp(this);
-        if (isNotificationVisible) {
-            mHandler.removeMessages(UPDATE_WINDOW);
-            mHandler.removeMessages(REMOVE_WINDOW);
-            mHandler.sendEmptyMessage(UPDATE_WINDOW);
-            mHandler.sendEmptyMessageDelayed(REMOVE_WINDOW, mDuration);
-        } else {
-            mHandler.removeMessages(CREATE_WINDOW);
-            mHandler.removeMessages(REMOVE_WINDOW);
-            mHandler.sendEmptyMessage(CREATE_WINDOW);
-            mHandler.sendEmptyMessageDelayed(REMOVE_WINDOW, mDuration);
+        if (!isNotificationEnabled) {
+            return;
         }
+        mHandler.removeMessages(CREATE_WINDOW);
+        mHandler.removeMessages(REMOVE_WINDOW);
+        mHandler.sendEmptyMessage(CREATE_WINDOW);
+        mHandler.sendEmptyMessageDelayed(REMOVE_WINDOW, mDuration);
     }
-
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn, RankingMap rankingMap) {
+        if (sbn == null) {
+            return;
+        }
         super.onNotificationPosted(sbn, rankingMap);
         Log.e(TAG, "onNotificationPosted: key = " + sbn.getKey());
     }
 
     @Override
     public void onNotificationRemoved(StatusBarNotification sbn) {
+        if (sbn == null) {
+            return;
+        }
         logNLS("onNotificationRemoved: key = " + sbn.getKey());
         Intent intent1 = new Intent(ACTION_NLS_UPDATE);
         intent1.putExtra(EXTRA_COMMAND, COMMAND_REMOVED);
@@ -201,6 +202,9 @@ public class NotificationMonitor extends NotificationListenerService {
 
     @Override
     public void onNotificationRemoved(StatusBarNotification sbn, RankingMap rankingMap) {
+        if (sbn == null) {
+            return;
+        }
         super.onNotificationRemoved(sbn, rankingMap);
         Log.e(TAG, "onNotificationRemoved: key = " + sbn.getKey());
     }
@@ -223,9 +227,6 @@ public class NotificationMonitor extends NotificationListenerService {
                 case REMOVE_WINDOW:
                     removeFloatNotificationWindow();
                     break;
-                case UPDATE_WINDOW:
-                    mAdapter.notifyDataSetChanged();
-                    break;
                 default:
                     break;
             }
@@ -233,13 +234,16 @@ public class NotificationMonitor extends NotificationListenerService {
     };
 
     public void createFloatNotificationWindow() {
-        Log.e(TAG, "createFloatNotificationWindow");
+        if (mFloatNotificationWindow != null) {
+            mAdapter.notifyDataSetChanged();
+            return;
+        }
         WindowManager windowManager = getWindowManager(getApplicationContext());
         WindowManager.LayoutParams params = new WindowManager.LayoutParams();
         mFloatNotificationWindow = (SwipeMenuRecyclerView) (LayoutInflater.from(this).inflate(R.layout.notification_float_window,
                 null, false));
         mFloatNotificationWindow.setLayoutManager(
-                new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+                new MyLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         params.type = WindowManager.LayoutParams.TYPE_PHONE;
         params.width = 220;
         params.height = 70;
@@ -254,11 +258,9 @@ public class NotificationMonitor extends NotificationListenerService {
         mFloatNotificationWindow.setOnItemMoveListener(onItemMoveListener);
         mFloatNotificationWindow.setOnItemMovementListener(onItemMovementListener);
         windowManager.addView(mFloatNotificationWindow, params);
-        isNotificationVisible = true;
     }
 
     public void removeFloatNotificationWindow() {
-        Log.e(TAG, "removeFloatNotificationWindow");
         if (mFloatNotificationWindow != null) {
             WindowManager windowManager = getWindowManager(getApplicationContext());
             try {
@@ -266,7 +268,6 @@ public class NotificationMonitor extends NotificationListenerService {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            isNotificationVisible = false;
             mFloatNotificationWindow = null;
         }
     }
@@ -409,6 +410,12 @@ public class NotificationMonitor extends NotificationListenerService {
             mTimeView = (DateTimeView) itemView.findViewById(R.id.content_time);
             mContentView = (TextView) itemView.findViewById(R.id.content_text);
             View parent = itemView.findViewById(R.id.item_float_notification_parent);
+            ReadboyWearManager rwm = (ReadboyWearManager) getSystemService(Context.RBW_SERVICE);
+            boolean isEnable = rwm.isClassForbidOpen();
+            //上课禁用时不能点击
+            if (isEnable) {
+                return;
+            }
             parent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

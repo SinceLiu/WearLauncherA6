@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@color/background_color"
     android:clipChildren="false">
 
     <com.readboy.wearlauncher.view.GestureView
@@ -13,7 +12,7 @@
         <com.readboy.wearlauncher.view.MyViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
     </com.readboy.wearlauncher.view.GestureView>
 
     <include
@@ -23,12 +22,11 @@
         android:layout_height="match_parent"
         android:visibility="gone"/>
 
-    <TextView
-        android:id="@+id/tv_msg_error"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:textColor="@android:color/holo_red_light"
-        android:textSize="40px"
-        android:visibility="gone" />
+    <include
+        android:id="@+id/loss"
+        layout="@layout/dialtype_o_layout_loss"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+    
 </FrameLayout>

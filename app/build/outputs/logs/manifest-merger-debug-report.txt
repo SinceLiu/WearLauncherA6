@@ -1,14 +1,14 @@
 -- Merging decision tree log ---
 manifest
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:2:1-119:12
-INJECTED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:2:1-119:12
-INJECTED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:2:1-119:12
-INJECTED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:2:1-119:12
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:2:1-116:12
+INJECTED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:2:1-116:12
+INJECTED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:2:1-116:12
+INJECTED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:2:1-116:12
 MERGED from [com.android.support:support-v4:28.0.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\support-v4-28.0.0.aar\2181a9a98e875c1241370d91205e8656\AndroidManifest.xml:17:1-22:12
-MERGED from [:wetalk_support] F:\Android Studio WorkSpace\WearLauncherA6\wetalk_support\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-11:12
-MERGED from [:readboywearmanager] F:\Android Studio WorkSpace\WearLauncherA6\readboywearmanager\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-11:12
+MERGED from [:wetalk_support] F:\AndroidStudioWorkSpace\WearLauncherA6\wetalk_support\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-11:12
+MERGED from [:readboywearmanager] F:\AndroidStudioWorkSpace\WearLauncherA6\readboywearmanager\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\86c45ea1da537ad4259051076b67f88c\AndroidManifest.xml:17:1-22:12
-MERGED from [:baseadapter-recyclerview] F:\Android Studio WorkSpace\WearLauncherA6\baseadapter-recyclerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-11:12
+MERGED from [:baseadapter-recyclerview] F:\AndroidStudioWorkSpace\WearLauncherA6\baseadapter-recyclerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\c4d25066d53e9b24e21832ecebf74870\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-media-compat:28.0.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\support-media-compat-28.0.0.aar\42a9aa25ee33a4e4abcd1d48363165ce\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\48afcf18201e50143fd31d15dfcb408f\AndroidManifest.xml:17:1-22:12
@@ -36,207 +36,211 @@ MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\Administrator\.gra
 MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\b859c149f920df432e4de97010f12edf\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\6c1660fc1e11c66bb49e5004c74f27c5\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\b2f08568158d4789888b79d20e322ecf\AndroidManifest.xml:17:1-22:12
-INJECTED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:2:1-119:12
-INJECTED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:2:1-119:12
-INJECTED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:2:1-119:12
+INJECTED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:2:1-116:12
+INJECTED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:2:1-116:12
+INJECTED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:2:1-116:12
 	package
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:3:5-39
-		INJECTED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml
-		INJECTED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:3:5-39
+		INJECTED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml
+		INJECTED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml
 	android:sharedUserId
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:4:5-45
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:4:5-45
 	android:versionName
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:6:5-30
-		INJECTED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml
-		INJECTED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:6:5-30
+		INJECTED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml
+		INJECTED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml
 	xmlns:android
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:2:11-69
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:2:11-69
 	android:versionCode
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:5:5-36
-		INJECTED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml
-		INJECTED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:5:5-36
+		INJECTED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml
+		INJECTED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml
+uses-permission#android.permission.FORCE_STOP_PACKAGES
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:8:5-78
+	android:name
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:8:22-75
 uses-permission#android.permission.CALL_PHONE
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:8:5-69
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:9:5-69
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:8:22-66
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:9:22-66
 uses-permission#android.permission.WAKE_LOCK
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:9:5-68
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:10:5-68
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:9:22-65
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:10:22-65
 uses-permission#android.permission.SYSTEM_PHONE_WINDOW
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:10:5-78
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:11:5-78
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:10:22-75
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:11:22-75
 uses-permission#android.permission.SYSTEM_OVERLAY_WINDOW
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:11:5-80
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:12:5-80
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:11:22-77
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:12:22-77
 uses-permission#android.permission.SYSTEM_ALERT_WINDOW
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:12:5-77
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:13:5-77
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:12:22-75
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:13:22-75
 uses-permission#android.permission.BLUETOOTH
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:13:5-68
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:14:5-68
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:13:22-65
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:14:22-65
 uses-permission#android.permission.BLUETOOTH_ADMIN
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:14:5-74
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:15:5-74
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:14:22-71
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:15:22-71
 uses-permission#android.permission.BLUETOOTH_PRIVILEGED
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:15:5-79
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:16:5-79
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:15:22-76
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:16:22-76
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:16:5-79
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:17:5-79
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:16:22-76
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:17:22-76
 uses-permission#android.permission.READ_PHONE_STATE
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:17:5-75
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:18:5-75
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:17:22-72
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:18:22-72
 uses-permission#android.permission.MODIFY_PHONE_STATE
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:18:5-76
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:19:5-76
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:18:22-74
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:19:22-74
 uses-permission#android.permission.ANSWER_PHONE_CALLS
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:19:5-77
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:20:5-77
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:19:22-74
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:20:22-74
 uses-permission#android.permission.ACCESS_WIFI_STATE
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:20:5-76
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:21:5-76
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:20:22-73
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:21:22-73
 uses-permission#android.permission.CHANGE_WIFI_STATE
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:21:5-76
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:22:5-76
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:21:22-73
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:22:22-73
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:22:5-81
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:23:5-81
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:22:22-78
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:23:22-78
 uses-permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:23:5-84
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:24:5-84
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:23:22-81
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:24:22-81
 uses-permission#android.permission.ACCESS_NOTIFICATION_POLICY
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:25:5-85
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:26:5-85
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:25:22-82
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:26:22-82
 uses-permission#android.permission.WRITE_SMS
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:26:5-68
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:27:5-68
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:26:22-65
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:27:22-65
 uses-permission#android.permission.READ_SMS
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:27:5-67
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:28:5-67
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:27:22-64
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:28:22-64
 uses-permission#android.permission.WRITE_CALL_LOG
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:28:5-73
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:29:5-73
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:28:22-70
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:29:22-70
 uses-permission#android.permission.READ_CALL_LOG
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:29:5-72
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:30:5-72
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:29:22-69
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:30:22-69
 uses-permission#android.permission.READ_CONTACTS
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:30:5-72
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:31:5-72
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:30:22-69
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:31:22-69
 uses-permission#android.permission.WRITE_CONTACTS
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:31:5-73
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:32:5-73
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:31:22-70
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:32:22-70
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:32:5-79
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:33:5-79
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:32:22-76
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:33:22-76
 uses-permission#android.permission.BIND_NOTIFICATION_LISTENER_SERVICE
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:33:5-93
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:34:5-93
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:33:22-90
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:34:22-90
 uses-permission#android.permission.STATUS_BAR_SERVICE
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:34:5-77
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:35:5-77
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:34:22-74
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:35:22-74
 uses-permission#android.permission.GET_TASKS
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:35:5-68
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:36:5-68
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:35:22-65
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:36:22-65
 uses-permission#android.permission.DEVICE_POWER
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:36:5-71
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:37:5-71
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:36:22-68
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:37:22-68
 uses-permission#android.permission.WRITE_SETTINGS
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:37:5-73
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:38:5-73
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:37:22-70
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:38:22-70
 uses-permission#android.permission.GET_APP_OPS_STATS
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:38:5-76
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:39:5-76
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:38:22-73
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:39:22-73
 uses-permission#android.permission.REAL_GET_TASKS
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:40:5-73
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:41:5-73
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:40:22-70
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:41:22-70
 uses-permission#android.permission.GET_DETAILED_TASKS
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:41:5-77
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:42:5-77
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:41:22-74
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:42:22-74
 uses-permission#android.permission.REORDER_TASKS
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:42:5-72
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:43:5-72
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:42:22-69
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:43:22-69
 uses-permission#android.permission.REMOVE_TASKS
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:43:5-71
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:44:5-71
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:43:22-68
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:44:22-68
 uses-permission#android.permission.STOP_APP_SWITCHES
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:44:5-76
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:45:5-76
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:44:22-73
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:45:22-73
 uses-permission#android.permission.SET_SCREEN_COMPATIBILITY
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:45:5-83
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:46:5-83
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:45:22-80
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:46:22-80
 uses-permission#android.permission.START_ANY_ACTIVITY
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:46:5-77
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:47:5-77
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:46:22-74
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:47:22-74
 uses-permission#android.permission.INTERACT_ACROSS_USERS
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:47:5-80
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:48:5-80
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:47:22-77
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:48:22-77
 uses-permission#android.permission.INTERACT_ACROSS_USERS_FULL
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:48:5-85
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:49:5-85
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:48:22-82
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:49:22-82
 uses-permission#android.permission.GET_TOP_ACTIVITY_INFO
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:49:5-80
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:50:5-80
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:49:22-77
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:50:22-77
 uses-permission#android.permission.MANAGE_ACTIVITY_STACKS
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:50:5-81
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:51:5-81
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:50:22-78
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:51:22-78
 uses-permission#android.permission.START_TASKS_FROM_RECENTS
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:51:5-83
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:52:5-83
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:51:22-80
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:52:22-80
 uses-permission#android.permission.SHUTDOWN
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:55:5-67
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:56:5-67
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:55:22-64
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:56:22-64
 uses-permission#android.permission.REBOOT
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:56:5-65
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:57:5-65
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:56:22-62
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:57:22-62
 uses-permission#android.permission.WRITE_SECURE_SETTINGS
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:57:5-80
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:58:5-80
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:57:22-77
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:58:22-77
 application
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:59:5-117:19
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:60:5-114:19
 MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\aea8e7cc2b3c09f5ffbbff4791659d79\AndroidManifest.xml:22:5-94
 MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\aea8e7cc2b3c09f5ffbbff4791659d79\AndroidManifest.xml:22:5-94
 MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\3bbba911331a93679b91bd840bd62d70\AndroidManifest.xml:22:5-23:19
@@ -244,132 +248,122 @@ MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Administra
 	android:appComponentFactory
 		ADDED from [com.android.support:support-compat:28.0.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\aea8e7cc2b3c09f5ffbbff4791659d79\AndroidManifest.xml:22:18-91
 	android:supportsRtl
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:65:9-35
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:66:9-35
 	android:label
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:63:9-41
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:64:9-41
 	android:largeHeap
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:64:9-33
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:65:9-33
 	android:icon
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:62:9-43
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:63:9-43
 	android:allowBackup
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:61:9-35
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:62:9-35
 	android:theme
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:66:9-40
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:67:9-40
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:60:9-44
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:61:9-44
 activity#com.readboy.wearlauncher.Launcher
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:67:9-81:20
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:68:9-82:20
 	android:screenOrientation
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:71:13-49
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:72:13-49
 	android:clearTaskOnLaunch
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:69:13-45
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:70:13-45
 	android:stateNotNeeded
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:72:13-42
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:73:13-42
 	android:launchMode
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:70:13-44
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:71:13-44
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:68:13-37
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:69:13-37
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.DEFAULT+category:name:android.intent.category.HOME+category:name:android.intent.category.LAUNCHER+category:name:android.intent.category.MONKEY
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:73:13-80:29
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:74:13-81:29
 action#android.intent.action.MAIN
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:74:17-69
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:75:17-69
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:74:25-66
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:75:25-66
 category#android.intent.category.LAUNCHER
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:76:17-77
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:77:17-77
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:76:27-74
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:77:27-74
 category#android.intent.category.HOME
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:77:17-73
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:78:17-73
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:77:27-70
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:78:27-70
 category#android.intent.category.DEFAULT
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:78:17-76
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:79:17-76
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:78:27-73
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:79:27-73
 category#android.intent.category.MONKEY
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:79:17-75
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:80:17-75
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:79:27-72
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:80:27-72
 activity#com.readboy.wearlauncher.notification.NotificationActivity
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:82:9-84:56
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:83:9-85:56
 	android:theme
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:84:13-53
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:85:13-53
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:83:13-62
-activity#com.readboy.wearlauncher.contact.CallActivity
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:85:9-58
-	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:85:19-55
-activity#com.readboy.wearlauncher.contact.CallTypeActivity
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:86:9-88:58
-	android:theme
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:88:13-55
-	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:87:13-53
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:84:13-62
 provider#com.readboy.wearlauncher.LauncherProvider
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:91:9-96:88
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:88:9-93:88
 	android:readPermission
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:95:13-83
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:92:13-83
 	android:authorities
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:93:13-68
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:90:13-68
 	android:exported
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:94:13-36
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:91:13-36
 	android:writePermission
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:96:13-85
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:93:13-85
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:92:13-45
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:89:13-45
 receiver#com.readboy.wearlauncher.utils.WatchController
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:98:9-104:20
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:95:9-101:20
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:98:19-56
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:95:19-56
 intent-filter#action:name:android.intent.action.DATE_CHANGED+action:name:android.intent.action.TIMEZONE_CHANGED+action:name:android.intent.action.TIME_SET
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:99:13-103:29
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:96:13-100:29
 action#android.intent.action.TIMEZONE_CHANGED
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:100:17-81
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:97:17-81
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:100:25-78
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:97:25-78
 action#android.intent.action.DATE_CHANGED
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:101:17-77
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:98:17-77
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:101:25-74
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:98:25-74
 action#android.intent.action.TIME_SET
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:102:17-73
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:99:17-73
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:102:25-70
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:99:25-70
 service#com.readboy.wearlauncher.notification.NotificationMonitor
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:106:9-112:19
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:103:9-109:19
 	android:permission
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:108:13-87
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:105:13-87
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:107:13-61
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:104:13-61
 intent-filter#action:name:android.service.notification.NotificationListenerService
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:109:13-111:29
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:106:13-108:29
 action#android.service.notification.NotificationListenerService
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:110:17-99
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:107:17-99
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:110:25-96
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:107:25-96
 service#com.readboy.wearlauncher.utils.StartFactoryModeService
-ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:113:9-116:47
+ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:110:9-113:47
 	android:enabled
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:115:13-35
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:112:13-35
 	android:exported
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:116:13-36
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:113:13-36
 	android:name
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml:114:13-58
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml:111:13-58
 uses-sdk
-INJECTED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml
+INJECTED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml
 MERGED from [com.android.support:support-v4:28.0.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\support-v4-28.0.0.aar\2181a9a98e875c1241370d91205e8656\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-v4:28.0.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\support-v4-28.0.0.aar\2181a9a98e875c1241370d91205e8656\AndroidManifest.xml:20:5-44
-MERGED from [:wetalk_support] F:\Android Studio WorkSpace\WearLauncherA6\wetalk_support\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
-MERGED from [:wetalk_support] F:\Android Studio WorkSpace\WearLauncherA6\wetalk_support\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
-MERGED from [:readboywearmanager] F:\Android Studio WorkSpace\WearLauncherA6\readboywearmanager\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
-MERGED from [:readboywearmanager] F:\Android Studio WorkSpace\WearLauncherA6\readboywearmanager\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:wetalk_support] F:\AndroidStudioWorkSpace\WearLauncherA6\wetalk_support\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:wetalk_support] F:\AndroidStudioWorkSpace\WearLauncherA6\wetalk_support\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:readboywearmanager] F:\AndroidStudioWorkSpace\WearLauncherA6\readboywearmanager\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:readboywearmanager] F:\AndroidStudioWorkSpace\WearLauncherA6\readboywearmanager\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\86c45ea1da537ad4259051076b67f88c\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\86c45ea1da537ad4259051076b67f88c\AndroidManifest.xml:20:5-44
-MERGED from [:baseadapter-recyclerview] F:\Android Studio WorkSpace\WearLauncherA6\baseadapter-recyclerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
-MERGED from [:baseadapter-recyclerview] F:\Android Studio WorkSpace\WearLauncherA6\baseadapter-recyclerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:baseadapter-recyclerview] F:\AndroidStudioWorkSpace\WearLauncherA6\baseadapter-recyclerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:baseadapter-recyclerview] F:\AndroidStudioWorkSpace\WearLauncherA6\baseadapter-recyclerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\c4d25066d53e9b24e21832ecebf74870\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\c4d25066d53e9b24e21832ecebf74870\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-media-compat:28.0.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\support-media-compat-28.0.0.aar\42a9aa25ee33a4e4abcd1d48363165ce\AndroidManifest.xml:20:5-44
@@ -424,10 +418,10 @@ MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Administrator\
 MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\6c1660fc1e11c66bb49e5004c74f27c5\AndroidManifest.xml:20:5-44
 MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\b2f08568158d4789888b79d20e322ecf\AndroidManifest.xml:20:5-44
 MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\b2f08568158d4789888b79d20e322ecf\AndroidManifest.xml:20:5-44
-INJECTED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml
+INJECTED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml
 	android:targetSdkVersion
-		ADDED from [:wetalk_support] F:\Android Studio WorkSpace\WearLauncherA6\wetalk_support\build\intermediates\manifests\full\debug\AndroidManifest.xml:9:9-38
+		ADDED from [:wetalk_support] F:\AndroidStudioWorkSpace\WearLauncherA6\wetalk_support\build\intermediates\manifests\full\debug\AndroidManifest.xml:9:9-38
 	android:minSdkVersion
-		INJECTED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml
-		ADDED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml
-		INJECTED from F:\Android Studio WorkSpace\WearLauncherA6\app\AndroidManifest.xml
+		INJECTED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml
+		ADDED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml
+		INJECTED from F:\AndroidStudioWorkSpace\WearLauncherA6\app\AndroidManifest.xml

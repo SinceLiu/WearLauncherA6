@@ -12,8 +12,11 @@ import android.graphics.Rect;
 import android.os.BatteryManager;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ImageView;
+
 import com.readboy.wearlauncher.R;
+
 import static android.content.Context.BATTERY_SERVICE;
 
 public class BatteryLevelImageView extends ImageView implements BatteryController.BatteryStateChangeCallback {
@@ -47,6 +50,7 @@ public class BatteryLevelImageView extends ImageView implements BatteryControlle
         super(context, attrs);
         // TODO Auto-generated constructor stub
         mContext = context;
+        init();
     }
 
     private Runnable mInvalidate = new Runnable() {
@@ -103,6 +107,9 @@ public class BatteryLevelImageView extends ImageView implements BatteryControlle
     }
 
     public void init() {
+        if (emptyBitmap != null) {
+            return;
+        }
         emptyBitmap = BitmapFactory.decodeResource(this.getContext().getResources(), R.drawable.battery_nor_empty);
         fullBitmap = BitmapFactory.decodeResource(this.getContext().getResources(), R.drawable.battery_nor_full);
         chargingFullBitmap = BitmapFactory.decodeResource(this.getContext().getResources(), R.drawable.battery_charging_full);

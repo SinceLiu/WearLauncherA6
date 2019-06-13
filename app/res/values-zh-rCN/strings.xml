@@ -1,10 +1,6 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">主界面</string>
 
-    <string name="watch_type_sport" >运动</string>
-    <string name="watch_type_learn" >学习</string>
-    <string name="watch_type_personal" >个性</string>
-
 
     <string name="accessibility_no_phone" msgid="4894708937052611281">"没有手机信号。"</string>
     <string name="accessibility_phone_one_bar" msgid="687699278132664115">"手机信号强度为一格。"</string>
@@ -16,14 +12,12 @@
     <string name="accessibility_data_two_bars" msgid="6166018492360432091">"数据信号强度为两格。"</string>
     <string name="accessibility_data_three_bars" msgid="9167670452395038520">"数据信号强度为三格。"</string>
     <string name="accessibility_data_signal_full" msgid="2708384608124519369">"数据信号满格。"</string>
-    <string name="accessibility_wifi_off" msgid="3177380296697933627">"已关闭 WLAN。"</string>
     <string name="accessibility_no_wifi" msgid="1425476551827924474">"WLAN 连接已断开。"</string>
     <string name="accessibility_wifi_one_bar" msgid="7735893178010724377">"WLAN 信号强度为一格。"</string>
     <string name="accessibility_wifi_two_bars" msgid="4994274250497262434">"WLAN 信号强度为两格。"</string>
     <string name="accessibility_wifi_three_bars" msgid="3495755044276588384">"WLAN 信号强度为三格。"</string>
     <string name="accessibility_wifi_signal_full" msgid="6853561303586480376">"WLAN 信号满格。"</string>
 
-    <string name="data_usage_disabled_dialog_enable" msgid="7729772039208664606">"重新启用数据连接"</string>
     <string name="status_bar_settings_signal_meter_disconnected" msgid="1940231521274147771">"未连接互联网"</string>
 
 

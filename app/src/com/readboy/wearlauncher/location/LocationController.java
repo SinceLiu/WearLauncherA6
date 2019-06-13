@@ -1,4 +1,4 @@
-package com.readboy.wearlauncher.Location;
+package com.readboy.wearlauncher.location;
 
 /**
  * Created by Administrator on 2017/6/21.

@@ -23,39 +23,65 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE_TAGS := optional
 
+dialer_dir := ../../apps/Dialer/java/com/android/dialer/app
+wetalk_support_dir := ../../../../../../packages/apps/WeTalk/support
+moments_dir := ../../../../../../packages/apps/Moments
+
+
+WEARLAUNCHER_MANIFEST_FILES := \
+  AndroidManifest.xml \
+  $(dialer_dir)/readboysupport/AndroidManifest.xml \
+  $(moments_dir)/support/AndroidManifest.xml
+
+LOCAL_FULL_LIBS_MANIFEST_FILES := \
+  $(addprefix $(LOCAL_PATH)/, $(WEARLAUNCHER_MANIFEST_FILES)/)
+
 LOCAL_STATIC_ANDROID_LIBRARIES := \
     android-support-v4 \
     android-support-v7-appcompat \
     android-support-v7-recyclerview \
     android-support-v7-palette \
-    android-support-v13 \
+    android-support-v13 
 
 LOCAL_STATIC_JAVA_LIBRARIES := \
 	wearlauncher-picasso \
+	wearlauncher-volley \
 	launcher-glide \
-    	launcher-baseadapter
+    launcher-baseadapter
+
+LOCAL_STATIC_JAVA_LIBRARIES += moments-bravh
+LOCAL_STATIC_JAVA_LIBRARIES += moments-support
     
 LOCAL_JAVA_LIBRARIES := telephony-common
 LOCAL_JAVA_LIBRARIES += ims-common
 
-wetalk_support_dir := ../../../../../../packages/apps/WeTalk/support
 
 LOCAL_SRC_FILES := \
     $(call all-java-files-under, src) \
     $(call all-renderscript-files-under, src) \
-    $(call all-java-files-under, $(wetalk_support_dir)/src)
+    $(call all-java-files-under, $(wetalk_support_dir)/src) \
+    $(call all-java-files-under, $(dialer_dir)/readboysupport)
 
 LOCAL_RESOURCE_DIR := \
     $(LOCAL_PATH)/res \
+    vendor/mediatek/proprietary/packages/apps/Dialer/java/com/android/dialer/app/readboysupport/res \
     frameworks/support/v7/recyclerview/res \
     frameworks/support/v7/cardview/res \
-    packages/apps/WeTalk/support/res
+    packages/apps/WeTalk/support/res \
+    packages/apps/Moments/support/res \
+	packages/apps/Moments/support/res-extra \
+    packages/apps/Moments/BRAVH/res
+
 
 LOCAL_AAPT_FLAGS := \
     --auto-add-overlay \
     --extra-packages com.android.keyguard \
-    --extra-packages com.readboy.wetalk.support
-
+    --extra-packages com.readboy.wetalk.support \
+    --extra-packages com.android.dialer.app \
+    --extra-packages com.readboy.mmsupport \
+    --extra-packages com.readboy.support.speechinput \
+    --extra-packages com.scwang.smartrefresh.layout
+	
 LOCAL_CERTIFICATE := platform
 #LOCAL_SDK_VERSION := current
 LOCAL_MIN_SDK_VERSION := 21
@@ -63,6 +89,10 @@ LOCAL_PACKAGE_NAME := WearLauncher
 LOCAL_PRIVILEGED_MODULE := true
 LOCAL_DEX_PREOPT := false
 LOCAL_PROGUARD_ENABLED := disabled
+
+
+LOCAL_DX_FLAGS := --multi-dex --main-dex-list=$(mainDexList) --minimal-main-dex
+LOCAL_JACK_FLAGS += --multi-dex native
 
 LOCAL_USE_AAPT2 := true
 
@@ -146,7 +176,20 @@ LOCAL_OVERRIDES_PACKAGES += \
     PrintSpooler \
     MtkGallery2 \
     MtkLatinIME \
-    CellBroadcastReceiver
+    CellBroadcastReceiver \
+    MtkCalendar \
+    CalendarImporter \
+    MtkWebView \
+    MtkCalendarProvider \
+    UserDictionaryProvider \
+    HTMLViewer \
+    NfcNci \
+    Protips \
+    CallRecorderService \
+    MtkSimProcessor \
+    Provision \
+    BatteryWarning \
+    Music
 
 endif
 
@@ -156,8 +199,9 @@ include $(CLEAR_VARS)
 
 LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := \
 	launcher-glide:libs/glide-3.7.0.jar \
-    	launcher-baseadapter:/libs/baseadapter.jar \
-	wearlauncher-picasso:libs/picasso.jar
+    launcher-baseadapter:/libs/baseadapter.jar \
+	wearlauncher-picasso:libs/picasso.jar \
+	wearlauncher-volley:libs/RBVolley.jar
 
 include $(BUILD_MULTI_PREBUILT)
 

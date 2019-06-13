@@ -1,52 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.readboy.wearlauncher.view.DigitClock xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:id="@+id/digit_clock"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/digit_clock"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-	app:dot="false"
-	app:clockType="@integer/dial_type_r"
-	>
-	<LinearLayout
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal">
-		<ImageView
-			android:id="@+id/hour0"
-			android:layout_width="@dimen/num_clock_r_width"
-			android:layout_height="@dimen/num_clock_r_height"
-			/>
-		<ImageView
-			android:id="@+id/hour1"
-			android:layout_width="@dimen/num_clock_r_width"
-			android:layout_height="@dimen/num_clock_r_height"
-			android:layout_marginStart="3px"
-			/>
-	</LinearLayout>
+    android:orientation="horizontal"
+    app:clockType="@integer/dial_type_s"
+    app:dot="true">
 
-	<ImageView
-		android:id="@+id/dot"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:visibility="gone"
-		/>
-	<LinearLayout
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="16px"
-		android:orientation="horizontal">
-		<ImageView
-			android:id="@+id/min0"
-			android:layout_width="@dimen/num_clock_r_width"
-			android:layout_height="@dimen/num_clock_r_height"
-			/>
-		<ImageView
-			android:id="@+id/min1"
-			android:layout_width="@dimen/num_clock_r_width"
-			android:layout_height="@dimen/num_clock_r_height"
-			android:layout_marginStart="3px"
-			/>
-	</LinearLayout>
+    <ImageView
+        android:id="@+id/hour0"
+        android:layout_width="@dimen/num_clock_s_width"
+        android:layout_height="@dimen/num_clock_s_height" />
+
+    <ImageView
+        android:id="@+id/hour1"
+        android:layout_width="@dimen/num_clock_s_width"
+        android:layout_height="@dimen/num_clock_s_height"
+        android:layout_marginStart="@dimen/num_clock_s_margin_1" />
+
+    <ImageView
+        android:id="@+id/dot"
+        android:layout_width="@dimen/num_clock_s_dot_width"
+        android:layout_height="@dimen/num_clock_s_height"
+        android:layout_marginStart="@dimen/num_clock_s_margin_2" />
+
+    <ImageView
+        android:id="@+id/min0"
+        android:layout_width="@dimen/num_clock_s_width"
+        android:layout_height="@dimen/num_clock_s_height"
+        android:layout_marginStart="@dimen/num_clock_s_margin_2" />
+
+    <ImageView
+        android:id="@+id/min1"
+        android:layout_width="@dimen/num_clock_s_width"
+        android:layout_height="@dimen/num_clock_s_height"
+        android:layout_marginStart="@dimen/num_clock_s_margin_1" />
+
 </com.readboy.wearlauncher.view.DigitClock>

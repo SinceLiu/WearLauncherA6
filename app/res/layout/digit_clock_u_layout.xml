@@ -5,40 +5,38 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    app:clockType="@integer/dial_type_t"
-    app:dot="false">
+    app:clockType="@integer/dial_type_u"
+    app:dot="true">
 
     <ImageView
         android:id="@+id/hour0"
-        android:layout_width="47px"
-        android:layout_height="107px" />
+        android:layout_width="@dimen/num_clock_u_hour_width"
+        android:layout_height="@dimen/num_clock_u_hour_height" />
 
     <ImageView
         android:id="@+id/hour1"
-        android:layout_width="47px"
-        android:layout_height="107px"
-        android:layout_marginStart="2px" />
+        android:layout_width="@dimen/num_clock_u_hour_width"
+        android:layout_height="@dimen/num_clock_u_hour_height"
+        android:layout_marginStart="@dimen/num_clock_u_hour_margin" />
 
     <ImageView
         android:id="@+id/dot"
-        android:layout_width="10px"
-        android:layout_height="@dimen/num_clock_s_height"
-        android:layout_marginStart="4px"
-        android:src="@drawable/num_clock_s_dot"
-        android:visibility="gone"/>
+        android:layout_width="@dimen/num_clock_u_dot_width"
+        android:layout_height="@dimen/num_clock_u_hour_height"
+        android:layout_marginStart="@dimen/num_clock_u_dot_margin_left" />
 
     <ImageView
         android:id="@+id/min0"
-        android:layout_width="27px"
-        android:layout_height="61px"
-        android:layout_marginTop="2px"
-        android:layout_marginStart="11px" />
+        android:layout_width="@dimen/num_clock_u_minute_width"
+        android:layout_height="@dimen/num_clock_u_minute_height"
+        android:layout_marginTop="@dimen/num_clock_u_minute_margin_1"
+        android:layout_marginStart="@dimen/num_clock_u_minute_margin_2" />
 
     <ImageView
         android:id="@+id/min1"
-        android:layout_width="27px"
-        android:layout_height="61px"
-        android:layout_marginTop="2px"
-        android:layout_marginStart="2px" />
+        android:layout_width="@dimen/num_clock_u_minute_width"
+        android:layout_height="@dimen/num_clock_u_minute_height"
+        android:layout_marginTop="@dimen/num_clock_u_minute_margin_1"
+        android:layout_marginStart="@dimen/num_clock_u_minute_margin_1" />
 
 </com.readboy.wearlauncher.view.DigitClock>

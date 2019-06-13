@@ -1,4 +1,4 @@
-package com.readboy.wetalk.view;
+package com.readboy.wearlauncher.view;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;

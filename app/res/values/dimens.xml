@@ -1,0 +1,268 @@
+<resources>
+
+    <!-- The width can be 72dp because we don't have L/R padding -->
+
+    <dimen name="app_icon_size">76px</dimen>
+
+    <!-- dial -->
+    <dimen name="dial_design_width">240px</dimen>
+    <dimen name="dial_design_height">240px</dimen>
+    <!--dial type a-->
+    <dimen name="dial_a_dialer_width">56px</dimen>
+    <dimen name="dial_a_dialer_hight">56px</dimen>
+    <dimen name="dial_a_wetalk_width">56px</dimen>
+    <dimen name="dial_a_wetalk_hight">56px</dimen>
+    <!--dial type b-->
+    <!--dial type e-->
+    <dimen name="dial_e_dot_width">14px</dimen>
+    <dimen name="dial_e_dot_height">14px</dimen>
+    <!--dial type g-->
+    <dimen name="dial_g_date_margin_left">22px</dimen>
+    <dimen name="dial_g_date_margin_top">196px</dimen>
+    <dimen name="dial_g_date_text_size">20px</dimen>
+    <dimen name="dial_g_clock_margin_left">156px</dimen>
+    <dimen name="dial_g_clock_margin_top">20px</dimen>
+    <dimen name="num_clock_g_minute_margin_top">12px</dimen>
+    <dimen name="num_clock_g_width">34px</dimen>
+    <dimen name="num_clock_g_hight">43px</dimen>
+    <!--dial type j-->
+    <!--dial type k-->
+    <!--dial type m-->
+    <!--dial type n-->
+    <!--dial type o-->
+    <dimen name="num_clock_o_width">43px</dimen>
+    <dimen name="num_clock_o_hight">61px</dimen>
+    <dimen name="num_clock_o_dot_width">22px</dimen>
+    <dimen name="num_clock_o_dot_hight">61px</dimen>
+    <dimen name="dial_o_dialer_width">120px</dimen>
+    <dimen name="dial_o_dialer_hight">50px</dimen>
+    <dimen name="dial_o_margin_left">20px</dimen>
+    <dimen name="dial_o_margin_right">20px</dimen>
+    <dimen name="dial_o_margin_top">8px</dimen>
+    <dimen name="dial_o_date_text_size">20px</dimen>
+    <dimen name="dial_o_battery_text_size">20px</dimen>
+    <dimen name="dial_o_battery_margin_left">5px</dimen>
+    <dimen name="dial_o_time_margin_top">61px</dimen>
+    <dimen name="dial_o_notice_margin_top">130px</dimen>
+    <dimen name="dial_o_notice_text_size">22px</dimen>
+    <dimen name="dial_o_dialer_margin_top">178px</dimen>
+
+    <!--dial type p-->
+    <dimen name="dial_p_date_width">14px</dimen>
+    <dimen name="dial_p_date_height">22px</dimen>
+    <dimen name="num_clock_p_width">27px</dimen>
+    <dimen name="num_clock_p_hight">49px</dimen>
+    <dimen name="dial_p_digit_clock_margin_left">23px</dimen>
+    <dimen name="dial_p_digit_clock_margin_top">27px</dimen>
+    <dimen name="dial_p_date_margin_left">23px</dimen>
+    <dimen name="dial_p_date_margin_top">196px</dimen>
+    <dimen name="dial_p_week_width">45px</dimen>
+    <dimen name="dial_p_week_height">22px</dimen>
+    <dimen name="dial_p_week_margin_left">12px</dimen>
+    <dimen name="num_clock_p_hour_margin_left">4px</dimen>
+    <dimen name="num_clock_p_dot_margin_left">7px</dimen>
+    <dimen name="num_clock_p_min0_margin_left">5px</dimen>
+    <dimen name="num_clock_p_min1_margin_left">4px</dimen>
+
+    <!--dial type q-->
+    <dimen name="dial_q_dialer_width">66px</dimen>
+    <dimen name="dial_q_dialer_height">66px</dimen>
+    <dimen name="dial_q_week_width">45px</dimen>
+    <dimen name="dial_q_week_height">22px</dimen>
+    <dimen name="dial_q_date_width">12px</dimen>
+    <dimen name="dial_q_date_height">17px</dimen>
+    <dimen name="dial_q_date_margin">1px</dimen>
+    <dimen name="dial_q_margin_1">27px</dimen>
+    <dimen name="dial_q_margin_2">147px</dimen>
+    <dimen name="dial_q_margin_3">95px</dimen>
+    <dimen name="dial_q_margin_4">167px</dimen>
+    <dimen name="dial_q_margin_5">8px</dimen>
+
+    <!--dial type r-->
+    <dimen name="num_clock_r_width">32px</dimen>
+    <dimen name="num_clock_r_height">53px</dimen>
+    <dimen name="dial_r_date_width">14px</dimen>
+    <dimen name="dial_r_date_height">22px</dimen>
+    <dimen name="dial_r_digit_clock_margin_left">24px</dimen>
+    <dimen name="dial_r_digit_clock_margin_top">23px</dimen>
+    <dimen name="dial_r_date_margin_left">21px</dimen>
+    <dimen name="dial_r_date_margin_top">204px</dimen>
+    <dimen name="dial_r_week_width">47px</dimen>
+    <dimen name="dial_r_week_margin_left">14px</dimen>
+    <dimen name="num_clock_r_minute_margin_top">16px</dimen>
+    <dimen name="num_clock_r_margin_left">3px</dimen>
+
+    <!--dial type s-->
+    <dimen name="num_clock_s_width">33px</dimen>
+    <dimen name="num_clock_s_height">44px</dimen>
+    <dimen name="dial_s_date_width">12px</dimen>
+    <dimen name="dial_s_date_height">23px</dimen>
+    <dimen name="dial_s_digit_clock_margin_top">26px</dimen>
+    <dimen name="dial_s_month_unit_margin_left">61px</dimen>
+    <dimen name="dial_s_separator_margin_top">79px</dimen>
+    <dimen name="dial_s_separator_margin_left">74px</dimen>
+    <dimen name="dial_s_day_margin">1px</dimen>
+    <dimen name="dial_s_week_width">71px</dimen>
+    <dimen name="dial_s_week_height">23px</dimen>
+    <dimen name="dial_s_week_margin_left">38px</dimen>
+    <dimen name="dial_s_dialer_margin_left">22px</dimen>
+    <dimen name="dial_s_dialer_margin_top">172px</dimen>
+    <dimen name="dial_s_wetalk_margin_right">27px</dimen>
+    <dimen name="num_clock_s_margin_1">1px</dimen>
+    <dimen name="num_clock_s_margin_2">4px</dimen>
+    <dimen name="num_clock_s_dot_width">10px</dimen>
+
+    <!--dial type t-->
+    <dimen name="dial_t_date_width">12px</dimen>
+    <dimen name="dial_t_date_height">19px</dimen>
+    <dimen name="dial_t_battery_width">29px</dimen>
+    <dimen name="dial_t_battery_height">16px</dimen>
+    <dimen name="dial_t_battery_margin_left">83px</dimen>
+    <dimen name="dial_t_battery_margin_top">36px</dimen>
+    <dimen name="dial_t_num_battery_margin_left">122px</dimen>
+    <dimen name="dial_t_num_battery_margin_top">34px</dimen>
+    <dimen name="dial_t_num_battery_width">9px</dimen>
+    <dimen name="dial_t_num_battery_height">20px</dimen>
+    <dimen name="dial_t_num_battery_margin">2px</dimen>
+    <dimen name="dial_t_num_battery_percent_width">13px</dimen>
+    <dimen name="dial_t_digit_clock_margin_left">34px</dimen>
+    <dimen name="dial_t_digit_clock_margin_top">65px</dimen>
+    <dimen name="dial_t_month_margin_left">142px</dimen>
+    <dimen name="dial_t_month_margin_top">131px</dimen>
+    <dimen name="dial_t_week_width">56px</dimen>
+    <dimen name="dial_t_week_height">18px</dimen>
+    <dimen name="dial_t_week_margin_top">4px</dimen>
+    <dimen name="dial_t_week_icon_width">107px</dimen>
+    <dimen name="dial_t_week_icon_height">17px</dimen>
+    <dimen name="dial_t_week_icon_margin_left">67px</dimen>
+    <dimen name="dial_t_week_icon_margin_top">187px</dimen>
+    <dimen name="num_clock_t_hour_width">47px</dimen>
+    <dimen name="num_clock_t_hour_height">107px</dimen>
+    <dimen name="num_clock_t_margin_1">2px</dimen>
+    <dimen name="num_clock_t_minute_width">27px</dimen>
+    <dimen name="num_clock_t_minute_height">61px</dimen>
+    <dimen name="num_clock_t_minute_margin_left">11px</dimen>
+
+    <!--dial type u-->
+    <dimen name="dial_u_date_width">10px</dimen>
+    <dimen name="dial_u_date_height">18px</dimen>
+    <dimen name="dial_u_dialer_width">46px</dimen>
+    <dimen name="dial_u_dialer_height">45px</dimen>
+    <dimen name="dial_u_digit_clock_margin_left">50px</dimen>
+    <dimen name="dial_u_digit_clock_margin_top">60px</dimen>
+    <dimen name="dial_u_week_width">42px</dimen>
+    <dimen name="dial_u_week_height">20px</dimen>
+    <dimen name="dial_u_week_margin_left">144px</dimen>
+    <dimen name="dial_u_week_margin_top">109px</dimen>
+    <dimen name="dial_u_date_margin">1px</dimen>
+    <dimen name="dial_u_separator_width">7px</dimen>
+    <dimen name="dial_u_year_margin_top">5px</dimen>
+    <dimen name="dial_u_dialer_margin_left">43px</dimen>
+    <dimen name="dial_u_dialer_margin_top">161px</dimen>
+    <dimen name="dial_u_wetalk_margin_left">8px</dimen>
+    <dimen name="dial_u_battery_width">28px</dimen>
+    <dimen name="dial_u_battery_height">16px</dimen>
+    <dimen name="dial_u_battery_margin_left">159px</dimen>
+    <dimen name="dial_u_battery_margin_top">176px</dimen>
+    <dimen name="num_clock_u_hour_width">33px</dimen>
+    <dimen name="num_clock_u_hour_height">55px</dimen>
+    <dimen name="num_clock_u_hour_margin">1px</dimen>
+    <dimen name="num_clock_u_dot_width">8px</dimen>
+    <dimen name="num_clock_u_dot_margin_left">8px</dimen>
+    <dimen name="num_clock_u_minute_width">20px</dimen>
+    <dimen name="num_clock_u_minute_height">36px</dimen>
+    <dimen name="num_clock_u_minute_margin_1">3px</dimen>
+    <dimen name="num_clock_u_minute_margin_2">10px</dimen>
+
+    <!--list header height-->
+    <dimen name="status_bar_height">44px</dimen>
+
+    <!-- mode type choice-->
+
+    <!--app list-->
+
+    <!--cornerSignTextView-->
+    <dimen name="corner_sign_text_width">24px</dimen>
+    <dimen name="corner_sign_text_height">24px</dimen>
+    <dimen name="corner_font_text_size">16px</dimen>
+    <dimen name="corner_font_text_size_min">14px</dimen>
+    <!--cornerSignTextViewU-->
+    <dimen name="corner_sign_u_text_width">7px</dimen>
+    <dimen name="corner_sign_u_text_height">7px</dimen>
+    <!--cornerSignTextViewM-->
+
+    <!--camera-->
+    <dimen name="camera_title_height">44px</dimen>
+    <dimen name="camera_title_text_size">26px</dimen>
+    <dimen name="camera_margin">7px</dimen>
+    <dimen name="camera_margin_top">6px</dimen>
+    <dimen name="camera_item_width">226px</dimen>
+    <dimen name="camera_item_height">90px</dimen>
+
+    <!--notification-->
+    <dimen name="notification_width">240px</dimen>
+    <dimen name="notification_height">240px</dimen>
+    <dimen name="notification_padding_left">6px</dimen>
+    <dimen name="notification_padding_right">6px</dimen>
+    <dimen name="notification_margin_bottom">14px</dimen>
+    <dimen name="notification_margin_top">44px</dimen>
+    <dimen name="notification_no_data_margin_top">53px</dimen>
+    <dimen name="notification_no_msg_margin_top">11px</dimen>
+    <dimen name="notification_no_msg_text_size">20px</dimen>
+    <dimen name="notification_underline_width">30px</dimen>
+    <dimen name="notification_underline_height">4px</dimen>
+    <dimen name="notification_underline_margin_bottom">5px</dimen>
+    <dimen name="notification_underline_radius">2px</dimen>
+    <dimen name="notification_btn_left_width">110px</dimen>
+    <dimen name="notification_btn_right_width">110px</dimen>
+    <!--notification item-->
+    <dimen name="bg_item_notification_height_1">50px</dimen>
+    <dimen name="bg_item_notification_height_2">30px</dimen>
+    <dimen name="bg_item_notification_top">36px</dimen>
+    <dimen name="item_notification_parent_height">90px</dimen>
+    <dimen name="item_notification_height_1">36px</dimen>
+    <dimen name="item_notification_icon_width">30px</dimen>
+    <dimen name="item_notification_icon_height">30px</dimen>
+    <dimen name="item_notification_icon_margin_left">6px</dimen>
+    <dimen name="item_notification_title_margin_left">8px</dimen>
+    <dimen name="item_notification_title_text_size">22px</dimen>
+    <dimen name="item_notification_time_margin_right">8px</dimen>
+    <dimen name="item_notification_time_text_size">18px</dimen>
+    <dimen name="item_notification_content_margin_left">36px</dimen>
+    <dimen name="item_notification_content_text_size">20px</dimen>
+    <dimen name="item_notification_progress_height">5px</dimen>
+    <dimen name="item_notification_progress_margin_1">16px</dimen>
+    <dimen name="item_notification_progress_margin_2">5px</dimen>
+    <dimen name="item_notification_progress_text_size">15px</dimen>
+    <dimen name="item_notification_progress_padding_left">5px</dimen>
+
+    <!--notification float window-->
+    <dimen name="notification_float_window_height">70px</dimen>
+
+    <!--status bar-->
+    <dimen name="signal_cluster_margin_left">8px</dimen>
+    <dimen name="status_bar_margin_left">5px</dimen>
+    <dimen name="status_bar_margin_right">8px</dimen>
+    <dimen name="network_name_margin_left">2px</dimen>
+    <dimen name="network_name_text_size">16px</dimen>
+
+    <!--dialog instructions-->
+    <dimen name="dialog_instructions_padding_bottom_1">18px</dimen>
+    <dimen name="dialog_instructions_padding_left_1">16px</dimen>
+    <dimen name="dialog_instructions_padding_right_1">16px</dimen>
+    <dimen name="dialog_instructions_padding_top_1">10px</dimen>
+    <dimen name="dialog_instructions_text_size_1">24px</dimen>
+    <dimen name="dialog_instructions_margin_top">9px</dimen>
+    <dimen name="dialog_instructions_line_space">6px</dimen>
+    <dimen name="dialog_instructions_text_size_2">20px</dimen>
+    <dimen name="dialog_instructions_margin_bottom_2">5px</dimen>
+
+    <dimen name="title_common_height">44px</dimen>
+    <dimen name="titile_common_text_size">26px</dimen>
+    <dimen name="app_gird_item_width">76px</dimen>
+    <dimen name="app_grid_item_height">112px</dimen>
+    <dimen name="app_grid_item_margin_top">8px</dimen>
+    <dimen name="app_grid_item_drawable_padding">2px</dimen>
+
+
+</resources>

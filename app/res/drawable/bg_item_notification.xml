@@ -2,17 +2,17 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:height="50px"
+        android:height="@dimen/bg_item_notification_height_1"
         android:drawable="@drawable/bg_item_notification_layer1" />
 
     <item
-        android:height="50px"
+        android:height="@dimen/bg_item_notification_height_1"
         android:drawable="@drawable/bg_item_notification_layer2"
         android:gravity="bottom" />
 
     <item
-        android:height="30px"
+        android:height="@dimen/bg_item_notification_height_2"
         android:drawable="@drawable/bg_item_notification_layer3"
-        android:top="36px" />
+        android:top="@dimen/bg_item_notification_top" />
 
 </layer-list>

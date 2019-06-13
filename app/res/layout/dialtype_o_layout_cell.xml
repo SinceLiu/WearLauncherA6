@@ -1,5 +1,4 @@
 <com.readboy.wearlauncher.view.WatchDialTypeO xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,19 +7,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="20px"
-        android:layout_marginRight="20px"
-        android:layout_marginTop="8px"
+        android:layout_marginLeft="@dimen/dial_o_margin_left"
+        android:layout_marginRight="@dimen/dial_o_margin_right"
+        android:layout_marginTop="@dimen/dial_o_margin_top"
         android:textColor="#cccccc"
-        android:textSize="20px" />
+        android:textSize="@dimen/dial_o_date_text_size" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20px"
-        android:layout_marginRight="20px"
-        android:layout_marginTop="8px"
         android:layout_alignParentRight="true"
+        android:layout_marginLeft="@dimen/dial_o_margin_left"
+        android:layout_marginRight="@dimen/dial_o_margin_right"
+        android:layout_marginTop="@dimen/dial_o_margin_top"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -28,12 +27,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="20px" />
+            android:textSize="@dimen/dial_o_battery_text_size" />
 
         <com.readboy.wearlauncher.battery.BatteryLevelImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5px" />
+            android:layout_marginLeft="@dimen/dial_o_battery_margin_left" />
     </LinearLayout>
 
     <!--time-->
@@ -42,24 +41,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="61px" />
+        android:layout_marginTop="@dimen/dial_o_time_margin_top" />
 
     <TextView
-        android:id="@+id/notice_tvid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="130px"
+        android:layout_marginTop="@dimen/dial_o_notice_margin_top"
         android:text="@string/notice_low_power"
         android:textColor="#1cc86d"
-        android:textSize="22px" />
+        android:textSize="@dimen/dial_o_notice_text_size" />
 
     <Button
         android:id="@+id/btn_id_dialer"
-        android:layout_width="@dimen/dial_d_dialer_width"
-        android:layout_height="@dimen/dial_d_dialer_hight"
+        android:layout_width="@dimen/dial_o_dialer_width"
+        android:layout_height="@dimen/dial_o_dialer_hight"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="178px"
+        android:layout_marginTop="@dimen/dial_o_dialer_margin_top"
         android:background="@drawable/watch_type_black_o_dialer"
         android:enabled="false" />
 

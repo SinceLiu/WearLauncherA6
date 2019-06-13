@@ -26,6 +26,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.readboy.wearlauncher.R;
@@ -91,14 +92,14 @@ public class AnalogClock extends View {
 //        if (mDial == null){
 //        	mDial = r.getDrawable(R.drawable.clock_analog_dial);
 //        }
-        if (mHourHand == null){
-        	mHourHand = r.getDrawable(R.drawable.clock_analog_hour);
+        if (mHourHand == null) {
+            mHourHand = r.getDrawable(R.drawable.clock_analog_hour);
         }
-        if (mMinuteHand == null){
-        	mMinuteHand = r.getDrawable(R.drawable.clock_analog_minute);
+        if (mMinuteHand == null) {
+            mMinuteHand = r.getDrawable(R.drawable.clock_analog_minute);
         }
-        if (mSecondHand == null){
-        	mSecondHand = r.getDrawable(R.drawable.clock_analog_second);
+        if (mSecondHand == null) {
+            mSecondHand = r.getDrawable(R.drawable.clock_analog_second);
         }
 
         final int dotColor = a.getColor(R.styleable.AnalogClock_jewelColor, Color.TRANSPARENT);
@@ -149,35 +150,34 @@ public class AnalogClock extends View {
 
         int x = availableWidth / 2;
         int y = availableHeight / 2;
-
-        if(!mNoHour){
+        if (!mNoHour) {
             drawHand(canvas, mHourHand, x, y, mHour / 12.0f * 360.0f, changed);
         }
-        if(!mNominute){
+        if (!mNominute) {
             drawHand(canvas, mMinuteHand, x, y, mMinutes / 60.0f * 360.0f, changed);
         }
         if (!mNoSeconds) {
-            drawHand(canvas, mSecondHand, x, y, mSeconds / 60.0f * 360.0f, changed);
+            drawSecond(canvas, mSecondHand, x, y, mSeconds / 60.0f * 360.0f, changed);
         }
     }
 
-    public void recycle(){
-        if(mHourHand != null){
+    public void recycle() {
+        if (mHourHand != null) {
             recyclDrawable(mHourHand);
             mHourHand = null;
         }
-        if(mMinuteHand != null){
+        if (mMinuteHand != null) {
             recyclDrawable(mMinuteHand);
             mMinuteHand = null;
         }
-        if(mSecondHand != null){
+        if (mSecondHand != null) {
             recyclDrawable(mSecondHand);
             mSecondHand = null;
         }
         System.gc();
     }
 
-    private void recyclDrawable(Drawable drawable){
+    private void recyclDrawable(Drawable drawable) {
         if (drawable != null && drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
             Bitmap bitmap = bitmapDrawable.getBitmap();
@@ -188,13 +188,27 @@ public class AnalogClock extends View {
     }
 
     private void drawHand(Canvas canvas, Drawable hand, int x, int y, float angle,
-          boolean changed) {
+                          boolean changed) {
         canvas.save();
         canvas.rotate(angle, x, y);
         if (changed) {
-          final int w = hand.getIntrinsicWidth();
-          final int h = hand.getIntrinsicHeight();
-          hand.setBounds(0, 0,  getWidth(), getHeight());
+            final int w = hand.getIntrinsicWidth() * x / 120;
+            final int h = hand.getIntrinsicHeight() * y / 120;
+            hand.setBounds(x - w / 2, y - h, x + w / 2, y);
+        }
+        hand.draw(canvas);
+        canvas.restore();
+    }
+
+    //秒针有的不是绕尾部旋转
+    private void drawSecond(Canvas canvas, Drawable hand, int x, int y, float angle,
+                            boolean changed) {
+        canvas.save();
+        canvas.rotate(angle, x, y);
+        if (changed) {
+            final int w = hand.getIntrinsicWidth() * x / 120;
+            final int h = hand.getIntrinsicHeight() * y / 120;
+            hand.setBounds(x - w / 2, 0, x + w / 2, h);
         }
         hand.draw(canvas);
         canvas.restore();
@@ -215,7 +229,7 @@ public class AnalogClock extends View {
         invalidate();
     }
 
-    private final Runnable mClockTick = new Runnable () {
+    private final Runnable mClockTick = new Runnable() {
 
         @Override
         public void run() {
@@ -226,16 +240,16 @@ public class AnalogClock extends View {
         }
     };
 
-    public void setTimePause(){
+    public void setTimePause() {
         removeCallbacks(mClockTick);
     }
 
-    public void setTimeRunning(){
+    public void setTimeRunning() {
         removeCallbacks(mClockTick);
         post(mClockTick);
     }
 
-    public void setCurTime(){
+    public void setCurTime() {
         GregorianCalendar time = new GregorianCalendar();
         time.setTime(new Date());
         int hour = time.get(Calendar.HOUR);
@@ -252,14 +266,14 @@ public class AnalogClock extends View {
     }
 
 
-    public void setTime(float hour, float minute, float second){
+    public void setTime(float hour, float minute, float second) {
         mHour = hour;
         mMinutes = minute;
         mSeconds = second;
         postInvalidate();
     }
 
-    public void setTime(float hour, float minute, float second, boolean hourHandDisplay, boolean minuteHandDisplay, boolean secondHandDisplay){
+    public void setTime(float hour, float minute, float second, boolean hourHandDisplay, boolean minuteHandDisplay, boolean secondHandDisplay) {
         mHour = hour;
         mMinutes = minute;
         mSeconds = second;

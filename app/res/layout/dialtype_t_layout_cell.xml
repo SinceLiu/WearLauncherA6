@@ -1,58 +1,109 @@
-<com.readboy.wearlauncher.view.WatchDialTypeR xmlns:android="http://schemas.android.com/apk/res/android"
+<com.readboy.wearlauncher.view.WatchDialTypeT xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:layout="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:layout="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/watch_type_r_bg">
+    android:background="@drawable/watch_type_t_bg">
 
-    <include
-        layout="@layout/digit_clock_r_layout"
+    <ImageView
+        android:id="@+id/iv_battery"
+        android:layout_width="@dimen/dial_t_battery_width"
+        android:layout_height="@dimen/dial_t_battery_height"
+        android:layout_marginStart="@dimen/dial_t_battery_margin_left"
+        android:layout_marginTop="@dimen/dial_t_battery_margin_top" />
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24px"
-        android:layout_marginTop="23px"/>
+        android:layout_marginStart="@dimen/dial_t_num_battery_margin_left"
+        android:layout_marginTop="@dimen/dial_t_num_battery_margin_top">
+
+        <ImageView
+            android:id="@+id/iv_battery_hundreds"
+            android:layout_width="@dimen/dial_t_num_battery_width"
+            android:layout_height="@dimen/dial_t_num_battery_height"
+            android:src="@drawable/dial_t_battery_1"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/iv_battery_decimal"
+            android:layout_width="@dimen/dial_t_num_battery_width"
+            android:layout_height="@dimen/dial_t_num_battery_height"
+            android:layout_alignTop="@+id/iv_battery_hundreds"
+            android:layout_marginStart="@dimen/dial_t_num_battery_margin"
+            android:layout_toRightOf="@+id/iv_battery_hundreds" />
+
+        <ImageView
+            android:id="@+id/iv_battery_unit"
+            android:layout_width="@dimen/dial_t_num_battery_width"
+            android:layout_height="@dimen/dial_t_num_battery_height"
+            android:layout_alignTop="@+id/iv_battery_decimal"
+            android:layout_marginStart="@dimen/dial_t_num_battery_margin"
+            android:layout_toRightOf="@+id/iv_battery_decimal" />
+
+        <ImageView
+            android:layout_width="@dimen/dial_t_num_battery_percent_width"
+            android:layout_height="@dimen/dial_t_num_battery_height"
+            android:layout_alignTop="@+id/iv_battery_unit"
+            android:layout_marginStart="@dimen/dial_t_num_battery_margin"
+            android:layout_toRightOf="@+id/iv_battery_unit"
+            android:src="@drawable/dial_t_battery_percent" />
+    </RelativeLayout>
+
+    <include
+        layout="@layout/digit_clock_t_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dial_t_digit_clock_margin_left"
+        android:layout_marginTop="@dimen/dial_t_digit_clock_margin_top" />
 
     <ImageView
         android:id="@+id/iv_month_decimal"
-        android:layout_width="@dimen/dial_p_date_width"
-        android:layout_height="@dimen/dial_p_date_height"
-        android:layout_marginTop="204px"
-        android:layout_marginStart="21px"
-        />
+        android:layout_width="@dimen/dial_t_date_width"
+        android:layout_height="@dimen/dial_t_date_height"
+        android:layout_marginStart="@dimen/dial_t_month_margin_left"
+        android:layout_marginTop="@dimen/dial_t_month_margin_top" />
+
     <ImageView
         android:id="@+id/iv_month_unit"
-        android:layout_width="@dimen/dial_p_date_width"
-        android:layout_height="@dimen/dial_p_date_height"
+        android:layout_width="@dimen/dial_t_date_width"
+        android:layout_height="@dimen/dial_t_date_height"
         android:layout_alignTop="@+id/iv_month_decimal"
-        android:layout_toRightOf="@+id/iv_month_decimal"
-        />
+        android:layout_toRightOf="@+id/iv_month_decimal" />
+
     <ImageView
         android:id="@+id/iv_separator"
-        android:layout_width="@dimen/dial_p_date_width"
-        android:layout_height="@dimen/dial_p_date_height"
+        android:layout_width="@dimen/dial_t_date_width"
+        android:layout_height="@dimen/dial_t_date_height"
         android:layout_alignTop="@+id/iv_month_unit"
         android:layout_toRightOf="@+id/iv_month_unit"
-        android:src="@drawable/dial_r_date_separator"
-        />
+        android:src="@drawable/dial_t_date_separator" />
+
     <ImageView
         android:id="@+id/iv_day_decimal"
-        android:layout_width="@dimen/dial_p_date_width"
-        android:layout_height="@dimen/dial_p_date_height"
+        android:layout_width="@dimen/dial_t_date_width"
+        android:layout_height="@dimen/dial_t_date_height"
         android:layout_alignTop="@+id/iv_separator"
-        android:layout_toRightOf="@+id/iv_separator"
-        />
+        android:layout_toRightOf="@+id/iv_separator" />
+
     <ImageView
         android:id="@+id/iv_day_unit"
-        android:layout_width="@dimen/dial_p_date_width"
-        android:layout_height="@dimen/dial_p_date_height"
+        android:layout_width="@dimen/dial_t_date_width"
+        android:layout_height="@dimen/dial_t_date_height"
         android:layout_alignTop="@+id/iv_day_decimal"
-        android:layout_toRightOf="@+id/iv_day_decimal"
-        />
+        android:layout_toRightOf="@+id/iv_day_decimal" />
+
     <ImageView
         android:id="@+id/iv_week"
-        android:layout_width="47px"
-        android:layout_height="22px"
-        android:layout_alignTop="@+id/iv_day_unit"
-        android:layout_toRightOf="@+id/iv_day_unit"
-        android:layout_marginStart="14px"
-        />
-</com.readboy.wearlauncher.view.WatchDialTypeR>
+        android:layout_width="@dimen/dial_t_week_width"
+        android:layout_height="@dimen/dial_t_week_height"
+        android:layout_alignStart="@+id/iv_month_decimal"
+        android:layout_below="@+id/iv_month_decimal"
+        android:layout_marginTop="@dimen/dial_t_week_margin_top" />
+
+    <ImageView
+        android:id="@+id/iv_week_icon"
+        android:layout_width="@dimen/dial_t_week_icon_width"
+        android:layout_height="@dimen/dial_t_week_icon_height"
+        android:layout_marginStart="@dimen/dial_t_week_icon_margin_left"
+        android:layout_marginTop="@dimen/dial_t_week_icon_margin_top" />
+</com.readboy.wearlauncher.view.WatchDialTypeT>

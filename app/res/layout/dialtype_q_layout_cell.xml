@@ -1,20 +1,100 @@
-<com.readboy.wearlauncher.view.WatchDialTypeE xmlns:android="http://schemas.android.com/apk/res/android"
+<com.readboy.wearlauncher.view.WatchDialTypeQ xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/watch_type_e_black_bg">
+    android:background="@drawable/watch_type_q_bg">
+    
+    <Button
+        android:id="@+id/btn_id_dialer"
+        android:layout_width="@dimen/dial_q_dialer_width"
+        android:layout_height="@dimen/dial_q_dialer_height"
+        android:layout_marginTop="@dimen/dial_q_margin_1"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/dial_q_dialer"
+        android:clickable="false"
+        android:enabled="false" />
+
+    <Button
+        android:id="@+id/btn_id_mms"
+        android:layout_width="@dimen/dial_q_dialer_width"
+        android:layout_height="@dimen/dial_q_dialer_height"
+        android:layout_marginStart="@dimen/dial_q_margin_1"
+        android:layout_centerVertical="true"
+        android:background="@drawable/dial_q_wetalk"
+        android:clickable="false"
+        android:enabled="false" />
+
+    <Button
+        android:id="@+id/btn_id_weather"
+        android:layout_width="@dimen/dial_q_dialer_width"
+        android:layout_height="@dimen/dial_q_dialer_height"
+        android:layout_marginTop="@dimen/dial_q_margin_2"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/dial_q_weather"
+        android:clickable="false"
+        android:enabled="false" />
+    
+    <ImageView
+        android:id="@+id/iv_week"
+        android:layout_width="@dimen/dial_q_week_width"
+        android:layout_height="@dimen/dial_q_week_height"
+        android:layout_marginTop="@dimen/dial_q_margin_3"
+        android:layout_marginStart="@dimen/dial_q_margin_4"
+        android:src="@drawable/dial_q_monday"/>
+
+    <!--右对齐-->
+    <ImageView
+        android:id="@+id/iv_day_unit"
+        android:layout_width="@dimen/dial_q_date_width"
+        android:layout_height="@dimen/dial_q_date_height"
+        android:layout_alignEnd="@+id/iv_week"
+        android:layout_below="@+id/iv_week"
+        android:layout_marginTop="@dimen/dial_q_margin_5"
+        />
+    <ImageView
+        android:id="@+id/iv_day_decimal"
+        android:layout_width="@dimen/dial_q_date_width"
+        android:layout_height="@dimen/dial_q_date_height"
+        android:layout_alignTop="@+id/iv_day_unit"
+        android:layout_toStartOf="@+id/iv_day_unit"
+        android:layout_marginEnd="@dimen/dial_q_date_margin"
+        />
+    <ImageView
+        android:id="@+id/iv_separator"
+        android:layout_width="@dimen/dial_q_date_width"
+        android:layout_height="@dimen/dial_q_date_height"
+        android:layout_alignTop="@+id/iv_day_unit"
+        android:layout_toStartOf="@+id/iv_day_decimal"
+        android:layout_marginEnd="@dimen/dial_q_date_margin"
+        android:src="@drawable/dial_q_date_separator"
+        />
+
+    <ImageView
+        android:id="@+id/iv_month_unit"
+        android:layout_width="@dimen/dial_q_date_width"
+        android:layout_height="@dimen/dial_q_date_height"
+        android:layout_alignTop="@+id/iv_day_unit"
+        android:layout_toStartOf="@+id/iv_separator"
+        android:layout_marginEnd="@dimen/dial_q_date_margin"
+        />
+
+    <ImageView
+        android:id="@+id/iv_month_decimal"
+        android:layout_width="@dimen/dial_q_date_width"
+        android:layout_height="@dimen/dial_q_date_height"
+        android:layout_alignTop="@+id/iv_day_unit"
+        android:layout_toStartOf="@+id/iv_month_unit"
+        android:layout_marginEnd="@dimen/dial_q_date_margin"
+        />
 
     <!--时钟-->
     <com.readboy.wearlauncher.view.AnalogClock
         android:id="@+id/analog_clock"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:analogHour="@drawable/watch_type_e_analog_hour"
-        app:analogMinute="@drawable/watch_type_e_analog_min"
-        app:analogSecond="@drawable/watch_type_e_analog_second"
-        app:noSecond="false"/>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/watch_type_e_analog_dot"/>
-</com.readboy.wearlauncher.view.WatchDialTypeE>
+        app:analogHour="@drawable/watch_type_q_analog_hour"
+        app:analogMinute="@drawable/watch_type_q_analog_min"
+        app:analogSecond="@drawable/watch_type_q_analog_second"
+        app:noSecond="false" />
+
+</com.readboy.wearlauncher.view.WatchDialTypeQ>

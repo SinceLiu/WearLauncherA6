@@ -1,90 +1,62 @@
-<com.readboy.wearlauncher.view.WatchDialTypeQ xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<com.readboy.wearlauncher.view.WatchDialTypeP xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:layout="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/watch_type_q_black_bg">
-    
-    <Button
-        android:id="@+id/btn_id_dialer"
-        android:layout_width="@dimen/dial_q_dialer_width"
-        android:layout_height="@dimen/dial_q_dialer_height"
-        android:layout_marginTop="27px"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/dial_q_dialer"/>
+    android:background="@drawable/watch_type_p_bg">
 
-    <Button
-        android:id="@+id/btn_id_mms"
-        android:layout_width="@dimen/dial_q_dialer_width"
-        android:layout_height="@dimen/dial_q_dialer_height"
-        android:layout_marginStart="27px"
-        android:layout_centerVertical="true"
-        android:background="@drawable/dial_q_wetalk"/>
+    <include
+        layout="@layout/digit_clock_p_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dial_p_digit_clock_margin_left"
+        android:layout_marginTop="@dimen/dial_p_digit_clock_margin_top" />
 
-    <Button
-        android:id="@+id/btn_id_weather"
-        android:layout_width="@dimen/dial_q_dialer_width"
-        android:layout_height="@dimen/dial_q_dialer_height"
-        android:layout_marginTop="147px"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/dial_q_weather"/>
-    
-    <ImageView
-        android:id="@+id/iv_week"
-        android:layout_width="45px"
-        android:layout_height="22px"
-        android:layout_marginTop="95px"
-        android:layout_marginStart="167px"
-        android:src="@drawable/dial_q_Monday"/>
-    
-    <ImageView
-        android:id="@+id/iv_month_decimal"
-        android:layout_width="@dimen/dial_q_date_width"
-        android:layout_height="@dimen/dial_q_date_height"
-        android:layout_marginTop="125px"
-        android:layout_marginStart="154px"
-        />
-    <ImageView
-        android:id="@+id/iv_month_unit"
-        android:layout_width="@dimen/dial_q_date_width"
-        android:layout_height="@dimen/dial_q_date_height"
-        android:layout_alignTop="@+id/iv_month_decimal"
-        android:layout_toRightOf="@+id/iv_month_decimal"
-        android:layout_marginStart="@dimen/dial_q_date_margin"
-        />
-    <ImageView
-        android:id="@+id/iv_separator"
-        android:layout_width="@dimen/dial_q_date_width"
-        android:layout_height="@dimen/dial_q_date_height"
-        android:layout_alignTop="@+id/iv_month_unit"
-        android:layout_toRightOf="@+id/iv_month_unit"
-        android:layout_marginStart="@dimen/dial_q_date_margin"
-        android:src="@drawable/dial_q_date_separator"
-        />
-    <ImageView
-        android:id="@+id/iv_day_decimal"
-        android:layout_width="@dimen/dial_q_date_width"
-        android:layout_height="@dimen/dial_q_date_height"
-        android:layout_alignTop="@+id/iv_separator"
-        android:layout_toRightOf="@+id/iv_separator"
-        android:layout_marginStart="@dimen/dial_q_date_margin"
-        />
-    <ImageView
-        android:id="@+id/iv_day_unit"
-        android:layout_width="@dimen/dial_q_date_width"
-        android:layout_height="@dimen/dial_q_date_height"
-        android:layout_alignTop="@+id/iv_day_decimal"
-        android:layout_toRightOf="@+id/iv_day_decimal"
-        android:layout_marginStart="@dimen/dial_q_date_margin"
-        />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dial_p_date_margin_left"
+        android:layout_marginTop="@dimen/dial_p_date_margin_top">
 
-    <!--时钟-->
-    <com.readboy.wearlauncher.view.AnalogClock
-        android:id="@+id/analog_clock"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:analogHour="@drawable/watch_type_q_analog_hour"
-        app:analogMinute="@drawable/watch_type_q_analog_min"
-        app:analogSecond="@drawable/watch_type_q_analog_second"
-        app:noSecond="false" />
+        <ImageView
+            android:id="@+id/iv_month_decimal"
+            android:layout_width="@dimen/dial_p_date_width"
+            android:layout_height="@dimen/dial_p_date_height" />
 
-</com.readboy.wearlauncher.view.WatchDialTypeQ>
+        <ImageView
+            android:id="@+id/iv_month_unit"
+            android:layout_width="@dimen/dial_p_date_width"
+            android:layout_height="@dimen/dial_p_date_height"
+            android:layout_alignTop="@+id/iv_month_decimal"
+            android:layout_toRightOf="@+id/iv_month_decimal" />
+
+        <ImageView
+            android:id="@+id/iv_separator"
+            android:layout_width="@dimen/dial_p_date_width"
+            android:layout_height="@dimen/dial_p_date_height"
+            android:layout_alignTop="@+id/iv_month_unit"
+            android:layout_toRightOf="@+id/iv_month_unit"
+            android:src="@drawable/dial_p_date_separator" />
+
+        <ImageView
+            android:id="@+id/iv_day_decimal"
+            android:layout_width="@dimen/dial_p_date_width"
+            android:layout_height="@dimen/dial_p_date_height"
+            android:layout_alignTop="@+id/iv_separator"
+            android:layout_toRightOf="@+id/iv_separator" />
+
+        <ImageView
+            android:id="@+id/iv_day_unit"
+            android:layout_width="@dimen/dial_p_date_width"
+            android:layout_height="@dimen/dial_p_date_height"
+            android:layout_alignTop="@+id/iv_separator"
+            android:layout_toRightOf="@+id/iv_day_decimal" />
+
+        <ImageView
+            android:id="@+id/iv_week"
+            android:layout_width="@dimen/dial_p_week_width"
+            android:layout_height="@dimen/dial_p_week_height"
+            android:layout_alignTop="@+id/iv_day_unit"
+            android:layout_marginStart="@dimen/dial_p_week_margin_left"
+            android:layout_toRightOf="@+id/iv_day_unit" />
+    </RelativeLayout>
+</com.readboy.wearlauncher.view.WatchDialTypeP>

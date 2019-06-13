@@ -34,7 +34,7 @@ public class WatchAppView extends RelativeLayout implements WatchController.Clas
     ImageView mImageView;
     private LayoutInflater mInflater;
     WatchController mWatchController;
-    private GridLayoutManager mLayoutManager;
+    private MyGridLayoutManager mLayoutManager;
     private HeaderAndFooterWrapper mWrapperAdapter;
     List<AppInfo> mAppList = new ArrayList<AppInfo>();
     private OnItemClickListener mOnItemClickListener;
@@ -82,7 +82,7 @@ public class WatchAppView extends RelativeLayout implements WatchController.Clas
         super.onFinishInflate();
         mImageView = (ImageView) findViewById(R.id.imageView);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_vid);
-        mLayoutManager = new GridLayoutManager(mContext, 2, GridLayoutManager.VERTICAL, false);
+        mLayoutManager = new MyGridLayoutManager(mContext, 2, GridLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
         OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, 0);
         mAppRecyclerAdapter = new AppRecyclerAdapter();

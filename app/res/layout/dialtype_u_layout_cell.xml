@@ -1,105 +1,146 @@
-<com.readboy.wearlauncher.view.WatchDialTypeT xmlns:android="http://schemas.android.com/apk/res/android"
+<com.readboy.wearlauncher.view.WatchDialTypeU xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:layout="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:layout="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/watch_type_t_bg">
+    android:background="@drawable/watch_type_u_bg">
+
+    <include
+        layout="@layout/digit_clock_u_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dial_u_digit_clock_margin_left"
+        android:layout_marginTop="@dimen/dial_u_digit_clock_margin_top" />
+
+    <ImageView
+        android:id="@+id/iv_week"
+        android:layout_width="@dimen/dial_u_week_width"
+        android:layout_height="@dimen/dial_u_week_height"
+        android:layout_marginStart="@dimen/dial_u_week_margin_left"
+        android:layout_marginTop="@dimen/dial_u_week_margin_top" />
+
+    <!--右对齐-->
+    <ImageView
+        android:id="@+id/iv_month_decimal"
+        android:layout_width="@dimen/dial_u_date_width"
+        android:layout_height="@dimen/dial_u_date_height"
+        android:layout_alignTop="@+id/iv_year_unit"
+        android:layout_toStartOf="@+id/iv_month_unit" />
+
+    <ImageView
+        android:id="@+id/iv_month_unit"
+        android:layout_width="@dimen/dial_u_date_width"
+        android:layout_height="@dimen/dial_u_date_height"
+        android:layout_alignTop="@+id/iv_year_unit"
+        android:layout_marginEnd="@dimen/dial_u_date_margin"
+        android:layout_toStartOf="@+id/iv_separator" />
+
+    <ImageView
+        android:id="@+id/iv_separator"
+        android:layout_width="@dimen/dial_u_separator_width"
+        android:layout_height="@dimen/dial_u_date_height"
+        android:layout_alignTop="@+id/iv_year_unit"
+        android:layout_marginEnd="@dimen/dial_u_date_margin"
+        android:layout_toStartOf="@+id/iv_day_decimal"
+        android:src="@drawable/dial_u_date_separator" />
+
+    <ImageView
+        android:id="@+id/iv_day_decimal"
+        android:layout_width="@dimen/dial_u_date_width"
+        android:layout_height="@dimen/dial_u_date_height"
+        android:layout_alignTop="@+id/iv_year_unit"
+        android:layout_toStartOf="@+id/iv_day_unit" />
+
+    <ImageView
+        android:id="@+id/iv_day_unit"
+        android:layout_width="@dimen/dial_u_date_width"
+        android:layout_height="@dimen/dial_u_date_height"
+        android:layout_alignTop="@+id/iv_year_unit"
+        android:layout_marginEnd="@dimen/dial_u_date_margin"
+        android:layout_toStartOf="@+id/iv_separator2" />
+
+    <ImageView
+        android:id="@+id/iv_separator2"
+        android:layout_width="@dimen/dial_u_separator_width"
+        android:layout_height="@dimen/dial_u_date_height"
+        android:layout_alignTop="@+id/iv_year_unit"
+        android:layout_marginEnd="@dimen/dial_u_date_margin"
+        android:layout_toStartOf="@+id/iv_year_thousands"
+        android:src="@drawable/dial_u_date_separator" />
+
+    <ImageView
+        android:id="@+id/iv_year_thousands"
+        android:layout_width="@dimen/dial_u_date_width"
+        android:layout_height="@dimen/dial_u_date_height"
+        android:layout_alignTop="@+id/iv_year_unit"
+        android:layout_toStartOf="@+id/iv_year_hundreds"
+        android:src="@drawable/dial_u_date_2" />
+
+    <ImageView
+        android:id="@+id/iv_year_hundreds"
+        android:layout_width="@dimen/dial_u_date_width"
+        android:layout_height="@dimen/dial_u_date_height"
+        android:layout_alignTop="@+id/iv_year_unit"
+        android:layout_toStartOf="@+id/iv_year_decimal"
+        android:src="@drawable/dial_u_date_0" />
+
+    <ImageView
+        android:id="@+id/iv_year_decimal"
+        android:layout_width="@dimen/dial_u_date_width"
+        android:layout_height="@dimen/dial_u_date_height"
+        android:layout_alignTop="@+id/iv_year_unit"
+        android:layout_toStartOf="@+id/iv_year_unit" />
+
+    <ImageView
+        android:id="@+id/iv_year_unit"
+        android:layout_width="@dimen/dial_u_date_width"
+        android:layout_height="@dimen/dial_u_date_height"
+        android:layout_alignEnd="@+id/iv_week"
+        android:layout_below="@+id/iv_week"
+        android:layout_marginTop="@dimen/dial_u_year_margin_top" />
+
+    <ImageButton
+        android:id="@+id/ib_id_dialer"
+        android:layout_width="@dimen/dial_u_dialer_width"
+        android:layout_height="@dimen/dial_u_dialer_height"
+        android:layout_marginStart="@dimen/dial_u_dialer_margin_left"
+        android:layout_marginTop="@dimen/dial_u_dialer_margin_top"
+        android:background="@null"
+        android:clickable="false"
+        android:enabled="false"
+        android:src="@drawable/watch_type_u_dialer" />
+
+    <TextView
+        android:id="@+id/text_id_dialer_num"
+        style="@style/cornerSignTextViewUDialer"
+        android:layout_alignRight="@id/ib_id_dialer"
+        android:layout_alignTop="@id/ib_id_dialer"
+        android:elevation="10dp"
+        android:visibility="invisible" />
+
+    <ImageButton
+        android:id="@+id/ib_id_mms"
+        android:layout_width="@dimen/dial_u_dialer_width"
+        android:layout_height="@dimen/dial_u_dialer_height"
+        android:layout_alignTop="@+id/ib_id_dialer"
+        android:layout_marginStart="@dimen/dial_u_wetalk_margin_left"
+        android:layout_toRightOf="@+id/ib_id_dialer"
+        android:background="@null"
+        android:clickable="false"
+        android:enabled="false"
+        android:src="@drawable/watch_type_u_wetalk" />
+
+    <TextView
+        android:id="@+id/text_id_mss_num"
+        style="@style/cornerSignTextViewUMMS"
+        android:layout_alignRight="@id/ib_id_mms"
+        android:layout_alignTop="@id/ib_id_mms"
+        android:elevation="10dp"
+        android:visibility="invisible" />
 
     <ImageView
         android:id="@+id/iv_battery"
-        android:layout_width="29px"
-        android:layout_height="16px"
-        android:layout_marginStart="83px"
-        android:layout_marginTop="36px"/>
-
-    <ImageView
-        android:id="@+id/iv_battery_hundreds"
-        android:layout_width="9px"
-        android:layout_height="20px"
-        android:layout_marginTop="34px"
-        android:layout_marginStart="122px"
-        android:src="@drawable/dial_t_battery_1"
-        android:visibility="gone"/>
-    
-    <ImageView
-        android:id="@+id/iv_battery_decimal"
-        android:layout_width="9px"
-        android:layout_height="20px"
-        android:layout_alignTop="@+id/iv_battery_hundreds"
-        android:layout_toRightOf="@+id/iv_battery_hundreds"
-        android:layout_marginStart="2px"/>
-
-    <ImageView
-        android:id="@+id/iv_battery_unit"
-        android:layout_width="9px"
-        android:layout_height="20px"
-        android:layout_alignTop="@+id/iv_battery_decimal"
-        android:layout_toRightOf="@+id/iv_battery_decimal"
-        android:layout_marginStart="2px"/>
-
-    <ImageView
-        android:id="@+id/iv_battery_percent"
-        android:layout_width="13px"
-        android:layout_height="20px"
-        android:layout_alignTop="@+id/iv_battery_unit"
-        android:layout_toRightOf="@+id/iv_battery_unit"
-        android:layout_marginStart="2px"
-        android:src="@drawable/dial_t_battery_percent"/>
-
-    <include
-        layout="@layout/digit_clock_t_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="34px"
-        android:layout_marginTop="65px"/>
-
-    <ImageView
-        android:id="@+id/iv_month_decimal"
-        android:layout_width="@dimen/dial_t_date_width"
-        android:layout_height="@dimen/dial_t_date_height"
-        android:layout_marginTop="131px"
-        android:layout_marginStart="142px"
-        />
-    <ImageView
-        android:id="@+id/iv_month_unit"
-        android:layout_width="@dimen/dial_t_date_width"
-        android:layout_height="@dimen/dial_t_date_height"
-        android:layout_alignTop="@+id/iv_month_decimal"
-        android:layout_toRightOf="@+id/iv_month_decimal"
-        />
-    <ImageView
-        android:id="@+id/iv_separator"
-        android:layout_width="@dimen/dial_t_date_width"
-        android:layout_height="@dimen/dial_t_date_height"
-        android:layout_alignTop="@+id/iv_month_unit"
-        android:layout_toRightOf="@+id/iv_month_unit"
-        android:src="@drawable/dial_t_date_separator"
-        />
-    <ImageView
-        android:id="@+id/iv_day_decimal"
-        android:layout_width="@dimen/dial_t_date_width"
-        android:layout_height="@dimen/dial_t_date_height"
-        android:layout_alignTop="@+id/iv_separator"
-        android:layout_toRightOf="@+id/iv_separator"
-        />
-    <ImageView
-        android:id="@+id/iv_day_unit"
-        android:layout_width="@dimen/dial_t_date_width"
-        android:layout_height="@dimen/dial_t_date_height"
-        android:layout_alignTop="@+id/iv_day_decimal"
-        android:layout_toRightOf="@+id/iv_day_decimal"
-        />
-    <ImageView
-        android:id="@+id/iv_week"
-        android:layout_width="56px"
-        android:layout_height="18px"
-        android:layout_alignStart="@+id/iv_month_decimal"
-        android:layout_below="@+id/iv_month_decimal"
-        android:layout_marginTop="4px"
-        />
-    <ImageView
-        android:id="@+id/iv_week_icon"
-        android:layout_width="107px"
-        android:layout_height="17px"
-        android:layout_marginTop="187px"
-        android:layout_marginStart="67px"/>
-</com.readboy.wearlauncher.view.WatchDialTypeT>
+        android:layout_width="@dimen/dial_u_battery_width"
+        android:layout_height="@dimen/dial_u_battery_height"
+        android:layout_marginStart="@dimen/dial_u_battery_margin_left"
+        android:layout_marginTop="@dimen/dial_u_battery_margin_top" />
+</com.readboy.wearlauncher.view.WatchDialTypeU>

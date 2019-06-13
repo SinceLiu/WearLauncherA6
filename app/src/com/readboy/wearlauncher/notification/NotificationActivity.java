@@ -13,7 +13,6 @@ import android.graphics.Rect;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
@@ -41,7 +40,7 @@ import com.readboy.recyclerview.swipe.touch.OnItemMoveListener;
 import com.readboy.recyclerview.swipe.touch.OnItemMovementListener;
 import com.readboy.wearlauncher.Launcher;
 import com.readboy.wearlauncher.LauncherApplication;
-import com.readboy.wearlauncher.Location.LocationControllerImpl;
+import com.readboy.wearlauncher.location.LocationControllerImpl;
 import com.readboy.wearlauncher.R;
 import com.readboy.wearlauncher.alarm.AlarmController;
 import com.readboy.wearlauncher.bluetooth.BluetoothController;
@@ -49,6 +48,7 @@ import com.readboy.wearlauncher.net.NetworkController;
 import com.readboy.wearlauncher.net.SignalClusterView;
 import com.readboy.wearlauncher.utils.Utils;
 import com.readboy.wearlauncher.utils.WatchController;
+import com.readboy.wearlauncher.view.MyLinearLayoutManager;
 import com.readboy.wearlauncher.view.SwipeDismissLayout;
 
 import java.util.ArrayList;
@@ -120,8 +120,8 @@ public class NotificationActivity extends Activity {
         mNoDataView = findViewById(R.id.no_data_parent);
         mNoDataAnimation = (AnimationDrawable) findViewById(R.id.no_data_animation).getBackground();
         classDisableView = findViewById(R.id.iv_class_disable);
-        hideOrShowClassDisableView();
         initRecyclerView();
+        hideOrShowClassDisableView();
 
         findViewById(R.id.btn_left).setOnTouchListener(openFactoryModeOps);
         findViewById(R.id.btn_right).setOnTouchListener(openFactoryModeOps);
@@ -256,7 +256,7 @@ public class NotificationActivity extends Activity {
     private void initRecyclerView() {
         mRecyclerView = (SwipeMenuRecyclerView) findViewById(R.id.notification_recycler_view);
         mRecyclerView.setLayoutManager(
-                new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+                new MyLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mAdapter = new NotificationAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setItemViewSwipeEnabled(true);
@@ -441,8 +441,9 @@ public class NotificationActivity extends Activity {
     private void removeNotification(StatusBarNotification notification) {
         mAdapter.removeItem(notification);
         if (mAdapter.getItemCount() == 0) {
-//            showNoMsgView();
-            finish();
+            showNoMsgView();
+            //A6还有状态栏，不自动关闭消息盒子
+//            finish();
         }
     }
 
@@ -461,8 +462,10 @@ public class NotificationActivity extends Activity {
         boolean isEnable = rwm.isClassForbidOpen();
         if (isEnable) {
             classDisableView.setVisibility(View.VISIBLE);
+            mRecyclerView.setVisibility(View.GONE);
         } else {
             classDisableView.setVisibility(View.GONE);
+            mRecyclerView.setVisibility(View.VISIBLE);
         }
     }
 

@@ -67,7 +67,6 @@ public class NetworkTypeUtils {
                     config.showAtLeast3G ? R.drawable.stat_sys_network_type_3g :
                             R.drawable.stat_sys_network_type_g;
         }
-        Log.d(TAG, "getNetworkTypeIcon iconId = " + iconId);
         return iconId.intValue();
     }
 
@@ -77,7 +76,6 @@ public class NetworkTypeUtils {
             type = serviceState.getDataNetworkType() != TelephonyManager.NETWORK_TYPE_UNKNOWN ?
                     serviceState.getDataNetworkType() : serviceState.getVoiceNetworkType();
         }
-        Log.d(TAG, "getNetworkType: type=" + type);
         return type;
     }
 

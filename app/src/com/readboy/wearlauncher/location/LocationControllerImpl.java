@@ -1,6 +1,5 @@
-package com.readboy.wearlauncher.Location;
+package com.readboy.wearlauncher.location;
 
-import android.app.ActivityManager;
 import android.app.AppOpsManager;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -9,10 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.location.LocationManager;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
-import android.os.UserHandle;
-import android.os.UserManager;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;

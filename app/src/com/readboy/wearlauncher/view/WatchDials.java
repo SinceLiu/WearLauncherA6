@@ -20,9 +20,8 @@ import android.widget.ImageView;
 
 import com.antonyt.infiniteviewpager.GalleryTransformer;
 import com.antonyt.infiniteviewpager.InfinitePagerAdapter;
-import com.readboy.wearlauncher.DialPane.DialCircleIndicator;
-import com.readboy.wearlauncher.DialPane.DialPagerAdapter;
-import com.readboy.wearlauncher.LauncherApplication;
+import com.readboy.wearlauncher.dialPane.DialCircleIndicator;
+import com.readboy.wearlauncher.dialPane.DialPagerAdapter;
 import com.readboy.wearlauncher.LauncherSharedPrefs;
 import com.readboy.wearlauncher.R;
 import com.readboy.wearlauncher.utils.Utils;
@@ -36,22 +35,14 @@ import java.util.ArrayList;
 public class WatchDials extends FrameLayout {
 
     public static final ArrayList<Integer> mDialList = new ArrayList<Integer>(){{
+        add(R.layout.dialtype_q_layout_cell);
+        add(R.layout.dialtype_t_layout_cell);
+        add(R.layout.dialtype_p_layout_cell);
+        add(R.layout.dialtype_u_layout_cell);
+        add(R.layout.dialtype_r_layout_cell);
+        add(R.layout.dialtype_s_layout_cell);
         add(R.layout.dialtype_g_layout_cell);
-        add(R.layout.dialtype_b_layout_cell);
-        add(R.layout.dialtype_k_layout_cell);
-        add(R.layout.dialtype_n_layout_cell);
-        add(R.layout.dialtype_j_layout_cell);
-        add(R.layout.dialtype_c_layout_cell);
         add(R.layout.dialtype_e_layout_cell);
-        add(R.layout.dialtype_m_layout_cell);
-        //add(R.layout.dialtype_o_layout_cell);//低电模式
-        //add(R.layout.dialtype_h_layout_cell);
-        //add(R.layout.dialtype_i_layout_cell);
-        //add(R.layout.dialtype_a_layout_cell);
-        //add(R.layout.dialtype_d_layout_cell);//低电模式
-        //add(R.layout.dialtype_f_layout_cell);
-        //add(R.layout.dialtype_l_layout_cell);
-
     }};
     public static final int ANIMATE_STATE_IDLE = 0;
     public static final int ANIMATE_STATE_OPENING = 1;

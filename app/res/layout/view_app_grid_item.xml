@@ -3,17 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@android:color/transparent"
     android:orientation="vertical"
     >
     <com.readboy.wearlauncher.view.IconTextView
         android:id="@+id/app_icon_tvid"
-        android:layout_width="76px"
-        android:layout_height="112px"
-        android:layout_marginTop="8px"
+        android:layout_width="@dimen/app_gird_item_width"
+        android:layout_height="@dimen/app_grid_item_height"
+        android:layout_marginTop="@dimen/app_grid_item_margin_top"
         android:textSize="22sp"
         android:maxLines="1"
-        android:drawablePadding="2px"
+        android:drawablePadding="@dimen/app_grid_item_drawable_padding"
         android:gravity="center_horizontal"
         />
 </LinearLayout>

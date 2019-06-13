@@ -1,6 +1,7 @@
 package com.readboy.wearlauncher.utils;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -24,6 +25,8 @@ public class QQReceiver extends BroadcastReceiver {
     public static final String ACTION_REPLY = "com.tencent.qq.action.conversation.reply";
     public static final String ACTION_REJECT = "com.tencent.qq.action.addFriend.reject";
     public static final String ACTION_ACCEPT = "com.tencent.qq.action.addFriend.accept";
+    public static final String QQ_CHANNEL_ID = "qqChannelId";
+    public static final String QQ_CHANNEL_NAME = "qqChannelName";
 
     public QQReceiver() {
 
@@ -37,7 +40,6 @@ public class QQReceiver extends BroadcastReceiver {
     }
 
 
-
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
@@ -49,15 +51,15 @@ public class QQReceiver extends BroadcastReceiver {
             Intent qqIntent = new Intent();
             ComponentName componentName = new ComponentName("com.tencent.qqlite", "com.tencent.mobileqq.activity.SplashActivity");
             qqIntent.setComponent(componentName);
-            if (NOTIFICATION_TYPE_ADDFRIEND.equals(conversationType)) {
-                manager.notify(MESSAGE_NOTIFY_ID, getNotification(context, qqIntent, contactName, conversationContent));
-            }
-            if (NOTIFICATION_TYPE_MESSAGE.equals(conversationType)) {
-                manager.notify(MESSAGE_NOTIFY_ID, getNotification(context, qqIntent, contactName, conversationContent));
-            }
-            if (NOTIFICATION_TYPE_ADDFRIEND_RESULT.equals(conversationType)) {
-                manager.notify(MESSAGE_NOTIFY_ID, getNotification(context, qqIntent, contactName, conversationContent));
-            }
+//            if (NOTIFICATION_TYPE_ADDFRIEND.equals(conversationType)) {
+            manager.notify(MESSAGE_NOTIFY_ID, getNotification(context, qqIntent, contactName, conversationContent));
+//            }
+//            if (NOTIFICATION_TYPE_MESSAGE.equals(conversationType)) {
+//                manager.notify(MESSAGE_NOTIFY_ID, getNotification(context, qqIntent, contactName, conversationContent));
+//            }
+//            if (NOTIFICATION_TYPE_ADDFRIEND_RESULT.equals(conversationType)) {
+//                manager.notify(MESSAGE_NOTIFY_ID, getNotification(context, qqIntent, contactName, conversationContent));
+//            }
         }
     }
 
@@ -65,6 +67,9 @@ public class QQReceiver extends BroadcastReceiver {
     private Notification getNotification(Context context, Intent intent, String contactName, String conversatrionContent) {
         Bundle bundle = new Bundle();
         bundle.putString("extra_type", "readboy");
+        NotificationChannel channel = new NotificationChannel(QQ_CHANNEL_ID,QQ_CHANNEL_NAME,NotificationManager.IMPORTANCE_HIGH);
+        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.createNotificationChannel(channel);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
         builder.setSmallIcon(R.drawable.qq_icon);
         builder.setAutoCancel(true);
@@ -73,6 +78,7 @@ public class QQReceiver extends BroadcastReceiver {
         builder.setContentText(conversatrionContent);
         builder.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE);
         builder.setPriority(Notification.PRIORITY_HIGH);
+        builder.setChannelId(QQ_CHANNEL_ID);
         if (intent != null) {
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
             builder.setContentIntent(pendingIntent);

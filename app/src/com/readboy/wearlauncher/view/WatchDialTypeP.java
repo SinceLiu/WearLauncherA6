@@ -2,29 +2,46 @@ package com.readboy.wearlauncher.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.widget.TextView;
+import android.view.View;
 
 import com.readboy.wearlauncher.R;
-import com.readboy.wearlauncher.utils.WatchController;
-
-import java.util.Calendar;
 
 /**
  * TODO: document your custom view class.
  */
-public class WatchDialTypeG extends DialBaseLayout {
-
+public class WatchDialTypeP extends DialBaseLayout {
+    private int[] dateDrawable = new int[]{
+            R.drawable.dial_p_date_0,
+            R.drawable.dial_p_date_1,
+            R.drawable.dial_p_date_2,
+            R.drawable.dial_p_date_3,
+            R.drawable.dial_p_date_4,
+            R.drawable.dial_p_date_5,
+            R.drawable.dial_p_date_6,
+            R.drawable.dial_p_date_7,
+            R.drawable.dial_p_date_8,
+            R.drawable.dial_p_date_9,
+    };
+    private int[] weekDrawable = new int[]{
+            R.drawable.dial_p_sunday,
+            R.drawable.dial_p_monday,
+            R.drawable.dial_p_tuesday,
+            R.drawable.dial_p_wednesday,
+            R.drawable.dial_p_thursday,
+            R.drawable.dial_p_friday,
+            R.drawable.dial_p_saturday,
+    };
     private DigitClock mDigitClock;
 
-    public WatchDialTypeG(Context context) {
+    public WatchDialTypeP(Context context) {
         super(context);
     }
 
-    public WatchDialTypeG(Context context, AttributeSet attrs) {
+    public WatchDialTypeP(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
-    public WatchDialTypeG(Context context, AttributeSet attrs, int defStyle) {
+
+    public WatchDialTypeP(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
     }
@@ -67,6 +84,7 @@ public class WatchDialTypeG extends DialBaseLayout {
 
     @Override
     public void onDateChange() {
+        getDate();
         setDate();
     }
 
@@ -80,12 +98,37 @@ public class WatchDialTypeG extends DialBaseLayout {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
     }
+
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
         mDigitClock = (DigitClock) findViewById(R.id.digit_clock);
         mDigitClock.setCurTime();
+        initDateView();
+        getDate();
         setDate();
+    }
+
+    @Override
+    protected void setDate() {
+        if (mMonthDecimalIv == null) {
+            return;
+        }
+        if (mMonthDecimal == 0) {
+            mMonthDecimalIv.setVisibility(View.GONE);
+        } else {
+            mMonthDecimalIv.setVisibility(View.VISIBLE);
+            mMonthDecimalIv.setImageDrawable(getResources().getDrawable(dateDrawable[mMonthDecimal], null));
+        }
+        mMonthUnitIv.setImageDrawable(getResources().getDrawable(dateDrawable[mMonthUnit], null));
+        if (mDayDecimal == 0) {
+            mDayDecimalIv.setVisibility(View.GONE);
+        } else {
+            mDayDecimalIv.setVisibility(View.VISIBLE);
+            mDayDecimalIv.setImageDrawable(getResources().getDrawable(dateDrawable[mDayDecimal], null));
+        }
+        mDayUnitIv.setImageDrawable(getResources().getDrawable(dateDrawable[mDayUnit], null));
+        mWeekIv.setImageDrawable(getResources().getDrawable(weekDrawable[mWeek], null));
     }
 
 }

@@ -17,17 +17,14 @@
 package com.readboy.wearlauncher;
 
 import android.app.Application;
-import android.content.Context;
-import android.content.res.Configuration;
 
-import com.readboy.wearlauncher.Location.LocationControllerImpl;
+import com.readboy.wearlauncher.location.LocationControllerImpl;
 import com.readboy.wearlauncher.alarm.AlarmController;
 import com.readboy.wearlauncher.bluetooth.BluetoothController;
 import com.readboy.wearlauncher.net.NetworkController;
+import com.readboy.wearlauncher.utils.QQReceiver;
 import com.readboy.wearlauncher.utils.WatchController;
 import com.readboy.wearlauncher.view.IconCache;
-
-import java.lang.ref.WeakReference;
 //import android.util.Slog;
 
 public class LauncherApplication extends Application {
@@ -41,7 +38,7 @@ public class LauncherApplication extends Application {
     private LocationControllerImpl mLocationControllerImpl;
 
     private WatchController mWatchController;
-
+    private QQReceiver mQQReceiver;
     static LauncherApplication mApplication;
 
     @Override
@@ -57,7 +54,7 @@ public class LauncherApplication extends Application {
         mAlarmController = new AlarmController(this);
         mAlarmController.resume();
         mLocationControllerImpl = new LocationControllerImpl(this);
-
+        mQQReceiver = new QQReceiver(this);
         mWatchController = new WatchController(this);
     }
 

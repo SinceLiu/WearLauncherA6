@@ -26,7 +26,13 @@ public class StartFactoryModeService extends Service {
     List<ScanResult> scanResults = new ArrayList<ScanResult>();
     private boolean isLocationOpen;
     private boolean isWifiOpened;
+    //启动FactoryMode
     public static final String WIFI_NAME = "readboy-factory-watch-test1";
+    //启动电量消耗
+    public static final String WIFI_NAME2 = "readboy-factory-battery-test1";
+    //启动自动测试工具
+    public static final String WIFI_NAME3 = "readboy-factory-fqc-test1";
+
 //    public static final String WIFI_NAME = "SoftReadboy2";
 
     public static final String TAG = "StartFactoryModeService";
@@ -99,35 +105,79 @@ public class StartFactoryModeService extends Service {
             }
             if (WifiManager.SCAN_RESULTS_AVAILABLE_ACTION.endsWith(action)) {
                 scanResults = wm.getScanResults();
-                startFactoryMode(checkWifi());
+                checkWifi();
             }
         }
     };
 
-    private boolean checkWifi() {
+    private void checkWifi() {
         for (ScanResult scanResult : scanResults) {
             if (WIFI_NAME.equals(scanResult.SSID)) {
-                return true;
+                startFactoryMode();
+                return;
+            }
+            if (WIFI_NAME2.equals(scanResult.SSID)) {
+                startBatteryTest();
+                return;
+            }
+            if (WIFI_NAME3.equals(scanResult.SSID)) {
+                startFactoryTest();
+                return;
             }
         }
-        return false;
+        Log.e(TAG, "Not found the wifi: " + WIFI_NAME + " , " + WIFI_NAME2 + " and " + WIFI_NAME3);
+        stopSelf();
+
     }
 
-    private void startFactoryMode(boolean hasTheWifi) {
-        if (!hasTheWifi) {
-            Log.e(TAG, "Not found the wifi: " + WIFI_NAME);
-            stopSelf();
-        } else {
-            Log.e(TAG, "Start FactoryMode!");
-            Intent intent = new Intent();
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            ComponentName componentName = new ComponentName("com.mediatek.factorymode", "com.mediatek.factorymode.FactoryMode");
-            intent.setComponent(componentName);
+    private void startFactoryMode() {
+        Log.e(TAG, "Start FactoryMode!");
+        Intent intent = new Intent();
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        ComponentName componentName = new ComponentName("com.mediatek.factorymode", "com.mediatek.factorymode.FactoryMode");
+        intent.setComponent(componentName);
+        try {
             startActivity(intent);
+        } catch (Exception e) {
+            Log.e(TAG, "startFactoryMode:FactoryMode not found!");
+        } finally {
             stopSelf();
         }
     }
 
+    private void startBatteryTest() {
+        Log.e(TAG, "Start BatteryTest!");
+        Intent intent = new Intent();
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        ComponentName componentName = new ComponentName("com.mediatek.factorymode",
+                "com.mediatek.factorymode.audio.AudioForBatteryTest");
+        intent.setComponent(componentName);
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            Log.e(TAG, "startBatteryTest:BatteryTest not found!");
+        } finally {
+            stopSelf();
+        }
+    }
+
+    private void startFactoryTest() {
+        Log.e(TAG, "Start FactoryTest!");
+        Intent intent = new Intent();
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        ComponentName componentName = new ComponentName("com.dinghmcn.android.wificonnectclient",
+                "com.dinghmcn.android.wificonnectclient.MainActivity");
+        intent.setComponent(componentName);
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            Log.e(TAG, "Start FactoryTest:FactoryTest not found!");
+        } finally {
+            stopSelf();
+        }
+    }
 }
 

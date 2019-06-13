@@ -1,4 +1,4 @@
-package com.readboy.wearlauncher.Swipe;
+package com.readboy.wearlauncher.swipe;
 
 import android.content.Context;
 import android.content.res.TypedArray;

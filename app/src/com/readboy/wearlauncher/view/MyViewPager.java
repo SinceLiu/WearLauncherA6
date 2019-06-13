@@ -1,6 +1,7 @@
 package com.readboy.wearlauncher.view;
 
 import android.content.Context;
+import android.provider.Settings;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -15,13 +16,15 @@ public class MyViewPager extends ViewPager {
     private float mLastY;
     private float dirX;
     private float dirY;
+    private boolean isSpi;
 
     public MyViewPager(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public MyViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
+        isSpi = Settings.System.getInt(context.getContentResolver(), "is_spi", 0) == 1;
     }
 
     @Override
@@ -43,7 +46,7 @@ public class MyViewPager extends ViewPager {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        if (!isClassDisabled) {
+        if (!isClassDisabled && !isSpi) {
             return super.onTouchEvent(ev);
         }
         switch (ev.getAction()) {
@@ -55,9 +58,20 @@ public class MyViewPager extends ViewPager {
                         break;
                     }
                 }
-                if (Math.abs(dirX) > 10) {
-                    ClassDisableDialog.showClassDisableDialog(getContext());
-                    Utils.checkAndDealWithAirPlanMode(getContext());
+                if (dirX < -10) {
+                    if (isClassDisabled) {
+                        ClassDisableDialog.showClassDisableDialog(getContext());
+                        Utils.checkAndDealWithAirPlanMode(getContext());
+                    } else {
+                        setCurrentItem(Math.min(getCurrentItem() + 1, getAdapter().getCount() - 1), false);
+                    }
+                } else if (dirX > 10) {
+                    if (isClassDisabled) {
+                        ClassDisableDialog.showClassDisableDialog(getContext());
+                        Utils.checkAndDealWithAirPlanMode(getContext());
+                    } else {
+                        setCurrentItem(Math.max(0, getCurrentItem() - 1), false);
+                    }
                 }
                 break;
             default:

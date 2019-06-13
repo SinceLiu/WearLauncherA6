@@ -57,8 +57,8 @@
             android:id="@+id/network_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="2px"
-            android:textSize="16px" />
+            android:layout_marginLeft="@dimen/network_name_margin_left"
+            android:textSize="@dimen/network_name_text_size" />
 
         <ImageView
             android:id="@+id/volte_icon"

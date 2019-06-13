@@ -2,45 +2,46 @@ package com.readboy.wearlauncher.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 
 import com.readboy.wearlauncher.R;
 
 /**
  * TODO: document your custom view class.
  */
-public class WatchDialTypeP extends DialBaseLayout {
+public class WatchDialTypeR extends DialBaseLayout {
     private int[] dateDrawable = new int[]{
-            R.drawable.dial_p_date_0,
-            R.drawable.dial_p_date_1,
-            R.drawable.dial_p_date_2,
-            R.drawable.dial_p_date_3,
-            R.drawable.dial_p_date_4,
-            R.drawable.dial_p_date_5,
-            R.drawable.dial_p_date_6,
-            R.drawable.dial_p_date_7,
-            R.drawable.dial_p_date_8,
-            R.drawable.dial_p_date_9,
+            R.drawable.dial_r_date_0,
+            R.drawable.dial_r_date_1,
+            R.drawable.dial_r_date_2,
+            R.drawable.dial_r_date_3,
+            R.drawable.dial_r_date_4,
+            R.drawable.dial_r_date_5,
+            R.drawable.dial_r_date_6,
+            R.drawable.dial_r_date_7,
+            R.drawable.dial_r_date_8,
+            R.drawable.dial_r_date_9,
     };
     private int[] weekDrawable = new int[]{
-            R.drawable.dial_p_Sunday,
-            R.drawable.dial_p_Monday,
-            R.drawable.dial_p_Tuesday,
-            R.drawable.dial_p_Wednesday,
-            R.drawable.dial_p_Thursday,
-            R.drawable.dial_p_Friday,
-            R.drawable.dial_p_Saturday,
+            R.drawable.dial_r_sunday,
+            R.drawable.dial_r_monday,
+            R.drawable.dial_r_tuesday,
+            R.drawable.dial_r_wednesday,
+            R.drawable.dial_r_thursday,
+            R.drawable.dial_r_friday,
+            R.drawable.dial_r_saturday,
     };
     private DigitClock mDigitClock;
 
-    public WatchDialTypeP(Context context) {
+    public WatchDialTypeR(Context context) {
         super(context);
     }
 
-    public WatchDialTypeP(Context context, AttributeSet attrs) {
+    public WatchDialTypeR(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public WatchDialTypeP(Context context, AttributeSet attrs, int defStyle) {
+    public WatchDialTypeR(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
     }
@@ -111,12 +112,22 @@ public class WatchDialTypeP extends DialBaseLayout {
     @Override
     protected void setDate() {
         if (mMonthDecimalIv == null) {
-            initDateView();
+            return;
         }
-        mMonthDecimalIv.setImageDrawable(getResources().getDrawable(dateDrawable[mMonthDecimal], null));
+        if (mMonthDecimal == 0) {
+            mMonthDecimalIv.setVisibility(View.GONE);
+        } else {
+            mMonthDecimalIv.setVisibility(View.VISIBLE);
+            mMonthDecimalIv.setImageDrawable(getResources().getDrawable(dateDrawable[mMonthDecimal], null));
+        }
         mMonthUnitIv.setImageDrawable(getResources().getDrawable(dateDrawable[mMonthUnit], null));
-        mDayDecimalIv.setImageDrawable(getResources().getDrawable(dateDrawable[mDayDecimal], null));
-        mDayUnitIv.setImageDrawable(getResources().getDrawable(dateDrawable[mDayUnit], null));
+        if (mDayDecimal == 0) {
+            mDayDecimalIv.setVisibility(View.GONE);
+        } else {
+            mDayDecimalIv.setVisibility(View.VISIBLE);
+            mDayDecimalIv.setImageDrawable(getResources().getDrawable(dateDrawable[mDayDecimal], null));
+        }
+            mDayUnitIv.setImageDrawable(getResources().getDrawable(dateDrawable[mDayUnit], null));
         mWeekIv.setImageDrawable(getResources().getDrawable(weekDrawable[mWeek], null));
     }
 

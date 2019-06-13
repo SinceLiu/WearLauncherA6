@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.readboy.wearlauncher.view.SwipeDismissLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/swipe"
-    android:layout_width="240px"
-    android:layout_height="240px"
+    android:layout_width="@dimen/notification_width"
+    android:layout_height="@dimen/notification_height"
     android:layout_gravity="center"
     android:background="@android:color/black"
-    android:paddingLeft="6px"
-    android:paddingRight="6px">
+    android:paddingLeft="@dimen/notification_padding_left"
+    android:paddingRight="@dimen/notification_padding_right">
 
     <com.readboy.recyclerview.swipe.SwipeMenuRecyclerView
         android:id="@+id/notification_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="14px"
-        android:layout_marginTop="44px" />
+        android:layout_marginBottom="@dimen/notification_margin_bottom"
+        android:layout_marginTop="@dimen/notification_margin_top" />
 
     <LinearLayout
         android:id="@+id/no_data_parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="53px"
+        android:layout_marginTop="@dimen/notification_no_data_margin_top"
         android:orientation="vertical">
 
         <ImageView
@@ -30,34 +31,33 @@
             android:background="@drawable/bg_no_data" />
 
         <TextView
-            android:id="@+id/no_msg_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="11px"
+            android:layout_marginTop="@dimen/notification_no_msg_margin_top"
             android:text="@string/notification_not_msg"
             android:textColor="@color/white_50a"
-            android:textSize="20px" />
+            android:textSize="@dimen/notification_no_msg_text_size" />
     </LinearLayout>
 
     <ImageView
-        android:layout_width="30px"
-        android:layout_height="4px"
+        android:layout_width="@dimen/notification_underline_width"
+        android:layout_height="@dimen/notification_underline_height"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="5px"
+        android:layout_marginBottom="@dimen/notification_underline_margin_bottom"
         android:src="@drawable/corner_line" />
 
 
     <View
         android:id="@+id/btn_left"
-        android:layout_width="110px"
+        android:layout_width="@dimen/notification_btn_left_width"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/status_bar_height"
         android:layout_gravity="left" />
 
     <View
         android:id="@+id/btn_right"
-        android:layout_width="110px"
+        android:layout_width="@dimen/notification_btn_right_width"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/status_bar_height"
         android:layout_gravity="right" />
@@ -73,10 +73,8 @@
 
     <!--status bar-->
     <LinearLayout
-        android:id="@+id/status_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/status_bar_height"
-        android:background="#000000"
         android:gravity="center_vertical|right"
         android:orientation="horizontal">
 
@@ -85,7 +83,7 @@
             layout="@layout/signal_cluster_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8px" />
+            android:layout_marginLeft="@dimen/signal_cluster_margin_left" />
 
         <View
             android:layout_width="0dp"
@@ -96,31 +94,31 @@
             android:id="@+id/btn_id_classdisable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5px" />
+            android:layout_marginLeft="@dimen/status_bar_margin_left" />
 
         <ImageView
             android:id="@+id/btn_id_gps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5px" />
+            android:layout_marginLeft="@dimen/status_bar_margin_left" />
 
         <ImageView
             android:id="@+id/btn_id_alarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5px" />
+            android:layout_marginLeft="@dimen/status_bar_margin_left" />
 
         <ImageView
             android:id="@+id/btn_id_bluetooth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5px" />
+            android:layout_marginLeft="@dimen/status_bar_margin_left" />
 
         <com.readboy.wearlauncher.battery.BatteryLevelImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5px"
-            android:layout_marginRight="8px" />
+            android:layout_marginLeft="@dimen/status_bar_margin_left"
+            android:layout_marginRight="@dimen/status_bar_margin_right" />
         <!--<com.readboy.wearlauncher.battery.BatteryLevelTextView-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->

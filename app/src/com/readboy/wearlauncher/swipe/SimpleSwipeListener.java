@@ -1,4 +1,4 @@
-package com.readboy.wearlauncher.Swipe;
+package com.readboy.wearlauncher.swipe;
 
 public class SimpleSwipeListener implements SwipeLayout.SwipeListener {
 

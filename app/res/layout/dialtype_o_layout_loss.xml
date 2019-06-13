@@ -1,6 +1,7 @@
 <com.readboy.wearlauncher.view.WatchDialTypeO xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#000000">
 
     <TextView
         android:id="@+id/date_tvid"
@@ -48,17 +49,17 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/dial_o_notice_margin_top"
-        android:text="@string/notice_low_power"
+        android:text="@string/notice_loss"
         android:textColor="#1cc86d"
         android:textSize="@dimen/dial_o_notice_text_size" />
 
     <Button
-        android:id="@+id/btn_id_dialer"
+        android:id="@+id/btn_id_call_owner"
         android:layout_width="@dimen/dial_o_dialer_width"
         android:layout_height="@dimen/dial_o_dialer_hight"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/dial_o_dialer_margin_top"
         android:background="@drawable/watch_type_black_o_dialer"
-        android:enabled="false" />
+         />
 
 </com.readboy.wearlauncher.view.WatchDialTypeO>

@@ -1,4 +1,4 @@
-package com.readboy.wearlauncher.DialPane;
+package com.readboy.wearlauncher.dialPane;
 
 
 import android.animation.Animator;

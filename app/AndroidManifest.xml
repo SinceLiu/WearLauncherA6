@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.readboy.wearlauncher"
     android:sharedUserId="android.uid.phone"
-    android:versionCode="190125002"
-    android:versionName="2.3">
+    android:versionCode="190521001"
+    android:versionName="4.1">
 
+    <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.SYSTEM_PHONE_WINDOW" />
@@ -82,10 +83,6 @@
         <activity
             android:name=".notification.NotificationActivity"
             android:theme="@style/NotificationTheme" />
-        <activity android:name=".contact.CallActivity" />
-        <activity
-            android:name=".contact.CallTypeActivity"
-            android:theme="@style/SwipeToDismissTheme" />
 
         <!-- The settings provider contains Home's data, like the workspace favorites -->
         <provider
@@ -113,7 +110,8 @@
         <service
             android:name=".utils.StartFactoryModeService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true">
+        </service>
     </application>
 
 </manifest>

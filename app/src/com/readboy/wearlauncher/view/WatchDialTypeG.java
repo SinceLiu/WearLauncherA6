@@ -66,7 +66,7 @@ public class WatchDialTypeG extends DialBaseLayout {
     }
 
     @Override
-    public void onDateChange(int year, int month, int day, int week) {
+    public void onDateChange() {
         setDate();
     }
 

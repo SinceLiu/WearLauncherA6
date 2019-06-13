@@ -389,7 +389,7 @@ public class NetworkController extends BroadcastReceiver {
         if (isEmergencyOnly()) {
             cb.onMobileDataSignalChanged(false, mQSPhoneSignalIconId,
                     mContentDescriptionPhoneSignal, networkType, mQSDataTypeIconId, mobileIn, mobileOut,
-                    mContentDescriptionDataType, null);
+                    mContentDescriptionDataType, mSimName);
         } else {
             if (mIsWimaxEnabled && mWimaxConnected) {
                 // Wimax is special
@@ -598,10 +598,10 @@ public class NetworkController extends BroadcastReceiver {
 
     private final void updateTelephonySignalStrength() {
         if (!hasService()) {
-            if (CHATTY) Log.d(TAG, "updateTelephonySignalStrength: !hasService()");
-            mPhoneSignalIconId = R.drawable.stat_sys_signal_null;
-            mQSPhoneSignalIconId = R.drawable.ic_qs_signal_no_signal;
-            mDataSignalIconId = R.drawable.stat_sys_signal_null;
+//            if (CHATTY) Log.d(TAG, "updateTelephonySignalStrength: !hasService()");
+//            mPhoneSignalIconId = R.drawable.stat_sys_signal_null;
+//            mQSPhoneSignalIconId = R.drawable.ic_qs_signal_no_signal;
+//            mDataSignalIconId = R.drawable.stat_sys_signal_null;
         } else {
             if (mSignalStrength == null) {
                 if (CHATTY) Log.d(TAG, "updateTelephonySignalStrength: mSignalStrength == null");
@@ -656,7 +656,7 @@ public class NetworkController extends BroadcastReceiver {
             mContentDescriptionDataType = mContext.getString(
                     R.string.accessibility_data_connection_4g);
         } else if (!hasService() || mDataState != TelephonyManager.DATA_CONNECTED) {
-            mDataTypeIconId = 0;
+//            mDataTypeIconId = 0;
         } else {
             switch (mDataNetType) {
                 case TelephonyManager.NETWORK_TYPE_UNKNOWN:
@@ -817,6 +817,7 @@ public class NetworkController extends BroadcastReceiver {
         if (DEBUG) Log.d(TAG, "In updateSimIcon simState= " + mSimState);
         if (mSimState == IccCardConstants.State.ABSENT) {
             mNoSimIconId = R.drawable.stat_sys_no_sim;
+            mDataTypeIconId = 0;
         } else {
             mNoSimIconId = 0;
         }
@@ -853,6 +854,7 @@ public class NetworkController extends BroadcastReceiver {
                 }
             } else {
                 iconId = R.drawable.stat_sys_no_sim;
+                mDataTypeIconId = 0;
                 mNoSim = true;
                 visible = false; // no SIM? no data
             }
@@ -1398,7 +1400,7 @@ public class NetworkController extends BroadcastReceiver {
             mContentDescriptionCombinedSignal = mHasMobileDataFeature
                     ? mContentDescriptionDataType : mContentDescriptionWifi;
 
-            mDataTypeIconId = 0;
+//            mDataTypeIconId = 0;
             mQSDataTypeIconId = 0;
             if (isCdma()) {
                 if (isCdmaEri()) {
@@ -1410,7 +1412,6 @@ public class NetworkController extends BroadcastReceiver {
                 mQSDataTypeIconId = TelephonyIcons.QS_DATA_R[mInetCondition];
             }
         }
-
         // update QS
         for (NetworkSignalChangedCallback cb : mSignalsChangedCallbacks) {
             notifySignalsChangedCallbacks(cb);

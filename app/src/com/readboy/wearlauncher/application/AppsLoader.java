@@ -11,10 +11,10 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.readboy.wearlauncher.LauncherApplication;
-import com.readboy.wearlauncher.LauncherSettings;
 import com.readboy.wearlauncher.R;
 import com.readboy.wearlauncher.compat.LauncherAppsCompat;
 import com.readboy.wearlauncher.compat.UserHandleCompat;
+import com.readboy.wearlauncher.utils.Utils;
 import com.readboy.wearlauncher.view.IconCache;
 
 import java.io.BufferedInputStream;
@@ -40,13 +40,14 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
     private final static String TAG = "AppsLoader";
 
     private final static String APP_READBOY_FLAG = "android.readboy.WATCH.FLAG";
+
     ArrayList<AppInfo> mInstalledApps;
-    private  final PackageManager mPm;
+    private final PackageManager mPm;
     private Context mContext;
     private LauncherAppsCompat mLauncherApps;
     private IconCache mIconCache;
 
-    HashMap<String,Integer> App_Icons = new HashMap<String,Integer>(){
+    HashMap<String, Integer> App_Icons = new HashMap<String, Integer>() {
         {
 //            put("com.readboy.watch.speech", R.drawable.app_icon_audio);
 //            put("com.readboy.hanzixuexiwatch",R.drawable.app_icon_book);
@@ -69,7 +70,7 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
     };
 
     //按照这个方式排序
-    ArrayList<String> Package_Sort = new ArrayList<String>(){
+    ArrayList<String> Package_Sort = new ArrayList<String>() {
         {
             add("com.android.dialer");
             add("com.readboy.wordstudy");
@@ -100,11 +101,11 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
         super(context);
         mContext = context;
         mPm = context.getPackageManager();
-        mIconCache = ((LauncherApplication)LauncherApplication.getApplication()).getIconCache();
+        mIconCache = ((LauncherApplication) LauncherApplication.getApplication()).getIconCache();
     }
 
-    private boolean isFilter(ResolveInfo resolveInfo){
-        if(resolveInfo == null){
+    private boolean isFilter(ResolveInfo resolveInfo) {
+        if (resolveInfo == null) {
             return true;
         }
         return false;
@@ -112,16 +113,16 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
 
     private void removeExcludedPackages(List<ResolveInfo> pacList) {
         List<String> excludePackageList = Arrays.asList(mContext.getResources().getStringArray(
-        R.array.excludePackageList));
+                R.array.excludePackageList));
         File file = new File(Environment.getExternalStorageDirectory().getPath() + File.separator + "lacheolauncher.test");
-        if(file.exists() && file.isFile()){
+        if (file.exists() && file.isFile()) {
             try {
-                InputStream in  = new BufferedInputStream(new FileInputStream(file));
-                BufferedReader br= new BufferedReader(new InputStreamReader(in, "UTF-8"));
+                InputStream in = new BufferedInputStream(new FileInputStream(file));
+                BufferedReader br = new BufferedReader(new InputStreamReader(in, "UTF-8"));
                 String tmp;
-                while((tmp=br.readLine())!=null){
+                while ((tmp = br.readLine()) != null) {
                     Log.v(TAG, "filePackage " + tmp);
-                    excludePackageList.add(tmp) ;
+                    excludePackageList.add(tmp);
                 }
                 br.close();
                 in.close();
@@ -135,7 +136,7 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
         }
         for (int index = 0; index < excludePackageList.size(); ++index) {
             for (ResolveInfo packageIter : pacList) {
-                if (TextUtils.equals(excludePackageList.get(index),packageIter.activityInfo.packageName)) {
+                if (TextUtils.equals(excludePackageList.get(index), packageIter.activityInfo.packageName)) {
                     Log.v(TAG, "Excluding Package " + packageIter.activityInfo.packageName);
                     pacList.remove(packageIter);
                     break;
@@ -148,8 +149,27 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
         // iterate through the packages and remove this launcher package from the list
         for (int i = 0; i < pacList.size(); ++i) {
             if (pacList.get(i).activityInfo.packageName.equals(mContext.getPackageName())) {
-                pacList.remove(i);
-                break;
+                if ("com.readboy.wearlauncher.Launcher".equals(pacList.get(i).activityInfo.name)) {
+                    pacList.remove(i);
+                    i--;
+                }
+            }
+        }
+    }
+
+    //TODO 获取应用管控列表，移除这些包名
+    private void removeControlledPackages(List<ResolveInfo> pacList) {
+        List<String> controlledPackagesList = Utils.getControlledPackages(mContext);
+        if (controlledPackagesList == null || controlledPackagesList.size() == 0) {
+            return;
+        }
+        for (int i = 0; i < pacList.size(); i++) {
+            for (int j = 0; j < controlledPackagesList.size(); j++) {
+                if (controlledPackagesList.get(j).equals(pacList.get(i).activityInfo.packageName)) {
+                    pacList.remove(i);
+                    i--;
+                    break;
+                }
             }
         }
     }
@@ -161,11 +181,12 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
 
         List<ResolveInfo> mApps = mPm.queryIntentActivities(mainIntent, PackageManager.GET_RESOLVED_FILTER);
         removeSelfPackage(mApps);
+        removeControlledPackages(mApps);
         removeExcludedPackages(mApps);
         ArrayList<AppInfo> items = new ArrayList<AppInfo>(mApps.size());
-        for(int i = 0; i< mApps.size() ; i++){
+        for (int i = 0; i < mApps.size(); i++) {
             ResolveInfo info = mApps.get(i);
-            if(!isFilter(info)){
+            if (!isFilter(info)) {
 
                 Drawable drawable = mIconCache.getFullResIcon(info);
 //                if(App_Icons.containsKey(info.activityInfo.packageName)){
@@ -173,14 +194,14 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
 //                }else {
 //                    drawable = info.loadIcon(mPm);
 //                }
-                items.add(new AppInfo(info,drawable,info.loadLabel(mPm).toString(),info.activityInfo.packageName,info.activityInfo.name));
+                items.add(new AppInfo(info, drawable, info.loadLabel(mPm).toString(), info.activityInfo.packageName, info.activityInfo.name));
             }
         }
         ArrayList<AppInfo> sort_items = new ArrayList<AppInfo>();
         {
-            for(int i = 0; i < Package_Sort.size(); i++){
-                for (int j = 0; j < items.size(); j++){
-                    if(items.get(j).mPackageName.equals(Package_Sort.get(i))){
+            for (int i = 0; i < Package_Sort.size(); i++) {
+                for (int j = 0; j < items.size(); j++) {
+                    if (items.get(j).mPackageName.equals(Package_Sort.get(i))) {
                         sort_items.add(items.get(j));
                         items.remove(j);
                     }
@@ -188,14 +209,13 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
             }
             sort_items.addAll(items);
         }
-
         return sort_items;
     }
 
     @Override
     public void deliverResult(ArrayList<AppInfo> data) {
 
-        mInstalledApps =  data;
+        mInstalledApps = data;
         if (isStarted()) {
             // If the Loader is currently started, we can immediately
             // deliver its results.
@@ -211,13 +231,13 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
             // immediately.
             deliverResult(mInstalledApps);
         }
-        if (mLauncherApps == null){
+        if (mLauncherApps == null) {
             mLauncherApps = LauncherAppsCompat.getInstance(mContext);
             mLauncherApps.addOnAppsChangedCallback(this);
         }
 
 
-        if (takeContentChanged() || mInstalledApps == null ) {
+        if (takeContentChanged() || mInstalledApps == null) {
             // If the data has changed since the last time it was loaded
             // or is not currently available, start a load.
             forceLoad();
@@ -234,12 +254,13 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
         // Ensure the loader is stopped
         onStopLoading();
 
-        if (mLauncherApps != null){
+        if (mLauncherApps != null) {
             mLauncherApps.removeOnAppsChangedCallback(this);
             mLauncherApps = null;
         }
 
     }
+
     @Override
     public void onPackageRemoved(String packageName, UserHandleCompat user) {
         this.onContentChanged();
