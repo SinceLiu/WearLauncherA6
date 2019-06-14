@@ -61,11 +61,6 @@ public class WatchController extends BroadcastReceiver {
     //step
     public static final Uri STEPS_CONTENT_URI = Uri.parse("content://com.readboy.pedometer.contentProvider/pedometer");
 
-    //lost
-    public static final String ACTION_LOST_CHANGED = "readboy.action.LOST_CHANGED";
-    //app control
-    public static final String ACTION_APP_CTRL_CHANGED = "readboy.action.NOTIFY_APP_CTRL";
-
     private static final Object LOCK = new Object();
     private final static String MISSCALL_WHERE = "type = 3 and new = 1";
     private static final int CALL_MSG_WHAT = 0x10;
@@ -210,34 +205,6 @@ public class WatchController extends BroadcastReceiver {
         mClassDisableChangedCallback.remove(cb);
     }
 
-    public interface LostChangedCallback {
-        void onLostChange();
-    }
-
-    private LostChangedCallback mLostChangedCallback;
-
-    public void setLostChangedCallback(LostChangedCallback cb) {
-        mLostChangedCallback = cb;
-        if (cb != null) {
-            cb.onLostChange();
-        }
-    }
-
-    public interface AppControlledChangedback {
-        void onAppControlledChange();
-    }
-
-    private ArrayList<AppControlledChangedback> mAppControlledChangedback = new ArrayList<>();
-
-    public void addAppControlledChangedback(AppControlledChangedback cb) {
-        mAppControlledChangedback.add(cb);
-        cb.onAppControlledChange();
-    }
-
-    public void removeAppControlledChangedback(AppControlledChangedback cb) {
-        mAppControlledChangedback.remove(cb);
-    }
-
     public ScreenOff mScreenOffListener;
 
     public void setScreenOffListener(ScreenOff l) {
@@ -279,10 +246,6 @@ public class WatchController extends BroadcastReceiver {
         IntentFilter filter = new IntentFilter();
         //class disable
         filter.addAction(READBOY_ACTION_CLASS_DISABLE_CHANGED);
-        //lost
-        filter.addAction(ACTION_LOST_CHANGED);
-        //app control
-        filter.addAction(ACTION_APP_CTRL_CHANGED);
         //date
         filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
         filter.addAction(Intent.ACTION_DATE_CHANGED);
@@ -588,15 +551,6 @@ public class WatchController extends BroadcastReceiver {
         } else if (TextUtils.equals(action, Intent.ACTION_SCREEN_ON)) {
             if (mScreenOffListener != null) {
                 mScreenOffListener.onScreenOn();
-            }
-        } else if (TextUtils.equals(action, ACTION_LOST_CHANGED)) {
-            Log.e(TAG,"action:"+action);
-            if (mLostChangedCallback != null) {
-                mLostChangedCallback.onLostChange();
-            }
-        } else if (TextUtils.equals(action, ACTION_APP_CTRL_CHANGED)) {
-            for (AppControlledChangedback callback : mAppControlledChangedback) {
-                callback.onAppControlledChange();
             }
         }
     }

@@ -71,7 +71,7 @@ public class ClassForbidUtils {
             packageNameList.add(info.processName);
         }
 
-        Log.e(TAG, "上课禁用、低电或挂失杀进程：" + packageNameList);
+        Log.e(TAG, "上课禁用或低电杀进程：" + packageNameList);
         for (String pkgName : packageNameList) {
             am.forceStopPackageAsUser(pkgName, UserHandle.CURRENT.getIdentifier());
         }

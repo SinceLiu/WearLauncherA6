@@ -8,7 +8,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,21 +19,22 @@ import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +54,8 @@ import com.readboy.wearlauncher.view.GestureView;
 import com.readboy.wearlauncher.view.MyViewPager;
 import com.readboy.wearlauncher.view.WatchDials;
 import com.readboy.wetalk.support.WetalkFragment;
+//import com.readboy.pedometer.Fragment.PedometerMainFragment;
+//import com.readboy.wearweather.fragment.WeatherMainFragment;
 import com.android.dialer.app.readboysupport.fragment.ContactsListFragment;
 import com.readboy.mmsupport.fragment.MomentsFragment;
 
@@ -64,11 +66,11 @@ import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 
 public class Launcher extends FragmentActivity implements BatteryController.BatteryStateChangeCallback,
-        GestureView.MyGestureListener, WatchController.ClassDisableChangedCallback, WatchController.ScreenOff,
-        WatchController.LostChangedCallback, WatchController.AppControlledChangedback {
+        GestureView.MyGestureListener, WatchController.ClassDisableChangedCallback, WatchController.ScreenOff {
     public static final String TAG = Launcher.class.getSimpleName();
 
     private LauncherApplication mApplication;
+    private FragmentManager mFragmentManager;
     private static final int PERMISSIONS_REQUEST_CODE = 0x33;
     public static final int POSITION_MAIN_PAGE = 1;  //表盘屏的位置
     public static final int POSITION_CONTACT_PAGE = POSITION_MAIN_PAGE - 1;
@@ -80,11 +82,12 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
 
     private GestureView mGestureView;
     private DialBaseLayout mLowDialBaseLayout;
-    private DialBaseLayout mLossDialBaseLayout;
     private MyViewPager mViewpager;
     private FragmentAdapter mFragmentAdapter;
     private List<Fragment> mFragmentList;
     private WatchDials mWatchDials;
+    //    private PedometerMainFragment mPedometerFragment;
+//    private WeatherMainFragment mWeatherFragment;
     private ContactsListFragment mContactsListFragment;
     private DaialFragment mDaialFragment;
     private WetalkFragment mWetalkFragment;
@@ -100,8 +103,6 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
     BatteryController mBatteryController;
     private int mBatteryLevel = -1;
     private boolean bIsClassDisable = false;
-    private boolean bIsLost = false;
-    private boolean bIsMomentControlled = false;
     private boolean bIsTouchable = false;
     private boolean bIsWetalkOverScroll;  //可拖拽
     private boolean bIsContactsOverScroll;
@@ -120,11 +121,15 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         super.onCreate(savedInstanceState);
         Log.e(TAG, "onCreate()");
         setContentView(R.layout.activity_launcher);
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        Log.e("lxx",dm.toString());
         //screen width:240、height:240,density:0.75,densityDpi:120
 
         mViewpager = (MyViewPager) findViewById(R.id.viewpager);
         mTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         mLocalBroadcastManager = LocalBroadcastManager.getInstance(this);
+        mFragmentManager = getSupportFragmentManager();
         ViewConfiguration configuration = ViewConfiguration.get(Launcher.this);
         int touchSlop = configuration.getScaledTouchSlop();
         mTouchSlopSquare = touchSlop * 20;
@@ -145,18 +150,14 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    showToast(R.string.notice_low_power_for_phone);
-                }
-                return true;
-            }
-        });
-
-        mLossDialBaseLayout = (DialBaseLayout) findViewById(R.id.loss);
-        mLossDialBaseLayout.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    showToast(R.string.notice_loss_for_phone);
+                    if (mToast == null) {
+                        mToast = Toast.makeText(Launcher.this, R.string.notice_low_power_for_phone, Toast.LENGTH_SHORT);
+                        mToast.setGravity(Gravity.CENTER, 0, 0);
+                        TextView textView = (TextView) mToast.getView().findViewById(android.R.id.message);
+                        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
+                    }
+                    mToast.setText(R.string.notice_low_power_for_phone);
+                    mToast.show();
                 }
                 return true;
             }
@@ -197,6 +198,11 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         });
         mFragmentList = new ArrayList<Fragment>();
         mFragmentList.clear();
+
+//        mWeatherFragment = new WeatherMainFragment();
+//        mFragmentList.add(mWeatherFragment);
+//        mPedometerFragment = new PedometerMainFragment();
+//        mFragmentList.add(mPedometerFragment);
         mContactsListFragment = new ContactsListFragment();
         mFragmentList.add(mContactsListFragment);
         mDaialFragment = new DaialFragment();
@@ -209,14 +215,12 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         mFragmentList.add(mCameraFragment);
         mWatchAppFragment = new WatchAppFragment();
         mFragmentList.add(mWatchAppFragment);
-        mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager());
+        mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), mFragmentList);
         mViewpager.setAdapter(mFragmentAdapter);
         mViewpager.setCurrentItem(POSITION_MAIN_PAGE);
-        mViewpager.setOffscreenPageLimit(mFragmentList.size());
+        mViewpager.setOffscreenPageLimit(mFragmentList.size() + 1);
         OverScrollDecoratorHelper.setUpOverScroll(mViewpager);
         mWatchController.setScreenOffListener(this);
-        mWatchController.setLostChangedCallback(this);
-        mWatchController.addAppControlledChangedback(this);
 //        startPowerAnimService();
         //Utils.setFirstBoot(Launcher.this,true);
         if (Utils.isFirstBoot(Launcher.this)) {
@@ -234,9 +238,7 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
     //等待IReadboyWearService
     public void waitIRWS() {
         if (rwm.getPersonalInfo() != null && mBatteryLevel != -1) {
-            if (rwm.getPersonalInfo().getLost() == 1) {
-                onLostChange();
-            } else if (rwm.isClassForbidOpen()) {
+            if (rwm.isClassForbidOpen()) {
                 onClassDisableChange(true);
             } else {
                 startFactoryModeService();
@@ -276,6 +278,11 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
     @Override
     protected void onResume() {
         super.onResume();
+        // add by divhee start
+        if (mViewpager != null && mViewpager.getAdapter() != null) {
+            mViewpager.getAdapter().notifyDataSetChanged();
+        }
+        // add by divhee end
         bIsTouchable = true;
         LauncherApplication.setTouchEnable(true);
         requestPermissions(sPermissions);
@@ -296,8 +303,6 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         super.onDestroy();
         Log.e(TAG, "onDestroy() ");
         mWatchController.removeClassDisableChangedCallback(this);
-        mWatchController.setLostChangedCallback(null);
-        mWatchController.removeAppControlledChangedback(this);
         mBatteryController.unregisterReceiver();
         mBatteryController.removeStateChangedCallback(this);
         mHandler.removeCallbacksAndMessages(null);
@@ -328,45 +333,6 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
             return true;
         }
         return super.dispatchTouchEvent(ev);
-    }
-
-    @Override
-    public void onLostChange() {
-        if (rwm == null || rwm.getPersonalInfo() == null) {
-            return;
-        }
-        if (rwm.getPersonalInfo().getLost() == 1) {
-            if (bIsLost) {
-                return;
-            }
-            mLossDialBaseLayout.setVisibility(View.VISIBLE);
-            ClassForbidUtils.killRecentTask(Launcher.this);
-            if (needGoToHome(Launcher.this, 1)) {
-                goHome();
-            }
-            bIsLost = true;
-            //响铃加振动、音量最大
-            AudioManager audio = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
-            Settings.System.putInt(getContentResolver(), Settings.System.VIBRATE_WHEN_RINGING, 1);
-            audio.setRingerMode(2);
-            audio.setStreamVolume(AudioManager.STREAM_MUSIC,audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC),0);
-            audio.setStreamVolume(AudioManager.STREAM_SYSTEM,audio.getStreamMaxVolume(AudioManager.STREAM_SYSTEM),0);
-            audio.setStreamVolume(AudioManager.STREAM_VOICE_CALL,audio.getStreamMaxVolume(AudioManager.STREAM_VOICE_CALL),0);
-        } else {
-            mLossDialBaseLayout.setVisibility(View.GONE);
-            bIsLost = false;
-        }
-    }
-
-    @Override
-    public void onAppControlledChange() {
-        if (mWatchAppFragment != null) {
-            mWatchAppFragment.loadApps(true);
-        }
-        if (mCameraFragment != null) {
-            mCameraFragment.setVideoVisible(!Utils.isMiniVideoControlled(this));
-        }
-        updateViewPager(Utils.isMomentControlled(this));
     }
 
     @Override
@@ -485,19 +451,29 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         if (vDistance > mTouchSlopSquare / 5 && bVerticalMove && (bIsSpi || mViewPagerScrollState == ViewPager.SCROLL_STATE_IDLE)) {
             PersonalInfo info = rwm.getPersonalInfo();
             if (info != null && info.isHasSiri() == 1) {
-                if (Utils.isSpeechControlled(this)) {
-                    showToast(R.string.notice_application_control_speech);
-                } else {
-                    Log.e(TAG, "onFling: start Speech activity.");
-                    Utils.startActivity(Launcher.this, "com.readboy.watch.speech", "com.readboy.watch.speech.Main2Activity");
-                }
+                Log.e(TAG, "onFling: start Speech activity.");
+                Utils.startActivity(Launcher.this, "com.readboy.watch.speech", "com.readboy.watch.speech.Main2Activity");
             }
+//            else {
+//                Utils.startActivity(Launcher.this, "com.android.settings", "com.android.qrcode.MainActivity");
+//            }
             return true;
         } else if (vDistance < -mTouchSlopSquare / 2 && bVerticalMove && (bIsSpi || mViewPagerScrollState == ViewPager.SCROLL_STATE_IDLE)) {
+            /*boolean isEnable = ((LauncherApplication) LauncherApplication.getApplication()).getWatchController().isNowEnable();*/
+
+//            ReadboyWearManager rwm = (ReadboyWearManager) Launcher.this.getSystemService(Context.RBW_SERVICE);
+//            boolean isEnable = rwm.isClassForbidOpen();
+//            if (isEnable) {
+//                ClassDisableDialog.showClassDisableDialog(Launcher.this);
+//                Utils.checkAndDealWithAirPlanMode(Launcher.this);
+//                return true;
+//            }
             if (!isNotificationEnabled()) {
                 startActivity(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"));
             } else {
                 startActivity(new Intent(Launcher.this, NotificationActivity.class));
+                //Utils.startActivity(Launcher.this, "com.readboy.wearlauncher",NotificationActivity.class.getName());
+                //((Launcher)getActivity()).switchToFragment(NotificationFragment.class.getName(),null,true,true);
             }
             return true;
         }
@@ -531,6 +507,9 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
 
     @Override
     public void onScreenOn() {
+        if (mBatteryLevel != -1 && mBatteryLevel < lowPowerLevel) {
+            mLowDialBaseLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -539,21 +518,20 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
                 && mViewpager.getCurrentItem() != POSITION_MAIN_PAGE) {
             mViewpager.setCurrentItem(POSITION_MAIN_PAGE);
         }
+        mLowDialBaseLayout.setVisibility(View.GONE);   //灭屏后不刷新低电电量
     }
 
-    class FragmentAdapter extends FragmentStatePagerAdapter {
-        public FragmentAdapter(FragmentManager fm) {
+    class FragmentAdapter extends FragmentPagerAdapter {
+        private List<Fragment> mFragmentList;
+
+        public FragmentAdapter(FragmentManager fm, List<Fragment> list) {
             super(fm);
+            mFragmentList = list;
         }
 
         @Override
         public Fragment getItem(int position) {
             return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getItemPosition(Object object) {
-            return PagerAdapter.POSITION_NONE;
         }
 
         @Override
@@ -628,19 +606,12 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         if (mLowDialBaseLayout != null && mLowDialBaseLayout.isShown()) {
             mLowDialBaseLayout.onDateChange();
         }
-        if (mLossDialBaseLayout != null && mLossDialBaseLayout.isShown()) {
-            mLossDialBaseLayout.onDateChange();
-        }
     }
 
     private void dialPasue() {
         if (mLowDialBaseLayout != null && mLowDialBaseLayout.isShown()) {
             mLowDialBaseLayout.onPause();
             mLowDialBaseLayout.removeChangedCallback();
-        }
-        if (mLossDialBaseLayout != null && mLossDialBaseLayout.isShown()) {
-            mLossDialBaseLayout.onPause();
-            mLossDialBaseLayout.removeChangedCallback();
         }
     }
 
@@ -649,9 +620,37 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
             mLowDialBaseLayout.onResume();
             mLowDialBaseLayout.addChangedCallback();
         }
-        if (mLossDialBaseLayout != null && mLossDialBaseLayout.isShown()) {
-            mLossDialBaseLayout.onResume();
-            mLossDialBaseLayout.addChangedCallback();
+    }
+
+    private void forceCloseWakeLock() {
+        PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        PowerManager.WakeLock wakeLock = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "My Tag");
+        synchronized (TAG) {
+            if (wakeLock != null) {
+                Log.v(TAG, "Releasing wakelock");
+                try {
+                    wakeLock.release();
+                } catch (Throwable th) {
+                    th.printStackTrace();
+                }
+            } else {
+                Log.e(TAG, "Wakelock reference is null");
+            }
+        }
+    }
+
+    public void startPowerAnimService() {
+        Intent intent = new Intent();
+        ComponentName component = new ComponentName("com.readboy.floatwindow", "com.readboy.floatwindow.FloatWindowService");
+        intent.setComponent(component);
+        Intent tmp = Utils.createExplicitFromImplicitIntent(Launcher.this, intent);
+        if (tmp != null) {
+            try {
+                Intent eintent = new Intent(tmp);
+                Launcher.this.startService(eintent);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -742,44 +741,37 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         return false;
     }
 
-    private void showToast(int text) {
-        if (mToast == null) {
-            mToast = Toast.makeText(Launcher.this, text, Toast.LENGTH_SHORT);
-            mToast.setGravity(Gravity.CENTER, 0, 0);
-            TextView textView = (TextView) mToast.getView().findViewById(android.R.id.message);
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
+    private Fragment getVisibleFragment(FragmentManager fragmentManager) {
+        List<Fragment> fragments = fragmentManager.getFragments();
+        if (fragments == null) {
+            return null;
         }
-        mToast.setText(text);
-        mToast.show();
+        for (Fragment fragment : fragments) {
+            if (fragment != null && fragment.isVisible()
+                    && fragment.getUserVisibleHint()) {
+                return fragment;
+            }
+        }
+
+        return null;
     }
 
-    private void updateViewPager(boolean momentControlled) {
-        if (bIsMomentControlled == momentControlled) {
-            return;
-        }
-        bIsMomentControlled = momentControlled;
-        mViewpager.setCurrentItem(POSITION_MAIN_PAGE);
-        mFragmentList.clear();
-        mFragmentList.add(mContactsListFragment);
-        mFragmentList.add(mDaialFragment);
-        mFragmentList.add(mWetalkFragment);
-        if (!momentControlled) {
-            mFragmentList.add(mMomentsFragment);
-        }
-        mFragmentList.add(mCameraFragment);
-        mFragmentList.add(mWatchAppFragment);
-        mFragmentAdapter.notifyDataSetChanged();
-        mViewpager.setOffscreenPageLimit(mFragmentList.size());
+    public Fragment switchToFragment(String fragmentName, Bundle args,
+                                     boolean addToBackStack, boolean withTransition) {
 
-        RecyclerView mWetalkRecyclerView = mWetalkFragment.getRecyclerView();
-        if (mWetalkRecyclerView != null) {
-            OverScrollDecoratorHelper.setUpOverScroll(mWetalkRecyclerView, 0);  //拖拽效果
-            bIsWetalkOverScroll = true;
+        Fragment f = Fragment.instantiate(this, fragmentName, args);
+        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+//        if (withTransition) {
+//            transaction.setCustomAnimations(R.anim.push_in_right,
+//                    R.anim.push_out_right, R.anim.back_in_left,
+//                    R.anim.back_out_left);
+//        }
+        if (addToBackStack) {
+            transaction.addToBackStack(fragmentName.getClass().getSimpleName());
         }
-        RecyclerView mContactsRecyclerView = mContactsListFragment.getRecyclerView();
-        if (mContactsRecyclerView != null) {
-            OverScrollDecoratorHelper.setUpOverScroll(mContactsRecyclerView, 0);  //拖拽效果
-            bIsContactsOverScroll = true;
-        }
+        transaction.replace(R.id.content_container, f, fragmentName);
+        transaction.commitAllowingStateLoss();
+        mFragmentManager.executePendingTransactions();
+        return f;
     }
 }

@@ -11,12 +11,6 @@
     <string name="notice_low_power">电量低 请尽快充电</string>
     <string name="notice_low_power_for_phone">电量低，只能使用电话功能</string>
 
-    <string name="notice_loss">手表已挂失</string>
-    <string name="notice_loss_for_phone">手表已挂失，请联系失主</string>
-    <string name="notice_loss_for_call_failed">获取失主号码失败，请重试</string>
-    <string name="notice_loss_for_no_sim">请插入SIM卡</string>
-    <string name="notice_application_control_speech">请在“家长端—应用管控”开启语音助手</string>
-
     <string name="sim_name_mobile">中国移动</string>
     <string name="sim_name_unicom">中国联通</string>
     <string name="sim_name_telecom">中国电信</string>

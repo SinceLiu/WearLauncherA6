@@ -37,40 +37,31 @@ import com.readboy.wearlauncher.R;
 import com.readboy.wearlauncher.dialog.ClassDisableDialog;
 import com.readboy.wearlauncher.view.DialBaseLayout;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Iterator;
 import java.util.List;
 
 import android.app.readboy.PersonalInfo;
 import android.app.readboy.ReadboyWearManager;
 import android.app.readboy.IReadboyWearListener;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 public class Utils {
-    public static final String TAG = "Utils";
-    //Settings.Global.AIRPLANE_MODE_TOGGLEABLE_RADIOS
-    public static final String AIRPLANE_MODE_TOGGLEABLE_RADIOS = "airplane_mode_toggleable_radios";
-    public static final String TAG_APPCTRL = "smartWatch_appctl";
-    public static final String ENABLED = "enabled";
+	
+	//Settings.Global.AIRPLANE_MODE_TOGGLEABLE_RADIOS
+	public static final String AIRPLANE_MODE_TOGGLEABLE_RADIOS = "airplane_mode_toggleable_radios";
 
-    public static boolean isAirplaneModeOn(Context context) {
+	public static boolean isAirplaneModeOn(Context context) {
         return Settings.Global.getInt(context.getContentResolver(),
                 Settings.Global.AIRPLANE_MODE_ON, 0) != 0;
     }
 
-    public static void checkAndDealWithAirPlanMode(Context context) {
-        if (!isAirplaneModeOn(context)) {
-            return;
-        }
+    public static void checkAndDealWithAirPlanMode(Context context){
+        if (!isAirplaneModeOn(context)) return;
         Intent intent = new Intent("com.readboy.settings.AirplaneModeReset");
         context.startActivity(intent);
     }
-
-    public static boolean isRadioAllowed(Context context, String type) {
+	
+	public static boolean isRadioAllowed(Context context, String type) {
         if (!Utils.isAirplaneModeOn(context)) {
             return true;
         }
@@ -79,26 +70,26 @@ public class Utils {
                 AIRPLANE_MODE_TOGGLEABLE_RADIOS);
         return toggleable != null && toggleable.contains(type);
     }
-
-    public static Intent createExplicitFromImplicitIntent(Context context, Intent implicitIntent) {
+	
+	public static Intent createExplicitFromImplicitIntent(Context context, Intent implicitIntent) {  
         // Retrieve all services that can match the given intent  
-        PackageManager pm = context.getPackageManager();
-        List<ResolveInfo> resolveInfo = pm.queryIntentServices(implicitIntent, 0);
+        PackageManager pm = context.getPackageManager();  
+        List<ResolveInfo> resolveInfo = pm.queryIntentServices(implicitIntent, 0);  
         // Make sure only one match was found  
-        if (resolveInfo == null || resolveInfo.size() != 1) {
-            return null;
-        }
+        if (resolveInfo == null || resolveInfo.size() != 1) {  
+            return null;  
+        }  
         // Get component info and create ComponentName  
-        ResolveInfo serviceInfo = resolveInfo.get(0);
-        String packageName = serviceInfo.serviceInfo.packageName;
-        String className = serviceInfo.serviceInfo.name;
-        ComponentName component = new ComponentName(packageName, className);
+        ResolveInfo serviceInfo = resolveInfo.get(0);  
+        String packageName = serviceInfo.serviceInfo.packageName;  
+        String className = serviceInfo.serviceInfo.name;  
+        ComponentName component = new ComponentName(packageName, className);  
         // Create a new intent. Use the old one for extras and such reuse  
-        Intent explicitIntent = new Intent(implicitIntent);
+        Intent explicitIntent = new Intent(implicitIntent);  
         // Set the component to be explicit  
-        explicitIntent.setComponent(component);
-
-        return explicitIntent;
+        explicitIntent.setComponent(component);  
+   
+        return explicitIntent;  
     }
 
     public static int getScreenWidth(Context context) {
@@ -126,13 +117,13 @@ public class Utils {
         return (int) (pxValue / scale + 0.5f);
     }
 
-    public static void startActivity(Context context, String pkg, String cls) {
+    public static void startActivity(Context context, String pkg, String cls){
         List<String> ableEnterList = Arrays.asList(context.getResources().getStringArray(
                 R.array.ableEnterList));
         /*boolean isEnable = ((LauncherApplication)LauncherApplication.getApplication()).getWatchController().isNowEnable();*/
-        ReadboyWearManager rwm = (ReadboyWearManager) context.getSystemService(Context.RBW_SERVICE);
+        ReadboyWearManager rwm = (ReadboyWearManager)context.getSystemService(Context.RBW_SERVICE);
         boolean isEnable = rwm.isClassForbidOpen();
-        if (isEnable && !ableEnterList.contains(pkg)) {
+        if(isEnable && !ableEnterList.contains(pkg)){
             ClassDisableDialog.showClassDisableDialog(context);
             checkAndDealWithAirPlanMode(context);
             return;
@@ -140,8 +131,8 @@ public class Utils {
         try {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_LAUNCHER);
-            if (TextUtils.equals(DialBaseLayout.DIALER_PACKAGE_NAME, pkg) &&
-                    ((LauncherApplication) LauncherApplication.getApplication()).getWatchController().getMissCallCountImmediately() > 0) {
+            if(TextUtils.equals(DialBaseLayout.DIALER_PACKAGE_NAME,pkg) &&
+                    ((LauncherApplication) LauncherApplication.getApplication()).getWatchController().getMissCallCountImmediately() > 0){
                 intent.setType(android.provider.CallLog.Calls.CONTENT_TYPE);
             }
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
@@ -149,7 +140,7 @@ public class Utils {
             intent.setClassName(pkg, cls);
             context.startActivity(intent);
             LauncherApplication.setTouchEnable(false);
-            Log.d("TEST", "start activity pkg:" + pkg + ", cls:" + cls);
+            Log.d("TEST","start activity pkg:"+pkg+", cls:"+cls);
             //启动QQ时，取消通知
             if ("com.tencent.qqlite".equals(pkg)) {
                 NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -157,10 +148,10 @@ public class Utils {
                     manager.cancelAll();
                 }
             }
-        } catch (Exception e) {
+        }catch (Exception e){
             e.printStackTrace();
-            Log.e("TEST", "Can not find pkg:" + pkg + ", cls:" + cls);
-            Toast.makeText(context, "Can not find pkg:" + pkg + ",\ncls:" + cls, Toast.LENGTH_SHORT).show();
+            Log.e("TEST","Can not find pkg:"+pkg+", cls:"+cls);
+            Toast.makeText(context,"Can not find pkg:"+pkg+",\ncls:"+cls,Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -171,23 +162,22 @@ public class Utils {
 
         if (context instanceof Activity) {
             return (Activity) context;
-        } else {
+        }else {
             return null;
         }
     }
 
-    public static boolean isFirstBoot(Context context) {
-        if (Settings.System.getInt(context.getContentResolver(), "readboy_first_open", 0) != 1) {
+    public static boolean isFirstBoot(Context context){
+        if(Settings.System.getInt(context.getContentResolver(),"readboy_first_open",0) != 1){
             return true;
         }
         return false;
     }
-
-    public static void setFirstBoot(Context context, boolean firstBoot) {
-        if (firstBoot) {
-            Settings.System.putInt(context.getContentResolver(), "readboy_first_open", 0);
-        } else {
-            Settings.System.putInt(context.getContentResolver(), "readboy_first_open", 1);
+    public static void setFirstBoot(Context context, boolean firstBoot){
+        if(firstBoot){
+            Settings.System.putInt(context.getContentResolver(),"readboy_first_open",0);
+        }else {
+            Settings.System.putInt(context.getContentResolver(),"readboy_first_open",1);
         }
     }
 
@@ -197,7 +187,6 @@ public class Utils {
     private static final int BLUR_RADIUS = 20;
     private static final int SCALED_WIDTH = 100;
     private static final int SCALED_HEIGHT = 100;
-
     /**
      * 得到模糊后的bitmap
      * thanks http://wl9739.github.io/2016/07/14/教你一分钟实现模糊效果/
@@ -238,7 +227,7 @@ public class Utils {
 
     public static void startSwitchBackgroundAnim(ImageView view, Bitmap bitmap) {
         Drawable oldDrawable = view.getDrawable();
-        Drawable oldBitmapDrawable;
+        Drawable oldBitmapDrawable ;
         TransitionDrawable oldTransitionDrawable = null;
         if (oldDrawable instanceof TransitionDrawable) {
             oldTransitionDrawable = (TransitionDrawable) oldDrawable;
@@ -262,10 +251,8 @@ public class Utils {
         oldTransitionDrawable.startTransition(1000);
     }
 
-    /**
-     * 获取今天零时时间戳
-     */
-    public static long getTodayStartTime() {
+    /** 获取今天零时时间戳*/
+    public static long getTodayStartTime(){
         Calendar calendar = Calendar.getInstance();
         calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH), 0, 0, 0);
@@ -274,8 +261,8 @@ public class Utils {
         return dayStartTime;
     }
 
-    public static Drawable addShadow(Context context, Drawable src) {
-        if (src == null) {
+    public static  Drawable addShadow(Context context,Drawable src) {
+        if (src == null ) {
             return src;
         }
 
@@ -301,7 +288,7 @@ public class Utils {
         blurPaint.setColor(0xff000000);
         blurPaint.setMaskFilter(bf);
 
-        Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Bitmap result = Bitmap.createBitmap(width, height,Bitmap.Config.ARGB_8888);
         canvas.setBitmap(result);
 
         canvas.drawBitmap(bitmap.extractAlpha(blurPaint, null), src, dst,
@@ -314,9 +301,8 @@ public class Utils {
     }
 
     private static Bitmap drawableToBitmap(Drawable d) {
-        if (d == null) {
+        if (d == null)
             return null;
-        }
 
         int width = d.getIntrinsicWidth();
         int height = d.getIntrinsicHeight();
@@ -333,141 +319,10 @@ public class Utils {
         return bitmap;
     }
 
-    public static boolean isEmpty(CharSequence str) {
-        if (str == null || str.length() == 0 || str.equals("null") || str.equals("NULL")) {
+    public static boolean isEmpty(CharSequence str){
+        if (str == null || str.length() == 0 || str.equals("null") || str.equals("NULL"))
             return true;
-        } else {
+        else
             return false;
-        }
-    }
-
-    //获取受管控应用
-    public static List<String> getControlledPackages(Context context) {
-        String deviceModelString = Settings.Global.getString(context.getContentResolver(), TAG_APPCTRL);
-        if (deviceModelString == null) {
-            Log.e(TAG, "get app controlled: null");
-            return null;
-        }
-        List<String> packagesList = new ArrayList<String>();
-        try {
-            JSONObject jsonObject = new JSONObject(deviceModelString);
-
-            JSONObject systemAppObject = jsonObject.optJSONObject("system");
-            if (systemAppObject != null) {
-                JSONObject reciteWordsObject = systemAppObject.optJSONObject("reciteWords");
-                String reciteWords = reciteWordsObject.optString(ENABLED);
-                if ("0".equals(reciteWords)) {
-                    packagesList.add("com.readboy.wordstudy");
-                }
-                JSONObject smsObject = systemAppObject.optJSONObject("sms");
-                String sms = smsObject.optString(ENABLED);
-                if ("0".equals(sms)) {
-                    packagesList.add("com.android.mms");
-                }
-                JSONObject shakeObject = systemAppObject.optJSONObject("shake");
-                String shake = shakeObject.optString(ENABLED);
-                if ("0".equals(shake)) {
-                    packagesList.add("com.readboy.findfriend");
-                }
-                JSONObject stepsObject = systemAppObject.optJSONObject("steps");
-                String steps = stepsObject.optString(ENABLED);
-                if ("0".equals(steps)) {
-                    packagesList.add("com.readboy.pedometer");
-                }
-            }
-            JSONObject thirdpartyAppObject = jsonObject.optJSONObject("thirdparty");
-            if (thirdpartyAppObject != null) {
-                Iterator<String> it = thirdpartyAppObject.keys();
-                while (it.hasNext()) {
-                    String key = it.next();
-                    String value = thirdpartyAppObject.optString(key);
-                    if (value != null) {
-                        JSONObject thirdpartyAppJsonObject = new JSONObject(value);
-                        String enabled = thirdpartyAppJsonObject.optString(ENABLED);
-                        if ("0".equals(enabled)) {
-                            packagesList.add(key);
-                        }
-                    }
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return packagesList;
-    }
-
-    public static boolean isSpeechControlled(Context context) {
-        String deviceModelString = Settings.Global.getString(context.getContentResolver(), TAG_APPCTRL);
-        if (deviceModelString == null) {
-            return false;
-        }
-        try {
-            JSONObject jsonObject = new JSONObject(deviceModelString);
-            JSONObject systemAppObject = jsonObject.optJSONObject("system");
-            if (systemAppObject == null) {
-                return false;
-            }
-            JSONObject voiceAssitantObject = systemAppObject.optJSONObject("voiceAssitant");
-            if (voiceAssitantObject == null) {
-                return false;
-            }
-            String voiceAssitant = voiceAssitantObject.optString(ENABLED);
-            if ("0".equals(voiceAssitant)) {
-                return true;
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    public static boolean isMomentControlled(Context context) {
-        String deviceModelString = Settings.Global.getString(context.getContentResolver(), TAG_APPCTRL);
-        if (deviceModelString == null) {
-            return false;
-        }
-        try {
-            JSONObject jsonObject = new JSONObject(deviceModelString);
-            JSONObject systemAppObject = jsonObject.optJSONObject("system");
-            if (systemAppObject == null) {
-                return false;
-            }
-            JSONObject momentObject = systemAppObject.optJSONObject("moment");
-            if (momentObject == null) {
-                return false;
-            }
-            String moment = momentObject.optString(ENABLED);
-            if ("0".equals(moment)) {
-                return true;
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    public static boolean isMiniVideoControlled(Context context) {
-        String deviceModelString = Settings.Global.getString(context.getContentResolver(), TAG_APPCTRL);
-        if (deviceModelString == null) {
-            return false;
-        }
-        try {
-            JSONObject jsonObject = new JSONObject(deviceModelString);
-            JSONObject systemAppObject = jsonObject.optJSONObject("system");
-            if (systemAppObject == null) {
-                return false;
-            }
-            JSONObject miniVideoObject = systemAppObject.optJSONObject("miniVideo");
-            if (miniVideoObject == null) {
-                return false;
-            }
-            String miniVideo = miniVideoObject.optString(ENABLED);
-            if ("0".equals(miniVideo)) {
-                return true;
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return false;
     }
 }

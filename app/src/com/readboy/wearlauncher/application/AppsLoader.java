@@ -14,7 +14,6 @@ import com.readboy.wearlauncher.LauncherApplication;
 import com.readboy.wearlauncher.R;
 import com.readboy.wearlauncher.compat.LauncherAppsCompat;
 import com.readboy.wearlauncher.compat.UserHandleCompat;
-import com.readboy.wearlauncher.utils.Utils;
 import com.readboy.wearlauncher.view.IconCache;
 
 import java.io.BufferedInputStream;
@@ -40,7 +39,6 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
     private final static String TAG = "AppsLoader";
 
     private final static String APP_READBOY_FLAG = "android.readboy.WATCH.FLAG";
-
     ArrayList<AppInfo> mInstalledApps;
     private final PackageManager mPm;
     private Context mContext;
@@ -157,23 +155,6 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
         }
     }
 
-    //TODO 获取应用管控列表，移除这些包名
-    private void removeControlledPackages(List<ResolveInfo> pacList) {
-        List<String> controlledPackagesList = Utils.getControlledPackages(mContext);
-        if (controlledPackagesList == null || controlledPackagesList.size() == 0) {
-            return;
-        }
-        for (int i = 0; i < pacList.size(); i++) {
-            for (int j = 0; j < controlledPackagesList.size(); j++) {
-                if (controlledPackagesList.get(j).equals(pacList.get(i).activityInfo.packageName)) {
-                    pacList.remove(i);
-                    i--;
-                    break;
-                }
-            }
-        }
-    }
-
     @Override
     public ArrayList<AppInfo> loadInBackground() {
         Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
@@ -181,7 +162,6 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
 
         List<ResolveInfo> mApps = mPm.queryIntentActivities(mainIntent, PackageManager.GET_RESOLVED_FILTER);
         removeSelfPackage(mApps);
-        removeControlledPackages(mApps);
         removeExcludedPackages(mApps);
         ArrayList<AppInfo> items = new ArrayList<AppInfo>(mApps.size());
         for (int i = 0; i < mApps.size(); i++) {

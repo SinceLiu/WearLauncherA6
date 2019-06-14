@@ -7,9 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
-
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
-
 import com.readboy.wearlauncher.R;
 
 /**
@@ -19,7 +17,6 @@ import com.readboy.wearlauncher.R;
 public class CameraFragment extends Fragment implements View.OnClickListener {
     private ScrollView mScrollView;
     private boolean isViewCreated;  //防止空指针，setUserVisibleHint()比onCreateView()快
-    private View view;
 
     public CameraFragment() {
     }
@@ -40,10 +37,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        if (view != null) {
-            return view;
-        }
-        view = inflater.inflate(R.layout.camera_layout, container, false);
+        View view = inflater.inflate(R.layout.camera_layout,container,false);
         mScrollView = (ScrollView) view.findViewById(R.id.scrollView);
         OverScrollDecoratorHelper.setUpOverScroll(mScrollView);
         view.findViewById(R.id.photo).setOnClickListener(this);
@@ -51,9 +45,8 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.gallery).setOnClickListener(this);
         return view;
     }
-
     @Override
-    public void onActivityCreated(final Bundle savedInstanceState) {
+    public void onActivityCreated(final Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
         isViewCreated = true;
     }
@@ -82,16 +75,6 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
                 break;
             default:
                 break;
-        }
-    }
-
-    public void setVideoVisible(boolean visible) {
-        if (view != null) {
-            if (visible) {
-                view.findViewById(R.id.video).setVisibility(View.VISIBLE);
-            } else {
-                view.findViewById(R.id.video).setVisibility(View.GONE);
-            }
         }
     }
 
