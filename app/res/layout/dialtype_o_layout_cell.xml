@@ -58,6 +58,7 @@
         android:layout_height="@dimen/dial_o_dialer_hight"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/dial_o_dialer_margin_top"
+        style="?android:attr/borderlessButtonStyle"
         android:background="@drawable/watch_type_black_o_dialer"
         android:enabled="false" />
 
