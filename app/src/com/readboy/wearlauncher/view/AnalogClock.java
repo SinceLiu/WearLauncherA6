@@ -93,13 +93,13 @@ public class AnalogClock extends View {
 //        	mDial = r.getDrawable(R.drawable.clock_analog_dial);
 //        }
         if (mHourHand == null) {
-            mHourHand = r.getDrawable(R.drawable.clock_analog_hour);
+            mHourHand = r.getDrawable(R.drawable.watch_type_e_analog_hour);
         }
         if (mMinuteHand == null) {
-            mMinuteHand = r.getDrawable(R.drawable.clock_analog_minute);
+            mMinuteHand = r.getDrawable(R.drawable.watch_type_e_analog_min);
         }
         if (mSecondHand == null) {
-            mSecondHand = r.getDrawable(R.drawable.clock_analog_second);
+            mSecondHand = r.getDrawable(R.drawable.watch_type_e_analog_second);
         }
 
         final int dotColor = a.getColor(R.styleable.AnalogClock_jewelColor, Color.TRANSPARENT);

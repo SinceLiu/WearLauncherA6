@@ -27,14 +27,12 @@ import android.support.v7.widget.RecyclerView;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -121,9 +119,6 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         super.onCreate(savedInstanceState);
         Log.e(TAG, "onCreate()");
         setContentView(R.layout.activity_launcher);
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        Log.e("lxx",dm.toString());
         //screen width:240、height:240,density:0.75,densityDpi:120
 
         mViewpager = (MyViewPager) findViewById(R.id.viewpager);
