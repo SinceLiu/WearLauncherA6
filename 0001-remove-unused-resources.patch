@@ -1,0 +1,1008 @@
+From 6e6ec27088d4d52002cf6d9c8de1bf0b7ee0a482 Mon Sep 17 00:00:00 2001
+From: lxx <lxx@readboy.com>
+Date: Mon, 17 Jun 2019 17:26:48 +0800
+Subject: [PATCH] remove unused resources
+
+---
+ app/res/drawable-mdpi/clock_analog_dial.png   | Bin 7067 -> 0 bytes
+ app/res/drawable-mdpi/clock_analog_hour.png   | Bin 827 -> 0 bytes
+ app/res/drawable-mdpi/clock_analog_minute.png | Bin 913 -> 0 bytes
+ app/res/drawable-mdpi/clock_analog_second.png | Bin 780 -> 0 bytes
+ app/res/drawable-mdpi/num_clock_0.png         | Bin 559 -> 0 bytes
+ app/res/drawable-mdpi/num_clock_1.png         | Bin 269 -> 0 bytes
+ app/res/drawable-mdpi/num_clock_2.png         | Bin 489 -> 0 bytes
+ app/res/drawable-mdpi/num_clock_3.png         | Bin 610 -> 0 bytes
+ app/res/drawable-mdpi/num_clock_4.png         | Bin 375 -> 0 bytes
+ app/res/drawable-mdpi/num_clock_5.png         | Bin 527 -> 0 bytes
+ app/res/drawable-mdpi/num_clock_6.png         | Bin 619 -> 0 bytes
+ app/res/drawable-mdpi/num_clock_7.png         | Bin 343 -> 0 bytes
+ app/res/drawable-mdpi/num_clock_8.png         | Bin 685 -> 0 bytes
+ app/res/drawable-mdpi/num_clock_9.png         | Bin 638 -> 0 bytes
+ app/res/drawable-mdpi/num_clock_dot.png       | Bin 228 -> 0 bytes
+ .../watch_type_black_d_analogmonth.png        | Bin 834 -> 0 bytes
+ .../watch_type_black_d_analogweek.png         | Bin 1030 -> 0 bytes
+ app/res/values/attrs.xml                      |   4 -
+ .../com/readboy/wearlauncher/Launcher.java    |   5 -
+ .../wearlauncher/view/AnalogClock.java        |   6 +-
+ .../readboy/wearlauncher/view/AnalogDate.java | 107 -------
+ .../wearlauncher/view/ClockAnalog.java        | 276 ------------------
+ .../readboy/wearlauncher/view/DigitClock.java |  22 +-
+ 23 files changed, 14 insertions(+), 406 deletions(-)
+ delete mode 100644 app/res/drawable-mdpi/clock_analog_dial.png
+ delete mode 100644 app/res/drawable-mdpi/clock_analog_hour.png
+ delete mode 100644 app/res/drawable-mdpi/clock_analog_minute.png
+ delete mode 100644 app/res/drawable-mdpi/clock_analog_second.png
+ delete mode 100644 app/res/drawable-mdpi/num_clock_0.png
+ delete mode 100644 app/res/drawable-mdpi/num_clock_1.png
+ delete mode 100644 app/res/drawable-mdpi/num_clock_2.png
+ delete mode 100644 app/res/drawable-mdpi/num_clock_3.png
+ delete mode 100644 app/res/drawable-mdpi/num_clock_4.png
+ delete mode 100644 app/res/drawable-mdpi/num_clock_5.png
+ delete mode 100644 app/res/drawable-mdpi/num_clock_6.png
+ delete mode 100644 app/res/drawable-mdpi/num_clock_7.png
+ delete mode 100644 app/res/drawable-mdpi/num_clock_8.png
+ delete mode 100644 app/res/drawable-mdpi/num_clock_9.png
+ delete mode 100644 app/res/drawable-mdpi/num_clock_dot.png
+ delete mode 100644 app/res/drawable-mdpi/watch_type_black_d_analogmonth.png
+ delete mode 100644 app/res/drawable-mdpi/watch_type_black_d_analogweek.png
+ delete mode 100644 app/src/com/readboy/wearlauncher/view/AnalogDate.java
+ delete mode 100644 app/src/com/readboy/wearlauncher/view/ClockAnalog.java
+
+diff --git a/app/res/drawable-mdpi/clock_analog_dial.png b/app/res/drawable-mdpi/clock_analog_dial.png
+deleted file mode 100644
+index aac890e634304882dbad923109bc1a7c52f26528..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 7067
+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
+Uy`}%&Ob`&Vl1dV_VkW`=134+{<p2Nx
+
+diff --git a/app/res/drawable-mdpi/clock_analog_hour.png b/app/res/drawable-mdpi/clock_analog_hour.png
+deleted file mode 100644
+index a187307630ed21ba3ea47a4df77f02e5f866a2d3..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 827
+zcmeAS@N?(olHy`uVBq!ia0y~yVB879EX+WWhgIRyKuRmXC&U#<qk%VX-T*~DeE9JB
+z^XLEn|Nr~<@7AqbKt`%l>2II}Z%L3}Fas+mub^<3XnXa)PmZr5rT;T9Fm3j9aSW-r
+z_2%xu!Yd8}ZVzAbEIXO7HQaBW?SY#{t_)@~9TZ|b880ndpz+k{yvJ@23&!v7zwbO{
+zxBu0|J=5Q6qPYSq_kef6Zl$c2nWC<Sru<7ao?R6x6tj=};+L*_b#=K|Zc?RfUT|zd
+zSzzhnZ_n1G?Y7VlT2nDWHg5i$Hy>8@?=in@Qn~zVlHvVF>ngnt8%tMSF8Jj4lDT_*
+z;clCSlOtc3>FxjfQ)>TFxjnCU*8EQXd9Qu>*9SY-F0S6Mv;Y00_1BuyU%$AuJN4&P
+zrT0rrcL$coy^gx#d3N3Y;BTdquXq=)&5pi1H!SupU)pbp((h|KZ7a^d-jZg{_iX9)
+zvyU^f&gNY?yZGI{>nqQ`lPQ&-_B8#9>E4@jZ>O%E9X)y0+}PK4u6G~nnC)IM``>Eo
+z&Z}F^)|dX>x+voNh1c^|oNn2*=i08*e?F+bvOB*y?e66j)l2jy#+Bc@Zu)A|0zLg#
+zpB7P-_-pm{z0T|Fn(w(T-23bh>$ZNeU&Z=~pZv5Q)+XKB{UGk3oc&wbo>RY#x0cWE
+zdcXGSJxiTE`nSq<?|aI(%=Y$WJ@egv`)XH8v*gs<H$8YNR=4A}lg>J?``$rkcGu3i
+zV44-i_nmR&*>yj3&$F-8{*d)idFhT5pPAS0R!<JvH*xoJtt(YKb_HaY#ftWIFRAJk
+z-XpX%r!w@V{Lfz3DKp(?ro@>>_pi9+T%PLqD)^NBtn2QeG|li~yRC%)h#~MKfA0Yf
+dQ4o^=_`vktXkQ`E63<s4g`Tc{F6*2UngEzNe)s?Y
+
+diff --git a/app/res/drawable-mdpi/clock_analog_minute.png b/app/res/drawable-mdpi/clock_analog_minute.png
+deleted file mode 100644
+index 2c57d2e85829d2b90286e900eadfe06d68f5a82b..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 913
+zcmeAS@N?(olHy`uVBq!ia0y~yVB879EX+WWhgIRyKuRURC&U#<qk%VX-hBG>>EFM9
+zK=Se9$N&HTKlS1NCZHnjk|4ie1}-*XCjPGWPtE?TI?nJhFfa>xx;TbZ+<J5MbnX)a
+z5tl$+D@M}`+|}1xj0~!-F*k8?u)Vd|Q=Ia+f0DHAq_^=*&8v2rH#b*JQB#6~MfK4)
+zf7@1ynMKEI9@`VtQ+ar6#3w%9so!?xZ_;wH)UDRM*;}5mV@~q!DR+)#r_T)5*H3%Q
+z`p&z1>bn51IJ;c$O;%?Q&v<8ZzL?$W<+qn??@kq4oi)6Br{cKTyt#RDvU^L~CmoNq
+z+i%x<`%7g-?Doxh+uzzAGrrvWGH=`4+?oh6{n!<9+ux@4ev~O)ej(I4_Fa4A?7X+j
+zGZ$;emcQC{tJG|N%Z0P|OWf^a*Ye-~w*1;vzw*3Y@w?w$lAAa8UCGr@|GTv>-n}W&
+zEcxoZy)Ccs@?F!rNBzzJUy!|+x#jgO_oc7DwYU4JmF!x0Irqi8ws%c_>L51n+`Jbh
+z&da5(?p}D==4U>1gtq^8Dz`5Yo$Cj3e)Q$DTg&b)UH2m8R_Sy3T~C(p&foQF+3AJW
+zwJ)As5H*kGy?Zp+Jic`GTs_mfhu5uMX#MM@-`B$1aanW!mORhjm9oUT<nEo)*B5-%
+zWW8Q3m)uo2qkC>1-`%X0-Iw>=+_pVHO+WVC<GXpctLN*98prm0|MN@aa^%ZpK};s@
+z$-9m|Yrjx(Q8az|>6LfWt}Hm}Q7-X#?)n`^U)*e6w`9Gj`rR$r)BJC5vXD)?JaxT=
+ze(apIbD1G~_>7Nb@7p)$W{F|kl%jJ>Z}@KSzka*@^Xzxc>0PtcvhSEgKK?c**98LV
+pZ#O$LfpUoB|M=N|(XtA5uJGZ=E2Y7Ewy1!lJzf1=);T3K0RSvnwA=sy
+
+diff --git a/app/res/drawable-mdpi/clock_analog_second.png b/app/res/drawable-mdpi/clock_analog_second.png
+deleted file mode 100644
+index aba18102ca81e20cb3c16d428fffcfa38e797d7a..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 780
+zcmeAS@N?(olHy`uVBq!ia0y~yVB879EX+WWhgIRyKuRURC&U#<!@&<Hr(e#_znz`G
+zIXS(sv+Gt>{qN!eM5YdX@<2u0B|(0{4D3uS%~|C>Y8;=NOZxd47?^rIT^vIyZoRqE
+z=zGLKfc2t=tcxe3`tqg<$3-bz9Dg4knYP2(#Nf0KyMO)LlV{-I--;>6r)=FB<7=6{
+zW6z#8?=#wqr{u4na%9hMz03EWC0w2JxHQz|?26ge?;aax9lE^7vwBaxtBOqiou{`Y
+z124aPR=sOocgga~*GVt3-0t2hU7NGZFgE9TRqymS4|(ryoa^m(_ut~~IlGp=yf$T5
+z_Ac-8`Dt2r|3puJby;TD(`##Ad6?e)x2C&g*W%Y=rAw|9zTTDkBCK@5EWNmrP+8T|
+zJ68&WkNe7+4`)X9uD`C~R{~${N`B!at5JGqm)@>C-xb>Dcg+eczq2c#eN|8U^^(Uo
+zZI{{n<-U8dWMWYGqOEhUmzXYmw|lPDE=LKrCXEU&%`$dFra-P*r3`-IKhEqIvz9e4
+z-}>JA-qT7S@v!ZGucyvE6KUQXy50TS*U;;iUak6jZ1=urC7Jj0daoaQYx`}_%dpt}
+z_HNv3R+qgn)_b40?&Go(FSB~5TgG0UW)mCwsU)~0CKQaWPOAujCsZ5^i;4V`F0&*}
+Sezy8KNQI}XpUXO@geCw~t!C>0
+
+diff --git a/app/res/drawable-mdpi/num_clock_0.png b/app/res/drawable-mdpi/num_clock_0.png
+deleted file mode 100644
+index b1e9b6636564dcd495f7f6a67e71f667ef2fb0b6..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 559
+zcmeAS@N?(olHy`uVBq!ia0vp^dO+;W!3-oV;#}VVDdPa25LY1mpG2^I>Z2y0Hi42L
+zzhH*_^XuO`C<qwbKVOg#(7(RbO#^5H<7`hC#}JR>Z>Kv>YEj^EZFO;A`S@?StmeTN
+zEIgM_uly&i`Kt5>=a#n4lPm#|oJ})XBqP4f7OVK(dewUJHe0KNR6hNEeTLg!8k@Yz
+z=-RmAW6T0?<s0qR4v#F?@|=z}tvs<gx;(Vv+}TRKJx@&RmrdK|{Al|9u$p@7KbQN?
+z{@iVSaIMnRoTp(s=6-#6XV1fD@9d^MaQZQ`|MxphrAuBhPsGnpeEj?5)~B~(OFM<+
+z*56u^Y~s0zeab3b`_50M2WM@GITfWmp-|)Mywkw}M-yb)oBWx7@q|C#Vf8VU<v4e^
+z@{V7R;{Vh?sAKsq`Tz5L|Nh6nHjB4U&J6!x@J}rIrRGXEQ|9}#9^DLRRk>Pq*`coU
+zqPwp^t=waeb+50!zft?(N=24*knFeAJjLc1uN{)xw(frTNY}@5ib8ItQo2(`_t%)f
+zA7Ad}t%&b@ztG+Nn#ZAg_oLeP6xrP_kFDCMGy7X)#|@q*6QXj;;ycc|Zr-xnH}}SV
+z`H0Xwe$H!^d<#ymJ-Yjz=Fz#_IrYC8=IdlVTygAd__fyw%Nb|>3^0DfFBYou_q%U<
+RFfa-kJYD@<);T3K0RX2>AvFL1
+
+diff --git a/app/res/drawable-mdpi/num_clock_1.png b/app/res/drawable-mdpi/num_clock_1.png
+deleted file mode 100644
+index d069cd6fe57456a30cd73742734ff013541cd8b4..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 269
+zcmeAS@N?(olHy`uVBq!ia0vp^dO+;W!3-oV;#}VVDdPa25LY1mpG2^I>Z2y0Hi42L
+zzhDN3_v;1v4ep;WNC?=kFu(rTw>3UMxk^tL#}JR>Z!a9=YETexy(sB>_ROsR|8Kd7
+z#JqG^`)Kdo1CDx^+;8(~$94ZSQaYqHJ9dKAHJ3N6T9upTwyAzUXOcbVx#f97kJ-LY
+z*VTN=&aJ-F@$8SB(y5(~o(n8|XzO%5w>#j|uXXc;Enwh>yrrS>-n-1M>_VHw@BViO
+PI)cH|)z4*}Q$iB}#odQ-
+
+diff --git a/app/res/drawable-mdpi/num_clock_2.png b/app/res/drawable-mdpi/num_clock_2.png
+deleted file mode 100644
+index 3940c11ad4b67289ba52d1de6c85beb5d443aec4..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 489
+zcmeAS@N?(olHy`uVBq!ia0vp^dO+;W!3-oV;#}VVDdPa25LY1mpG2^I>Z2y0Hi42L
+zzhDLjf%p5*8}uj4zh57qP_SN9>q7|x17oPCi(`n#@vT#%#hMj(Ts$kd7yXXUZH-D^
+zd*w;<&sWJZ>eFRH!_O+ZZq{7J^vZGb{A-(i4(_`-^J{qFKJ&%)I+G1&>3M9w_+HAY
+z&6ZE`=Jxyl%uek(%C_gsqUg5WyQ;SzU3&CExo~WK@hiWDiod#MtVlc_FQPf=x8Krh
+z%l9`f+d2K_^F{ej-zQ!_dG2A@-_WCz{m(8;S2<Vr->3Xlcf_;BKM!wMwKDJ89rH<?
+z_TpJzmz11Yp1oGR_3*vE2c8C3{O&R`i1zbDPy1ll68+<lq0n)K7fP%6-so+4w5VY5
+z4WmULbhzC2-jqG;@%+7OsG3M9Bd6%9L$`{xtrTpHd%oN_|HkmOlG?=?-5LD4vnw9<
+zdFHFAHwn4q={re?hKI4Jc1^o>xq4c+z>jDPfrZl)TqF;<wit8?hzTAt5LhVPd4bR6
+v1-nv9sluUG*CZ{nLVrl*xj*ne`GslUO{Lha-hb8t1E0au)z4*}Q$iB}A_MbH
+
+diff --git a/app/res/drawable-mdpi/num_clock_3.png b/app/res/drawable-mdpi/num_clock_3.png
+deleted file mode 100644
+index d779d3adb7bebade75960ccf3b97dfc0d97df426..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 610
+zcmeAS@N?(olHy`uVBq!ia0vp^dO+;W!3-oV;#}VVDdPa25LY1mpG2^I>Z2y0Hi42L
+zzhDN3{q^q+5(E_P_s=g_e?H(|iOWU?2F7!qE{-7{$LCH9Y-&~Da1{->Y;yB|*7A?3
+z=e)gV{Z1`)V%odRN>`HkjhDpMStnS|*Rx){d-z)M`clcmRn~$`8R9+4Rs|FJceY(N
+zEWCKl_rU|>&HL{3soEP&znz+Auxj#Q#`qT%!MeZB9*_OBY|RyB`CD6`#r|3-egAyz
+z>6A4)m<!65$9~CToL+ZlwJVSA=1^akGyA5hp8xRm48si1vnl6i{8sQS44!@~h%NYS
+z$O_v{N-|pOp8qI&z{YS!W_gqM6)vTqc!9vXYi0c1!=LWV@mdo)$NMd>rRLj=O?Rup
+z88vganXhztm6Mrtie0y~ddJx#FP%Fa+N&4u68+@5MbE1*xWuc;+_u#`Vr$d<Js0Y~
+z2TE;vG;iH}&L`QjM`|{g^Sv+AdR}g0X*vI%<Z-8?*N$?1dUJcC%JlVq%G;#`Z(Lgy
+zC~4U3y<XHq*X6%(x@Fv{{U_{Axz_GDQhQPN#~+sq=d2%IEHB}Hnm%*l+8Pa2OE%A-
+zV<mkzxSC#vDV@8#=<s#<wR7LTdHULX%E!h$_4vmJc@o8~#Et)5%UUa6G0!`O<=bms
+z*^c9V(^t>^-Lhh9pTvTDCl||1tWa?(4{y41@ZZORA~Of)V3S3?-&S9g`^}j3S3Np#
+Tk#i9+))_oq{an^LB{Ts5bagPw
+
+diff --git a/app/res/drawable-mdpi/num_clock_4.png b/app/res/drawable-mdpi/num_clock_4.png
+deleted file mode 100644
+index ffcaaa0c50f945ff74b885c1a0cba1827bfd81f9..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 375
+zcmeAS@N?(olHy`uVBq!ia0vp^dO+;W!3-oV;#}VVDdPa25LY1mpG2^I>Z2y0Hi42L
+zzhH*_4(|mF>J|DE?w=1>KfhplY7t28v8Rh;h{y4_SFQOD8Hl(9)+fn)YTW++>ZA)X
+zfeR$PJG3r86WO`G@YhQ@!HYSuk0Lhyv^p~1@X&Iu?^fD(UhX;Ad(H}otD9b*Q$1Lk
+zo>Q>cSbfL4p1jYuD~~++6n9?vR!zOU;JcDrHI@O*(sPTOcF!%i%UN#yaF_7AvO}fn
+zciy(V_S^C9${fG;%bA~jmLD{?;<dZD(qgXOd&lKZO0xWxpL_|FoP2qu<y^Vt!Npd-
+ze#@Vg?3&|u7AU-Y&&`@;mmlc%t^Il1&i>ox%kiFu$G)F=a=t)N|LY_1{Xh0sXutTl
+am*Iz?-1{?ks-%J5W$<+Mb6Mw<&;$Vfq{<)w
+
+diff --git a/app/res/drawable-mdpi/num_clock_5.png b/app/res/drawable-mdpi/num_clock_5.png
+deleted file mode 100644
+index 9170a7a754e28c1cc4ac0f9a0d7a859c62e85b49..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 527
+zcmeAS@N?(olHy`uVBq!ia0vp^dO+;W!3-oV;#}VVDdPa25LY1mpG2^I>Z2y0Hi42L
+zzhH*_4)p@(6W*_%UtpjRaKAq@ipP+Ffw9`t#WBR=_|s{(^NuL+xHRvKcY5}J|2D<U
+z>611wuHO>6^jvUDf5%4)wbR*MNoyhs4@HC&o;)sj@`r5vGu4JOhgq4o+sHJ`SuV=2
+zuO}(z_qpQ1!%5FCearWW{jqFazVX#J6*aS0PRd<XcQwQ{Wr?Df|3{u3j}=*`f1EJk
+z<1tlHlXaJ#ajsk9>R<VG=M($Hy`ENEyc&c3Vn42L$W(Tl6TM}5od1pTEXU)8IeT`o
+z`0CzZyPA4*_3pN&jN&iNY%ULc6<0_2GTHa5ze&n@UwKpgL)4xfQ!9=dey+IlvDbVD
+z%lqG3Y-CQyOS<lFabIL{>~5bik49<wnP6UyHb(0wa_tLdicRicDDv#Tp$LO*u!QN)
+zrCXwBeN@far@H1%!K){e9E_FSXYZah^KIOx+&Q-x^B?C%#%wM){#(fB?CX+9uDd=m
+zS*v*Y9qs*R2C840+Mc1eS;R=|Zq{MVw@XwODeOI_cw0Y8<i$zbT!Bya3I5ynZpr&9
+idu#Se?dGnkC+wFTl+}B`#_R`15re0zpUXO@geCww2n6Z?
+
+diff --git a/app/res/drawable-mdpi/num_clock_6.png b/app/res/drawable-mdpi/num_clock_6.png
+deleted file mode 100644
+index 3a5ebd334f7ae761a50aadeb573d00be7003f577..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 619
+zcmeAS@N?(olHy`uVBq!ia0vp^dO+;W!3-oV;#}VVDdPa25LY1mpG2^I>Z2y0Hi42L
+zzhDN3dV%-*6BN$RUteGlaKGR5$rqrVjMqI~978;gpPe4PtyzJ`mGj|3g$IA!tDh=v
+z@$&t%`{%~Dw~ie)<P5QCVbu?>ZBaN}wfvj0M%b~wNftZwzeV<3Ro||{?D1kkZz-E3
+zcMO-bEtgx)QJ$x)+CEbo^)p0S^qmTm7av?$?Wop!S~_aUn%Tb2V*5DrQZ#So?Q4(P
+zplqi3=gI5cPp0`E-u>kD>L)8^>HfK8^nQzie1EtuN5YcE%J|#LJLmK(Kjk@hPjJrs
+z>3^kG@1364{MfGh%U71#Ev}i%jW<tYEc&tauAKepmlIy~b?2Ywi+}A^I;G}EO!%&8
+z^PlFX&hVOcF8`<Z(z{!P9IpCFe`TE+_H5;A(LN!KFW+ob??~)yU6v*gGH1!`++B~q
+zh+MF&J#M=EVa##eY=OjMzgKyFUG}i?Snjvo56^6rus)Y}vGMYw#(w8m<=*~NQ)^=W
+z1k3EK_&hmt$r|y)b1nyDs~Z;F3|V1w^hLp0q2rOSPrQnJw0+giuIp=*-CpE!@aSfh
+zDJ=N@)nm!~6FW?mQhy0-5ZJxvt#Q$usW#b6{f?RQ+8Q=p58t!={ujBt^Rwlx0?!*Q
+zoSnBzX+`Zj=UH#2EL<{gH`~WM?UPv=6h6Ovkl63M@>_Mr@7sy{V-gkq8yr37rEQVO
+d_-y%n`~0<<3%x5pMFFFq!PC{xWt~$(69A9&K3xC+
+
+diff --git a/app/res/drawable-mdpi/num_clock_7.png b/app/res/drawable-mdpi/num_clock_7.png
+deleted file mode 100644
+index 961a616d219412e182e69919a184aaac4c0d9473..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 343
+zcmeAS@N?(olHy`uVBq!ia0vp^dO+;W!3-oV;#}VVDdPa25LY1mpG2^I>Z2y0Hi42L
+zzhH*_3J&k@&ljjqIKRHYpg-VS>pESa++j}_#}JR>XRk%`H5>4_Toe#i@Za?R>b19A
+zHA|yD)$~7muF=L)JmJX}&z5Wa*;`^KS+2jfdhfc|%lF!r{@Hk4Uv~f5w`(3xudT_n
+zoqhZJ&hqX3_V!A}r|z}yjg<^^{I}>a^ABUCH~TkF|Ihqa@Zy1gN6+pztarO&JO9Pe
+zjvf0M{#*D@nU~?B@~6}7BfHBVm)8~CkN7)w{J-*1^ofi9T7Uol=I1)?{{DGvbMbw}
+ycbkj7wTo6S|IbmhX!rN{D_gE_?pX5w8MEYVQTeq$rmhBhhr!d;&t;ucLK6Tqd%2GQ
+
+diff --git a/app/res/drawable-mdpi/num_clock_8.png b/app/res/drawable-mdpi/num_clock_8.png
+deleted file mode 100644
+index 1b1e91b6c63c6a180c463c9f39c7b49b6dbe5baa..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 685
+zcmeAS@N?(olHy`uVBq!ia0vp^dO+;W!3-oV;#}VVDdPa25LY1mpG2^I>Z2y0Hi42L
+zzhH*<`{z3-)C(lsH#i@#zMy|U`(IuL1|~^Q7sn8f<5R<;lUfvbri3#zUj03Pn{>dV
+zX&D7}QC{s6cq(`BY+&s9x5#0`Y2zA=-~3)5wx^_*u^sz3tx>}(+qFLT3~%-=?Mu`6
+zi}mt1zCBu+V4nT#zWtg!cBbQceS%uOHSIZ~Vq&_>UT@{Rx#OVHf{h*@>t0xN$9#P$
+z^yuYz-l=bPe%|yxO27ZYid#pE6>Vi^eXm_9&bX{w@|D+tuJb|R(Y(%1f3j{KvJl&3
+zp1ve%+2NliK})`bd|S}$v)!dW)z<HK-hHjlao-i5Dkr_Qd}jDFz2@W=o+7tn-AgWd
+z|Mcq*zF@d=)`<nd=l^W@&a~*3Y5!EN!<A=Oy+56?`lINNMxL&{mh!$vzh5sq82e3h
+z?mg*Aj3>kneBssM-d1hY@$lQ*Qz!J^t&2Nz&MCUgVB+g-OlBqX!Ywprm25I;Ym?Eh
+z`50~%Yk4UDs=NQ2hj!06g_lkUk$<h4IyWn4;{58RImWS`KclKH*RpN+v?S2^vtMof
+z)&;3K5)XZX7u^e7@wBt!Mei|r7R89H>q-nSf1B9Km&{mvyE#s6?f&m`-OgUI4z2tn
+zV!QCk{AqiQYOY>5d+b-{%}HvT6_oh>eftw_KR<N4n(n{+iq?^tC)!m$)h^xfT0OV!
+zgUYvSPV#4t-FNrw^r&H-vp{j%vQxEhrhh0tG+#C%bzQ#FA~ud2_ZBX(6O^&%fAZ0>
+uK)`*S5x>yx1e3sE#wT78x=okA@^AZU*g5YyPX{moF?hQAxvX<aXaWG6xmd{n
+
+diff --git a/app/res/drawable-mdpi/num_clock_9.png b/app/res/drawable-mdpi/num_clock_9.png
+deleted file mode 100644
+index 3fe976a58992063ab07c3efdd7cf401d6578e694..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 638
+zcmeAS@N?(olHy`uVBq!ia0vp^dO+;W!3-oV;#}VVDdPa25LY1mpG2^I>Z2y0Hi42L
+zzhH)Xhxr2g72cn}A5f66zTZHn(CQ=u1LG@C7sn8f<9nywUbI?)$3^-blh*(LThon~
+zUg(<jqv+YntF9743j6wsW`_M<-n*#U&`5KNex>aDgilXbsK#ErSbi+Zo^8(g4WcKO
+z?bTJv^KRTGtSpxQ<^88CzcUTotrFr)TLVu^u77>_>YTOm>%W}eTvB1u{>$%z-9_Q|
+z`^7|8?F}y46aRbv9k=*XSGB&F=zJ(sZ@MX1llU!&_x`i>OHZt?4m5u-<AE%f?ei~>
+zw$$B;`14?jUEgl;YrT1*cO#^3^6B<YT>fz9(v0Vs1@HFOvzWwa_-yhh2=!&&9yBM#
+z;>-LGu6@cAllDyY>~qgCHGJ0+t+OrpVQThO-s?)AkD1$a-3eg)SN51!de39&x`K1o
+z?{--8w>5rW_*!;v`2GXCH<tJ=-g+d_a{BJiZ<*5ME#Ca#j;l0Lm)U1{w^iPG?Nm*f
+zxAOP=exBU>F;%4gLveg5r-7Bysj7^QjxDL7Q?~^u%(n~QFn=FsTITiJGoS9W_+wDM
+zOYpOmn~v4&iRV^3KMzsy@|t^hMbg7M!P5&WJxtAc_mxW+?zR8CXyg7RPRaGpY`S0m
+z(Ae>@f6n6-cBi_`i+(ve^1e`6o2J44%G1^7@g)K4!Y^%mA4R%8EasnaT4ja3;6zrg
+x$Wq}=GFzCYJv6gCR-hg}DMusp=#f9{Ywb1vP1rs22{1)4c)I$ztaD0e0st8kLMZ?M
+
+diff --git a/app/res/drawable-mdpi/num_clock_dot.png b/app/res/drawable-mdpi/num_clock_dot.png
+deleted file mode 100644
+index 2e75fc863ef6f0b3565b5c9daf134d6fb4a07f73..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 228
+zcmeAS@N?(olHy`uVBq!ia0vp^JV5Nt!VDz0u~h>}27>^f5LY1mpA=y2%VGf3!(S5Q
+z7tB!aAaH(vLcsg^{RZm`6p93NZUUu3JY5_^G|ne4U>E3Rofz}~zdl3IxBvg^*@Aun
+zNv0qf0lC}%|8pvsb~*7ZW>8O<S0&@J@z4Kwh9$55|1W0<`UF(P5cFHo=G=dKvxX}w
+drzR%aF{o{lJ9wsku_n-b22WQ%mvv4FO#t^tYybcN
+
+diff --git a/app/res/drawable-mdpi/watch_type_black_d_analogmonth.png b/app/res/drawable-mdpi/watch_type_black_d_analogmonth.png
+deleted file mode 100644
+index 21403d935037e8306d51ba06e4afa42d84629b6a..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 834
+zcmeAS@N?(olHy`uVBq!ia0y~yV4MKL9LzwG?TN?!0jZV%pAc6dt=9j1V9_@5vW-A@
+zXqN=}1v9Y!tyAIs`Srs}Vdhu2w#7UTK6hfzg2~;bnVwcAl2;C`FG%*2dpNVzS$jfi
+zf%h{81|}y@7srr_TW=0F0?lA(SnzkH_(~=alRS{{?XAx8wG3@cE8?F`kaSXPG-%m*
+z@BhDBU0zeB|FNEW?q<vSH`%z1ZusxG-ugAG`lFw}Y>amw)U>#Lr`*W>^BmTvzq)@a
+z6kEiZPENhYvUJwfiW!zO^nZQ4eg2Q&m6<vE?lb59J{wuH>ujcQ$j(`5&yGIU+jr+_
+za6syu(|Ov@%Zg<}Dy?`z&(BS?*SO^K*(~Z^v3$tSLWx!1cJi&d^Q1)R{#;(G^Nv#^
+z^A<l<T;D8o-1(~3`zEcuhXbzmd@@^6G_gCQ^6csbr_`>uPp-4%)T(J)6}x56lj?v+
+z6)UPvpI&fE>-^%U%I??HQ)dO%xty-lYtowjQ%twtl7H2n=ib&KZ`qnRFF5hUW5ulJ
+z$pKHb;uoh*6nC83FJt;Kwtj|Gap}3@(ws}dPp#w^rLHy%&$w>M5h_)@^x95KvzIG3
+z{Z|jkJTtf9--gTG_9oB#j#%t|>pyYnv6zLq=lJYgr@d=qjq2UG-hblhwW|{w%aYga
+zpHXhq{#c!P?+stS*=b)t{M3A8RmzmMQ!cgaT6OjJ%NPFs);!et;%@2Naz>1Jco1G)
+n-~kd<c=10wJpw}>n?Qs6g|D(N`JPm71Ic>2`njxgN@xNAU~pB>
+
+diff --git a/app/res/drawable-mdpi/watch_type_black_d_analogweek.png b/app/res/drawable-mdpi/watch_type_black_d_analogweek.png
+deleted file mode 100644
+index 286503d98f6ded1af0358affaef13257ec5ba6d7..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 1030
+zcmeAS@N?(olHy`uVBq!ia0y~yV4MKL9LzwG?TN?!0jZV%pAc6dt=9j1V9_@5vW-A@
+zXqN=}1vC6+W%~4ejgZ*V)=(FYr?t_lk9u_WY%I-7lDvD&UY_U8wbR>tFHJTUI5_Jp
+z!>Pjz49skvE{-7;x859V1e(Fnu;A}X@s&&<CV3#?+goPKLXD0^8QRYqPFN<t+5Z1;
+zui!Cb?FZSb-X(IzddSYhVeo<a+!Tok356cKhXY-tq}h~Ls`j^EE719x`%Jp+;Q22B
+zQfx_U+h5-^U|1R7_DYxMoa*U99sj)rsRcP3SAM;I_CZMHq~-O#JnvLK2k1|%x_;n8
+z-pds$YJOjn`I0@YmFu;$^Wv{%|H8NA{c*Qd`g>~i#k{y}Qy$OV_VilQ^N@Q##m;=y
+zmbuM5`Iq(DM=QR4;@|A9c&;%vYi~vJt-IU3m%TFUdUWMhUG7%iua|Ur^TR7Dts-Af
+zx#e_8@%D?Czh<hpZRg%}?#!&Jtg?SEi?Zh~d%h^;<vX_;Q|_?S{QECluBh~sV7_~D
+zcc<+X_peS}4@0VZ&MozI``kQ_@3H86zVx#BlNRM!?R|Ch^2$WtN2k{Q-c?z}xxaod
+zf3t91-N*02e^1Q%X=Hyb$fNn`se5n!1yA^z`hND!yqV{>v6+XxTq4o_O0=;yX4_QB
+zofhG%e!f|=c;56Cy^+6G3fJ?MtEI2kKl;#QvI+kix$Y^8tbfm39=ADq?ynfn32S!F
+zwVr(BmFv#P(rIR%sjCf?gr2(@NWIRS#+EBwxlw%k*}%xu0)?GNCRW|NyKUpLr|bF?
+zdUsyg72x}6>ywq2(<Eo89yR05xpF6otwg-3dgH`JRoAwOe}1dKZfl;8k>~3j20V@S
+z>z9^Z+mtBZR-}A2a<?&$<0sYD$kTe|3StXI#I4u)9}cMVx~!D?NxJRs*~=T(o@n87
+z-nwJe<IP(Re%SnO#(iGrK;0s%)s7FfxN#&LRN({jzdZovRR#u!3;(arGaxQ0w=+z7
+V;46FcP^KVAr>Co*%Q~loCIHZEvo`<$
+
+diff --git a/app/res/values/attrs.xml b/app/res/values/attrs.xml
+index 891c5a7..b98020f 100644
+--- a/app/res/values/attrs.xml
++++ b/app/res/values/attrs.xml
+@@ -195,10 +195,6 @@
+         <attr name="weekShort" />
+     </declare-styleable>
+ 
+-    <declare-styleable name="AnalogDate">
+-        <attr name="analogWeek" format="reference" />
+-        <attr name="analogMonth" format="reference" />
+-    </declare-styleable>
+     <declare-styleable name="DigitClock">
+         <attr name="clockType" format="integer" />
+         <attr name="dot" format="boolean" />
+diff --git a/app/src/com/readboy/wearlauncher/Launcher.java b/app/src/com/readboy/wearlauncher/Launcher.java
+index 805a79c..73c01c3 100644
+--- a/app/src/com/readboy/wearlauncher/Launcher.java
++++ b/app/src/com/readboy/wearlauncher/Launcher.java
+@@ -27,14 +27,12 @@ import android.support.v7.widget.RecyclerView;
+ import android.telephony.PhoneStateListener;
+ import android.telephony.TelephonyManager;
+ import android.text.TextUtils;
+-import android.util.DisplayMetrics;
+ import android.util.Log;
+ import android.util.TypedValue;
+ import android.view.Gravity;
+ import android.view.MotionEvent;
+ import android.view.View;
+ import android.view.ViewConfiguration;
+-import android.view.WindowManager;
+ import android.widget.TextView;
+ import android.widget.Toast;
+ 
+@@ -121,9 +119,6 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
+         super.onCreate(savedInstanceState);
+         Log.e(TAG, "onCreate()");
+         setContentView(R.layout.activity_launcher);
+-        DisplayMetrics dm = new DisplayMetrics();
+-        getWindowManager().getDefaultDisplay().getMetrics(dm);
+-        Log.e("lxx",dm.toString());
+         //screen width:240、height:240,density:0.75,densityDpi:120
+ 
+         mViewpager = (MyViewPager) findViewById(R.id.viewpager);
+diff --git a/app/src/com/readboy/wearlauncher/view/AnalogClock.java b/app/src/com/readboy/wearlauncher/view/AnalogClock.java
+index 3bedd99..d013c91 100644
+--- a/app/src/com/readboy/wearlauncher/view/AnalogClock.java
++++ b/app/src/com/readboy/wearlauncher/view/AnalogClock.java
+@@ -93,13 +93,13 @@ public class AnalogClock extends View {
+ //        	mDial = r.getDrawable(R.drawable.clock_analog_dial);
+ //        }
+         if (mHourHand == null) {
+-            mHourHand = r.getDrawable(R.drawable.clock_analog_hour);
++            mHourHand = r.getDrawable(R.drawable.watch_type_e_analog_hour);
+         }
+         if (mMinuteHand == null) {
+-            mMinuteHand = r.getDrawable(R.drawable.clock_analog_minute);
++            mMinuteHand = r.getDrawable(R.drawable.watch_type_e_analog_min);
+         }
+         if (mSecondHand == null) {
+-            mSecondHand = r.getDrawable(R.drawable.clock_analog_second);
++            mSecondHand = r.getDrawable(R.drawable.watch_type_e_analog_second);
+         }
+ 
+         final int dotColor = a.getColor(R.styleable.AnalogClock_jewelColor, Color.TRANSPARENT);
+diff --git a/app/src/com/readboy/wearlauncher/view/AnalogDate.java b/app/src/com/readboy/wearlauncher/view/AnalogDate.java
+deleted file mode 100644
+index 87fa375..0000000
+--- a/app/src/com/readboy/wearlauncher/view/AnalogDate.java
++++ /dev/null
+@@ -1,107 +0,0 @@
+-package com.readboy.wearlauncher.view;
+-
+-import android.content.BroadcastReceiver;
+-import android.content.Context;
+-import android.content.Intent;
+-import android.content.IntentFilter;
+-import android.content.res.TypedArray;
+-import android.graphics.Canvas;
+-import android.graphics.drawable.Drawable;
+-import android.text.TextUtils;
+-import android.util.AttributeSet;
+-import android.view.View;
+-
+-import com.readboy.wearlauncher.R;
+-
+-import java.util.Calendar;
+-import java.util.Date;
+-
+-public class AnalogDate extends View{
+-	private Context mContext;
+-    private Drawable mMonthDrawable;
+-    private Drawable mWeekDrawable;
+-    private int mMonth;
+-    private int mWeek;
+-    
+-	private DateChangeIntentReceiver mReceiver = new DateChangeIntentReceiver();
+-	public AnalogDate(Context context, AttributeSet attrs) {
+-		super(context, attrs);
+-		// TODO Auto-generated constructor stub
+-		mContext = context;
+-		
+-	     TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AnalogDate);
+-	     mWeekDrawable = a.getDrawable(R.styleable.AnalogDate_analogWeek);
+-	     mMonthDrawable = a.getDrawable(R.styleable.AnalogDate_analogMonth);
+-	     
+-	     if(mMonthDrawable == null){
+-	    	 mMonthDrawable = context.getResources().getDrawable(R.drawable.watch_type_black_d_analogmonth);    	 
+-	     }
+-	     if(mWeekDrawable == null){
+-	    	 mWeekDrawable = context.getResources().getDrawable(R.drawable.watch_type_black_d_analogweek);    	 
+-	     }
+-	     
+-	     a.recycle();
+-	     
+-	     setDate();
+-	}
+-	@Override
+-	protected void onAttachedToWindow() {
+-		super.onAttachedToWindow();
+-		setDate();
+-		
+-		IntentFilter filter = new IntentFilter();
+-		filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
+-		filter.addAction(Intent.ACTION_DATE_CHANGED);
+-		filter.addAction(Intent.ACTION_TIME_CHANGED);
+-		mContext.registerReceiver(mReceiver, filter);
+-	}
+-
+-	@Override
+-	protected void onDetachedFromWindow() {
+-		super.onDetachedFromWindow();
+-		mContext.unregisterReceiver(mReceiver);
+-	}
+-	
+-	@Override
+-	protected void onDraw(Canvas canvas) {
+-		// TODO Auto-generated method stub
+-		super.onDraw(canvas);
+-		
+-	    int availableWidth = getWidth();
+-	    int availableHeight = getHeight();
+-
+-	    int x = availableWidth / 2;
+-	    int y = availableHeight / 2;
+-	    
+-	    drawHand(canvas, mWeekDrawable, x, y, mWeek / 7.0f * 240);
+-	    drawHand(canvas, mMonthDrawable, x, y, mMonth / 12.0f * 240);
+-		
+-	}
+-	private class DateChangeIntentReceiver extends BroadcastReceiver {
+-        @Override
+-        public void onReceive(Context context, Intent intent) {
+-        	String action = intent.getAction();
+-			if (TextUtils.isEmpty(action)) {
+-				return;
+-			}
+-			setDate();
+-        }
+-    }
+-	private void setDate(){
+-		Calendar now = Calendar.getInstance();
+-		Date date = now.getTime();
+-		mMonth = date.getMonth();
+-		mWeek = (now.get(Calendar.DAY_OF_WEEK) - 1) % 7;
+-		
+-		invalidate();
+-	
+-	}
+-    private void drawHand(Canvas canvas, Drawable hand, int x, int y, float angle) {
+-        canvas.save();
+-        canvas.rotate(angle, x, y);
+-        hand.setBounds(0, 0,  getWidth(), getHeight());
+-        hand.draw(canvas);
+-        canvas.restore();
+-      }
+-
+-}
+diff --git a/app/src/com/readboy/wearlauncher/view/ClockAnalog.java b/app/src/com/readboy/wearlauncher/view/ClockAnalog.java
+deleted file mode 100644
+index 715ae8b..0000000
+--- a/app/src/com/readboy/wearlauncher/view/ClockAnalog.java
++++ /dev/null
+@@ -1,276 +0,0 @@
+-/*
+- * Copyright (C) 2006 The Android Open Source Project
+- *
+- * Licensed under the Apache License, Version 2.0 (the "License");
+- * you may not use this file except in compliance with the License.
+- * You may obtain a copy of the License at
+- *
+- *      http://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+- */
+-
+-package com.readboy.wearlauncher.view;
+-
+-import android.content.BroadcastReceiver;
+-import android.content.Context;
+-import android.content.Intent;
+-import android.content.IntentFilter;
+-import android.content.res.Resources;
+-import android.content.res.TypedArray;
+-import android.graphics.Canvas;
+-import android.graphics.Color;
+-import android.graphics.Paint;
+-import android.graphics.drawable.Drawable;
+-import android.os.Handler;
+-import android.text.format.DateUtils;
+-import android.text.format.Time;
+-import android.util.AttributeSet;
+-import android.util.Log;
+-import android.view.View;
+-
+-import com.readboy.wearlauncher.R;
+-
+-import java.util.Calendar;
+-import java.util.TimeZone;
+-
+-
+-/**
+- * 没用
+- * This widget display an analogic clock with two hands for hours and
+- * minutes.
+- */
+-public class ClockAnalog extends View {
+-    private Time mCalendar;
+-
+-    private Drawable mHourHand;
+-    private Drawable mMinuteHand;
+-    private Drawable mSecondHand;
+-    private Drawable mDial;
+-
+-    private final int mDialWidth;
+-    private final int mDialHeight;
+-
+-    private boolean mAttached;
+-
+-    private final Handler mHandler = new Handler();
+-    private float mSeconds;
+-    private float mMinutes;
+-    private float mHour;
+-    private boolean mChanged;
+-    private final Context mContext;
+-    private String mTimeZoneId;
+-    private boolean mNoSeconds = false;
+-    private boolean mNoHour = false;
+-    private boolean mNominute = false;
+-
+-    private final float mDotRadius;
+-    private final float mDotOffset;
+-    private Paint mDotPaint;
+-
+-    public ClockAnalog(Context context) {
+-        this(context, null);
+-    }
+-
+-    public ClockAnalog(Context context, AttributeSet attrs) {
+-        this(context, attrs, 0);
+-    }
+-
+-    public ClockAnalog(Context context, AttributeSet attrs,
+-                       int defStyle) {
+-        super(context, attrs, defStyle);
+-        mContext = context;
+-        Resources r = mContext.getResources();
+-
+-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AnalogClock);
+-        mDotRadius = a.getDimension(R.styleable.AnalogClock_jewelRadius, 0);
+-        mDotOffset = a.getDimension(R.styleable.AnalogClock_jewelOffset, 0);
+-        
+-        mDial = a.getDrawable(R.styleable.AnalogClock_analogDial);
+-        mHourHand = a.getDrawable(R.styleable.AnalogClock_analogHour);
+-        mMinuteHand = a.getDrawable(R.styleable.AnalogClock_analogMinute);
+-        mSecondHand = a.getDrawable(R.styleable.AnalogClock_analogSecond);
+-        mNoSeconds = a.getBoolean(R.styleable.AnalogClock_noSecond, false);
+-        mNoHour = a.getBoolean(R.styleable.AnalogClock_noHour, false);
+-        mNominute = a.getBoolean(R.styleable.AnalogClock_noMinute, false);
+-
+-        if (mDial == null){
+-        	mDial = r.getDrawable(R.drawable.clock_analog_dial);
+-        }
+-        if (mHourHand == null){
+-        	mHourHand = r.getDrawable(R.drawable.clock_analog_hour);
+-        }
+-        if (mMinuteHand == null){
+-        	mMinuteHand = r.getDrawable(R.drawable.clock_analog_minute);
+-        }
+-        if (mSecondHand == null){
+-        	mSecondHand = r.getDrawable(R.drawable.clock_analog_second);
+-        }
+-        
+-        final int dotColor = a.getColor(R.styleable.AnalogClock_jewelColor, Color.TRANSPARENT);
+-        if (dotColor != 0) {
+-            mDotPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+-            mDotPaint.setColor(dotColor);
+-        }
+-
+-        mCalendar = new Time();
+-
+-        mDialWidth = mDial.getIntrinsicWidth();
+-        mDialHeight = mDial.getIntrinsicHeight();
+-        
+-        Log.e(VIEW_LOG_TAG, "mDialWidth = "+mDialWidth + "mDialHeight = "+mDialHeight);
+-        
+-        a.recycle();
+-    }
+-
+-    @Override
+-    protected void onAttachedToWindow() {
+-        super.onAttachedToWindow();
+-
+-        if (!mAttached) {
+-            mAttached = true;
+-            IntentFilter filter = new IntentFilter();
+-
+-            filter.addAction(Intent.ACTION_TIME_TICK);
+-            filter.addAction(Intent.ACTION_TIME_CHANGED);
+-            filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
+-
+-            getContext().registerReceiver(mIntentReceiver, filter, null, mHandler);
+-        }
+-
+-        // NOTE: It's safe to do these after registering the receiver since the receiver always runs
+-        // in the main thread, therefore the receiver can't run before this method returns.
+-
+-        // The time zone may have changed while the receiver wasn't registered, so update the Time
+-        mCalendar = new Time();
+-
+-        // Make sure we update to the current time
+-        onTimeChanged();
+-
+-        // tick the seconds
+-        post(mClockTick);
+-
+-    }
+-
+-    @Override
+-    protected void onDetachedFromWindow() {
+-        super.onDetachedFromWindow();
+-        if (mAttached) {
+-            getContext().unregisterReceiver(mIntentReceiver);
+-            removeCallbacks(mClockTick);
+-            mAttached = false;
+-        }
+-    }
+-
+-    @Override
+-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+-        super.onSizeChanged(w, h, oldw, oldh);
+-        mChanged = true;
+-    }
+-
+-    @Override
+-    protected void onDraw(Canvas canvas) {
+-        super.onDraw(canvas);
+-
+-        boolean changed = mChanged;
+-        if (changed) {
+-            mChanged = false;
+-        }
+-
+-        int availableWidth = getWidth();
+-        int availableHeight = getHeight();
+-
+-        int x = availableWidth / 2;
+-        int y = availableHeight / 2;
+-
+-        if(!mNoHour){
+-            drawHand(canvas, mHourHand, x, y, mHour / 12.0f * 360.0f, changed);
+-        }
+-        if(!mNominute){
+-            drawHand(canvas, mMinuteHand, x, y, mMinutes / 60.0f * 360.0f, changed);
+-        }
+-        if (!mNoSeconds) {
+-            drawHand(canvas, mSecondHand, x, y, mSeconds / 60.0f * 360.0f, changed);
+-        }
+-    }
+-
+-    private void drawHand(Canvas canvas, Drawable hand, int x, int y, float angle,
+-          boolean changed) {
+-        canvas.save();
+-        canvas.rotate(angle, x, y);
+-        if (changed) {
+-          final int w = hand.getIntrinsicWidth();
+-          final int h = hand.getIntrinsicHeight();
+-          hand.setBounds(0, 0,  getWidth(), getHeight());
+-        }
+-        hand.draw(canvas);
+-        canvas.restore();
+-    }
+-
+-    private void onTimeChanged() {
+-        mCalendar.setToNow();
+-
+-        if (mTimeZoneId != null) {
+-            mCalendar.switchTimezone(mTimeZoneId);
+-        }
+-
+-        int hour = mCalendar.hour;
+-        int minute = mCalendar.minute;
+-        int second = mCalendar.second;
+-  //      long millis = System.currentTimeMillis() % 1000;
+-
+-        mSeconds = second;//(float) ((second * 1000 + millis) / 166.666);
+-        mMinutes = minute + second / 60.0f;
+-        mHour = hour + mMinutes / 60.0f;
+-        mChanged = true;
+-
+-        updateContentDescription(mCalendar);
+-    }
+-
+-    private final BroadcastReceiver mIntentReceiver = new BroadcastReceiver() {
+-        @Override
+-        public void onReceive(Context context, Intent intent) {
+-            if (intent.getAction().equals(Intent.ACTION_TIMEZONE_CHANGED)) {
+-                String tz = intent.getStringExtra("time-zone");
+-                mCalendar = new Time(TimeZone.getTimeZone(tz).getID());
+-            }
+-            onTimeChanged();
+-            invalidate();
+-        }
+-    };
+-
+-    private final Runnable mClockTick = new Runnable () {
+-
+-        @Override
+-        public void run() {
+-            onTimeChanged();
+-            invalidate();
+-            
+-            Calendar calendar = Calendar.getInstance();
+-        	int currentMillisecond = calendar.get(Calendar.MILLISECOND);
+-            ClockAnalog.this.postDelayed(mClockTick, 1000 - currentMillisecond);
+-        }
+-    };
+-
+-    private void updateContentDescription(Time time) {
+-        final int flags = DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_24HOUR;
+-        String contentDescription = DateUtils.formatDateTime(mContext,
+-                time.toMillis(false), flags);
+-        setContentDescription(contentDescription);
+-    }
+-
+-    public void setTimeZone(String id) {
+-        mTimeZoneId = id;
+-        onTimeChanged();
+-    }
+-
+-    public void enableSeconds(boolean enable) {
+-        mNoSeconds = !enable;
+-    }
+-
+-}
+-
+diff --git a/app/src/com/readboy/wearlauncher/view/DigitClock.java b/app/src/com/readboy/wearlauncher/view/DigitClock.java
+index 09c0174..c24f41b 100644
+--- a/app/src/com/readboy/wearlauncher/view/DigitClock.java
++++ b/app/src/com/readboy/wearlauncher/view/DigitClock.java
+@@ -27,16 +27,16 @@ public class DigitClock extends LinearLayout {
+     private boolean hasDot = true;
+ 
+     private int[] clockDrawable_normal = new int[]{
+-            R.drawable.num_clock_0,
+-            R.drawable.num_clock_1,
+-            R.drawable.num_clock_2,
+-            R.drawable.num_clock_3,
+-            R.drawable.num_clock_4,
+-            R.drawable.num_clock_5,
+-            R.drawable.num_clock_6,
+-            R.drawable.num_clock_7,
+-            R.drawable.num_clock_8,
+-            R.drawable.num_clock_9
++            R.drawable.num_clock_g_0,
++            R.drawable.num_clock_g_1,
++            R.drawable.num_clock_g_2,
++            R.drawable.num_clock_g_3,
++            R.drawable.num_clock_g_4,
++            R.drawable.num_clock_g_5,
++            R.drawable.num_clock_g_6,
++            R.drawable.num_clock_g_7,
++            R.drawable.num_clock_g_8,
++            R.drawable.num_clock_g_9
+     };
+ 
+     private int[] clockDrawable_type_g = new int[]{
+@@ -264,7 +264,7 @@ public class DigitClock extends LinearLayout {
+             hourImage1.setBackgroundResource(clockDrawable_normal[hour1]);
+             minImage0.setBackgroundResource(clockDrawable_normal[min0]);
+             minImage1.setBackgroundResource(clockDrawable_normal[min1]);
+-            dotImage.setBackgroundResource(R.drawable.num_clock_dot);
++            dotImage.setBackgroundResource(R.drawable.num_clock_u_dot);
+         }
+ 
+ //        if (hasDot) {
+-- 
+2.18.0.windows.1
+

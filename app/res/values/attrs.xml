@@ -195,10 +195,6 @@
         <attr name="weekShort" />
     </declare-styleable>
 
-    <declare-styleable name="AnalogDate">
-        <attr name="analogWeek" format="reference" />
-        <attr name="analogMonth" format="reference" />
-    </declare-styleable>
     <declare-styleable name="DigitClock">
         <attr name="clockType" format="integer" />
         <attr name="dot" format="boolean" />

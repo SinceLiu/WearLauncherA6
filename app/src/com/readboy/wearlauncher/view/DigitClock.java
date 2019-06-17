@@ -27,16 +27,16 @@ public class DigitClock extends LinearLayout {
     private boolean hasDot = true;
 
     private int[] clockDrawable_normal = new int[]{
-            R.drawable.num_clock_0,
-            R.drawable.num_clock_1,
-            R.drawable.num_clock_2,
-            R.drawable.num_clock_3,
-            R.drawable.num_clock_4,
-            R.drawable.num_clock_5,
-            R.drawable.num_clock_6,
-            R.drawable.num_clock_7,
-            R.drawable.num_clock_8,
-            R.drawable.num_clock_9
+            R.drawable.num_clock_g_0,
+            R.drawable.num_clock_g_1,
+            R.drawable.num_clock_g_2,
+            R.drawable.num_clock_g_3,
+            R.drawable.num_clock_g_4,
+            R.drawable.num_clock_g_5,
+            R.drawable.num_clock_g_6,
+            R.drawable.num_clock_g_7,
+            R.drawable.num_clock_g_8,
+            R.drawable.num_clock_g_9
     };
 
     private int[] clockDrawable_type_g = new int[]{
@@ -264,7 +264,7 @@ public class DigitClock extends LinearLayout {
             hourImage1.setBackgroundResource(clockDrawable_normal[hour1]);
             minImage0.setBackgroundResource(clockDrawable_normal[min0]);
             minImage1.setBackgroundResource(clockDrawable_normal[min1]);
-            dotImage.setBackgroundResource(R.drawable.num_clock_dot);
+            dotImage.setBackgroundResource(R.drawable.num_clock_u_dot);
         }
 
 //        if (hasDot) {
