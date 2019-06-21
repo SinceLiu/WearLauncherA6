@@ -192,8 +192,8 @@ public class AnalogClock extends View {
         canvas.save();
         canvas.rotate(angle, x, y);
         if (changed) {
-            final int w = hand.getIntrinsicWidth() * x / 120;
-            final int h = hand.getIntrinsicHeight() * y / 120;
+            final int w = hand.getIntrinsicWidth() * 2 * x / getContext().getResources().getDisplayMetrics().widthPixels;
+            final int h = hand.getIntrinsicHeight() * 2 * y / getContext().getResources().getDisplayMetrics().heightPixels;
             hand.setBounds(x - w / 2, y - h, x + w / 2, y);
         }
         hand.draw(canvas);
@@ -205,9 +205,10 @@ public class AnalogClock extends View {
                             boolean changed) {
         canvas.save();
         canvas.rotate(angle, x, y);
+        Log.e("lxx", "屏幕：" + getContext().getResources().getDisplayMetrics().widthPixels + "," + getContext().getResources().getDisplayMetrics().heightPixels);
         if (changed) {
-            final int w = hand.getIntrinsicWidth() * x / 120;
-            final int h = hand.getIntrinsicHeight() * y / 120;
+            final int w = hand.getIntrinsicWidth() * 2 * x / getContext().getResources().getDisplayMetrics().widthPixels;
+            final int h = hand.getIntrinsicHeight() * 2 * y / getContext().getResources().getDisplayMetrics().heightPixels;
             hand.setBounds(x - w / 2, 0, x + w / 2, h);
         }
         hand.draw(canvas);
