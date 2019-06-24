@@ -15,6 +15,7 @@ import android.database.ContentObserver;
 import android.os.Handler;
 import android.text.format.Time;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.TextView;
 

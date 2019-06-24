@@ -280,7 +280,7 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         LauncherApplication.setTouchEnable(true);
         requestPermissions(sPermissions);
         forceUpdateDate();
-        dialResume();
+//        dialResume();
     }
 
     @Override
@@ -288,7 +288,7 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         super.onPause();
         bIsTouchable = false;
         closeDials(false);
-        dialPasue();
+//        dialPasue();
     }
 
     @Override
@@ -432,6 +432,9 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
                 mLowDialBaseLayout.addChangedCallback();
                 mLowDialBaseLayout.onResume();
                 mLowDialBaseLayout.setButtonEnable();
+                if (mDaialFragment != null) {
+                    mDaialFragment.dialPause();
+                }
                 if (mBatteryLevel >= lowPowerLevel) {
                     rwm.setLowPowerMode(true);
                     mPowerManager.setPowerSaveMode(true);
@@ -444,6 +447,9 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
             } else {
                 mLowDialBaseLayout.setVisibility(View.GONE);
                 mGestureView.setVisibility(View.VISIBLE);
+                if (mDaialFragment != null) {
+                    mDaialFragment.dialResume();
+                }
                 rwm.setLowPowerMode(false);
                 if (mPowerManager.isPowerSaveMode()) {
                     mPowerManager.setPowerSaveMode(false);

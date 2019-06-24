@@ -768,10 +768,4 @@ public class NotificationActivity extends Activity {
         controller.addIconView(gpsIconView);
     }
 
-    private void initClassDisable() {
-        ImageView iconView = (ImageView) findViewById(R.id.btn_id_classdisable);
-        WatchController watchController = mApplication.getWatchController();
-        watchController.addClassDisableIconView(iconView);
-    }
-
 }

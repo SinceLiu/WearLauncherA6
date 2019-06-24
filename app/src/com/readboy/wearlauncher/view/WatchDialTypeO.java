@@ -1,32 +1,25 @@
 package com.readboy.wearlauncher.view;
 
 import android.app.readboy.ReadboyWearManager;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.os.SystemProperties;
-
 import com.readboy.wearlauncher.R;
-import com.readboy.wearlauncher.utils.WatchController;
-
-import java.util.Calendar;
 
 /**
  * TODO: document your custom view class.
  */
 public class WatchDialTypeO extends DialBaseLayout {
 
-    private ChangeIntentReceiver mReceiver = new ChangeIntentReceiver();
     private boolean unknownSim = false;
+    private Button mCallOwner;
 
     public WatchDialTypeO(Context context) {
         super(context);
@@ -40,16 +33,26 @@ public class WatchDialTypeO extends DialBaseLayout {
         super(context, attrs, defStyle);
     }
 
-    private Button mCallOwner;
+@Override
+    public void onVisibilityAggregated(boolean isVisible) {
+        super.onVisibilityAggregated(isVisible);
+        if (isVisible) {
+            mDigitClock.setTimeRunning();
+            addChangedCallback();
+        } else {
+            mDigitClock.setTimePause();
+            removeChangedCallback();
+        }
+    }
 
     @Override
     public void onPause() {
-        mDigitClock.setTimePause();
+//        mDigitClock.setTimePause();
     }
 
     @Override
     public void onResume() {
-        mDigitClock.setTimeRunning();
+//        mDigitClock.setTimeRunning();
     }
 
     @Override
@@ -88,15 +91,11 @@ public class WatchDialTypeO extends DialBaseLayout {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(Intent.ACTION_TIME_TICK);
-        mContext.registerReceiver(mReceiver, filter);
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        mContext.unregisterReceiver(mReceiver);
     }
 
     @Override
@@ -144,16 +143,6 @@ public class WatchDialTypeO extends DialBaseLayout {
         }
     }
 
-    class ChangeIntentReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (TextUtils.isEmpty(action)) {
-                return;
-            }
-            setTime();
-        }
-    }
 
     private void setTime() {
         mDigitClock.setCurTime();

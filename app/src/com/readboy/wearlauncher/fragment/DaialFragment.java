@@ -2,7 +2,6 @@ package com.readboy.wearlauncher.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +25,6 @@ public class DaialFragment extends Fragment {
     private boolean isViewCreated;  //防止空指针，setUserVisibleHint()比onCreateView()快
     private boolean isPaused;
     private boolean isDialPaused;  //避免重复调用dialPause()
-    private boolean isUIVisible;
 
     public DaialFragment() {
 
@@ -35,12 +33,6 @@ public class DaialFragment extends Fragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        isUIVisible = isVisibleToUser;
-//        if (isVisibleToUser) {
-//            dialResume();
-//        } else {
-//            dialPause();
-//        }
     }
 
     @Override
@@ -101,32 +93,26 @@ public class DaialFragment extends Fragment {
         }
     }
 
-    private void dialResume() {
-//        if(!isViewCreated){
-//            return;
-//        }
-//        if (!isPaused && isUIVisible) {
-//            isDialPaused = false;
+    public void dialResume() {
+        if (mDaialView == null) {
+            return;
+        }
         View view = mDaialView.getChildAt(0);
-        if (view instanceof DialBaseLayout) {
+        if (view instanceof DialBaseLayout && view.isShown()) {
             ((DialBaseLayout) view).onResume();
             ((DialBaseLayout) view).onDateChange();
             ((DialBaseLayout) view).addChangedCallback();
         }
-//        }
     }
 
-    private void dialPause() {
-//        if (!isViewCreated || isDialPaused) {
-//            return;
-//        }
-//        if (isPaused || !isUIVisible) {
-//            isDialPaused = true;
+    public void dialPause() {
+        if (mDaialView == null) {
+            return;
+        }
         View view = mDaialView.getChildAt(0);
         if (view instanceof DialBaseLayout) {
             ((DialBaseLayout) view).onPause();
             ((DialBaseLayout) view).removeChangedCallback();
         }
-//        }
     }
 }

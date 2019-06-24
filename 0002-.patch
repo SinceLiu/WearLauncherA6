@@ -1,0 +1,398 @@
+From 61c88a5e54f66a16cf6bf3c31ab773bb7728d9bd Mon Sep 17 00:00:00 2001
+From: lxx <lxx@readboy.com>
+Date: Mon, 24 Jun 2019 16:07:42 +0800
+Subject: [PATCH 2/3] --
+
+---
+ .../com/readboy/wearlauncher/Launcher.java    | 10 +++-
+ .../battery/BatteryLevelImageView.java        |  2 +
+ .../wearlauncher/fragment/DaialFragment.java  | 27 +++-------
+ .../notification/DateTimeView.java            |  2 +
+ .../notification/NotificationActivity.java    |  6 ---
+ .../wearlauncher/utils/WatchController.java   | 52 -------------------
+ .../readboy/wearlauncher/view/DigitClock.java |  2 +
+ .../wearlauncher/view/WatchDialTypeO.java     | 48 ++++++-----------
+ 8 files changed, 39 insertions(+), 110 deletions(-)
+
+diff --git a/app/src/com/readboy/wearlauncher/Launcher.java b/app/src/com/readboy/wearlauncher/Launcher.java
+index 73c01c3..8c14139 100644
+--- a/app/src/com/readboy/wearlauncher/Launcher.java
++++ b/app/src/com/readboy/wearlauncher/Launcher.java
+@@ -282,7 +282,7 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
+         LauncherApplication.setTouchEnable(true);
+         requestPermissions(sPermissions);
+         forceUpdateDate();
+-        dialResume();
++//        dialResume();
+     }
+ 
+     @Override
+@@ -290,7 +290,7 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
+         super.onPause();
+         bIsTouchable = false;
+         closeDials(false);
+-        dialPasue();
++//        dialPasue();
+     }
+ 
+     @Override
+@@ -393,6 +393,9 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
+                 mLowDialBaseLayout.addChangedCallback();
+                 mLowDialBaseLayout.onResume();
+                 mLowDialBaseLayout.setButtonEnable();
++                if (mDaialFragment != null) {
++                    mDaialFragment.dialPause();
++                }
+                 if (mBatteryLevel >= lowPowerLevel) {
+                     rwm.setLowPowerMode(true);
+                     mPowerManager.setPowerSaveMode(true);
+@@ -405,6 +408,9 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
+             } else {
+                 mLowDialBaseLayout.setVisibility(View.GONE);
+                 mGestureView.setVisibility(View.VISIBLE);
++                if (mDaialFragment != null) {
++                    mDaialFragment.dialResume();
++                }
+                 rwm.setLowPowerMode(false);
+                 if (mPowerManager.isPowerSaveMode()) {
+                     mPowerManager.setPowerSaveMode(false);
+diff --git a/app/src/com/readboy/wearlauncher/battery/BatteryLevelImageView.java b/app/src/com/readboy/wearlauncher/battery/BatteryLevelImageView.java
+index a4129ac..e081331 100644
+--- a/app/src/com/readboy/wearlauncher/battery/BatteryLevelImageView.java
++++ b/app/src/com/readboy/wearlauncher/battery/BatteryLevelImageView.java
+@@ -12,6 +12,7 @@ import android.graphics.Rect;
+ import android.os.BatteryManager;
+ import android.os.Handler;
+ import android.util.AttributeSet;
++import android.util.Log;
+ import android.widget.ImageView;
+ 
+ import com.readboy.wearlauncher.R;
+@@ -166,6 +167,7 @@ public class BatteryLevelImageView extends ImageView implements BatteryControlle
+     @Override
+     public void onVisibilityAggregated(boolean isVisible) {
+         super.onVisibilityAggregated(isVisible);
++        Log.e("lxx","onVisibilityAggregated:"+isVisible);
+         if (isVisible) {
+             if (mBatteryController == null) {
+                 mBatteryController = new BatteryController(mContext);
+diff --git a/app/src/com/readboy/wearlauncher/fragment/DaialFragment.java b/app/src/com/readboy/wearlauncher/fragment/DaialFragment.java
+index bfae6c3..01f9b69 100644
+--- a/app/src/com/readboy/wearlauncher/fragment/DaialFragment.java
++++ b/app/src/com/readboy/wearlauncher/fragment/DaialFragment.java
+@@ -36,11 +36,6 @@ public class DaialFragment extends Fragment {
+     public void setUserVisibleHint(boolean isVisibleToUser) {
+         super.setUserVisibleHint(isVisibleToUser);
+         isUIVisible = isVisibleToUser;
+-//        if (isVisibleToUser) {
+-//            dialResume();
+-//        } else {
+-//            dialPause();
+-//        }
+     }
+ 
+     @Override
+@@ -101,32 +96,26 @@ public class DaialFragment extends Fragment {
+         }
+     }
+ 
+-    private void dialResume() {
+-//        if(!isViewCreated){
+-//            return;
+-//        }
+-//        if (!isPaused && isUIVisible) {
+-//            isDialPaused = false;
++    public void dialResume() {
++        if (mDaialView == null) {
++            return;
++        }
+         View view = mDaialView.getChildAt(0);
+         if (view instanceof DialBaseLayout) {
+             ((DialBaseLayout) view).onResume();
+             ((DialBaseLayout) view).onDateChange();
+             ((DialBaseLayout) view).addChangedCallback();
+         }
+-//        }
+     }
+ 
+-    private void dialPause() {
+-//        if (!isViewCreated || isDialPaused) {
+-//            return;
+-//        }
+-//        if (isPaused || !isUIVisible) {
+-//            isDialPaused = true;
++    public void dialPause() {
++        if (mDaialView == null) {
++            return;
++        }
+         View view = mDaialView.getChildAt(0);
+         if (view instanceof DialBaseLayout) {
+             ((DialBaseLayout) view).onPause();
+             ((DialBaseLayout) view).removeChangedCallback();
+         }
+-//        }
+     }
+ }
+diff --git a/app/src/com/readboy/wearlauncher/notification/DateTimeView.java b/app/src/com/readboy/wearlauncher/notification/DateTimeView.java
+index e443775..7bbfa9c 100644
+--- a/app/src/com/readboy/wearlauncher/notification/DateTimeView.java
++++ b/app/src/com/readboy/wearlauncher/notification/DateTimeView.java
+@@ -15,6 +15,7 @@ import android.database.ContentObserver;
+ import android.os.Handler;
+ import android.text.format.Time;
+ import android.util.AttributeSet;
++import android.util.Log;
+ import android.view.accessibility.AccessibilityNodeInfo;
+ import android.widget.TextView;
+ 
+@@ -342,6 +343,7 @@ public class DateTimeView extends TextView {
+             public void onReceive(Context context, Intent intent) {
+                 String action = intent.getAction();
+                 if (Intent.ACTION_TIME_TICK.equals(action)) {
++                    Log.e("lxx","DateTimeView:TIME_TICK");
+                     if (System.currentTimeMillis() < getSoonestUpdateTime()) {
+                         // The update() function takes a few milliseconds to run because of
+                         // all of the time conversions it needs to do, so we can't do that
+diff --git a/app/src/com/readboy/wearlauncher/notification/NotificationActivity.java b/app/src/com/readboy/wearlauncher/notification/NotificationActivity.java
+index 46bc7fb..c5f35d0 100644
+--- a/app/src/com/readboy/wearlauncher/notification/NotificationActivity.java
++++ b/app/src/com/readboy/wearlauncher/notification/NotificationActivity.java
+@@ -768,10 +768,4 @@ public class NotificationActivity extends Activity {
+         controller.addIconView(gpsIconView);
+     }
+ 
+-    private void initClassDisable() {
+-        ImageView iconView = (ImageView) findViewById(R.id.btn_id_classdisable);
+-        WatchController watchController = mApplication.getWatchController();
+-        watchController.addClassDisableIconView(iconView);
+-    }
+-
+ }
+diff --git a/app/src/com/readboy/wearlauncher/utils/WatchController.java b/app/src/com/readboy/wearlauncher/utils/WatchController.java
+index c5cc834..0459fed 100644
+--- a/app/src/com/readboy/wearlauncher/utils/WatchController.java
++++ b/app/src/com/readboy/wearlauncher/utils/WatchController.java
+@@ -82,8 +82,6 @@ public class WatchController extends BroadcastReceiver {
+             "May", "June", "July", "August",
+             "September", "October", "November", "December"};
+ 
+-    private ArrayList<ImageView> mClassDisableIconViews = new ArrayList<ImageView>();
+-
+     Context mContext;
+     private String mClassDisableData;
+     int mStepCount;
+@@ -182,11 +180,6 @@ public class WatchController extends BroadcastReceiver {
+         mWeatherChangedCallback.remove(cb);
+     }
+ 
+-    public void addClassDisableIconView(ImageView v) {
+-        mClassDisableIconViews.add(v);
+-        classDisableChanged();
+-    }
+-
+     public interface ClassDisableChangedCallback {
+         void onClassDisableChange(boolean show);
+     }
+@@ -218,22 +211,11 @@ public class WatchController extends BroadcastReceiver {
+     }
+ 
+     void classDisableChanged() {
+-        /*boolean show = !TextUtils.isEmpty(mClassDisableData) && isNowEnable();*/
+         ReadboyWearManager rwm = (ReadboyWearManager) mContext.getSystemService(Context.RBW_SERVICE);
+         boolean show = rwm.isClassForbidOpen();
+         for (ClassDisableChangedCallback callback : mClassDisableChangedCallback) {
+             callback.onClassDisableChange(show);
+         }
+-        int N = mClassDisableIconViews.size();
+-        for (int i = 0; i < N; i++) {
+-            ImageView v = mClassDisableIconViews.get(i);
+-            v.setImageResource(R.drawable.stat_sys_classdisable);
+-            if (!show) {
+-                v.setVisibility(View.GONE);
+-            } else {
+-                v.setVisibility(View.VISIBLE);
+-            }
+-        }
+     }
+ 
+     public WatchController() {
+@@ -324,37 +306,6 @@ public class WatchController extends BroadcastReceiver {
+     }
+ 
+     public int getAllContactsUnreadCount(Context context) {
+-//        int count = 0;
+-//        Cursor c = null;
+-//        try {
+-//            c = context.getContentResolver().query(WETALK_CONTENT_URI,
+-//                    new String[]{"data6", ContactsContract.Data.RAW_CONTACT_ID},
+-//                    ContactsContract.Data.MIMETYPE + "=? AND " + ContactsContract.CommonDataKinds.StructuredPostal.TYPE + "=?",
+-//                    new String[]{ContactsContract.CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE, ContactsContract.CommonDataKinds.StructuredPostal.TYPE_WORK + ""},
+-//                    null);
+-//
+-//            if (c != null && c.moveToFirst()) {
+-//                do {
+-//                    int num = c.getInt(0);
+-//                    count += num;
+-//                } while (c.moveToNext());
+-//                c.close();
+-//                c = null;
+-//            } else if (c != null) {
+-//                c.close();
+-//                c = null;
+-//            }
+-//        } catch (Exception e) {
+-//            e.printStackTrace();
+-//        } finally {
+-//            if (c != null) {
+-//                c.close();
+-//                c = null;
+-//            }
+-//        }
+-//
+-//        mMissWetalkCount = count;
+-//        return count;
+         mMissWetalkCount = WTContactUtils.getUnreadMessageCount(context);
+         return mMissWetalkCount;
+     }
+@@ -533,9 +484,6 @@ public class WatchController extends BroadcastReceiver {
+                 callback.onDateChange();
+             }
+         } else if (TextUtils.equals(action, Intent.ACTION_TIME_TICK)) {
+-            /*if(!TextUtils.isEmpty(mClassDisableData)){
+-                classDisableChanged();
+-            }*/
+             classDisableChanged();
+         } else if (TextUtils.equals(action, ACTION_STEP_ADD)) {
+             int steps = intent.getIntExtra("steps", 0);
+diff --git a/app/src/com/readboy/wearlauncher/view/DigitClock.java b/app/src/com/readboy/wearlauncher/view/DigitClock.java
+index c24f41b..ff3b081 100644
+--- a/app/src/com/readboy/wearlauncher/view/DigitClock.java
++++ b/app/src/com/readboy/wearlauncher/view/DigitClock.java
+@@ -4,6 +4,7 @@ import android.content.Context;
+ import android.content.res.TypedArray;
+ import android.text.format.DateFormat;
+ import android.util.AttributeSet;
++import android.util.Log;
+ import android.widget.ImageView;
+ import android.widget.LinearLayout;
+ 
+@@ -302,6 +303,7 @@ public class DigitClock extends LinearLayout {
+ 
+         @Override
+         public void run() {
++            Log.e("lxx","clock running:"+hashCode());
+             Calendar calendar = Calendar.getInstance();
+             if (DateFormat.is24HourFormat(mContext)) {
+                 mHour = calendar.get(Calendar.HOUR_OF_DAY);
+diff --git a/app/src/com/readboy/wearlauncher/view/WatchDialTypeO.java b/app/src/com/readboy/wearlauncher/view/WatchDialTypeO.java
+index 4ca01eb..df8a01b 100644
+--- a/app/src/com/readboy/wearlauncher/view/WatchDialTypeO.java
++++ b/app/src/com/readboy/wearlauncher/view/WatchDialTypeO.java
+@@ -1,25 +1,13 @@
+ package com.readboy.wearlauncher.view;
+ 
+-import android.content.BroadcastReceiver;
+ import android.content.Context;
+-import android.content.Intent;
+-import android.content.IntentFilter;
+-import android.text.TextUtils;
+ import android.util.AttributeSet;
+-import android.widget.TextView;
+-
+ import com.readboy.wearlauncher.R;
+-import com.readboy.wearlauncher.utils.WatchController;
+-
+-import java.util.Calendar;
+ 
+ /**
+  * TODO: document your custom view class.
+  */
+ public class WatchDialTypeO extends DialBaseLayout {
+-
+-    private ChangeIntentReceiver mReceiver = new ChangeIntentReceiver();
+-
+     public WatchDialTypeO(Context context) {
+         super(context);
+     }
+@@ -27,18 +15,31 @@ public class WatchDialTypeO extends DialBaseLayout {
+     public WatchDialTypeO(Context context, AttributeSet attrs) {
+         super(context, attrs);
+     }
++
+     public WatchDialTypeO(Context context, AttributeSet attrs, int defStyle) {
+         super(context, attrs, defStyle);
+     }
+ 
++    @Override
++    public void onVisibilityAggregated(boolean isVisible) {
++        super.onVisibilityAggregated(isVisible);
++        if (isVisible) {
++            mDigitClock.setTimeRunning();
++            addChangedCallback();
++        } else {
++            mDigitClock.setTimePause();
++            removeChangedCallback();
++        }
++    }
++
+     @Override
+     public void onPause() {
+-        mDigitClock.setTimePause();
++//        mDigitClock.setTimePause();
+     }
+ 
+     @Override
+     public void onResume() {
+-        mDigitClock.setTimeRunning();
++//        mDigitClock.setTimeRunning();
+     }
+ 
+     @Override
+@@ -49,7 +50,7 @@ public class WatchDialTypeO extends DialBaseLayout {
+ 
+     @Override
+     public void setButtonEnable() {
+-        if(mDialerBtn != null){
++        if (mDialerBtn != null) {
+             mDialerBtn.setEnabled(true);
+         }
+     }
+@@ -77,15 +78,11 @@ public class WatchDialTypeO extends DialBaseLayout {
+     @Override
+     protected void onAttachedToWindow() {
+         super.onAttachedToWindow();
+-        IntentFilter filter = new IntentFilter();
+-        filter.addAction(Intent.ACTION_TIME_TICK);
+-        mContext.registerReceiver(mReceiver, filter);
+     }
+ 
+     @Override
+     protected void onDetachedFromWindow() {
+         super.onDetachedFromWindow();
+-        mContext.unregisterReceiver(mReceiver);
+     }
+ 
+     @Override
+@@ -96,18 +93,7 @@ public class WatchDialTypeO extends DialBaseLayout {
+         setTime();
+     }
+ 
+-    class ChangeIntentReceiver extends BroadcastReceiver {
+-        @Override
+-        public void onReceive(Context context, Intent intent) {
+-            String action = intent.getAction();
+-            if (TextUtils.isEmpty(action)) {
+-                return ;
+-            }
+-            setTime();
+-        }
+-    }
+-
+-    private void setTime(){
++    private void setTime() {
+         mDigitClock.setCurTime();
+     }
+ 
+-- 
+2.18.0.windows.1
+

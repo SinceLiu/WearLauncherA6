@@ -12,6 +12,7 @@ import android.graphics.Rect;
 import android.os.BatteryManager;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.readboy.wearlauncher.R;

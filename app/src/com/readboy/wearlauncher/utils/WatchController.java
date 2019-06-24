@@ -87,8 +87,6 @@ public class WatchController extends BroadcastReceiver {
             "May", "June", "July", "August",
             "September", "October", "November", "December"};
 
-    private ArrayList<ImageView> mClassDisableIconViews = new ArrayList<ImageView>();
-
     Context mContext;
     private String mClassDisableData;
     int mStepCount;
@@ -187,11 +185,6 @@ public class WatchController extends BroadcastReceiver {
         mWeatherChangedCallback.remove(cb);
     }
 
-    public void addClassDisableIconView(ImageView v) {
-        mClassDisableIconViews.add(v);
-        classDisableChanged();
-    }
-
     public interface ClassDisableChangedCallback {
         void onClassDisableChange(boolean show);
     }
@@ -251,21 +244,10 @@ public class WatchController extends BroadcastReceiver {
     }
 
     void classDisableChanged() {
-        /*boolean show = !TextUtils.isEmpty(mClassDisableData) && isNowEnable();*/
         ReadboyWearManager rwm = (ReadboyWearManager) mContext.getSystemService(Context.RBW_SERVICE);
         boolean show = rwm.isClassForbidOpen();
         for (ClassDisableChangedCallback callback : mClassDisableChangedCallback) {
             callback.onClassDisableChange(show);
-        }
-        int N = mClassDisableIconViews.size();
-        for (int i = 0; i < N; i++) {
-            ImageView v = mClassDisableIconViews.get(i);
-            v.setImageResource(R.drawable.stat_sys_classdisable);
-            if (!show) {
-                v.setVisibility(View.GONE);
-            } else {
-                v.setVisibility(View.VISIBLE);
-            }
         }
     }
 
@@ -361,37 +343,6 @@ public class WatchController extends BroadcastReceiver {
     }
 
     public int getAllContactsUnreadCount(Context context) {
-//        int count = 0;
-//        Cursor c = null;
-//        try {
-//            c = context.getContentResolver().query(WETALK_CONTENT_URI,
-//                    new String[]{"data6", ContactsContract.Data.RAW_CONTACT_ID},
-//                    ContactsContract.Data.MIMETYPE + "=? AND " + ContactsContract.CommonDataKinds.StructuredPostal.TYPE + "=?",
-//                    new String[]{ContactsContract.CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE, ContactsContract.CommonDataKinds.StructuredPostal.TYPE_WORK + ""},
-//                    null);
-//
-//            if (c != null && c.moveToFirst()) {
-//                do {
-//                    int num = c.getInt(0);
-//                    count += num;
-//                } while (c.moveToNext());
-//                c.close();
-//                c = null;
-//            } else if (c != null) {
-//                c.close();
-//                c = null;
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (c != null) {
-//                c.close();
-//                c = null;
-//            }
-//        }
-//
-//        mMissWetalkCount = count;
-//        return count;
         mMissWetalkCount = WTContactUtils.getUnreadMessageCount(context);
         return mMissWetalkCount;
     }
@@ -570,9 +521,6 @@ public class WatchController extends BroadcastReceiver {
                 callback.onDateChange();
             }
         } else if (TextUtils.equals(action, Intent.ACTION_TIME_TICK)) {
-            /*if(!TextUtils.isEmpty(mClassDisableData)){
-                classDisableChanged();
-            }*/
             classDisableChanged();
         } else if (TextUtils.equals(action, ACTION_STEP_ADD)) {
             int steps = intent.getIntExtra("steps", 0);

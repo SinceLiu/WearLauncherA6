@@ -34,7 +34,7 @@ import java.util.ArrayList;
 
 public class WatchDials extends FrameLayout {
 
-    public static final ArrayList<Integer> mDialList = new ArrayList<Integer>(){{
+    public static final ArrayList<Integer> mDialList = new ArrayList<Integer>() {{
         add(R.layout.dialtype_q_layout_cell);
         add(R.layout.dialtype_t_layout_cell);
         add(R.layout.dialtype_p_layout_cell);
@@ -61,11 +61,11 @@ public class WatchDials extends FrameLayout {
     private int mLastDialIndex;
 
     public WatchDials(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public WatchDials(Context context, AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public WatchDials(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -79,23 +79,24 @@ public class WatchDials extends FrameLayout {
         return (WatchDials) LayoutInflater.from(context).inflate(R.layout.watch_dials, null);
     }
 
-    public static int getWatchDialsStatus(){
+    public static int getWatchDialsStatus() {
         return mWatchDialsStatus;
     }
 
-    public void animateOpen(){
+    public void animateOpen() {
         mWatchDialsStatus = ANIMATE_STATE_OPENING;
-        PropertyValuesHolder scaleX = PropertyValuesHolder.ofFloat("scaleX", 1.46f,1.0f);
-        PropertyValuesHolder scaleY = PropertyValuesHolder.ofFloat("scaleY",1.46f,1.0f);
-        PropertyValuesHolder alpha = PropertyValuesHolder.ofFloat("alpha", 0.25f,1.0f);
+        PropertyValuesHolder scaleX = PropertyValuesHolder.ofFloat("scaleX", 1.46f, 1.0f);
+        PropertyValuesHolder scaleY = PropertyValuesHolder.ofFloat("scaleY", 1.46f, 1.0f);
+        PropertyValuesHolder alpha = PropertyValuesHolder.ofFloat("alpha", 0.25f, 1.0f);
         final ObjectAnimator oa = mOpenCloseAnimator =
-                LauncherAnimUtils.ofPropertyValuesHolder(this,  scaleX, scaleY, alpha);
+                LauncherAnimUtils.ofPropertyValuesHolder(this, scaleX, scaleY, alpha);
 
         oa.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
 
             }
+
             @Override
             public void onAnimationEnd(Animator animation) {
                 setLayerType(LAYER_TYPE_NONE, null);
@@ -111,16 +112,16 @@ public class WatchDials extends FrameLayout {
         oa.start();
     }
 
-    public void animateClose(boolean saveMode){
-        if(saveMode){
+    public void animateClose(boolean saveMode) {
+        if (saveMode) {
             setChooseModeType();
         }
         mWatchDialsStatus = ANIMATE_STATE_CLOSING;
         PropertyValuesHolder scaleX = PropertyValuesHolder.ofFloat("scaleX", 1.0f, 1.46f);
         PropertyValuesHolder scaleY = PropertyValuesHolder.ofFloat("scaleY", 1.0f, 1.46f);
-        PropertyValuesHolder alpha = PropertyValuesHolder.ofFloat("alpha", 1.0f,0.25f);
+        PropertyValuesHolder alpha = PropertyValuesHolder.ofFloat("alpha", 1.0f, 0.25f);
         final ObjectAnimator oa = mOpenCloseAnimator =
-                LauncherAnimUtils.ofPropertyValuesHolder(this,  scaleX, scaleY, alpha);
+                LauncherAnimUtils.ofPropertyValuesHolder(this, scaleX, scaleY, alpha);
 
         oa.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -133,6 +134,7 @@ public class WatchDials extends FrameLayout {
                 mWatchDialsStatus = ANIMATE_STATE_CLOSED;
                 System.gc();
             }
+
             @Override
             public void onAnimationStart(Animator animation) {
 
@@ -143,17 +145,17 @@ public class WatchDials extends FrameLayout {
         oa.start();
     }
 
-    private void setChooseModeType(){
+    private void setChooseModeType() {
         int type = mViewPager.getCurrentItem();
-        LauncherSharedPrefs.setWatchtype(mContext,type);
+        LauncherSharedPrefs.setWatchtype(mContext, type);
     }
 
-    private void recycle(){
-        if(mViewPager != null){
-            InfinitePagerAdapter adapter = (InfinitePagerAdapter)mViewPager.getAdapter();
+    private void recycle() {
+        if (mViewPager != null) {
+            InfinitePagerAdapter adapter = (InfinitePagerAdapter) mViewPager.getAdapter();
             int count = adapter.getRealCount();
-            Log.d("test","mViewPager count:"+count);
-            for(int i = 0; i < count; i++){
+            Log.d("test", "mViewPager count:" + count);
+            for (int i = 0; i < count; i++) {
 
             }
         }
@@ -171,8 +173,8 @@ public class WatchDials extends FrameLayout {
         }
     }
 
-    private void recycleViewGroup(ViewGroup layout){
-        if(layout==null) return;
+    private void recycleViewGroup(ViewGroup layout) {
+        if (layout == null) return;
         Drawable drawable = layout.getBackground();
         if (drawable != null && drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
@@ -181,14 +183,14 @@ public class WatchDials extends FrameLayout {
                 bitmap.recycle();
             }
         }
-        synchronized(layout){
+        synchronized (layout) {
             for (int i = 0; i < layout.getChildCount(); i++) {
                 View subView = layout.getChildAt(i);
                 if (subView instanceof ViewGroup) {
                     recycleViewGroup((ViewGroup) subView);
                 } else {
                     if (subView instanceof ImageView) {
-                        recycleImageView((ImageView)subView);
+                        recycleImageView((ImageView) subView);
                     }
                 }
             }
@@ -199,12 +201,13 @@ public class WatchDials extends FrameLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
         mViewPager = (ViewPager) findViewById(R.id.watch_type_vpid);
-        DialPagerAdapter dialPagerAdapter = new DialPagerAdapter(mContext,mDialList);
+        DialPagerAdapter dialPagerAdapter = new DialPagerAdapter(mContext, mDialList);
         PagerAdapter wrappedAdapter = new InfinitePagerAdapter(dialPagerAdapter);
         mViewPager.setAdapter(wrappedAdapter);
         mViewPager.setCurrentItem(mLastDialIndex);
         mViewPager.setPageTransformer(true, new GalleryTransformer());
-        mViewPager.setPageMargin(-Utils.px2dip(mContext,50));
+        //适配不同分辨率
+        mViewPager.setPageMargin(-70 * mContext.getResources().getDisplayMetrics().widthPixels / 240);
         mViewPager.setOffscreenPageLimit(3);
     }
 
