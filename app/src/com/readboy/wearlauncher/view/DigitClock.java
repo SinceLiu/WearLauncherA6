@@ -221,7 +221,7 @@ public class DigitClock extends LinearLayout {
         int hour1 = currentHour % 10;
         int min0 = currentMinute / 10;
         int min1 = currentMinute % 10;
-         if (dialType == TYPE_G) {
+        if (dialType == TYPE_G) {
             hourImage0.setBackgroundResource(clockDrawable_type_g[hour0]);
             hourImage1.setBackgroundResource(clockDrawable_type_g[hour1]);
             minImage0.setBackgroundResource(clockDrawable_type_g[min0]);
@@ -283,6 +283,10 @@ public class DigitClock extends LinearLayout {
             mHour = calendar.get(Calendar.HOUR_OF_DAY);
         } else {
             mHour = calendar.get(Calendar.HOUR);
+            //中午12点显示12
+            if (mHour == 0) {
+                mHour = calendar.get(Calendar.HOUR_OF_DAY);
+            }
         }
         mMinutes = calendar.get(Calendar.MINUTE);
         mMilliSeconds = calendar.get(Calendar.MILLISECOND);
@@ -300,7 +304,6 @@ public class DigitClock extends LinearLayout {
     }
 
     private final Runnable mClockTick = new Runnable() {
-
         @Override
         public void run() {
             Calendar calendar = Calendar.getInstance();
@@ -308,6 +311,10 @@ public class DigitClock extends LinearLayout {
                 mHour = calendar.get(Calendar.HOUR_OF_DAY);
             } else {
                 mHour = calendar.get(Calendar.HOUR);
+                //中午12点显示12
+                if (mHour == 0) {
+                    mHour = calendar.get(Calendar.HOUR_OF_DAY);
+                }
             }
             mMinutes = calendar.get(Calendar.MINUTE);
             mMilliSeconds = calendar.get(Calendar.MILLISECOND);
