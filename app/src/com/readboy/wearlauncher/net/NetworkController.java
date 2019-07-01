@@ -946,16 +946,17 @@ public class NetworkController extends BroadcastReceiver {
 //        if (slotCount > 1 && slotId < NetworkTypeUtils.VOLTEICON.length) {
 //            iconId = NetworkTypeUtils.VOLTEICON[slotId];
 //        }
-        int iconId = R.drawable.stat_sys_hd;
-        if (mRBManager.getPersonalInfo() != null) {
-            int volteSwitchStatus = mRBManager.getPersonalInfo().getVolte();
-            if (volteSwitchStatus == 0) {
-                return 0;
-            } else if (volteSwitchStatus == 1) {
-                return iconId;
-            }
-        }
-        return 0;
+        
+//        int iconId = R.drawable.stat_sys_hd;
+//        if (mRBManager.getPersonalInfo() != null) {
+//            int volteSwitchStatus = mRBManager.getPersonalInfo().getVolte();
+//            if (volteSwitchStatus == 0) {
+//                return 0;
+//            } else if (volteSwitchStatus == 1) {
+//                return iconId;
+//            }
+//        }
+        return R.drawable.stat_sys_hd;
     }
 
     private boolean isImsOverWfc(Intent intent) {
