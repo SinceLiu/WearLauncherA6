@@ -91,7 +91,6 @@
             android:layout_weight="1" />
 
         <ImageView
-            android:id="@+id/btn_id_classdisable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/status_bar_margin_left" />

@@ -160,7 +160,7 @@ public class ASViewGroupUtil {
      * @return 测量好的宽高
      */
     public int[] onMeasure(ViewGroup vg, int widthMeasureSpec, int heightMeasureSpec) {
-        int measureSpecs[] = new int[2];
+        int[] measureSpecs = new int[2];
         measureSpecs[0] = widthMeasureSpec;
         measureSpecs[1] = heightMeasureSpec;
 

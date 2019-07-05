@@ -62,7 +62,8 @@ public final class Utilities {
         sCanvas.setDrawFilter(new PaintFlagsDrawFilter(Paint.DITHER_FLAG,
                 Paint.FILTER_BITMAP_FLAG));
     }
-    static int sColors[] = { 0xffff0000, 0xff00ff00, 0xff0000ff };
+
+    static int[] sColors = {0xffff0000, 0xff00ff00, 0xff0000ff};
     static int sColorIndex = 0;
 
     /**

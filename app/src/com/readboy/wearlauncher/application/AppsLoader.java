@@ -39,35 +39,11 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
         implements LauncherAppsCompat.OnAppsChangedCallbackCompat {
     private final static String TAG = "AppsLoader";
 
-    private final static String APP_READBOY_FLAG = "android.readboy.WATCH.FLAG";
-
     ArrayList<AppInfo> mInstalledApps;
     private final PackageManager mPm;
     private Context mContext;
     private LauncherAppsCompat mLauncherApps;
     private IconCache mIconCache;
-
-    HashMap<String, Integer> App_Icons = new HashMap<String, Integer>() {
-        {
-//            put("com.readboy.watch.speech", R.drawable.app_icon_audio);
-//            put("com.readboy.hanzixuexiwatch",R.drawable.app_icon_book);
-//            put("com.readboy.watchcamera",R.drawable.app_icon_camera);
-//            put("",R.drawable.app_icon_class);
-//            put("com.readboy.alarmclock",R.drawable.app_icon_clock);
-//            put("com.readboy.findfriend",R.drawable.app_icon_friend);
-//            put("com.readboy.heartratemonitor",R.drawable.app_icon_heart);
-//            put("com.android.dialer",R.drawable.app_icon_phone);
-//            put("com.readboy.qrcode",R.drawable.app_icon_qr);
-//            put("com.readboy.running",R.drawable.app_icon_run);
-//            put("com.ccb.readboy.timetable",R.drawable.app_icon_schedule);
-//            put("com.android.settings",R.drawable.app_icon_setting);
-//            put("",R.drawable.app_icon_sos);
-//            put("com.readboy.pedometer",R.drawable.app_icon_step);
-//            put("com.readboy.wearweather",R.drawable.app_icon_weather);
-//            put("com.readboy.wetalk",R.drawable.app_icon_wechat);
-//            put("com.readboy.wordstudy",R.drawable.app_icon_wrod);
-        }
-    };
 
     //按照这个方式排序
     ArrayList<String> Package_Sort = new ArrayList<String>() {
@@ -145,18 +121,6 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
         }
     }
 
-    private void removeSelfPackage(List<ResolveInfo> pacList) {
-        // iterate through the packages and remove this launcher package from the list
-        for (int i = 0; i < pacList.size(); ++i) {
-            if (pacList.get(i).activityInfo.packageName.equals(mContext.getPackageName())) {
-                if ("com.readboy.wearlauncher.Launcher".equals(pacList.get(i).activityInfo.name)) {
-                    pacList.remove(i);
-                    i--;
-                }
-            }
-        }
-    }
-
     //TODO 获取应用管控列表，移除这些包名
     private void removeControlledPackages(List<ResolveInfo> pacList) {
         List<String> controlledPackagesList = Utils.getControlledPackages(mContext);
@@ -179,7 +143,6 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
         Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
         List<ResolveInfo> mApps = mPm.queryIntentActivities(mainIntent, PackageManager.GET_RESOLVED_FILTER);
-        removeSelfPackage(mApps);
         removeControlledPackages(mApps);
         removeExcludedPackages(mApps);
         ArrayList<AppInfo> items = new ArrayList<AppInfo>(mApps.size());

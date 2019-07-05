@@ -46,7 +46,7 @@ public class ASRelativeLayout extends RelativeLayout implements AutoScaleLayout{
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int measureSpecs[] = mASViewGroupUtil.onMeasure(this, widthMeasureSpec, heightMeasureSpec);
+        int[] measureSpecs = mASViewGroupUtil.onMeasure(this, widthMeasureSpec, heightMeasureSpec);
         super.onMeasure(measureSpecs[0], measureSpecs[1]);
     }
 

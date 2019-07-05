@@ -45,23 +45,17 @@ public class AnalogClock extends View {
     private Drawable mHourHand;
     private Drawable mMinuteHand;
     private Drawable mSecondHand;
-    private Drawable mDial;
-
-    private int mDialWidth;
-    private int mDialHeight;
 
     private float mSeconds;
     private float mMinutes;
     private float mHour;
-    private boolean mChanged;
-    private final Context mContext;
     private boolean mNoSeconds = false;
     private boolean mNoHour = false;
     private boolean mNominute = false;
 
-    private float mDotRadius;
-    private float mDotOffset;
     private Paint mDotPaint;
+    private int x;
+    private int y;
 
     public AnalogClock(Context context) {
         this(context, null);
@@ -74,14 +68,9 @@ public class AnalogClock extends View {
     public AnalogClock(Context context, AttributeSet attrs,
                        int defStyle) {
         super(context, attrs, defStyle);
-        mContext = context;
-        Resources r = mContext.getResources();
+        Resources r = context.getResources();
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AnalogClock);
-        mDotRadius = a.getDimension(R.styleable.AnalogClock_jewelRadius, 0);
-        mDotOffset = a.getDimension(R.styleable.AnalogClock_jewelOffset, 0);
-
-//        mDial = a.getDrawable(R.styleable.AnalogClock_analogDial);
         mHourHand = a.getDrawable(R.styleable.AnalogClock_analogHour);
         mMinuteHand = a.getDrawable(R.styleable.AnalogClock_analogMinute);
         mSecondHand = a.getDrawable(R.styleable.AnalogClock_analogSecond);
@@ -89,9 +78,6 @@ public class AnalogClock extends View {
         mNoHour = a.getBoolean(R.styleable.AnalogClock_noHour, false);
         mNominute = a.getBoolean(R.styleable.AnalogClock_noMinute, false);
 
-//        if (mDial == null){
-//        	mDial = r.getDrawable(R.drawable.clock_analog_dial);
-//        }
         if (mHourHand == null) {
             mHourHand = r.getDrawable(R.drawable.watch_type_e_analog_hour);
         }
@@ -107,17 +93,26 @@ public class AnalogClock extends View {
             mDotPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
             mDotPaint.setColor(dotColor);
         }
-
-//        mDialWidth = mDial.getIntrinsicWidth();
-//        mDialHeight = mDial.getIntrinsicHeight();
-
         a.recycle();
+    }
+
+    private void init() {
+        x = getWidth() / 2;
+        y = getHeight() / 2;
+        int hourHandWidth = mHourHand.getIntrinsicWidth() * 2 * x / getContext().getResources().getDisplayMetrics().widthPixels;
+        int hourHandHeight = mHourHand.getIntrinsicHeight() * 2 * y / getContext().getResources().getDisplayMetrics().heightPixels;
+        mHourHand.setBounds(x - hourHandWidth / 2, y - hourHandHeight, x + hourHandWidth / 2, y);
+        int minuteHandWidth = mMinuteHand.getIntrinsicWidth() * 2 * x / getContext().getResources().getDisplayMetrics().widthPixels;
+        int minuteHandHeight = mMinuteHand.getIntrinsicHeight() * 2 * y / getContext().getResources().getDisplayMetrics().heightPixels;
+        mMinuteHand.setBounds(x - minuteHandWidth / 2, y - minuteHandHeight, x + minuteHandWidth / 2, y);
+        int secondHandWidth = mSecondHand.getIntrinsicWidth() * 2 * x / getContext().getResources().getDisplayMetrics().widthPixels;
+        int secondHandHeight = mSecondHand.getIntrinsicHeight() * 2 * y / getContext().getResources().getDisplayMetrics().heightPixels;
+        mSecondHand.setBounds(x - secondHandWidth / 2, 0, x + secondHandWidth / 2, secondHandHeight);
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mChanged = true;
     }
 
     @Override
@@ -140,24 +135,17 @@ public class AnalogClock extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        boolean changed = mChanged;
-        if (changed) {
-            mChanged = false;
+        if (x == 0) {
+            init();
         }
-
-        int availableWidth = getWidth();
-        int availableHeight = getHeight();
-
-        int x = availableWidth / 2;
-        int y = availableHeight / 2;
         if (!mNoHour) {
-            drawHand(canvas, mHourHand, x, y, mHour / 12.0f * 360.0f, changed);
+            drawHand(canvas, mHourHand, mHour / 12.0f * 360.0f);
         }
         if (!mNominute) {
-            drawHand(canvas, mMinuteHand, x, y, mMinutes / 60.0f * 360.0f, changed);
+            drawHand(canvas, mMinuteHand, mMinutes / 60.0f * 360.0f);
         }
         if (!mNoSeconds) {
-            drawSecond(canvas, mSecondHand, x, y, mSeconds / 60.0f * 360.0f, changed);
+            drawHand(canvas, mSecondHand, mSeconds / 60.0f * 360.0f);
         }
     }
 
@@ -187,29 +175,9 @@ public class AnalogClock extends View {
         }
     }
 
-    private void drawHand(Canvas canvas, Drawable hand, int x, int y, float angle,
-                          boolean changed) {
+    private void drawHand(Canvas canvas, Drawable hand, float angle) {
         canvas.save();
         canvas.rotate(angle, x, y);
-        if (changed) {
-            final int w = hand.getIntrinsicWidth() * 2 * x / getContext().getResources().getDisplayMetrics().widthPixels;
-            final int h = hand.getIntrinsicHeight() * 2 * y / getContext().getResources().getDisplayMetrics().heightPixels;
-            hand.setBounds(x - w / 2, y - h, x + w / 2, y);
-        }
-        hand.draw(canvas);
-        canvas.restore();
-    }
-
-    //秒针有的不是绕尾部旋转
-    private void drawSecond(Canvas canvas, Drawable hand, int x, int y, float angle,
-                            boolean changed) {
-        canvas.save();
-        canvas.rotate(angle, x, y);
-        if (changed) {
-            final int w = hand.getIntrinsicWidth() * 2 * x / getContext().getResources().getDisplayMetrics().widthPixels;
-            final int h = hand.getIntrinsicHeight() * 2 * y / getContext().getResources().getDisplayMetrics().heightPixels;
-            hand.setBounds(x - w / 2, 0, x + w / 2, h);
-        }
         hand.draw(canvas);
         canvas.restore();
     }
@@ -220,12 +188,11 @@ public class AnalogClock extends View {
         int hour = time.get(Calendar.HOUR);
         int minute = time.get(Calendar.MINUTE);
         int second = time.get(Calendar.SECOND);
-        int am_pm = time.get(Calendar.AM_PM);
+//        int am_pm = time.get(Calendar.AM_PM);
 
-        mSeconds = second;//(float) ((second * 1000 + millis) / 166.666);
+        mSeconds = second;
         mMinutes = minute + second / 60.0f;
         mHour = hour + mMinutes / 60.0f;
-        mChanged = true;
         invalidate();
     }
 
@@ -255,31 +222,11 @@ public class AnalogClock extends View {
         int hour = time.get(Calendar.HOUR);
         int minute = time.get(Calendar.MINUTE);
         int second = time.get(Calendar.SECOND);
-        int am_pm = time.get(Calendar.AM_PM);
-
-        mSeconds = second;//(float) ((second * 1000 + millis) / 166.666);
+//        int am_pm = time.get(Calendar.AM_PM);
+        mSeconds = second;
         mMinutes = minute + second / 60.0f;
         mHour = hour + mMinutes / 60.0f;
-        mChanged = true;
 
-        postInvalidate();
-    }
-
-
-    public void setTime(float hour, float minute, float second) {
-        mHour = hour;
-        mMinutes = minute;
-        mSeconds = second;
-        postInvalidate();
-    }
-
-    public void setTime(float hour, float minute, float second, boolean hourHandDisplay, boolean minuteHandDisplay, boolean secondHandDisplay) {
-        mHour = hour;
-        mMinutes = minute;
-        mSeconds = second;
-        mNoHour = !hourHandDisplay;
-        mNominute = !minuteHandDisplay;
-        mNoSeconds = !secondHandDisplay;
         postInvalidate();
     }
 }

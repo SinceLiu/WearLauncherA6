@@ -72,6 +72,7 @@ public class DateTimeView extends TextView {
         final ReceiverInfo ri = sReceiverInfo.get();
         if (ri != null) {
             ri.removeView(this);
+            sReceiverInfo.remove();
         }
     }
 
@@ -89,6 +90,7 @@ public class DateTimeView extends TextView {
         update();
     }
 
+    @Override
     public void setVisibility(int visibility) {
         boolean gotVisible = visibility != GONE && getVisibility() == GONE;
         super.setVisibility(visibility);

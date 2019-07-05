@@ -75,14 +75,14 @@ public class WatchController extends BroadcastReceiver {
     public static final String[] WEEK_NAME_CN_LONG = new String[]{"星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
     public static final String[] WEEK_NAME_CN_SHORT = new String[]{"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
     public static final String[] WEEK_NAME_EN_SHORT = new String[]{"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
-    public static final String MONTHS_NAME_EN_SHORT[] = {
+    public static final String[] MONTHS_NAME_EN_SHORT = {
             "Jan", "Feb", "Mar", "Apr",
             "May", "Jun", "Jul", "Aug",
             "Sep", "Oct", "Nov", "Dec"};
 
     public static final String[] WEEK_NAME_EN_LONG = new String[]{
             "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-    public static final String MONTHS_NAME_EN_LONG[] = {
+    public static final String[] MONTHS_NAME_EN_LONG = {
             "January", "February", "March", "April",
             "May", "June", "July", "August",
             "September", "October", "November", "December"};
