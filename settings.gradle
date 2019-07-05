@@ -1,3 +1,1 @@
-include ':app', 'wetalk_support', 'baseadapter-recyclerview','readboywearmanager'
-include ':pedometer'
-include ':pedometer-a6'
+include ':app',  'baseadapter-recyclerview'
