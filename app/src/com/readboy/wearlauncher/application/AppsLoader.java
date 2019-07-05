@@ -178,7 +178,6 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
     public ArrayList<AppInfo> loadInBackground() {
         Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-
         List<ResolveInfo> mApps = mPm.queryIntentActivities(mainIntent, PackageManager.GET_RESOLVED_FILTER);
         removeSelfPackage(mApps);
         removeControlledPackages(mApps);

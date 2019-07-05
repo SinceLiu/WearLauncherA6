@@ -14,7 +14,7 @@ import android.os.SystemProperties;
 import com.readboy.wearlauncher.R;
 
 /**
- * TODO: document your custom view class.
+ * 低电/挂失界面
  */
 public class WatchDialTypeO extends DialBaseLayout {
 

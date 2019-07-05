@@ -37,9 +37,9 @@ public class ScalingUtil {
             }
             // Toolbar不进行缩放
             else if (!ASViewGroupUtil.isScalingToolbar()){
-                if (view.getClass().getName().equals("android.widget.Toolbar"))
+                if ("android.widget.Toolbar".equals(view.getClass().getName()))
                     return;
-                if (view.getClass().getName().equals("android.support.v7.widget.Toolbar"))
+                if ("android.support.v7.widget.Toolbar".equals(view.getClass().getName()))
                     return;
             }
         }catch (Exception e){

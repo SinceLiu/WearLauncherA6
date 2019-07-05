@@ -54,7 +54,6 @@ public class Utils {
     public static final String TAG = "Utils";
     //Settings.Global.AIRPLANE_MODE_TOGGLEABLE_RADIOS
     public static final String AIRPLANE_MODE_TOGGLEABLE_RADIOS = "airplane_mode_toggleable_radios";
-    public static final String TAG_APPCTRL = "smartWatch_appctl";
     public static final String ENABLED = "enabled";
 
     public static boolean isAirplaneModeOn(Context context) {
@@ -334,7 +333,7 @@ public class Utils {
     }
 
     public static boolean isEmpty(CharSequence str) {
-        if (str == null || str.length() == 0 || str.equals("null") || str.equals("NULL")) {
+        if (str == null || str.length() == 0 || "null".equals(str) || "NULL".equals(str)) {
             return true;
         } else {
             return false;
@@ -343,7 +342,12 @@ public class Utils {
 
     //获取受管控应用
     public static List<String> getControlledPackages(Context context) {
-        String deviceModelString = Settings.Global.getString(context.getContentResolver(), TAG_APPCTRL);
+        ReadboyWearManager rwm = (ReadboyWearManager) context.getSystemService(Context.RBW_SERVICE);
+        PersonalInfo info = rwm.getPersonalInfo();
+        if (info == null) {
+            return null;
+        }
+        String deviceModelString = info.getAppCtrl();
         if (deviceModelString == null) {
             Log.e(TAG, "get app controlled: null");
             return null;
@@ -394,80 +398,5 @@ public class Utils {
             e.printStackTrace();
         }
         return packagesList;
-    }
-
-    public static boolean isSpeechControlled(Context context) {
-        String deviceModelString = Settings.Global.getString(context.getContentResolver(), TAG_APPCTRL);
-        if (deviceModelString == null) {
-            return false;
-        }
-        try {
-            JSONObject jsonObject = new JSONObject(deviceModelString);
-            JSONObject systemAppObject = jsonObject.optJSONObject("system");
-            if (systemAppObject == null) {
-                return false;
-            }
-            JSONObject voiceAssitantObject = systemAppObject.optJSONObject("voiceAssitant");
-            if (voiceAssitantObject == null) {
-                return false;
-            }
-            String voiceAssitant = voiceAssitantObject.optString(ENABLED);
-            if ("0".equals(voiceAssitant)) {
-                return true;
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    public static boolean isMomentControlled(Context context) {
-        String deviceModelString = Settings.Global.getString(context.getContentResolver(), TAG_APPCTRL);
-        if (deviceModelString == null) {
-            return false;
-        }
-        try {
-            JSONObject jsonObject = new JSONObject(deviceModelString);
-            JSONObject systemAppObject = jsonObject.optJSONObject("system");
-            if (systemAppObject == null) {
-                return false;
-            }
-            JSONObject momentObject = systemAppObject.optJSONObject("moment");
-            if (momentObject == null) {
-                return false;
-            }
-            String moment = momentObject.optString(ENABLED);
-            if ("0".equals(moment)) {
-                return true;
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    public static boolean isMiniVideoControlled(Context context) {
-        String deviceModelString = Settings.Global.getString(context.getContentResolver(), TAG_APPCTRL);
-        if (deviceModelString == null) {
-            return false;
-        }
-        try {
-            JSONObject jsonObject = new JSONObject(deviceModelString);
-            JSONObject systemAppObject = jsonObject.optJSONObject("system");
-            if (systemAppObject == null) {
-                return false;
-            }
-            JSONObject miniVideoObject = systemAppObject.optJSONObject("miniVideo");
-            if (miniVideoObject == null) {
-                return false;
-            }
-            String miniVideo = miniVideoObject.optString(ENABLED);
-            if ("0".equals(miniVideo)) {
-                return true;
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return false;
     }
 }

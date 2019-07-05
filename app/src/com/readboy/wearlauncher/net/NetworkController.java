@@ -919,14 +919,14 @@ public class NetworkController extends BroadcastReceiver {
             if (sir != null) {
                 String operator = String.format("%03d%02d", sir.getMcc(), sir.getMnc());
                 if (!TextUtils.isEmpty(operator)) {
-                    if (operator.equals("46000") || operator.equals("46002") || operator.equals("46004") ||
-                            operator.equals("46007") || operator.equals("46008") || operator.equals("46020")
-                            || operator.equals("41004")) {
+                    if ("46000".equals(operator) || "46002".equals(operator) || "46004".equals(operator) ||
+                            "46007".equals(operator) || "46008".equals(operator) || "46020".equals(operator)
+                            || "41004".equals(operator)) {
                         mSimName = context.getResources().getString(R.string.sim_name_mobile);
-                    } else if (operator.equals("46001") || operator.equals("46006") || operator.equals("46009")
-                            || operator.equals("46010")) {
+                    } else if ("46001".equals(operator) || "46006".equals(operator) || "46009".equals(operator)
+                            || "46010".equals(operator)) {
                         mSimName = context.getResources().getString(R.string.sim_name_unicom);
-                    } else if (operator.equals("46003") || operator.equals("46005") || operator.equals("46011")) {
+                    } else if ("46003".equals(operator) || "46005".equals(operator) || "46011".equals(operator)) {
                         mSimName = context.getResources().getString(R.string.sim_name_telecom);
                     }
                 }
@@ -946,7 +946,7 @@ public class NetworkController extends BroadcastReceiver {
 //        if (slotCount > 1 && slotId < NetworkTypeUtils.VOLTEICON.length) {
 //            iconId = NetworkTypeUtils.VOLTEICON[slotId];
 //        }
-        
+
 //        int iconId = R.drawable.stat_sys_hd;
 //        if (mRBManager.getPersonalInfo() != null) {
 //            int volteSwitchStatus = mRBManager.getPersonalInfo().getVolte();
@@ -1004,8 +1004,7 @@ public class NetworkController extends BroadcastReceiver {
             mIsImsOverWfc = true;
             Log.d(TAG, "WFC reset ims register state and remove volte icon");
             //check if the load is dsds
-            if ((SystemProperties.get("persist.radio.multisim.config", "ss").
-                    equals("dsds"))) {
+            if (("dsds".equals(SystemProperties.get("persist.radio.multisim.config", "ss")))) {
                 iconId = getWfcIconId(phoneId);
             }
             Log.d(TAG, "Set IMS regState with iconId = " + iconId);

@@ -78,12 +78,12 @@ public class ASViewGroupUtil {
                 }
                 else if ("autoScaleEnable".equals(attrs.getAttributeName(i))) {
                     String autoScaleEnableStr = attrs.getAttributeValue(i);
-                    if (autoScaleEnableStr.equals("false"))
+                    if ("false".equals(autoScaleEnableStr))
                         mAutoScaleEnable = false;
                 }
                 else if ("preScaling".equals(attrs.getAttributeName(i))) {
                     String preScalingStr = attrs.getAttributeValue(i);
-                    if (preScalingStr.equals("true"))
+                    if ("true".equals(preScalingStr))
                         mPreScaling = true;
                 }
                 else if ("autoScaleType".equals(attrs.getAttributeName(i))) {
@@ -96,9 +96,9 @@ public class ASViewGroupUtil {
         }
 
         if (null != scaleTypeStr){
-            if (scaleTypeStr.equals("fitWidth"))
+            if ("fitWidth".equals(scaleTypeStr))
                 mScaleType = TYPE_FIT_WIDTH;
-            else if (scaleTypeStr.equals("fitHeight"))
+            else if ("fitHeight".equals(scaleTypeStr))
                 mScaleType = TYPE_FIT_HEIGHT;
         }
 

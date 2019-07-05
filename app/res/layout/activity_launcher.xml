@@ -15,16 +15,18 @@
             android:layout_height="match_parent" />
     </com.readboy.wearlauncher.view.GestureView>
 
-    <include
-        android:id="@+id/low"
-        layout="@layout/dialtype_o_layout_cell"
+    <ViewStub
+        android:id="@+id/id_low"
+        android:inflatedId="@+id/low"
+        android:layout="@layout/dialtype_o_layout_cell"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"/>
 
-    <include
-        android:id="@+id/loss"
-        layout="@layout/dialtype_o_layout_loss"
+    <ViewStub
+        android:id="@+id/id_loss"
+        android:inflatedId="@+id/loss"
+        android:layout="@layout/dialtype_o_layout_loss"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"/>

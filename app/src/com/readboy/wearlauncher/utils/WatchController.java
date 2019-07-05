@@ -543,6 +543,7 @@ public class WatchController extends BroadcastReceiver {
                 mLostChangedCallback.onLostChange();
             }
         } else if (TextUtils.equals(action, ACTION_APP_CTRL_CHANGED)) {
+            Log.e("lxx","action:"+action);
             for (AppControlledChangedback callback : mAppControlledChangedback) {
                 callback.onAppControlledChange();
             }
