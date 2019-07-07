@@ -40,23 +40,16 @@ public class WatchAppFragment extends Fragment implements LoaderManager.LoaderCa
     private MyGridLayoutManager mLayoutManager;
     private HeaderAndFooterWrapper mWrapperAdapter;
     private boolean isViewCreated;  //防止空指针，setUserVisibleHint()比onCreateView()快
-    private boolean isPaused;
-    private boolean isDialPaused;  //避免重复调用dialPause()
-    private boolean isUIVisible;
     List<AppInfo> mAppList = new ArrayList<AppInfo>();
     private View view;
-
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        isUIVisible = isVisibleToUser;
         if (!isViewCreated) {
             return;
         }
-        if (isVisibleToUser) {
-            loadApps(true);
-        } else {
+        if (!isVisibleToUser) {
             if (mRecyclerView != null) {
                 mRecyclerView.smoothScrollToPosition(0);
             }
@@ -97,21 +90,18 @@ public class WatchAppFragment extends Fragment implements LoaderManager.LoaderCa
     @Override
     public void onActivityCreated(final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        isViewCreated = true;
         loadApps(false);
+        isViewCreated = true;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        isPaused = false;
         mRecyclerView.requestFocus();
-        loadApps(true);
     }
 
     @Override
     public void onPause() {
-        isPaused = true;
         super.onPause();
     }
 
@@ -135,12 +125,10 @@ public class WatchAppFragment extends Fragment implements LoaderManager.LoaderCa
     }
 
     public void loadApps(boolean reLoad) {
-        if (reLoad) {
-            if (!isPaused && isUIVisible) {
-                getActivity().getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
-            }
-        } else {
+        if (!reLoad) {
             getActivity().getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+        } else if (isViewCreated) {
+            getActivity().getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
         }
     }
 

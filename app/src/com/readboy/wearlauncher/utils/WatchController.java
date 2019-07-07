@@ -538,12 +538,12 @@ public class WatchController extends BroadcastReceiver {
                 mScreenOffListener.onScreenOn();
             }
         } else if (TextUtils.equals(action, ACTION_LOST_CHANGED)) {
-            Log.e(TAG,"action:"+action);
+            Log.e(TAG, "action:" + action);
             if (mLostChangedCallback != null) {
                 mLostChangedCallback.onLostChange();
             }
         } else if (TextUtils.equals(action, ACTION_APP_CTRL_CHANGED)) {
-            Log.e("lxx","action:"+action);
+            Log.e(TAG, "action:" + action);
             for (AppControlledChangedback callback : mAppControlledChangedback) {
                 callback.onAppControlledChange();
             }
