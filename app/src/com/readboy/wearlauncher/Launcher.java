@@ -245,6 +245,7 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
     //等待IReadboyWearService
     public void waitIRWS() {
         if (rwm.getPersonalInfo() != null && mBatteryLevel != -1) {
+            onAppControlledChange();
             if (rwm.getPersonalInfo().getLost() == 1) {
                 onLostChange();
             } else if (rwm.isClassForbidOpen()) {
@@ -378,13 +379,17 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         if (mWatchAppFragment != null) {
             mWatchAppFragment.loadApps(true);
         }
-        if (rwm == null || rwm.getPersonalInfo() == null) {
+        if (rwm == null) {
+            return;
+        }
+        PersonalInfo info = rwm.getPersonalInfo();
+        if (info == null) {
             return;
         }
         if (mCameraFragment != null) {
-            mCameraFragment.setVideoVisible(!rwm.getPersonalInfo().isAppCtrl(true, "miniVideo"));
+            mCameraFragment.setVideoVisible(!info.isAppCtrl(true, "miniVideo"));
         }
-        updateViewPager(rwm.getPersonalInfo().isAppCtrl(true, "moment"));
+        updateViewPager(info.isAppCtrl(true, "moment"));
     }
 
     @Override
