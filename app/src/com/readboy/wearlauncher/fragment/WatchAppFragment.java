@@ -69,15 +69,18 @@ public class WatchAppFragment extends Fragment implements LoaderManager.LoaderCa
         OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, 0);
         mAppRecyclerAdapter = new AppRecyclerAdapter();
         mRecyclerView.setAdapter(mAppRecyclerAdapter);
+        final float mZoom = getContext().getResources().getDisplayMetrics().widthPixels / 240.0f;
+        final int oddMagrinLeft = (int) (28 * mZoom);
+        final int evenMarginLeft = (int) (16 * mZoom);
         RecyclerView.ItemDecoration itemDecoration = new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
                 super.getItemOffsets(outRect, view, parent, state);
                 if (parent.getChildAdapterPosition(view) != 0) {
                     if (parent.getChildAdapterPosition(view) % 2 == 1) {
-                        outRect.set(28, 0, 0, 0);
+                        outRect.set(oddMagrinLeft, 0, 0, 0);
                     } else if (parent.getChildAdapterPosition(view) % 2 == 0) {
-                        outRect.set(16, 0, 0, 0);
+                        outRect.set(evenMarginLeft, 0, 0, 0);
                     }
                 }
             }

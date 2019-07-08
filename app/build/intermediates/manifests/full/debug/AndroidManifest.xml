@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.readboy.wearlauncher"
     android:sharedUserId="android.uid.phone"
-    android:versionCode="190702001"
-    android:versionName="4.4" >
+    android:versionCode="190708001"
+    android:versionName="4.5" >
 
     <uses-sdk android:minSdkVersion="21" />
 
