@@ -16,7 +16,9 @@ public class MyViewPager extends ViewPager {
     private float mLastY;
     private float dirX;
     private float dirY;
+    private int currentPosition;
     private boolean isSpi;
+    private int width;
 
     public MyViewPager(Context context) {
         this(context, null);
@@ -25,6 +27,7 @@ public class MyViewPager extends ViewPager {
     public MyViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         isSpi = Settings.System.getInt(context.getContentResolver(), "is_spi", 0) == 1;
+        width = context.getResources().getDisplayMetrics().widthPixels;
     }
 
     @Override
@@ -52,25 +55,30 @@ public class MyViewPager extends ViewPager {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_UP:
                 dirX = ev.getX() - mLastX;
-                if (getCurrentItem() == Launcher.POSITION_MAIN_PAGE) {
+                currentPosition = getCurrentItem();
+                if (currentPosition == Launcher.POSITION_MAIN_PAGE) {
                     dirY = ev.getY() - mLastY;
                     if (Math.abs(dirY) > Math.abs(dirX)) {
                         break;
                     }
                 }
-                if (dirX < -10) {
+                if (dirX < 0) {
                     if (isClassDisabled) {
                         ClassDisableDialog.showClassDisableDialog(getContext());
                         Utils.checkAndDealWithAirPlanMode(getContext());
+                    } else if (currentPosition < getAdapter().getCount() - 1) {
+                        setCurrentItem(currentPosition + 1, false);
                     } else {
-                        setCurrentItem(Math.min(getCurrentItem() + 1, getAdapter().getCount() - 1), false);
+                        scrollTo((currentPosition - Launcher.POSITION_MAIN_PAGE) * width, 0);
                     }
-                } else if (dirX > 10) {
+                } else if (dirX > 0) {
                     if (isClassDisabled) {
                         ClassDisableDialog.showClassDisableDialog(getContext());
                         Utils.checkAndDealWithAirPlanMode(getContext());
+                    } else if (currentPosition > 0) {
+                        setCurrentItem(currentPosition - 1, false);
                     } else {
-                        setCurrentItem(Math.max(0, getCurrentItem() - 1), false);
+                        scrollTo((currentPosition - Launcher.POSITION_MAIN_PAGE) * width, 0);
                     }
                 }
                 break;
