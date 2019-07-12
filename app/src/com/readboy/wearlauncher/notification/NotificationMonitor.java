@@ -161,8 +161,8 @@ public class NotificationMonitor extends NotificationListenerService {
         }
         ReadboyWearManager rwm = (ReadboyWearManager) getSystemService(Context.RBW_SERVICE);
         boolean isEnable = rwm.isClassForbidOpen();
-        //上课禁用时不亮屏
-        if (!isEnable) {
+        //上课禁用、priority小于等于low不亮屏
+        if (!isEnable && sbn.getNotification().priority > Notification.PRIORITY_LOW) {
             wakeUp(this);
         }
         if (sbn.getNotification().priority < Notification.PRIORITY_HIGH) {
