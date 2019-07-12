@@ -1014,8 +1014,8 @@ public final class R {
      * <colgroup align="left" />
      * <colgroup align="left" />
      * <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
-     * <tr><td>horizontal</td><td>1</td><td>Horizontal widget.</td></tr>
-     * <tr><td>vertical</td><td>0</td><td>Vertical widget.</td></tr>
+     * <tr><td>horizontal</td><td>1</td><td></td></tr>
+     * <tr><td>vertical</td><td>0</td><td></td></tr>
      * </table>
      */
     public static final int direction=0x7f030087;
@@ -3350,53 +3350,54 @@ public final class R {
     public static final int num_clock_o_hight=0x7f060122;
     public static final int num_clock_o_width=0x7f060123;
     public static final int num_clock_p_dot_margin_left=0x7f060124;
-    public static final int num_clock_p_hight=0x7f060125;
-    public static final int num_clock_p_hour_margin_left=0x7f060126;
-    public static final int num_clock_p_min0_margin_left=0x7f060127;
-    public static final int num_clock_p_min1_margin_left=0x7f060128;
-    public static final int num_clock_p_width=0x7f060129;
-    public static final int num_clock_r_height=0x7f06012a;
-    public static final int num_clock_r_margin_left=0x7f06012b;
-    public static final int num_clock_r_minute_margin_top=0x7f06012c;
-    public static final int num_clock_r_width=0x7f06012d;
-    public static final int num_clock_s_dot_width=0x7f06012e;
-    public static final int num_clock_s_height=0x7f06012f;
-    public static final int num_clock_s_margin_1=0x7f060130;
-    public static final int num_clock_s_margin_2=0x7f060131;
-    public static final int num_clock_s_width=0x7f060132;
-    public static final int num_clock_t_hour_height=0x7f060133;
-    public static final int num_clock_t_hour_width=0x7f060134;
-    public static final int num_clock_t_margin_1=0x7f060135;
-    public static final int num_clock_t_minute_height=0x7f060136;
-    public static final int num_clock_t_minute_margin_left=0x7f060137;
-    public static final int num_clock_t_minute_width=0x7f060138;
-    public static final int num_clock_u_dot_margin_left=0x7f060139;
-    public static final int num_clock_u_dot_width=0x7f06013a;
-    public static final int num_clock_u_hour_height=0x7f06013b;
-    public static final int num_clock_u_hour_margin=0x7f06013c;
-    public static final int num_clock_u_hour_width=0x7f06013d;
-    public static final int num_clock_u_minute_height=0x7f06013e;
-    public static final int num_clock_u_minute_margin_1=0x7f06013f;
-    public static final int num_clock_u_minute_margin_2=0x7f060140;
-    public static final int num_clock_u_minute_width=0x7f060141;
-    public static final int signal_cluster_margin_left=0x7f060142;
-    public static final int status_bar_height=0x7f060143;
-    public static final int status_bar_margin_left=0x7f060144;
-    public static final int status_bar_margin_right=0x7f060145;
-    public static final int subtitle_corner_radius=0x7f060146;
-    public static final int subtitle_outline_width=0x7f060147;
-    public static final int subtitle_shadow_offset=0x7f060148;
-    public static final int subtitle_shadow_radius=0x7f060149;
-    public static final int titile_common_text_size=0x7f06014a;
-    public static final int title_common_height=0x7f06014b;
-    public static final int tooltip_corner_radius=0x7f06014c;
-    public static final int tooltip_horizontal_padding=0x7f06014d;
-    public static final int tooltip_margin=0x7f06014e;
-    public static final int tooltip_precise_anchor_extra_offset=0x7f06014f;
-    public static final int tooltip_precise_anchor_threshold=0x7f060150;
-    public static final int tooltip_vertical_padding=0x7f060151;
-    public static final int tooltip_y_offset_non_touch=0x7f060152;
-    public static final int tooltip_y_offset_touch=0x7f060153;
+    public static final int num_clock_p_dot_width=0x7f060125;
+    public static final int num_clock_p_height=0x7f060126;
+    public static final int num_clock_p_hour_margin_left=0x7f060127;
+    public static final int num_clock_p_min0_margin_left=0x7f060128;
+    public static final int num_clock_p_min1_margin_left=0x7f060129;
+    public static final int num_clock_p_width=0x7f06012a;
+    public static final int num_clock_r_height=0x7f06012b;
+    public static final int num_clock_r_margin_left=0x7f06012c;
+    public static final int num_clock_r_minute_margin_top=0x7f06012d;
+    public static final int num_clock_r_width=0x7f06012e;
+    public static final int num_clock_s_dot_width=0x7f06012f;
+    public static final int num_clock_s_height=0x7f060130;
+    public static final int num_clock_s_margin_1=0x7f060131;
+    public static final int num_clock_s_margin_2=0x7f060132;
+    public static final int num_clock_s_width=0x7f060133;
+    public static final int num_clock_t_hour_height=0x7f060134;
+    public static final int num_clock_t_hour_width=0x7f060135;
+    public static final int num_clock_t_margin_1=0x7f060136;
+    public static final int num_clock_t_minute_height=0x7f060137;
+    public static final int num_clock_t_minute_margin_left=0x7f060138;
+    public static final int num_clock_t_minute_width=0x7f060139;
+    public static final int num_clock_u_dot_margin_left=0x7f06013a;
+    public static final int num_clock_u_dot_width=0x7f06013b;
+    public static final int num_clock_u_hour_height=0x7f06013c;
+    public static final int num_clock_u_hour_margin=0x7f06013d;
+    public static final int num_clock_u_hour_width=0x7f06013e;
+    public static final int num_clock_u_minute_height=0x7f06013f;
+    public static final int num_clock_u_minute_margin_1=0x7f060140;
+    public static final int num_clock_u_minute_margin_2=0x7f060141;
+    public static final int num_clock_u_minute_width=0x7f060142;
+    public static final int signal_cluster_margin_left=0x7f060143;
+    public static final int status_bar_height=0x7f060144;
+    public static final int status_bar_margin_left=0x7f060145;
+    public static final int status_bar_margin_right=0x7f060146;
+    public static final int subtitle_corner_radius=0x7f060147;
+    public static final int subtitle_outline_width=0x7f060148;
+    public static final int subtitle_shadow_offset=0x7f060149;
+    public static final int subtitle_shadow_radius=0x7f06014a;
+    public static final int titile_common_text_size=0x7f06014b;
+    public static final int title_common_height=0x7f06014c;
+    public static final int tooltip_corner_radius=0x7f06014d;
+    public static final int tooltip_horizontal_padding=0x7f06014e;
+    public static final int tooltip_margin=0x7f06014f;
+    public static final int tooltip_precise_anchor_extra_offset=0x7f060150;
+    public static final int tooltip_precise_anchor_threshold=0x7f060151;
+    public static final int tooltip_vertical_padding=0x7f060152;
+    public static final int tooltip_y_offset_non_touch=0x7f060153;
+    public static final int tooltip_y_offset_touch=0x7f060154;
   }
   public static final class drawable {
     public static final int abc_ab_share_pack_mtrl_alpha=0x7f070000;
@@ -9939,8 +9940,8 @@ public final class R {
      * <colgroup align="left" />
      * <colgroup align="left" />
      * <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
-     * <tr><td>horizontal</td><td>1</td><td>Horizontal widget.</td></tr>
-     * <tr><td>vertical</td><td>0</td><td>Vertical widget.</td></tr>
+     * <tr><td>horizontal</td><td>1</td><td></td></tr>
+     * <tr><td>vertical</td><td>0</td><td></td></tr>
      * </table>
      *
      * @attr name com.readboy.wearlauncher:direction

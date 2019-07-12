@@ -138,7 +138,7 @@
     <dimen name="dialog_instructions_padding_right_1">21px</dimen>
     <dimen name="dialog_instructions_padding_top_1">13px</dimen>
     <dimen name="dialog_instructions_text_size_1">32px</dimen>
-    <dimen name="dialog_instructions_text_size_2">26px</dimen>
+    <dimen name="dialog_instructions_text_size_2">27px</dimen>
     <dimen name="item_notification_content_margin_left">48px</dimen>
     <dimen name="item_notification_content_text_size">26px</dimen>
     <dimen name="item_notification_height_1">48px</dimen>
@@ -181,7 +181,8 @@
     <dimen name="num_clock_o_hight">81px</dimen>
     <dimen name="num_clock_o_width">57px</dimen>
     <dimen name="num_clock_p_dot_margin_left">9px</dimen>
-    <dimen name="num_clock_p_hight">65px</dimen>
+    <dimen name="num_clock_p_dot_width">9px</dimen>
+    <dimen name="num_clock_p_height">65px</dimen>
     <dimen name="num_clock_p_hour_margin_left">5px</dimen>
     <dimen name="num_clock_p_min0_margin_left">6px</dimen>
     <dimen name="num_clock_p_min1_margin_left">5px</dimen>

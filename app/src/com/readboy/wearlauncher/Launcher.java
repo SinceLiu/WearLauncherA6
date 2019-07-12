@@ -75,6 +75,7 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
     public static final int POSITION_CONTACT_PAGE = POSITION_MAIN_PAGE - 1;
     public static final int POSITION_WETALK_PAGE = POSITION_MAIN_PAGE + 1;
     public static final String ACTION_CLASS_DISABLE_STATUS_CHANGED = "android.intent.action.CLASS_DISABLE_STATUS_CHANGED";
+    public static final String ACTION_APPCTRL_UPDATE_NOTIFICATION = "readboy.action.APPCTRL_UPDATE_NOTIFICATION";
     private static final int TURN_TO_MAIN_PAGE = 0x10;
     private static final int WAIT_IRWS = 0x11;
     private LocalBroadcastManager mLocalBroadcastManager;
@@ -390,6 +391,8 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
             mCameraFragment.setVideoVisible(!info.isAppCtrl(true, "miniVideo"));
         }
         updateViewPager(info.isAppCtrl(true, "moment"));
+        Intent intent = new Intent(ACTION_APPCTRL_UPDATE_NOTIFICATION);
+        mLocalBroadcastManager.sendBroadcast(intent);
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.readboy.ReadboyWearManager;
+import android.app.readboy.PersonalInfo;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -135,6 +136,7 @@ public class NotificationActivity extends Activity {
 
     private static final int RESET_FACTORY_COUNT = 1;
     Handler mHandler = new Handler() {
+        @Override
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
                 case RESET_FACTORY_COUNT:
@@ -210,6 +212,8 @@ public class NotificationActivity extends Activity {
 
     private void initData() {
         Log.e(TAG, "initData: NotificationMonitor" + NotificationMonitor.getNotificationMonitor());
+        mBarService = IStatusBarService.Stub.asInterface(
+                ServiceManager.getService(Context.STATUS_BAR_SERVICE));
         if (NotificationMonitor.getNotificationMonitor() != null) {
             StatusBarNotification[] datas
                     = NotificationMonitor.getNotificationMonitor().getActiveNotifications();
@@ -223,9 +227,6 @@ public class NotificationActivity extends Activity {
             Log.e(TAG, "initData: NotificationMonitor == null");
             showNoMsgView();
         }
-
-        mBarService = IStatusBarService.Stub.asInterface(
-                ServiceManager.getService(Context.STATUS_BAR_SERVICE));
     }
 
     @Override
@@ -365,6 +366,7 @@ public class NotificationActivity extends Activity {
         IntentFilter filter = new IntentFilter();
         filter.addAction(NotificationMonitor.ACTION_NLS_UPDATE);
         filter.addAction(Launcher.ACTION_CLASS_DISABLE_STATUS_CHANGED);
+        filter.addAction(Launcher.ACTION_APPCTRL_UPDATE_NOTIFICATION);
         mLocalBroadcastManager.registerReceiver(mReceiver, filter);
     }
 
@@ -427,6 +429,10 @@ public class NotificationActivity extends Activity {
 
             if (Launcher.ACTION_CLASS_DISABLE_STATUS_CHANGED.equals(intent.getAction())) {
                 hideOrShowClassDisableView();
+            }
+
+            if (Launcher.ACTION_APPCTRL_UPDATE_NOTIFICATION.equals(intent.getAction())) {
+                mAdapter.updateData();
             }
         }
     }
@@ -529,10 +535,19 @@ public class NotificationActivity extends Activity {
             }
         }
 
+        void updateData() {
+            filterAndSort();
+            if (mNotificationList.size() > 0) {
+                hideNoMsgView();
+            } else {
+                showNoMsgView();
+            }
+            notifyDataSetChanged();
+        }
+
         void updateData(StatusBarNotification[] datas) {
             mNotificationsMap.clear();
             for (StatusBarNotification data : datas) {
-                String type = data.getNotification().extras.getString("extra_type", "");
                 if (!shouldFilterOut(data)) {
                     mNotificationsMap.put(data.getKey(), data);
                 }
@@ -543,7 +558,6 @@ public class NotificationActivity extends Activity {
             } else {
                 showNoMsgView();
             }
-
             notifyDataSetChanged();
         }
 
@@ -589,10 +603,12 @@ public class NotificationActivity extends Activity {
                 if (shouldFilterOut(sbn)) {
                     continue;
                 }
-
+                if (isPkgControlled(sbn.getPackageName())) {
+                    cancelNotification(sbn);
+                    continue;
+                }
                 mNotificationList.add(sbn);
             }
-
             Collections.sort(mNotificationList, mComparator);
         }
 
@@ -766,6 +782,44 @@ public class NotificationActivity extends Activity {
         ImageView gpsIconView = (ImageView) findViewById(R.id.btn_id_gps);
         LocationControllerImpl controller = mApplication.getLocationControllerImpl();
         controller.addIconView(gpsIconView);
+    }
+
+    /**
+     * 过滤管控的应用的通知
+     */
+    public boolean isPkgControlled(String pkg) {
+        if (TextUtils.isEmpty(pkg)) {
+            return false;
+        }
+        ReadboyWearManager rwm = (ReadboyWearManager) getSystemService(Context.RBW_SERVICE);
+        PersonalInfo info = rwm.getPersonalInfo();
+        if (info == null) {
+            return false;
+        }
+        // system
+        if (pkg.equals("com.readboy.moments")) {
+            return info.isAppCtrl(true, "moment");
+        }
+        if (pkg.equals("com.readboy.wordstudy")) {
+            return info.isAppCtrl(true, "reciteWords");
+        }
+        if (pkg.equals("com.android.mms")) {
+            return info.isAppCtrl(true, "sms");
+        }
+        if (pkg.equals("com.readboy.findfriend")) {
+            return info.isAppCtrl(true, "shake");
+        }
+        if (pkg.equals("com.readboy.pedometer")) {
+            return info.isAppCtrl(true, "steps");
+        }
+        if (pkg.equals("com.readboy.watch.speech")) {
+            return info.isAppCtrl(true, "voiceAssitant");
+        }
+        if (pkg.equals("com.readboy.videocall")) {
+            return info.isAppCtrl(true, "rtc");
+        }
+        // thirdparty
+        return info.isAppCtrl(false, pkg);
     }
 
 }

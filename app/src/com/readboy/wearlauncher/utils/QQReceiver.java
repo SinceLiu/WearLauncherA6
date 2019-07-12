@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 
 import com.readboy.wearlauncher.R;
 
@@ -47,6 +48,8 @@ public class QQReceiver extends BroadcastReceiver {
             String conversationType = intent.getStringExtra("conversationType");
             String contactName = intent.getStringExtra("contactName");
             String conversationContent = intent.getStringExtra("conversationContent");
+            Intent receiveIntent = intent.getParcelableExtra("intent");
+            Log.e("lxx","receive intent:"+receiveIntent);
             NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             Intent qqIntent = new Intent();
             ComponentName componentName = new ComponentName("com.tencent.qqlite", "com.tencent.mobileqq.activity.SplashActivity");

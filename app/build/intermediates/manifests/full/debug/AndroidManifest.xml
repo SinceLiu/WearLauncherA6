@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.readboy.wearlauncher"
     android:sharedUserId="android.uid.phone"
-    android:versionCode="190708001"
-    android:versionName="4.5" >
+    android:versionCode="190712005"
+    android:versionName="4.6" >
 
     <uses-sdk android:minSdkVersion="21" />
 
@@ -58,6 +58,8 @@
     <uses-permission android:name="android.permission.SHUTDOWN" />
     <uses-permission android:name="android.permission.REBOOT" />
     <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+
+    <protected-broadcast android:name="readboy.action.UPDATE_NOTIFICATION" />
 
     <application
         android:name="com.readboy.wearlauncher.LauncherApplication"
