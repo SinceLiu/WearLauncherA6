@@ -51,7 +51,8 @@
     <dimen name="dial_p_date_width">18px</dimen>
     <dimen name="dial_p_date_height">29px</dimen>
     <dimen name="num_clock_p_width">36px</dimen>
-    <dimen name="num_clock_p_hight">65px</dimen>
+    <dimen name="num_clock_p_height">65px</dimen>
+    <dimen name="num_clock_p_dot_width">9px</dimen>
     <dimen name="dial_p_digit_clock_margin_left">30px</dimen>
     <dimen name="dial_p_digit_clock_margin_top">36px</dimen>
     <dimen name="dial_p_date_margin_left">30px</dimen>
@@ -254,7 +255,7 @@
     <dimen name="dialog_instructions_text_size_1">32px</dimen>
     <dimen name="dialog_instructions_margin_top">12px</dimen>
     <dimen name="dialog_instructions_line_space">8px</dimen>
-    <dimen name="dialog_instructions_text_size_2">26px</dimen>
+    <dimen name="dialog_instructions_text_size_2">27px</dimen>
     <dimen name="dialog_instructions_margin_bottom_2">6px</dimen>
 
     <dimen name="title_common_height">58px</dimen>

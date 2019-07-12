@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.readboy.wearlauncher"
     android:sharedUserId="android.uid.phone"
-    android:versionCode="190710007"
-    android:versionName="4.5">
+    android:versionCode="190712005"
+    android:versionName="4.6">
 
     <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />
     <uses-permission android:name="android.permission.CALL_PHONE" />

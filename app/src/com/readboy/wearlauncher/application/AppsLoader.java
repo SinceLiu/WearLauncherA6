@@ -147,7 +147,6 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
         for (int i = 0; i < mApps.size(); i++) {
             ResolveInfo info = mApps.get(i);
             if (!isFilter(info)) {
-
                 Drawable drawable = mIconCache.getFullResIcon(info);
 //                if(App_Icons.containsKey(info.activityInfo.packageName)){
 //                    drawable = mContext.getResources().getDrawable(App_Icons.get(info.activityInfo.packageName));

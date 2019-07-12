@@ -51,7 +51,8 @@
     <dimen name="dial_p_date_width">14px</dimen>
     <dimen name="dial_p_date_height">22px</dimen>
     <dimen name="num_clock_p_width">27px</dimen>
-    <dimen name="num_clock_p_hight">49px</dimen>
+    <dimen name="num_clock_p_height">49px</dimen>
+    <dimen name="num_clock_p_dot_width">7px</dimen>
     <dimen name="dial_p_digit_clock_margin_left">23px</dimen>
     <dimen name="dial_p_digit_clock_margin_top">27px</dimen>
     <dimen name="dial_p_date_margin_left">23px</dimen>
