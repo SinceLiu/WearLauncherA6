@@ -26,6 +26,7 @@ public class QQReceiver extends BroadcastReceiver {
     public static final String ACTION_REPLY = "com.tencent.qq.action.conversation.reply";
     public static final String ACTION_REJECT = "com.tencent.qq.action.addFriend.reject";
     public static final String ACTION_ACCEPT = "com.tencent.qq.action.addFriend.accept";
+    public static final String ACTION_FOREGROUND = "com.tencent.qq.action.set.foreground";
     public static final String QQ_CHANNEL_ID = "qqChannelId";
     public static final String QQ_CHANNEL_NAME = "qqChannelName";
 
@@ -40,7 +41,6 @@ public class QQReceiver extends BroadcastReceiver {
 
     }
 
-
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
@@ -48,12 +48,10 @@ public class QQReceiver extends BroadcastReceiver {
             String conversationType = intent.getStringExtra("conversationType");
             String contactName = intent.getStringExtra("contactName");
             String conversationContent = intent.getStringExtra("conversationContent");
-            Intent receiveIntent = intent.getParcelableExtra("intent");
-            Log.e("lxx","receive intent:"+receiveIntent);
             NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            Intent qqIntent = new Intent();
-            ComponentName componentName = new ComponentName("com.tencent.qqlite", "com.tencent.mobileqq.activity.SplashActivity");
-            qqIntent.setComponent(componentName);
+            Intent qqIntent = new Intent(ACTION_FOREGROUND);
+//            ComponentName componentName = new ComponentName("com.tencent.qqlite", "com.tencent.mobileqq.activity.SplashActivity");
+//            qqIntent.setComponent(componentName);
 //            if (NOTIFICATION_TYPE_ADDFRIEND.equals(conversationType)) {
             manager.notify(MESSAGE_NOTIFY_ID, getNotification(context, qqIntent, contactName, conversationContent));
 //            }
@@ -70,7 +68,7 @@ public class QQReceiver extends BroadcastReceiver {
     private Notification getNotification(Context context, Intent intent, String contactName, String conversatrionContent) {
         Bundle bundle = new Bundle();
         bundle.putString("extra_type", "readboy");
-        NotificationChannel channel = new NotificationChannel(QQ_CHANNEL_ID,QQ_CHANNEL_NAME,NotificationManager.IMPORTANCE_HIGH);
+        NotificationChannel channel = new NotificationChannel(QQ_CHANNEL_ID, QQ_CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         manager.createNotificationChannel(channel);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
@@ -83,7 +81,7 @@ public class QQReceiver extends BroadcastReceiver {
         builder.setPriority(Notification.PRIORITY_HIGH);
         builder.setChannelId(QQ_CHANNEL_ID);
         if (intent != null) {
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
             builder.setContentIntent(pendingIntent);
         }
         return builder.build();
