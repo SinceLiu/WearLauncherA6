@@ -78,6 +78,7 @@ public class NotificationActivity extends Activity {
     private NotificationAdapter mAdapter;
     private AnimationDrawable mNoDataAnimation;
     private View mNoDataView;
+    private ImageView mNoDataImageView;
     private ImageView classDisableView;
 
     private IStatusBarService mBarService;
@@ -119,7 +120,8 @@ public class NotificationActivity extends Activity {
         });
 
         mNoDataView = findViewById(R.id.no_data_parent);
-        mNoDataAnimation = (AnimationDrawable) findViewById(R.id.no_data_animation).getBackground();
+        mNoDataImageView = findViewById(R.id.no_data_animation);
+        mNoDataAnimation = (AnimationDrawable) mNoDataImageView.getBackground();
         classDisableView = findViewById(R.id.iv_class_disable);
         initRecyclerView();
         hideOrShowClassDisableView();
@@ -455,10 +457,13 @@ public class NotificationActivity extends Activity {
 
     private void hideNoMsgView() {
         mNoDataAnimation.stop();
+        mNoDataImageView.setBackground(null);
         mNoDataView.setVisibility(View.GONE);
     }
 
     private void showNoMsgView() {
+        mNoDataImageView.setBackgroundResource(R.drawable.bg_no_data);
+        mNoDataAnimation = (AnimationDrawable) mNoDataImageView.getBackground();
         mNoDataAnimation.start();
         mNoDataView.setVisibility(View.VISIBLE);
     }
