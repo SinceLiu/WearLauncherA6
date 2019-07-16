@@ -824,6 +824,9 @@ public class NotificationActivity extends Activity {
             return info.isAppCtrl(true, "rtc");
         }
         // thirdparty
+        if(pkg.equals("com.readboy.wearlauncher")){
+            return info.isAppCtrl(false,"com.tencent.qqlite");
+        }
         return info.isAppCtrl(false, pkg);
     }
 

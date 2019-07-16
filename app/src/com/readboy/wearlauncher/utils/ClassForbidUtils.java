@@ -1,6 +1,7 @@
 package com.readboy.wearlauncher.utils;
 
 import android.app.ActivityManager;
+import android.app.NotificationManager;
 import android.app.readboy.ReadboyWearManager;
 import android.content.Context;
 import android.content.IntentFilter;
@@ -73,6 +74,13 @@ public class ClassForbidUtils {
 
         Log.e(TAG, "上课禁用、低电或挂失杀进程：" + packageNameList);
         for (String pkgName : packageNameList) {
+            if ("com.tencent.qqlite".equals(pkgName)) {
+                //取消QQ通知
+                NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                if (manager != null) {
+                    manager.cancelAll();
+                }
+            }
             am.forceStopPackageAsUser(pkgName, UserHandle.CURRENT.getIdentifier());
         }
 
