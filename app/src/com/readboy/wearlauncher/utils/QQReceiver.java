@@ -45,7 +45,7 @@ public class QQReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
         if (QQ_ACTION_NEW_MESSAGE.equals(action)) {
-            String conversationType = intent.getStringExtra("conversationType");
+//            String conversationType = intent.getStringExtra("conversationType");
             String contactName = intent.getStringExtra("contactName");
             String conversationContent = intent.getStringExtra("conversationContent");
             NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

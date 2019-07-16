@@ -42,6 +42,7 @@ public class BatteryLevelImageView extends ImageView implements BatteryControlle
     private int emptyBitmapHeight;
     private Canvas chargingCanvas;
     private Canvas canvas;
+    private Matrix matrix;
     private Rect rect;
     private Paint paint;
 
@@ -118,6 +119,7 @@ public class BatteryLevelImageView extends ImageView implements BatteryControlle
         emptyBitmapHeight = emptyBitmap.getHeight();
         chargingBitmap = Bitmap.createBitmap(emptyBitmapWidth, emptyBitmapHeight, emptyBitmap.getConfig());
         chargingCanvas = new Canvas(chargingBitmap);
+        matrix = new Matrix();
         rect = new Rect(0, 0, 0, emptyBitmapHeight);
         bitmap = Bitmap.createBitmap(emptyBitmapWidth, emptyBitmapHeight, emptyBitmap.getConfig());
         canvas = new Canvas(bitmap);
@@ -127,7 +129,7 @@ public class BatteryLevelImageView extends ImageView implements BatteryControlle
 
     private Bitmap createBatteryChargingImage(int level) {
         chargingCanvas.drawPaint(paint);  //清空画布
-        chargingCanvas.drawBitmap(emptyBitmap, new Matrix(), null);
+        chargingCanvas.drawBitmap(emptyBitmap, matrix, null);
         rect.right = (emptyBitmapWidth * 22 / 30) * level / 100 + emptyBitmapWidth * 3 / 30;
         chargingCanvas.drawBitmap(chargingFullBitmap, rect, rect, null);
         return chargingBitmap;
@@ -135,7 +137,7 @@ public class BatteryLevelImageView extends ImageView implements BatteryControlle
 
     private Bitmap createBatteryImage(int level) {
         canvas.drawPaint(paint);
-        canvas.drawBitmap(emptyBitmap, new Matrix(), null);
+        canvas.drawBitmap(emptyBitmap, matrix, null);
         rect.right = (emptyBitmapWidth * 22 / 30) * level / 100 + emptyBitmapWidth * 3 / 30;
         if (level < 20) {
             canvas.drawBitmap(lowBitmap, rect, rect, null);
