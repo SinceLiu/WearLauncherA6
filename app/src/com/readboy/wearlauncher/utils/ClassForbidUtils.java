@@ -2,7 +2,6 @@ package com.readboy.wearlauncher.utils;
 
 import android.app.ActivityManager;
 import android.app.NotificationManager;
-import android.app.readboy.ReadboyWearManager;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
@@ -125,8 +124,6 @@ public class ClassForbidUtils {
     }
 
     public static void handleClassForbid(boolean enable, Context context) {
-        ReadboyWearManager rwm = (ReadboyWearManager) context.getSystemService(Context.RBW_SERVICE);
-        rwm.setClassForbidOpen(enable);
         if (enable) {
             killRecentTask(context);
         }

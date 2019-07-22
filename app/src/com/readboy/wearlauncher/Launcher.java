@@ -377,11 +377,11 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
 
     @Override
     public void onAppControlledChange() {
-        if (mWatchAppFragment != null) {
-            mWatchAppFragment.loadApps(true);
-        }
         if (rwm == null) {
             return;
+        }
+        if (mWatchAppFragment != null) {
+            mWatchAppFragment.loadApps(true);
         }
         PersonalInfo info = rwm.getPersonalInfo();
         if (info == null) {
@@ -402,8 +402,6 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
             bIsClassDisable = show;
             mViewpager.setClassDisabled(show);
             ClassForbidUtils.handleClassForbid(bIsClassDisable, Launcher.this);
-//            ReadboyWearManager rwm = (ReadboyWearManager)Launcher.this.getSystemService(Context.RBW_SERVICE);
-//            rwm.setClassForbidOpen(show);
             if (bIsClassDisable) {
                 closeDials(false);
                 if (needGoToHome(Launcher.this, 0)) {
@@ -447,58 +445,46 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
 
     @Override
     public void onBatteryLevelChanged(int level, boolean pluggedIn, boolean charging) {
-        if (mGestureView == null) {
+        if (mGestureView == null || mBatteryLevel == level) {
             return;
         }
-        if (mBatteryLevel == -1 || mBatteryLevel != level) {
+        if (level < lowPowerLevel) {
+            if (mBatteryLevel != -1 && mBatteryLevel < lowPowerLevel) {
+                mBatteryLevel = level;
+                return;
+            }
+            mGestureView.setVisibility(View.GONE);
+            if (mLowViewStub.getParent() != null) {
+                mLowViewStub.inflate();
+                initLowDialBaseLayout();
+            }
+            mLowDialBaseLayout.setVisibility(View.VISIBLE);
+            mLowDialBaseLayout.addChangedCallback();
+            mLowDialBaseLayout.onResume();
+            mLowDialBaseLayout.setButtonEnable();
+            if (mDaialFragment != null) {
+                mDaialFragment.dialPause();
+            }
+            rwm.setLowPowerMode(true);
             PowerManager mPowerManager = (PowerManager) Launcher.this.getSystemService(Context.POWER_SERVICE);
-            if (level < lowPowerLevel) {//low powe
-                mGestureView.setVisibility(View.GONE);
-                if (mLowViewStub.getParent() != null) {
-                    mLowViewStub.inflate();
-                    initLowDialBaseLayout();
-                }
-                mLowDialBaseLayout.setVisibility(View.VISIBLE);
-                mLowDialBaseLayout.addChangedCallback();
-                mLowDialBaseLayout.onResume();
-                mLowDialBaseLayout.setButtonEnable();
-                if (mDaialFragment != null) {
-                    mDaialFragment.dialPause();
-                }
-                if (mBatteryLevel >= lowPowerLevel) {
-                    rwm.setLowPowerMode(true);
-                    mPowerManager.setPowerSaveMode(true);
-                    ClassForbidUtils.killRecentTask(Launcher.this);
-                }
-                if (needGoToHome(Launcher.this, 1)) {
-//                    startActivity(new Intent(Launcher.this, Launcher.class));
-                    goHome();
-                }
-            } else if (mLowDialBaseLayout != null) {
+            mPowerManager.setPowerSaveMode(true);
+            ClassForbidUtils.killRecentTask(Launcher.this);
+            if (needGoToHome(Launcher.this, 1)) {
+                goHome();
+            }
+        } else if (mBatteryLevel == -1 || mBatteryLevel < lowPowerLevel) {
+            if (mLowDialBaseLayout != null) {
                 mLowDialBaseLayout.setVisibility(View.GONE);
                 mGestureView.setVisibility(View.VISIBLE);
-                if (mDaialFragment != null) {
-                    mDaialFragment.dialResume();
-                }
-                rwm.setLowPowerMode(false);
-                if (mPowerManager.isPowerSaveMode()) {
-                    mPowerManager.setPowerSaveMode(false);
-                }
             }
-            mBatteryLevel = level;
-        } else {
+            if (mDaialFragment != null) {
+                mDaialFragment.dialResume();
+            }
+            rwm.setLowPowerMode(false);
             PowerManager mPowerManager = (PowerManager) Launcher.this.getSystemService(Context.POWER_SERVICE);
-            if (level < lowPowerLevel && !mPowerManager.isPowerSaveMode()) {
-                if (!rwm.isLowPowerMode()) {
-                    rwm.setLowPowerMode(true);
-                    ClassForbidUtils.killRecentTask(Launcher.this);
-                }
-                mPowerManager.setPowerSaveMode(true);
-            } else if (level >= lowPowerLevel && mPowerManager.isPowerSaveMode()) {
-                rwm.setLowPowerMode(false);
-                mPowerManager.setPowerSaveMode(false);
-            }
+            mPowerManager.setPowerSaveMode(false);
         }
+        mBatteryLevel = level;
     }
 
     @Override
