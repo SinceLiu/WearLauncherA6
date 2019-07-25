@@ -7,19 +7,12 @@ import android.content.IntentFilter;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.CallLog;
-import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-
-import com.readboy.wearlauncher.Launcher;
-import com.readboy.wearlauncher.R;
 import com.readboy.wetalk.utils.WTContactUtils;
 
 import org.json.JSONArray;
@@ -31,7 +24,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 import android.app.readboy.ReadboyWearManager;
 

@@ -26,34 +26,23 @@ public class ClassDisableDialog {
     public static void showClassDisableDialog(Context context) {
         if (dialog == null) {
             mContext = context;
-            dialog = new Dialog(context, R.style.dialog_fs);//(new AlertDialog.Builder(context)).create();
+            dialog = new Dialog(context, R.style.dialog_fs);
+            dialog.setCanceledOnTouchOutside(true);
+            dialog.setCancelable(true);
+            dialog.getWindow().setContentView(R.layout.dialog_class_disable);
+            dialog.getWindow().getDecorView().findViewById(R.id.imageButton).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dismissClassDisableDialog();
+                }
+            });
         }
-        dialog.setCanceledOnTouchOutside(true);
-        dialog.setCancelable(true);
-        //dialog.getWindow().getAttributes().systemUiVisibility |= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-        //View view = View.inflate(context, R.layout.dialog_class_disable, null);
-        dialog.getWindow().setContentView(R.layout.dialog_class_disable);
-        //TODO 不应该每次都设置，和new Dialog冲突
-        dialog.getWindow().getDecorView().findViewById(R.id.imageButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismissClassDisableDialog();
-            }
-        });
         dialog.show();
         mHandler.removeMessages(0x10);
         mHandler.sendEmptyMessageDelayed(0x10, 1000 * 2);
-//        DisplayMetrics dm = new DisplayMetrics();
-//        dm = context.getApplicationContext().getResources().getDisplayMetrics();
-//        int screenWidth = dm.widthPixels;
-//        int screenHeight = dm.heightPixels;
-//        android.view.WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
-//        params.width = screenWidth;
-//        params.height = screenHeight;
-//        dialog.getWindow().setAttributes(params);
     }
 
-    public static void recycle(){
+    public static void recycle() {
         mHandler.removeMessages(0x10);
         if (dialog != null && dialog.isShowing()) {
             dialog.dismiss();
