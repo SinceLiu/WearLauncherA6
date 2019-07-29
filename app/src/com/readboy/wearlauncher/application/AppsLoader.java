@@ -120,6 +120,7 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
         }
     }
 
+    //TODO 获取应用管控列表，移除这些包名
     private void removeControlledPackages(List<ResolveInfo> pacList) {
         List<String> controlledPackagesList = Utils.getControlledPackages(mContext);
         if (controlledPackagesList == null || controlledPackagesList.size() == 0) {

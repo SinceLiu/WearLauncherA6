@@ -21,6 +21,7 @@ import android.service.notification.StatusBarNotification;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.telecom.TelecomManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -58,7 +59,7 @@ public class NotificationMonitor extends NotificationListenerService {
 
     public static final int CREATE_WINDOW = 0;
     public static final int REMOVE_WINDOW = 1;
-    private boolean isNotificationEnabled = false;
+    private boolean isNotificationEnabled = true;
 
     private LocalBroadcastManager mLocalBroadcastManager;
     private NotificationMonitorReceiver mReceiver = new NotificationMonitorReceiver();
@@ -145,7 +146,7 @@ public class NotificationMonitor extends NotificationListenerService {
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
-        if (sbn == null) {
+        if (sbn == null || shouldFilterOut(sbn)) {
             return;
         }
         logNLS("onNotificationPosted: key = " + sbn.getKey());
@@ -156,9 +157,7 @@ public class NotificationMonitor extends NotificationListenerService {
 
         mNotificationList.clear();
         mNotificationList.add(sbn);
-        if (shouldFilterOut(sbn)) {
-            return;
-        }
+
         ReadboyWearManager rwm = (ReadboyWearManager) getSystemService(Context.RBW_SERVICE);
         boolean isEnable = rwm.isClassForbidOpen();
         //上课禁用、priority小于等于low不亮屏
@@ -188,7 +187,7 @@ public class NotificationMonitor extends NotificationListenerService {
 
     @Override
     public void onNotificationRemoved(StatusBarNotification sbn) {
-        if (sbn == null) {
+        if (sbn == null || shouldFilterOut(sbn)) {
             return;
         }
         logNLS("onNotificationRemoved: key = " + sbn.getKey());
@@ -410,15 +409,16 @@ public class NotificationMonitor extends NotificationListenerService {
             mTimeView = (DateTimeView) itemView.findViewById(R.id.content_time);
             mContentView = (TextView) itemView.findViewById(R.id.content_text);
             View parent = itemView.findViewById(R.id.item_float_notification_parent);
-            ReadboyWearManager rwm = (ReadboyWearManager) getSystemService(Context.RBW_SERVICE);
-            boolean isEnable = rwm.isClassForbidOpen();
-            //上课禁用时不能点击
-            if (isEnable) {
-                return;
-            }
+
             parent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    //上课禁用、低电、通话中、挂失时不能点击
+                    ReadboyWearManager rwm = (ReadboyWearManager) getSystemService(Context.RBW_SERVICE);
+                    if (rwm.isClassForbidOpen() || rwm.isLowPowerMode() || isInCall()
+                            || (rwm.getPersonalInfo() != null && rwm.getPersonalInfo().getLost() == 1)) {
+                        return;
+                    }
                     final StatusBarNotification sbn = mStatusBarNotification;
                     if (sbn == null) {
                         Log.e(TAG, "NotificationClicker called on an unclickable notification,");
@@ -478,5 +478,11 @@ public class NotificationMonitor extends NotificationListenerService {
                     PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "bright");
             wakeLock.acquire(1000);  //点亮屏幕
         }
+    }
+
+    //通话中
+    public boolean isInCall() {
+        TelecomManager tm = (TelecomManager) getSystemService(Context.TELECOM_SERVICE);
+        return tm.isInCall();
     }
 }

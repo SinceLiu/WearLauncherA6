@@ -2,6 +2,7 @@ package com.readboy.wearlauncher.notification;
 
 import android.app.Activity;
 import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.readboy.ReadboyWearManager;
 import android.app.readboy.PersonalInfo;
@@ -83,6 +84,7 @@ public class NotificationActivity extends Activity {
 
     private IStatusBarService mBarService;
     private boolean isSendTo = false;
+    NotificationManager mNotificationManager;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -229,6 +231,7 @@ public class NotificationActivity extends Activity {
             Log.e(TAG, "initData: NotificationMonitor == null");
             showNoMsgView();
         }
+        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
     }
 
     @Override
@@ -339,11 +342,21 @@ public class NotificationActivity extends Activity {
         if (sbn != null && !filterNotification(sbn)) {
 //            NotificationMonitor.cancelNotificationByKey(sbn.getKey());
             try {
-                mBarService.onNotificationClear(
-                        sbn.getPackageName(),
-                        sbn.getTag(),
-                        sbn.getId(),
-                        sbn.getUser().myUserId());
+                 if (mBarService != null) {
+                     mBarService.onNotificationClear(
+                         sbn.getPackageName(),
+                         sbn.getTag(),
+                         sbn.getId(),
+                         sbn.getUser().myUserId());
+                 } else {
+                     mNotificationManager.onNotificationClear(
+                         sbn.getPackageName(),
+                         sbn.getTag(),
+                         sbn.getId(),
+                         sbn.getUser().myUserId());
+                 }
+
+                
             } catch (android.os.RemoteException ex) {
                 // oh well
                 Log.e(TAG, "cancelNotification: ex : " + ex.toString());
@@ -355,7 +368,12 @@ public class NotificationActivity extends Activity {
     private void clickNotification(StatusBarNotification sbn) {
         if (sbn != null) {
             try {
-                mBarService.onNotificationClick(sbn.getKey());
+                if (mBarService != null) {
+                    mBarService.onNotificationClick(sbn.getKey());
+                } else {
+                   mNotificationManager.onNotificationClick(sbn.getKey()); 
+                }
+                
             } catch (RemoteException e) {
                 e.printStackTrace();
                 Log.e(TAG, "clickNotification: e = " + e.toString());
@@ -605,9 +623,6 @@ public class NotificationActivity extends Activity {
             final int N = mNotificationsMap.size();
             for (int i = 0; i < N; i++) {
                 StatusBarNotification sbn = mNotificationsMap.valueAt(i);
-                if (shouldFilterOut(sbn)) {
-                    continue;
-                }
                 if (isPkgControlled(sbn.getPackageName())) {
                     cancelNotification(sbn);
                     continue;
@@ -682,7 +697,12 @@ public class NotificationActivity extends Activity {
                         try {
                             intent.send();
                             isSendTo = true;
-                            mBarService.onNotificationClick(notificationKey);
+                            if (mBarService != null) {
+                                mBarService.onNotificationClick(notificationKey);
+                            } else {
+                                mNotificationManager.onNotificationClick(notificationKey); 
+                            }
+                            
                             cancelNotification(mStatusBarNotification);
                         } catch (PendingIntent.CanceledException e) {
                             Log.e(TAG, "Sending contentIntent failed: " + e);
@@ -824,8 +844,8 @@ public class NotificationActivity extends Activity {
             return info.isAppCtrl(true, "rtc");
         }
         // thirdparty
-        if(pkg.equals("com.readboy.wearlauncher")){
-            return info.isAppCtrl(false,"com.tencent.qqlite");
+        if (pkg.equals("com.readboy.wearlauncher")) {
+            return info.isAppCtrl(false, "com.tencent.qqlite");
         }
         return info.isAppCtrl(false, pkg);
     }

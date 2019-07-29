@@ -359,24 +359,32 @@ public class Utils {
             JSONObject systemAppObject = jsonObject.optJSONObject("system");
             if (systemAppObject != null) {
                 JSONObject reciteWordsObject = systemAppObject.optJSONObject("reciteWords");
-                String reciteWords = reciteWordsObject.optString(ENABLED);
-                if ("0".equals(reciteWords)) {
-                    packagesList.add("com.readboy.wordstudy");
+                if (reciteWordsObject != null) {
+                    String reciteWords = reciteWordsObject.optString(ENABLED);
+                    if ("0".equals(reciteWords)) {
+                        packagesList.add("com.readboy.wordstudy");
+                    }
                 }
                 JSONObject smsObject = systemAppObject.optJSONObject("sms");
-                String sms = smsObject.optString(ENABLED);
-                if ("0".equals(sms)) {
-                    packagesList.add("com.android.mms");
+                if (smsObject != null) {
+                    String sms = smsObject.optString(ENABLED);
+                    if ("0".equals(sms)) {
+                        packagesList.add("com.android.mms");
+                    }
                 }
                 JSONObject shakeObject = systemAppObject.optJSONObject("shake");
-                String shake = shakeObject.optString(ENABLED);
-                if ("0".equals(shake)) {
-                    packagesList.add("com.readboy.findfriend");
+                if (shakeObject != null) {
+                    String shake = shakeObject.optString(ENABLED);
+                    if ("0".equals(shake)) {
+                        packagesList.add("com.readboy.findfriend");
+                    }
                 }
                 JSONObject stepsObject = systemAppObject.optJSONObject("steps");
-                String steps = stepsObject.optString(ENABLED);
-                if ("0".equals(steps)) {
-                    packagesList.add("com.readboy.pedometer");
+                if (stepsObject != null) {
+                    String steps = stepsObject.optString(ENABLED);
+                    if ("0".equals(steps)) {
+                        packagesList.add("com.readboy.pedometer");
+                    }
                 }
             }
             JSONObject thirdpartyAppObject = jsonObject.optJSONObject("thirdparty");

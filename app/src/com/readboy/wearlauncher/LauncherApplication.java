@@ -22,6 +22,7 @@ import com.readboy.wearlauncher.location.LocationControllerImpl;
 import com.readboy.wearlauncher.alarm.AlarmController;
 import com.readboy.wearlauncher.bluetooth.BluetoothController;
 import com.readboy.wearlauncher.net.NetworkController;
+import com.readboy.wearlauncher.notification.RingtonePlayer;
 import com.readboy.wearlauncher.utils.QQReceiver;
 import com.readboy.wearlauncher.utils.WatchController;
 import com.readboy.wearlauncher.view.IconCache;
@@ -56,6 +57,7 @@ public class LauncherApplication extends Application {
         mLocationControllerImpl = new LocationControllerImpl(this);
         mQQReceiver = new QQReceiver(this);
         mWatchController = new WatchController(this);
+        new RingtonePlayer(this);
     }
 
     /**
