@@ -2,7 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <corners android:radius="10px" />
+    <corners android:radius="@dimen/bg_item_notification_layer2_radius" />
     <solid android:color="@color/black_light" />
 
 </shape>

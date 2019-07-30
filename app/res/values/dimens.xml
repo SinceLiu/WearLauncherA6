@@ -236,9 +236,21 @@
     <dimen name="item_notification_progress_margin_2">5px</dimen>
     <dimen name="item_notification_progress_text_size">15px</dimen>
     <dimen name="item_notification_progress_padding_left">5px</dimen>
+    <dimen name="bg_item_notification_layer1_radius">10px</dimen>
+    <dimen name="bg_item_notification_layer2_radius">10px</dimen>
 
     <!--notification float window-->
+    <dimen name="notification_float_window_width">220px</dimen>
     <dimen name="notification_float_window_height">70px</dimen>
+    <dimen name="notification_float_window_small_icon_width">45px</dimen>
+    <dimen name="notification_float_window_small_icon_margin_left">10px</dimen>
+    <dimen name="notification_float_window_small_icon_margin_top">12px</dimen>
+    <dimen name="notification_float_window_title_margin">8px</dimen>
+    <dimen name="notification_float_window_date_time_margin_top">10px</dimen>
+    <dimen name="notification_float_window_date_time_margin_right">8px</dimen>
+    <dimen name="notification_float_window_date_time_text_size">16px</dimen>
+    <dimen name="notification_float_window_content_text_size">18px</dimen>
+    <dimen name="bg_float_notification_radius">15px</dimen>
 
     <!--status bar-->
     <dimen name="signal_cluster_margin_left">8px</dimen>
@@ -264,6 +276,4 @@
     <dimen name="app_grid_item_height">112px</dimen>
     <dimen name="app_grid_item_margin_top">8px</dimen>
     <dimen name="app_grid_item_drawable_padding">2px</dimen>
-
-
 </resources>

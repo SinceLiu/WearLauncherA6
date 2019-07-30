@@ -84,7 +84,7 @@ public class NotificationActivity extends Activity {
 
     private IStatusBarService mBarService;
     private boolean isSendTo = false;
-    NotificationManager mNotificationManager;
+    private NotificationManager mNotificationManager;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -218,6 +218,7 @@ public class NotificationActivity extends Activity {
         Log.e(TAG, "initData: NotificationMonitor" + NotificationMonitor.getNotificationMonitor());
         mBarService = IStatusBarService.Stub.asInterface(
                 ServiceManager.getService(Context.STATUS_BAR_SERVICE));
+        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (NotificationMonitor.getNotificationMonitor() != null) {
             StatusBarNotification[] datas
                     = NotificationMonitor.getNotificationMonitor().getActiveNotifications();
@@ -231,7 +232,6 @@ public class NotificationActivity extends Activity {
             Log.e(TAG, "initData: NotificationMonitor == null");
             showNoMsgView();
         }
-        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
     }
 
     @Override
@@ -355,8 +355,6 @@ public class NotificationActivity extends Activity {
                          sbn.getId(),
                          sbn.getUser().myUserId());
                  }
-
-                
             } catch (android.os.RemoteException ex) {
                 // oh well
                 Log.e(TAG, "cancelNotification: ex : " + ex.toString());
@@ -702,7 +700,6 @@ public class NotificationActivity extends Activity {
                             } else {
                                 mNotificationManager.onNotificationClick(notificationKey); 
                             }
-                            
                             cancelNotification(mStatusBarNotification);
                         } catch (PendingIntent.CanceledException e) {
                             Log.e(TAG, "Sending contentIntent failed: " + e);

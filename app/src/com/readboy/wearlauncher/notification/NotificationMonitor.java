@@ -2,6 +2,7 @@
 package com.readboy.wearlauncher.notification;
 
 import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.readboy.ReadboyWearManager;
 import android.content.BroadcastReceiver;
@@ -75,7 +76,9 @@ public class NotificationMonitor extends NotificationListenerService {
     private WindowManager mWindowManager;
     private SwipeMenuRecyclerView mFloatNotificationWindow;
     private IStatusBarService mBarService;
+    private NotificationManager mNotificationManager;
     private long mDuration = 3000;
+    private float mZoom;
 
     class NotificationMonitorReceiver extends BroadcastReceiver {
 
@@ -114,10 +117,12 @@ public class NotificationMonitor extends NotificationListenerService {
         mLocalBroadcastManager = LocalBroadcastManager.getInstance(this);
         mBarService = IStatusBarService.Stub.asInterface(
                 ServiceManager.getService(Context.STATUS_BAR_SERVICE));
+        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mAdapter = new FloatNotificationAdapter(this);
         IntentFilter filter = new IntentFilter();
         filter.addAction(ACTION_NLS_CONTROL);
         mLocalBroadcastManager.registerReceiver(mReceiver, filter);
+        mZoom = getResources().getDisplayMetrics().widthPixels / 240.0f;
     }
 
     @Override
@@ -244,12 +249,12 @@ public class NotificationMonitor extends NotificationListenerService {
         mFloatNotificationWindow.setLayoutManager(
                 new MyLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         params.type = WindowManager.LayoutParams.TYPE_PHONE;
-        params.width = 220;
-        params.height = 70;
+        params.width = (int) (220 * mZoom);
+        params.height = (int) (70 * mZoom);
         params.gravity = Gravity.TOP | Gravity.CENTER_HORIZONTAL;
         params.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
         params.format = PixelFormat.RGBA_8888;
-        params.y = 10;
+        params.y = (int) (10 * mZoom);
         params.windowAnimations = R.style.NotifcationAnimation;
         mFloatNotificationWindow.setBackgroundColor(getResources().getColor(R.color.transparent));
         mFloatNotificationWindow.setAdapter(mAdapter);
@@ -315,11 +320,19 @@ public class NotificationMonitor extends NotificationListenerService {
         if (sbn != null) {
 //            NotificationMonitor.cancelNotificationByKey(sbn.getKey());
             try {
-                mBarService.onNotificationClear(
-                        sbn.getPackageName(),
-                        sbn.getTag(),
-                        sbn.getId(),
-                        sbn.getUser().myUserId());
+                if (mBarService != null) {
+                    mBarService.onNotificationClear(
+                            sbn.getPackageName(),
+                            sbn.getTag(),
+                            sbn.getId(),
+                            sbn.getUser().myUserId());
+                } else {
+                    mNotificationManager.onNotificationClear(
+                            sbn.getPackageName(),
+                            sbn.getTag(),
+                            sbn.getId(),
+                            sbn.getUser().myUserId());
+                }
             } catch (android.os.RemoteException ex) {
                 // oh well
                 Log.e(TAG, "cancelNotification: ex : " + ex.toString());
@@ -429,7 +442,11 @@ public class NotificationMonitor extends NotificationListenerService {
                     if (intent != null) {
                         try {
                             intent.send();
-                            mBarService.onNotificationClick(notificationKey);
+                            if (mBarService != null) {
+                                mBarService.onNotificationClick(notificationKey);
+                            } else {
+                                mNotificationManager.onNotificationClick(notificationKey);
+                            }
                             cancelNotification(mStatusBarNotification);
                         } catch (PendingIntent.CanceledException e) {
                             Log.e(TAG, "Sending contentIntent failed: " + e);

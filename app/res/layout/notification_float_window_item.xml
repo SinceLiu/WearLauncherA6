@@ -2,38 +2,38 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_float_notification_parent"
-    android:layout_width="220px"
-    android:layout_height="70px"
+    android:layout_width="@dimen/notification_float_window_width"
+    android:layout_height="@dimen/notification_float_window_height"
     android:background="@drawable/bg_float_notification">
     <ImageView
         android:id="@+id/small_icon"
-        android:layout_width="45px"
-        android:layout_height="45px"
-        android:layout_marginLeft="10px"
-        android:layout_marginTop="12.5px"/>
+        android:layout_width="@dimen/notification_float_window_small_icon_width"
+        android:layout_height="@dimen/notification_float_window_small_icon_width"
+        android:layout_marginLeft="@dimen/notification_float_window_small_icon_margin_left"
+        android:layout_marginTop="@dimen/notification_float_window_small_icon_margin_top"/>
 
     <TextView
         android:id="@+id/content_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8px"
-        android:layout_marginTop="8px"
+        android:layout_marginLeft="@dimen/notification_float_window_title_margin"
+        android:layout_marginTop="@dimen/notification_float_window_title_margin"
         android:layout_toRightOf="@+id/small_icon"
         android:maxLines="1"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:textSize="18px"
+        android:textSize="@dimen/notification_float_window_content_text_size"
         tools:text="未接来电" />
 
     <com.readboy.wearlauncher.notification.DateTimeView
         android:id="@+id/content_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10px"
-        android:layout_marginRight="8px"
+        android:layout_marginTop="@dimen/notification_float_window_date_time_margin_top"
+        android:layout_marginRight="@dimen/notification_float_window_date_time_margin_right"
         android:layout_alignParentRight="true"
         android:textColor="@color/gray_dark"
-        android:textSize="16px"
+        android:textSize="@dimen/notification_float_window_date_time_text_size"
         tools:text="09:30" />
 
     <TextView
@@ -45,7 +45,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/gray_dark"
-        android:textSize="18px"
+        android:textSize="@dimen/notification_float_window_content_text_size"
         tools:text="1868888666" />
 
 </RelativeLayout>
