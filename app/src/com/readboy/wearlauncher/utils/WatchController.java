@@ -13,6 +13,7 @@ import android.provider.CallLog;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
+
 import com.readboy.wetalk.utils.WTContactUtils;
 
 import org.json.JSONArray;
@@ -80,7 +81,6 @@ public class WatchController extends BroadcastReceiver {
             "September", "October", "November", "December"};
 
     Context mContext;
-    private String mClassDisableData;
     int mStepCount;
     int mMissCallCount;
     int mMissWetalkCount;
@@ -93,15 +93,9 @@ public class WatchController extends BroadcastReceiver {
     private ArrayList<DateChangedCallback> mDateChangedCallback = new ArrayList<>();
 
     public void addDateChangedCallback(DateChangedCallback cb) {
-        if (mDateChangedCallback.contains(cb)) {
-            mDateChangedCallback.remove(cb);
+        if (!mDateChangedCallback.contains(cb)) {
+            mDateChangedCallback.add(cb);
         }
-        mDateChangedCallback.add(cb);
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH) + 1;
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        int week = (calendar.get(Calendar.DAY_OF_WEEK) - 1) % WEEK_NAME_CN_SHORT.length;
         cb.onDateChange();
     }
 
@@ -116,7 +110,9 @@ public class WatchController extends BroadcastReceiver {
     private ArrayList<StepChangedCallback> mStepChangedCallback = new ArrayList<>();
 
     public void addStepChangedCallback(StepChangedCallback cb) {
-        mStepChangedCallback.add(cb);
+        if (!mStepChangedCallback.contains(cb)) {
+            mStepChangedCallback.add(cb);
+        }
         cb.onStepChange(mStepCount);
     }
 
@@ -154,7 +150,9 @@ public class WatchController extends BroadcastReceiver {
     private ArrayList<WeTalkUnreadChangedCallback> mWeTalkUnreadChangedCallback = new ArrayList<>();
 
     public void addWeTalkUnreadChangedCallback(WeTalkUnreadChangedCallback cb) {
-        mWeTalkUnreadChangedCallback.add(cb);
+        if (!mWeTalkUnreadChangedCallback.contains(cb)) {
+            mWeTalkUnreadChangedCallback.add(cb);
+        }
         cb.onWeTalkUnreadChanged(mMissWetalkCount);
     }
 
@@ -169,7 +167,9 @@ public class WatchController extends BroadcastReceiver {
     private ArrayList<WeatherChangedCallback> mWeatherChangedCallback = new ArrayList<>();
 
     public void addWeatherChangedCallback(WeatherChangedCallback cb) {
-        mWeatherChangedCallback.add(cb);
+        if (!mWeatherChangedCallback.contains(cb)) {
+            mWeatherChangedCallback.add(cb);
+        }
         cb.onWeatherChanged(mWeatherCode);
     }
 
@@ -184,7 +184,9 @@ public class WatchController extends BroadcastReceiver {
     private ArrayList<ClassDisableChangedCallback> mClassDisableChangedCallback = new ArrayList<>();
 
     public void addClassDisableChangedCallback(ClassDisableChangedCallback cb) {
-        mClassDisableChangedCallback.add(cb);
+        if (!mClassDisableChangedCallback.contains(cb)) {
+            mClassDisableChangedCallback.add(cb);
+        }
         /*boolean show = !TextUtils.isEmpty(mClassDisableData) && isNowEnable();*/
         ReadboyWearManager rwm = (ReadboyWearManager) mContext.getSystemService(Context.RBW_SERVICE);
         boolean show = rwm.isClassForbidOpen();
@@ -215,7 +217,9 @@ public class WatchController extends BroadcastReceiver {
     private ArrayList<AppControlledChangedback> mAppControlledChangedback = new ArrayList<>();
 
     public void addAppControlledChangedback(AppControlledChangedback cb) {
-        mAppControlledChangedback.add(cb);
+        if (!mAppControlledChangedback.contains(cb)) {
+            mAppControlledChangedback.add(cb);
+        }
         cb.onAppControlledChange();
     }
 
@@ -281,7 +285,6 @@ public class WatchController extends BroadcastReceiver {
         getMissCallCount();
         getAllContactsUnreadCount(mContext);
         mStepCount = getSteps();
-        mClassDisableData = getClassdisabledData(mContext);
     }
 
     public int getSteps() {
@@ -354,77 +357,11 @@ public class WatchController extends BroadcastReceiver {
         }
     }
 
-    public boolean isNowEnable() {
-        long time = System.currentTimeMillis();
-        return isTimeEnable(mClassDisableData, time);
-    }
-
-    public boolean isTimeEnable(String data, long time) {
-        boolean isEnable = false;
-        boolean isWeekEnable = false;
-        boolean isTimeEnable = false;
-        boolean isSingleTime = false;
-        try {
-            Date date = new Date(time);
-            long startSetTime = Settings.Global.getLong(mContext.getContentResolver(), TAG_CLASS_DISABLED_TIME, 0);
-            Date startSetData = new Date(startSetTime);
-            boolean isSameDay = isSameDay(date, startSetData);
-            int week = (date.getDay() + 6) % 7;
-            week = 1 << (6 - week);
-            JSONObject jsonObject = new JSONObject(data);
-            isEnable = jsonObject.optBoolean("enabled", false);
-            String repeatStr = jsonObject.optString("repeat", "0000000");
-            int repeatWeek = Integer.parseInt(repeatStr, 2);
-            Log.d(TAG, "week:" + week + ", repeatWeek:" + repeatWeek);
-            isSingleTime = isSameDay && (repeatWeek == 0);
-            isWeekEnable = (week & repeatWeek) != 0;
-            JSONArray jsonArray = jsonObject.optJSONArray("time");
-            int length = jsonArray.length();
-            for (int i = 0; i < length; i++) {
-                JSONObject jsonSun = jsonArray.getJSONObject(i);
-                String startTime = jsonSun.optString("start", "00:00");
-                String endTime = jsonSun.optString("end", "00:00");
-                String nowTime = mDateFormat.format(date);
-                Date date1 = mDateFormat.parse(startTime.trim());
-                Date date2 = mDateFormat.parse(endTime.trim());
-                Date dateNow = mDateFormat.parse(nowTime.trim());
-                Log.d(TAG, "startTime:" + startTime + ", endTime:" + endTime + ", nowTime:" + nowTime);
-                if (dateNow.getTime() >= date1.getTime() && dateNow.getTime() < date2.getTime()) {
-                    isTimeEnable = true;
-                    break;
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Log.d(TAG, "isEnable:" + isEnable + ", isWeekEnable:" + isWeekEnable + ", isTimeEnable:" + isTimeEnable + ", isSingleTime:" + isSingleTime);
-        return isEnable && (isWeekEnable || isSingleTime) && isTimeEnable;
-    }
-
-    public boolean isSameDay(Date day1, Date day2) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String ds1 = sdf.format(day1);
-        String ds2 = sdf.format(day2);
-        if (ds1.equals(ds2)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public String getClassdisabledData(Context context) {
-//        String s = "{\"repeat\":\"1111101\",\"time\":[{\"start\":\"02:00\",\"end\":\"12:00\"},{\"start\":\"14:00\",\"end\":\"17:30\"}],\"enabled\":false}";
-//        return s;
-        return Settings.Global.getString(context.getContentResolver(), TAG_CLASS_DISABLED);
-    }
-
     private final ContentObserver sMissCallObserver = new ContentObserver(new Handler()) {
+        @Override
         public void onChange(boolean selfChange) {
             new Thread(new Runnable() {
+                @Override
                 public void run() {
                     synchronized (LOCK) {
                         int phoneCount = getMissCallCount();
@@ -437,8 +374,10 @@ public class WatchController extends BroadcastReceiver {
     };
 
     private final ContentObserver sMissWeTalkObserver = new ContentObserver(new Handler()) {
+        @Override
         public void onChange(boolean selfChange) {
             new Thread(new Runnable() {
+                @Override
                 public void run() {
                     synchronized (LOCK) {
                         int num = getAllContactsUnreadCount(mContext);
@@ -451,8 +390,10 @@ public class WatchController extends BroadcastReceiver {
     };
 
     private final ContentObserver sWeatherObserver = new ContentObserver(new Handler()) {
+        @Override
         public void onChange(boolean selfChange) {
             new Thread(new Runnable() {
+                @Override
                 public void run() {
                     synchronized (LOCK) {
                         Log.e("lxx", "weather:onChange()");
@@ -519,7 +460,6 @@ public class WatchController extends BroadcastReceiver {
             mStepCount = steps;
             fireStepChanged();
         } else if (TextUtils.equals(action, READBOY_ACTION_CLASS_DISABLE_CHANGED)) {
-            mClassDisableData = Settings.Global.getString(context.getContentResolver(), TAG_CLASS_DISABLED);
             classDisableChanged();
         } else if (TextUtils.equals(action, Intent.ACTION_SCREEN_OFF)) {
             if (mScreenOffListener != null) {

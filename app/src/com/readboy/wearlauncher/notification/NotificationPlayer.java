@@ -131,13 +131,13 @@ public class NotificationPlayer implements OnCompletionListener, OnErrorListener
                     //  command are issued, and on which it receives the completion callbacks.
                     if (DEBUG)  { Log.d(mTag, "notification will be delayed by "
                             + mNotificationRampTimeMs + "ms"); }
-                    try {
-                        Thread.sleep(mNotificationRampTimeMs);
+//                    try {
+//                        Thread.sleep(mNotificationRampTimeMs);
                         player.start();
-                    } catch (InterruptedException e) {
-                        Log.e(mTag, "Exception while sleeping to sync notification playback"
-                                + " with ducking", e);
-                    }
+//                    } catch (InterruptedException e) {
+//                        Log.e(mTag, "Exception while sleeping to sync notification playback"
+//                                + " with ducking", e);
+//                    }
                     if (DEBUG) { Log.d(mTag, "player.start"); }
                     if (mPlayer != null) {
                         if (DEBUG) { Log.d(mTag, "mPlayer.release"); }

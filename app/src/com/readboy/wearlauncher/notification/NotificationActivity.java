@@ -105,10 +105,7 @@ public class NotificationActivity extends Activity {
         initAlarmController();
         //net wifi
         initNetController();
-
 //        initGPSController();
-
-//        initClassDisable();
     }
 
     private void assignView() {
@@ -122,9 +119,9 @@ public class NotificationActivity extends Activity {
         });
 
         mNoDataView = findViewById(R.id.no_data_parent);
-        mNoDataImageView = findViewById(R.id.no_data_animation);
+        mNoDataImageView = (ImageView) findViewById(R.id.no_data_animation);
         mNoDataAnimation = (AnimationDrawable) mNoDataImageView.getBackground();
-        classDisableView = findViewById(R.id.iv_class_disable);
+        classDisableView = (ImageView) findViewById(R.id.iv_class_disable);
         initRecyclerView();
         hideOrShowClassDisableView();
 
@@ -240,6 +237,7 @@ public class NotificationActivity extends Activity {
         if (!isSendTo) {
             finish();
         }
+        isSendTo = false;
         exit();
     }
 
@@ -342,19 +340,19 @@ public class NotificationActivity extends Activity {
         if (sbn != null && !filterNotification(sbn)) {
 //            NotificationMonitor.cancelNotificationByKey(sbn.getKey());
             try {
-                 if (mBarService != null) {
-                     mBarService.onNotificationClear(
-                         sbn.getPackageName(),
-                         sbn.getTag(),
-                         sbn.getId(),
-                         sbn.getUser().myUserId());
-                 } else {
-                     mNotificationManager.onNotificationClear(
-                         sbn.getPackageName(),
-                         sbn.getTag(),
-                         sbn.getId(),
-                         sbn.getUser().myUserId());
-                 }
+                if (mBarService != null) {
+                    mBarService.onNotificationClear(
+                            sbn.getPackageName(),
+                            sbn.getTag(),
+                            sbn.getId(),
+                            sbn.getUser().myUserId());
+                } else {
+                    mNotificationManager.onNotificationClear(
+                            sbn.getPackageName(),
+                            sbn.getTag(),
+                            sbn.getId(),
+                            sbn.getUser().myUserId());
+                }
             } catch (android.os.RemoteException ex) {
                 // oh well
                 Log.e(TAG, "cancelNotification: ex : " + ex.toString());
@@ -369,9 +367,9 @@ public class NotificationActivity extends Activity {
                 if (mBarService != null) {
                     mBarService.onNotificationClick(sbn.getKey());
                 } else {
-                   mNotificationManager.onNotificationClick(sbn.getKey()); 
+                    mNotificationManager.onNotificationClick(sbn.getKey());
                 }
-                
+
             } catch (RemoteException e) {
                 e.printStackTrace();
                 Log.e(TAG, "clickNotification: e = " + e.toString());
@@ -466,7 +464,7 @@ public class NotificationActivity extends Activity {
         mAdapter.removeItem(notification);
         if (mAdapter.getItemCount() == 0) {
             showNoMsgView();
-            //A6还有状态栏，不自动关闭消息盒子
+            //还有状态栏，不自动关闭消息盒子
 //            finish();
         }
     }
@@ -698,7 +696,7 @@ public class NotificationActivity extends Activity {
                             if (mBarService != null) {
                                 mBarService.onNotificationClick(notificationKey);
                             } else {
-                                mNotificationManager.onNotificationClick(notificationKey); 
+                                mNotificationManager.onNotificationClick(notificationKey);
                             }
                             cancelNotification(mStatusBarNotification);
                         } catch (PendingIntent.CanceledException e) {

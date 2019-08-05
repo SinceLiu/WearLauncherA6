@@ -82,7 +82,6 @@ public class ClassForbidUtils {
             }
             am.forceStopPackageAsUser(pkgName, UserHandle.CURRENT.getIdentifier());
         }
-
     }
 
     private static boolean hasClassForbidCategory(ActivityManager.RunningAppProcessInfo info, PackageManager pm) {

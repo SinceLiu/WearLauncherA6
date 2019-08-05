@@ -74,7 +74,6 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
     public static final int POSITION_WETALK_PAGE = POSITION_MAIN_PAGE + 1;
     public static final String ACTION_CLASS_DISABLE_STATUS_CHANGED = "android.intent.action.CLASS_DISABLE_STATUS_CHANGED";
     public static final String ACTION_APPCTRL_UPDATE_NOTIFICATION = "readboy.action.APPCTRL_UPDATE_NOTIFICATION";
-    private static final int TURN_TO_MAIN_PAGE = 0x10;
     private static final int WAIT_IRWS = 0x11;
     private LocalBroadcastManager mLocalBroadcastManager;
 
@@ -167,10 +166,6 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
                             bIsContactsOverScroll = true;
                         }
                     }
-                }
-                if (bIsClassDisable && position != POSITION_MAIN_PAGE) {
-                    mHandler.removeMessages(TURN_TO_MAIN_PAGE);
-                    mHandler.sendEmptyMessageDelayed(TURN_TO_MAIN_PAGE, 1000 * 2);
                 }
             }
 
@@ -430,8 +425,6 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
                         Utils.checkAndDealWithAirPlanMode(Launcher.this);
                     }
                 }, 1000);
-            } else {
-                mHandler.removeMessages(TURN_TO_MAIN_PAGE);
             }
             //通知通知栏
             Intent intent = new Intent(ACTION_CLASS_DISABLE_STATUS_CHANGED);
@@ -586,11 +579,6 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case TURN_TO_MAIN_PAGE:
-                    if (mGestureView != null && mGestureView.getVisibility() == View.VISIBLE && mViewpager.getCurrentItem() != POSITION_MAIN_PAGE) {
-                        mViewpager.setCurrentItem(POSITION_MAIN_PAGE);
-                    }
-                    break;
                 case WAIT_IRWS:
                     waitIRWS();
                     break;

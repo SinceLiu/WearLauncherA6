@@ -55,7 +55,6 @@ public class NotificationMonitor extends NotificationListenerService {
     public static final String COMMAND_REMOVED = "removed";
     public static final String COMMAND_POSTED = "posted";
 
-    public static final String ACTION_NLS_CONTROL = "com.readboy.notificationlistener.NLSCONTROL";
     public static final String ACTION_NLS_UPDATE = "com.readboy.notificationlistener.UPDATE";
 
     public static final int CREATE_WINDOW = 0;
@@ -63,7 +62,6 @@ public class NotificationMonitor extends NotificationListenerService {
     private boolean isNotificationEnabled = true;
 
     private LocalBroadcastManager mLocalBroadcastManager;
-    private NotificationMonitorReceiver mReceiver = new NotificationMonitorReceiver();
 
     public static NotificationMonitor INSTANCE;
 
@@ -80,35 +78,6 @@ public class NotificationMonitor extends NotificationListenerService {
     private long mDuration = 3000;
     private float mZoom;
 
-    class NotificationMonitorReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action;
-            if (intent != null && intent.getAction() != null) {
-                action = intent.getAction();
-                if (action.equals(ACTION_NLS_CONTROL)) {
-                    String command = intent.getStringExtra("command");
-
-                    if (TextUtils.equals(command, "cancel") && !TextUtils.isEmpty(intent.getStringExtra("key"))) {
-                        String key = intent.getStringExtra("key");
-                        Log.e(TAG, "onReceive: cancel notification key = " + key);
-                        cancelNotification(key);
-                    } else if (TextUtils.equals(command, "clearall")) {
-                        NotificationMonitor.this.cancelAllNotifications();
-                    } else if (TextUtils.equals(command, "list")) {
-//                        for (StatusBarNotification sbn : NotificationMonitor.this.getActiveNotifications()) {
-//                            Intent intent1 = new  Intent(ACTION_NLS_UPDATE);
-//                            intent1.putExtra("command","list");
-//                            intent1.putExtra("sbn",sbn);
-//                            sendBroadcast(intent1);
-//                        }
-                    }
-                }
-            }
-        }
-    }
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -119,16 +88,12 @@ public class NotificationMonitor extends NotificationListenerService {
                 ServiceManager.getService(Context.STATUS_BAR_SERVICE));
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mAdapter = new FloatNotificationAdapter(this);
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(ACTION_NLS_CONTROL);
-        mLocalBroadcastManager.registerReceiver(mReceiver, filter);
         mZoom = getResources().getDisplayMetrics().widthPixels / 240.0f;
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mLocalBroadcastManager.unregisterReceiver(mReceiver);
     }
 
     @Override

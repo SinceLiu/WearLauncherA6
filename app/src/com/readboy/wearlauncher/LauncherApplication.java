@@ -17,6 +17,7 @@
 package com.readboy.wearlauncher;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.readboy.wearlauncher.location.LocationControllerImpl;
 import com.readboy.wearlauncher.alarm.AlarmController;
