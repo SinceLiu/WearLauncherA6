@@ -11,7 +11,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
-import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -112,7 +111,6 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
     private int mBatteryLevel = -1;
     private boolean bIsSleeping = false;
     private boolean bIsAirPlaneModeChangedBySleep = false;
-    private boolean bIsWifiOpen = false;
     private boolean bIsClassDisable = false;
     private boolean bIsLost = false;
     private boolean bIsMomentControlled = false;
@@ -121,7 +119,6 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
     private boolean bIsContactsOverScroll;
     private boolean bIsSpi;
     private TelephonyManager mTelephonyManager;
-    private WifiManager mWifiManager;
     private AlarmManager mAlarmManager;
     private Calendar openSleepingModeCalendar;
     private Calendar closeSleepingModeCalendar;
@@ -143,7 +140,6 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
 
         mViewpager = (MyViewPager) findViewById(R.id.viewpager);
         mTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        mWifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         mAlarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         mLocalBroadcastManager = LocalBroadcastManager.getInstance(this);
         ViewConfiguration configuration = ViewConfiguration.get(Launcher.this);
@@ -907,20 +903,9 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         if (!bIsAirPlaneModeChangedBySleep) {
             return;
         }
-//        Settings.Global.putInt(getContentResolver(), Settings.Global.AIRPLANE_MODE_ON, open ? 1 : 0);
-//        Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
-//        intent.putExtra("state", open);
-//        sendBroadcastAsUser(intent, UserHandle.ALL);
-        mTelephonyManager.setDataEnabled(!open);
-        if (open) {
-            if (mWifiManager.isWifiEnabled()) {
-                bIsWifiOpen = true;
-                mWifiManager.setWifiEnabled(false);
-            } else {
-                bIsWifiOpen = false;
-            }
-        } else if (bIsWifiOpen) {
-            mWifiManager.setWifiEnabled(true);
-        }
+        Settings.Global.putInt(getContentResolver(), Settings.Global.AIRPLANE_MODE_ON, open ? 1 : 0);
+        Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+        intent.putExtra("state", open);
+        sendBroadcastAsUser(intent, UserHandle.ALL);
     }
 }
