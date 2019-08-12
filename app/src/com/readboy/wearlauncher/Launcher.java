@@ -111,6 +111,7 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
     BatteryController mBatteryController;
     private int mBatteryLevel = -1;
     private boolean bIsSleeping = false;
+    private boolean bIsAirPlaneModeChangedBySleep = false;
     private boolean bIsWifiOpen = false;
     private boolean bIsClassDisable = false;
     private boolean bIsLost = false;
@@ -615,7 +616,12 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         if (bIsSleeping) {
             showSleepView();
             ClassForbidUtils.killRecentTask(this);
-            changeAirPlaneMode(true);
+            if (!Utils.isAirplaneModeOn(this)) {
+                bIsAirPlaneModeChangedBySleep = true;
+                changeAirPlaneMode(true);
+            } else {
+                bIsAirPlaneModeChangedBySleep = false;
+            }
         }
     }
 
@@ -898,6 +904,9 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
     }
 
     public void changeAirPlaneMode(boolean open) {
+        if (!bIsAirPlaneModeChangedBySleep) {
+            return;
+        }
 //        Settings.Global.putInt(getContentResolver(), Settings.Global.AIRPLANE_MODE_ON, open ? 1 : 0);
 //        Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
 //        intent.putExtra("state", open);
