@@ -16,6 +16,14 @@
     </com.readboy.wearlauncher.view.GestureView>
 
     <ViewStub
+        android:id="@+id/id_sleep"
+        android:inflatedId="@+id/sleep"
+        android:layout="@layout/dialtype_o_layout_sleep"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <ViewStub
         android:id="@+id/id_low"
         android:inflatedId="@+id/low"
         android:layout="@layout/dialtype_o_layout_cell"

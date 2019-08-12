@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.readboy.wearlauncher.view.DigitClock xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/digit_clock"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_horizontal"
+	app:dot="false"
+	app:clockType="@integer/dial_type_sleep"
+	>
+	<ImageView
+		android:id="@+id/hour0"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		/>
+	<ImageView
+		android:id="@+id/hour1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="2dp"
+		/>
+	<ImageView
+		android:id="@+id/dot"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="2dp"
+		android:visibility="visible"
+		/>
+	<ImageView
+		android:id="@+id/min0"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="2dp"
+		/>
+	<ImageView
+		android:id="@+id/min1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="2dp"
+		/>
+
+</com.readboy.wearlauncher.view.DigitClock>

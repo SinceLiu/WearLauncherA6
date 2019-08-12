@@ -161,6 +161,21 @@ public class DigitClock extends LinearLayout {
             R.drawable.num_clock_u_minute_9
     };
 
+    //type sleep
+    private int[] clockDrawable_type_sleep = new int[]{
+            R.drawable.num_clock_sleep_0,
+            R.drawable.num_clock_sleep_1,
+            R.drawable.num_clock_sleep_2,
+            R.drawable.num_clock_sleep_3,
+            R.drawable.num_clock_sleep_4,
+            R.drawable.num_clock_sleep_5,
+            R.drawable.num_clock_sleep_6,
+            R.drawable.num_clock_sleep_7,
+            R.drawable.num_clock_sleep_8,
+            R.drawable.num_clock_sleep_9
+    };
+
+
     public DigitClock(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs, 0);
@@ -212,6 +227,7 @@ public class DigitClock extends LinearLayout {
         int TYPE_S = mContext.getResources().getInteger(R.integer.dial_type_s);
         int TYPE_T = mContext.getResources().getInteger(R.integer.dial_type_t);
         int TYPE_U = mContext.getResources().getInteger(R.integer.dial_type_u);
+        int TYPE_SLEEPING = 21;
 
         int currentHour = mHour;
         int currentMinute = mMinutes;
@@ -260,6 +276,12 @@ public class DigitClock extends LinearLayout {
             minImage0.setBackgroundResource(clockDrawable_type_u_minute[min0]);
             minImage1.setBackgroundResource(clockDrawable_type_u_minute[min1]);
             dotImage.setBackgroundResource(R.drawable.num_clock_u_dot);
+        } else if (dialType == TYPE_SLEEPING) {
+            hourImage0.setBackgroundResource(clockDrawable_type_sleep[hour0]);
+            hourImage1.setBackgroundResource(clockDrawable_type_sleep[hour1]);
+            minImage0.setBackgroundResource(clockDrawable_type_sleep[min0]);
+            minImage1.setBackgroundResource(clockDrawable_type_sleep[min1]);
+            dotImage.setBackgroundResource(R.drawable.num_clock_sleep_dot);
         } else {
             hourImage0.setBackgroundResource(clockDrawable_normal[hour0]);
             hourImage1.setBackgroundResource(clockDrawable_normal[hour1]);

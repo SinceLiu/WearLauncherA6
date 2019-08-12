@@ -71,7 +71,7 @@ public class ClassForbidUtils {
             packageNameList.add(info.processName);
         }
 
-        Log.e(TAG, "上课禁用、低电或挂失杀进程：" + packageNameList);
+        Log.e(TAG, "上课禁用、低电、挂失或睡眠杀进程：" + packageNameList);
         for (String pkgName : packageNameList) {
             if ("com.tencent.qqlite".equals(pkgName)) {
                 //取消QQ通知

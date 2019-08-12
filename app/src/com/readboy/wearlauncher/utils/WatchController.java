@@ -10,21 +10,14 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.CallLog;
-import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.readboy.wetalk.utils.WTContactUtils;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 import android.app.readboy.ReadboyWearManager;
 
@@ -39,6 +32,7 @@ public class WatchController extends BroadcastReceiver {
     public static final String TAG_CLASS_DISABLED = "class_disabled";
     public static final String TAG_CLASS_DISABLED_TIME = "class_disable_time";
     public static final String READBOY_ACTION_CLASS_DISABLE_CHANGED = "readboy.action.CLASS_DISABLE_CHANGED";
+    public static final String READBOY_ACTION_SLEEPING_MODE_CHANGED = "readboy.action.SLEEPING_MODE_CHANGED";
     private static final SimpleDateFormat mDateFormat = new SimpleDateFormat("HH:mm");
     //Weather
     public static final String ACTION_WEATHER_RESULT = "com.readboy.wearlauncher.weather.WEATHER_RESULT";
@@ -227,6 +221,23 @@ public class WatchController extends BroadcastReceiver {
         mAppControlledChangedback.remove(cb);
     }
 
+    private ArrayList<SleepingModeChangedCallback> mSleepingModeChangedCallback = new ArrayList<>();
+
+    public interface SleepingModeChangedCallback {
+        void onSleepingModeChange();
+    }
+
+    public void addSleepingModeChangedCallback(SleepingModeChangedCallback cb) {
+        if (!mSleepingModeChangedCallback.contains(cb)) {
+            mSleepingModeChangedCallback.add(cb);
+        }
+        cb.onSleepingModeChange();
+    }
+
+    public void removeSleepingModeChangedCallback(SleepingModeChangedCallback cb) {
+        mSleepingModeChangedCallback.remove(cb);
+    }
+
     public ScreenOff mScreenOffListener;
 
     public void setScreenOffListener(ScreenOff l) {
@@ -261,6 +272,9 @@ public class WatchController extends BroadcastReceiver {
         filter.addAction(ACTION_LOST_CHANGED);
         //app control
         filter.addAction(ACTION_APP_CTRL_CHANGED);
+        //sleeping mode
+        filter.addAction(READBOY_ACTION_SLEEPING_MODE_CHANGED);
+    
         //date
         filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
         filter.addAction(Intent.ACTION_DATE_CHANGED);
@@ -412,13 +426,13 @@ public class WatchController extends BroadcastReceiver {
             int what = msg.what;
             switch (what) {
                 case CALL_MSG_WHAT:
-                    Log.i(TAG, "miss call mun :" + msg.arg1);
+                    Log.i(TAG, "miss call num :" + msg.arg1);
                     for (CallUnreadChangedCallback callback : mCallUnreadChangedCallback) {
                         callback.onCallUnreadChanged(msg.arg1);
                     }
                     return;
                 case WETALK_MSG_WHAT:
-                    Log.i(TAG, "miss wetalk mun :" + msg.arg1);
+                    Log.i(TAG, "miss wetalk num :" + msg.arg1);
                     for (WeTalkUnreadChangedCallback callback : mWeTalkUnreadChangedCallback) {
                         callback.onWeTalkUnreadChanged(+msg.arg1);
                     }
@@ -445,11 +459,6 @@ public class WatchController extends BroadcastReceiver {
         if (TextUtils.equals(action, Intent.ACTION_DATE_CHANGED) ||
                 TextUtils.equals(action, Intent.ACTION_TIMEZONE_CHANGED) ||
                 TextUtils.equals(action, Intent.ACTION_TIME_CHANGED)) {
-            Calendar calendar = Calendar.getInstance();
-            int year = calendar.get(Calendar.YEAR);
-            int month = calendar.get(Calendar.MONTH) + 1;
-            int day = calendar.get(Calendar.DAY_OF_MONTH);
-            int week = (calendar.get(Calendar.DAY_OF_WEEK) - 1) % WEEK_NAME_CN_SHORT.length;
             for (DateChangedCallback callback : mDateChangedCallback) {
                 callback.onDateChange();
             }
@@ -478,6 +487,11 @@ public class WatchController extends BroadcastReceiver {
             Log.e(TAG, "action:" + action);
             for (AppControlledChangedback callback : mAppControlledChangedback) {
                 callback.onAppControlledChange();
+            }
+        } else if (TextUtils.equals(action, READBOY_ACTION_SLEEPING_MODE_CHANGED)) {
+            Log.e(TAG, "action:" + action);
+            for (SleepingModeChangedCallback callback : mSleepingModeChangedCallback) {
+                callback.onSleepingModeChange();
             }
         }
     }

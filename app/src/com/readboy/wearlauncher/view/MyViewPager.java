@@ -65,7 +65,6 @@ public class MyViewPager extends ViewPager {
                 if (dirX < 0) {
                     if (isClassDisabled) {
                         ClassDisableDialog.showClassDisableDialog(getContext());
-                        Utils.checkAndDealWithAirPlanMode(getContext());
                     } else if (currentPosition < getAdapter().getCount() - 1) {
                         setCurrentItem(currentPosition + 1, false);
                     } else {
@@ -74,7 +73,6 @@ public class MyViewPager extends ViewPager {
                 } else if (dirX > 0) {
                     if (isClassDisabled) {
                         ClassDisableDialog.showClassDisableDialog(getContext());
-                        Utils.checkAndDealWithAirPlanMode(getContext());
                     } else if (currentPosition > 0) {
                         setCurrentItem(currentPosition - 1, false);
                     } else {

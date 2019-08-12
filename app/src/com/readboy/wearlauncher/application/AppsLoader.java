@@ -164,6 +164,7 @@ public class AppsLoader extends AsyncTaskLoader<ArrayList<AppInfo>>
                     if (items.get(j).mPackageName.equals(Package_Sort.get(i))) {
                         sort_items.add(items.get(j));
                         items.remove(j);
+                        break;
                     }
                 }
             }

@@ -1,0 +1,29 @@
+<com.readboy.wearlauncher.view.WatchDialTypeSleep xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dial_sleep_moon_margin_top"
+        android:src="@drawable/num_clock_sleep_moon"
+        android:layout_centerHorizontal="true"/>
+
+    <!--time-->
+    <include
+        layout="@layout/digit_clock_sleep_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dial_sleep_time_margin_top" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dial_o_notice_margin_top"
+        android:text="@string/notice_sleep"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp" />
+</com.readboy.wearlauncher.view.WatchDialTypeSleep>

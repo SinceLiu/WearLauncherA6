@@ -2,6 +2,8 @@ package com.readboy.wearlauncher;
 
 import android.Manifest;
 import android.app.ActivityManager;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.readboy.PersonalInfo;
 import android.app.readboy.ReadboyWearManager;
 import android.content.ComponentName;
@@ -16,6 +18,7 @@ import android.os.Message;
 import android.os.PowerManager;
 import android.os.ServiceManager;
 import android.os.IPowerManager;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -58,13 +61,17 @@ import com.android.dialer.app.readboysupport.fragment.ContactsListFragment;
 import com.readboy.mmsupport.fragment.MomentsFragment;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
+import static com.readboy.wearlauncher.utils.WatchController.READBOY_ACTION_SLEEPING_MODE_CHANGED;
+
 public class Launcher extends FragmentActivity implements BatteryController.BatteryStateChangeCallback,
         GestureView.MyGestureListener, WatchController.ClassDisableChangedCallback, WatchController.ScreenOff,
-        WatchController.LostChangedCallback, WatchController.AppControlledChangedback {
+        WatchController.LostChangedCallback, WatchController.AppControlledChangedback, WatchController.SleepingModeChangedCallback {
     public static final String TAG = Launcher.class.getSimpleName();
 
     private LauncherApplication mApplication;
@@ -80,8 +87,10 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
     private GestureView mGestureView;
     private ViewStub mLowViewStub;
     private ViewStub mLossViewStub;
+    private ViewStub mSleepViewStub;
     private DialBaseLayout mLowDialBaseLayout;
     private DialBaseLayout mLossDialBaseLayout;
+    private DialBaseLayout mSleepDialBaseLayout;
     private MyViewPager mViewpager;
     private FragmentAdapter mFragmentAdapter;
     private List<Fragment> mFragmentList;
@@ -100,6 +109,7 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
     WatchController mWatchController;
     BatteryController mBatteryController;
     private int mBatteryLevel = -1;
+    private boolean bIsSleeping = false;
     private boolean bIsClassDisable = false;
     private boolean bIsLost = false;
     private boolean bIsMomentControlled = false;
@@ -108,6 +118,10 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
     private boolean bIsContactsOverScroll;
     private boolean bIsSpi;
     private TelephonyManager mTelephonyManager;
+    private AlarmManager mAlarmManager;
+    private Calendar openSleepingModeCalendar;
+    private Calendar closeSleepingModeCalendar;
+    private PendingIntent sleepPendingIntent;
     private ReadboyWearManager rwm;
     private static final String[] sPermissions = {
             Manifest.permission.READ_CALL_LOG,
@@ -125,6 +139,7 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
 
         mViewpager = (MyViewPager) findViewById(R.id.viewpager);
         mTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        mAlarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         mLocalBroadcastManager = LocalBroadcastManager.getInstance(this);
         ViewConfiguration configuration = ViewConfiguration.get(Launcher.this);
         int touchSlop = configuration.getScaledTouchSlop();
@@ -143,6 +158,7 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
 
         mLowViewStub = (ViewStub) findViewById(R.id.id_low);
         mLossViewStub = (ViewStub) findViewById(R.id.id_loss);
+        mSleepViewStub = (ViewStub) findViewById(R.id.id_sleep);
 
         mViewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -196,12 +212,14 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         mWatchController.setScreenOffListener(this);
         mWatchController.setLostChangedCallback(this);
         mWatchController.addAppControlledChangedback(this);
+        sleepPendingIntent = PendingIntent.getBroadcast(this, 0,
+                new Intent(READBOY_ACTION_SLEEPING_MODE_CHANGED), PendingIntent.FLAG_CANCEL_CURRENT);
+        mWatchController.addSleepingModeChangedCallback(this);
 //        startPowerAnimService();
         //Utils.setFirstBoot(Launcher.this,true);
         if (Utils.isFirstBoot(Launcher.this)) {
             InstructionsDialog.showInstructionsDialog(Launcher.this);
         }
-
         Settings.Global.putInt(getContentResolver(), Settings.Global.DEVICE_PROVISIONED, 1);
         System.out.println("-----------  Provision USER_SETUP_COMPLETE");
         Settings.Secure.putInt(getContentResolver(), Settings.Secure.USER_SETUP_COMPLETE, 1);
@@ -232,6 +250,20 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
                     showToast(R.string.notice_loss_for_phone);
                 }
                 return true;
+            }
+        });
+    }
+
+    private void initSleepDialBaseLayout() {
+        mSleepDialBaseLayout = (DialBaseLayout) findViewById(R.id.sleep);
+        mSleepDialBaseLayout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                mSleepDialBaseLayout.setVisibility(View.GONE);
+                if (Utils.isAirplaneModeOn(Launcher.this)) {
+                    changeAirPlaneMode(false);
+                }
+                return false;
             }
         });
     }
@@ -304,6 +336,7 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         mWatchController.removeClassDisableChangedCallback(this);
         mWatchController.setLostChangedCallback(null);
         mWatchController.removeAppControlledChangedback(this);
+        mWatchController.removeSleepingModeChangedCallback(this);
         mBatteryController.unregisterReceiver();
         mBatteryController.removeStateChangedCallback(this);
         mHandler.removeCallbacksAndMessages(null);
@@ -389,6 +422,39 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
     }
 
     @Override
+    public void onSleepingModeChange() {
+        boolean open = isSleepingModeOpen();
+        Log.e("lxx", "sleepingModeChange:" + open);
+        if (open) {
+            if (isInSleepingTime()) {
+                showSleepView();
+                ClassForbidUtils.killRecentTask(this);
+                //灭屏再开飞行模式
+//                changeAirPlaneMode(true);
+                bIsSleeping = true;
+                //set alarm to close
+                setCloseSleepingModeTime();
+                mAlarmManager.setExact(AlarmManager.RTC, closeSleepingModeCalendar.getTimeInMillis(), sleepPendingIntent);
+            } else {
+                hideSleepView();
+                changeAirPlaneMode(false);
+                bIsSleeping = false;
+                //set alarm to open
+                setOpenSleepingModeTime();
+                mAlarmManager.setExact(AlarmManager.RTC, openSleepingModeCalendar.getTimeInMillis(), sleepPendingIntent);
+            }
+        } else {
+            //cancel alarm
+            mAlarmManager.cancel(sleepPendingIntent);
+            if (bIsSleeping) {
+                hideSleepView();
+                changeAirPlaneMode(false);
+                bIsSleeping = false;
+            }
+        }
+    }
+
+    @Override
     public void onClassDisableChange(boolean show) {
         Log.e("cwj", "onClassDisableChange: show=" + show);
         if (bIsClassDisable != show) {
@@ -419,12 +485,6 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
                 if (isHome(Launcher.this)) {
                     ClassDisableDialog.showClassDisableDialog(Launcher.this);
                 }
-                mHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Utils.checkAndDealWithAirPlanMode(Launcher.this);
-                    }
-                }, 1000);
             }
             //通知通知栏
             Intent intent = new Intent(ACTION_CLASS_DISABLE_STATUS_CHANGED);
@@ -544,6 +604,9 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
 
     @Override
     public void onScreenOn() {
+        if (bIsSleeping) {
+            changeAirPlaneMode(false);
+        }
     }
 
     @Override
@@ -551,6 +614,11 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         if (mGestureView != null && mGestureView.getVisibility() == View.VISIBLE && isHome(Launcher.this)
                 && mViewpager.getCurrentItem() != POSITION_MAIN_PAGE) {
             mViewpager.setCurrentItem(POSITION_MAIN_PAGE);
+        }
+        if (bIsSleeping) {
+            showSleepView();
+            ClassForbidUtils.killRecentTask(this);
+            changeAirPlaneMode(true);
         }
     }
 
@@ -767,5 +835,73 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
             OverScrollDecoratorHelper.setUpOverScroll(mContactsRecyclerView, 0);  //拖拽效果
             bIsContactsOverScroll = true;
         }
+    }
+
+    public void showSleepView() {
+        if (mSleepViewStub.getParent() != null) {
+            mSleepViewStub.inflate();
+            initSleepDialBaseLayout();
+        }
+        mSleepDialBaseLayout.setVisibility(View.VISIBLE);
+    }
+
+    public void hideSleepView() {
+        if (mSleepDialBaseLayout != null) {
+            mSleepDialBaseLayout.setVisibility(View.GONE);
+        }
+    }
+
+    public boolean isSleepingModeOpen() {
+        return Settings.Global.getInt(getContentResolver(), "sleeping_mode", 0) == 1;
+    }
+
+    private void setOpenSleepingModeTime() {
+        openSleepingModeCalendar = Calendar.getInstance(Locale.CHINA);
+        openSleepingModeCalendar.set(Calendar.HOUR_OF_DAY, 22);
+        openSleepingModeCalendar.set(Calendar.MINUTE, 0);
+        openSleepingModeCalendar.set(Calendar.SECOND, 0);
+        openSleepingModeCalendar.set(Calendar.MILLISECOND, 0);
+        Log.e("lxx", "init calendar: open =" + openSleepingModeCalendar.get(Calendar.DAY_OF_MONTH) + "日"
+                + openSleepingModeCalendar.get(Calendar.HOUR_OF_DAY) + ":" + openSleepingModeCalendar.get(Calendar.MINUTE)
+                + ":" + openSleepingModeCalendar.get(Calendar.SECOND));
+    }
+
+    private void setCloseSleepingModeTime() {
+        closeSleepingModeCalendar = Calendar.getInstance(Locale.CHINA);
+        //晚上24点前设置为第二天
+        if (closeSleepingModeCalendar.get(Calendar.HOUR_OF_DAY) > 21) {
+            closeSleepingModeCalendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+        closeSleepingModeCalendar.set(Calendar.HOUR_OF_DAY, 5);
+        closeSleepingModeCalendar.set(Calendar.MINUTE, 30);
+        closeSleepingModeCalendar.set(Calendar.SECOND, 0);
+        closeSleepingModeCalendar.set(Calendar.MILLISECOND, 0);
+        Log.e("lxx", "init calendar: close =" + closeSleepingModeCalendar.get(Calendar.DAY_OF_MONTH) + "日"
+                + closeSleepingModeCalendar.get(Calendar.HOUR_OF_DAY) + ":" + closeSleepingModeCalendar.get(Calendar.MINUTE)
+                + ":" + closeSleepingModeCalendar.get(Calendar.SECOND));
+    }
+
+    //是否处于22:00～5:30之间
+    public boolean isInSleepingTime() {
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        if (hour > 5 && hour < 22) {
+            return false;
+        } else if (hour == 5) {
+            if (calendar.get(Calendar.MINUTE) < 30) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        }
+    }
+
+    public void changeAirPlaneMode(boolean open) {
+        Settings.Global.putInt(getContentResolver(), Settings.Global.AIRPLANE_MODE_ON, open ? 1 : 0);
+        Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+        intent.putExtra("state", open);
+        sendBroadcastAsUser(intent, UserHandle.ALL);
     }
 }

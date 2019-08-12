@@ -133,7 +133,6 @@ public class Utils {
         boolean isEnable = rwm.isClassForbidOpen();
         if (isEnable && !ableEnterList.contains(pkg)) {
             ClassDisableDialog.showClassDisableDialog(context);
-            checkAndDealWithAirPlanMode(context);
             return;
         }
         try {

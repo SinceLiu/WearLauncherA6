@@ -83,6 +83,7 @@
     <integer name="dial_type_s">18</integer>
     <integer name="dial_type_t">19</integer>
     <integer name="dial_type_u">20</integer>
+    <integer name="dial_type_sleep">21</integer>
 
     <integer name="unread_num_max">99</integer>
     <string name="unread_num_max_display">99+</string>
