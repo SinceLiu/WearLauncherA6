@@ -43,7 +43,7 @@
     <dimen name="dial_o_battery_text_size">20px</dimen>
     <dimen name="dial_o_battery_margin_left">5px</dimen>
     <dimen name="dial_o_time_margin_top">61px</dimen>
-    <dimen name="dial_o_notice_margin_top">162px</dimen>
+    <dimen name="dial_o_notice_margin_top">130px</dimen>
     <dimen name="dial_o_notice_text_size">22px</dimen>
     <dimen name="dial_o_dialer_margin_top">178px</dimen>
 
@@ -178,7 +178,7 @@
     <!--dial type sleep-->
     <dimen name="dial_sleep_time_margin_top">102px</dimen>
     <dimen name="dial_sleep_moon_margin_top">27px</dimen>
-    <dimen name="dial_sleep_notice_margin_top">174px</dimen>
+    <dimen name="dial_sleep_notice_margin_top">162px</dimen>
 
     <!--list header height-->
     <dimen name="status_bar_height">44px</dimen>

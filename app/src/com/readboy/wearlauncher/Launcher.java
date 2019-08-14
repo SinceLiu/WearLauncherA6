@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -109,8 +110,10 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
     WatchController mWatchController;
     BatteryController mBatteryController;
     private int mBatteryLevel = -1;
+    private int mSleepingMode = 1;   //1：飞行模式、2：关数据和wifi
     private boolean bIsSleeping = false;
     private boolean bIsAirPlaneModeChangedBySleep = false;
+    private boolean bIsWifiOpen = false;
     private boolean bIsClassDisable = false;
     private boolean bIsLost = false;
     private boolean bIsMomentControlled = false;
@@ -119,6 +122,7 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
     private boolean bIsContactsOverScroll;
     private boolean bIsSpi;
     private TelephonyManager mTelephonyManager;
+    private WifiManager mWifiManager;
     private AlarmManager mAlarmManager;
     private Calendar openSleepingModeCalendar;
     private Calendar closeSleepingModeCalendar;
@@ -140,6 +144,7 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
 
         mViewpager = (MyViewPager) findViewById(R.id.viewpager);
         mTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        mWifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         mAlarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         mLocalBroadcastManager = LocalBroadcastManager.getInstance(this);
         ViewConfiguration configuration = ViewConfiguration.get(Launcher.this);
@@ -422,10 +427,16 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
     @Override
     public void onSleepingModeChange() {
         boolean open = isSleepingModeOpen();
-        Log.e("lxx", "sleepingModeChange:" + open);
+        Log.e("lxx", "sleepingModeChange:" + mSleepingMode);
         if (open) {
             if (isInSleepingTime()) {
                 showSleepView();
+                PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+                //灭屏状态下开飞行模式
+                if (!pm.isScreenOn() && !Utils.isAirplaneModeOn(this)) {
+                    bIsAirPlaneModeChangedBySleep = true;
+                    changeAirPlaneMode(true);
+                }
                 ClassForbidUtils.killRecentTask(this);
                 if (needGoToHome(this, 1)) {
                     goHome();
@@ -437,14 +448,14 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
                 bIsSleeping = true;
                 //set alarm to close
                 setCloseSleepingModeTime();
-                mAlarmManager.setExact(AlarmManager.RTC, closeSleepingModeCalendar.getTimeInMillis(), sleepPendingIntent);
+                mAlarmManager.setExact(AlarmManager.RTC_WAKEUP, closeSleepingModeCalendar.getTimeInMillis(), sleepPendingIntent);
             } else {
                 hideSleepView();
                 changeAirPlaneMode(false);
                 bIsSleeping = false;
                 //set alarm to open
                 setOpenSleepingModeTime();
-                mAlarmManager.setExact(AlarmManager.RTC, openSleepingModeCalendar.getTimeInMillis(), sleepPendingIntent);
+                mAlarmManager.setExact(AlarmManager.RTC_WAKEUP, openSleepingModeCalendar.getTimeInMillis(), sleepPendingIntent);
             }
         } else {
             //cancel alarm
@@ -851,7 +862,13 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
     }
 
     public boolean isSleepingModeOpen() {
-        return Settings.Global.getInt(getContentResolver(), "sleeping_mode", 0) == 1;
+        int mode = Settings.Global.getInt(getContentResolver(), "sleeping_mode", 0);
+        if (mode == 0) {
+            return false;
+        } else {
+            mSleepingMode = mode;
+            return true;
+        }
     }
 
     private void setOpenSleepingModeTime() {
@@ -903,9 +920,25 @@ public class Launcher extends FragmentActivity implements BatteryController.Batt
         if (!bIsAirPlaneModeChangedBySleep) {
             return;
         }
-        Settings.Global.putInt(getContentResolver(), Settings.Global.AIRPLANE_MODE_ON, open ? 1 : 0);
-        Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
-        intent.putExtra("state", open);
-        sendBroadcastAsUser(intent, UserHandle.ALL);
+        if (mSleepingMode == 1) {
+            //飞行模式
+            Settings.Global.putInt(getContentResolver(), Settings.Global.AIRPLANE_MODE_ON, open ? 1 : 0);
+            Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+            intent.putExtra("state", open);
+            sendBroadcastAsUser(intent, UserHandle.ALL);
+        } else {
+            //移动数据和wifi
+            mTelephonyManager.setDataEnabled(!open);
+            if (open) {
+                if (mWifiManager.isWifiEnabled()) {
+                    bIsWifiOpen = true;
+                    mWifiManager.setWifiEnabled(false);
+                } else {
+                    bIsWifiOpen = false;
+                }
+            } else if (bIsWifiOpen) {
+                mWifiManager.setWifiEnabled(true);
+            }
+        }
     }
 }

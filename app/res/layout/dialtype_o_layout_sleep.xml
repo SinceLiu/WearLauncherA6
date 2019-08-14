@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/dial_o_notice_margin_top"
+        android:layout_marginTop="@dimen/dial_sleep_notice_margin_top"
         android:text="@string/notice_sleep"
         android:textColor="#FFFFFF"
         android:textSize="30sp" />
