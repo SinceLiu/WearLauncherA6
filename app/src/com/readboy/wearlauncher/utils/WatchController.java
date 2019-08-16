@@ -274,7 +274,7 @@ public class WatchController extends BroadcastReceiver {
         filter.addAction(ACTION_APP_CTRL_CHANGED);
         //sleeping mode
         filter.addAction(READBOY_ACTION_SLEEPING_MODE_CHANGED);
-    
+
         //date
         filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
         filter.addAction(Intent.ACTION_DATE_CHANGED);
@@ -457,16 +457,21 @@ public class WatchController extends BroadcastReceiver {
             return;
         }
         if (TextUtils.equals(action, Intent.ACTION_DATE_CHANGED) ||
-                TextUtils.equals(action, Intent.ACTION_TIMEZONE_CHANGED) ||
-                TextUtils.equals(action, Intent.ACTION_TIME_CHANGED)) {
+                TextUtils.equals(action, Intent.ACTION_TIMEZONE_CHANGED)) {
             for (DateChangedCallback callback : mDateChangedCallback) {
                 callback.onDateChange();
+            }
+        } else if (TextUtils.equals(action, Intent.ACTION_TIME_CHANGED)) {
+            for (DateChangedCallback callback : mDateChangedCallback) {
+                callback.onDateChange();
+            }
+            for (SleepingModeChangedCallback callback : mSleepingModeChangedCallback) {
+                callback.onSleepingModeChange();
             }
         } else if (TextUtils.equals(action, Intent.ACTION_TIME_TICK)) {
             classDisableChanged();
         } else if (TextUtils.equals(action, ACTION_STEP_ADD)) {
-            int steps = intent.getIntExtra("steps", 0);
-            mStepCount = steps;
+            mStepCount = intent.getIntExtra("steps", 0);
             fireStepChanged();
         } else if (TextUtils.equals(action, READBOY_ACTION_CLASS_DISABLE_CHANGED)) {
             classDisableChanged();
