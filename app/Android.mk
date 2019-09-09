@@ -189,7 +189,8 @@ LOCAL_OVERRIDES_PACKAGES += \
     MtkSimProcessor \
     Provision \
     BatteryWarning \
-    Music
+    Music \
+    MtkSystemUI
 
 endif
 

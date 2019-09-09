@@ -347,7 +347,7 @@ public class Utils {
             return null;
         }
         String deviceModelString = info.getAppCtrl();
-        if (deviceModelString == null) {
+        if (TextUtils.isEmpty(deviceModelString)) {
             Log.e(TAG, "get app controlled: null");
             return null;
         }
