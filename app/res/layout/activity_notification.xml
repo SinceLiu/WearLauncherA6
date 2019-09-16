@@ -91,15 +91,11 @@
             android:layout_weight="1" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/status_bar_margin_left" />
-
-        <ImageView
             android:id="@+id/btn_id_gps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/status_bar_margin_left" />
+            android:layout_marginLeft="@dimen/status_bar_margin_left"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/btn_id_alarm"
@@ -116,8 +112,7 @@
         <com.readboy.wearlauncher.battery.BatteryLevelImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/status_bar_margin_left"
-            android:layout_marginRight="@dimen/status_bar_margin_right" />
+            android:layout_marginLeft="@dimen/status_bar_margin_left" />
         <!--<com.readboy.wearlauncher.battery.BatteryLevelTextView-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
