@@ -86,6 +86,11 @@ public class NotificationActivity extends Activity {
     private boolean isSendTo = false;
     private NotificationManager mNotificationManager;
 
+    private NetworkController mNetworkController;
+    private BluetoothController mBluetoothController;
+    private AlarmController mAlarmController;
+    private LocationControllerImpl mLocationControllerImpl;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -245,6 +250,11 @@ public class NotificationActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         mLocalBroadcastManager.unregisterReceiver(mReceiver);
+
+        mNetworkController.unregisterReceiver();
+//        mLocationControllerImpl.unregisterReceiver();
+        mBluetoothController.pause();
+        mAlarmController.pause();
     }
 
     @Override
@@ -769,9 +779,10 @@ public class NotificationActivity extends Activity {
      */
     private void initBluetoothController() {
         ImageView bluetoothIconView = (ImageView) findViewById(R.id.btn_id_bluetooth);
-        BluetoothController bluetoothEnabler = mApplication.getBluetoothController();
-        bluetoothEnabler.addBluetoothIconView(bluetoothIconView);
-        bluetoothEnabler.fireCallbacks();
+        mBluetoothController = new BluetoothController(this);
+        mBluetoothController.resume();
+        mBluetoothController.addBluetoothIconView(bluetoothIconView);
+        mBluetoothController.fireCallbacks();
     }
 
     /**
@@ -779,20 +790,21 @@ public class NotificationActivity extends Activity {
      */
     private void initAlarmController() {
         ImageView alarmIconView = (ImageView) findViewById(R.id.btn_id_alarm);
-        AlarmController alarmController = mApplication.getAlarmController();
-        alarmController.addAlarmIconView(alarmIconView);
-        alarmController.fireCallbacks();
+        mAlarmController = new AlarmController(this);
+        mAlarmController.resume();
+        mAlarmController.addAlarmIconView(alarmIconView);
+        mAlarmController.fireCallbacks();
     }
 
     /**
      * 网络 信号和Wi-Fi
      */
     private void initNetController() {
-        NetworkController controller = mApplication.getNetworkController();
+        mNetworkController = new NetworkController(this);
         SignalClusterView signalCluster = (SignalClusterView) findViewById(R.id.signal_cluster);
-        controller.addSignalCluster(signalCluster);
-        controller.addNetworkSignalChangedCallback(signalCluster);
-        signalCluster.setNetworkController(controller);
+        mNetworkController.addSignalCluster(signalCluster);
+        mNetworkController.addNetworkSignalChangedCallback(signalCluster);
+        signalCluster.setNetworkController(mNetworkController);
     }
 
     /**
@@ -800,8 +812,8 @@ public class NotificationActivity extends Activity {
      */
     private void initGPSController() {
         ImageView gpsIconView = (ImageView) findViewById(R.id.btn_id_gps);
-        LocationControllerImpl controller = mApplication.getLocationControllerImpl();
-        controller.addIconView(gpsIconView);
+        mLocationControllerImpl = new LocationControllerImpl(this);
+        mLocationControllerImpl.addIconView(gpsIconView);
     }
 
     /**

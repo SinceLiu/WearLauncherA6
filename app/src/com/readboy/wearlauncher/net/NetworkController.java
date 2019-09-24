@@ -284,6 +284,9 @@ public class NetworkController extends BroadcastReceiver {
             // Could not remove ImsService.
             Log.w(TAG, "could not remove ImsService!");
         }
+        removeAll();
+        mPhone.listen(mPhoneStateListener,PhoneStateListener.LISTEN_NONE);
+        mWifiChannel.disconnect();
     }
 
     public boolean hasMobileDataFeature() {
@@ -323,6 +326,11 @@ public class NetworkController extends BroadcastReceiver {
     public void addNetworkSignalChangedCallback(NetworkSignalChangedCallback cb) {
         mSignalsChangedCallbacks.add(cb);
         notifySignalsChangedCallbacks(cb);
+    }
+
+    public void removeAll(){
+        mSignalClusters.clear();
+        mSignalsChangedCallbacks.clear();
     }
 
     public void refreshSignalCluster(SignalCluster cluster) {

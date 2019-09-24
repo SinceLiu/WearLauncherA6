@@ -17,27 +17,15 @@
 package com.readboy.wearlauncher;
 
 import android.app.Application;
-import android.util.Log;
-
-import com.readboy.wearlauncher.location.LocationControllerImpl;
-import com.readboy.wearlauncher.alarm.AlarmController;
-import com.readboy.wearlauncher.bluetooth.BluetoothController;
-import com.readboy.wearlauncher.net.NetworkController;
 import com.readboy.wearlauncher.notification.RingtonePlayer;
 import com.readboy.wearlauncher.utils.QQReceiver;
 import com.readboy.wearlauncher.utils.WatchController;
 import com.readboy.wearlauncher.view.IconCache;
-//import android.util.Slog;
 
 public class LauncherApplication extends Application {
     private IconCache mIconCache;
     private static boolean bIsTouchEnable = true;
     private static long mSetTouchEnableTime = 0;
-
-	private NetworkController mNetworkController;
-	private BluetoothController mBluetoothController;
-	private AlarmController mAlarmController;
-    private LocationControllerImpl mLocationControllerImpl;
 
     private WatchController mWatchController;
     private QQReceiver mQQReceiver;
@@ -50,12 +38,6 @@ public class LauncherApplication extends Application {
 
         mIconCache = new IconCache(this);
 
-        mNetworkController = new NetworkController(this);
-        mBluetoothController = new BluetoothController(this);
-        mBluetoothController.resume();
-        mAlarmController = new AlarmController(this);
-        mAlarmController.resume();
-        mLocationControllerImpl = new LocationControllerImpl(this);
         mQQReceiver = new QQReceiver(this);
         mWatchController = new WatchController(this);
         new RingtonePlayer(this);
@@ -67,11 +49,6 @@ public class LauncherApplication extends Application {
     @Override
     public void onTerminate() {
         super.onTerminate();
-
-        mNetworkController.unregisterReceiver();
-        mLocationControllerImpl.unregisterReceiver();
-        mBluetoothController.pause();
-        mAlarmController.pause();
     }
 
     public static Application getApplication(){
@@ -90,23 +67,8 @@ public class LauncherApplication extends Application {
         return bIsTouchEnable || (Math.abs(System.currentTimeMillis() - mSetTouchEnableTime) > 1000);
     }
 
-    public NetworkController getNetworkController(){
-    	return mNetworkController;
-    }
-
     public WatchController getWatchController(){
         return mWatchController;
     }
-    
-    public BluetoothController getBluetoothController(){
-    	return mBluetoothController;
-    }
-    
-    public AlarmController getAlarmController(){
-    	return mAlarmController;
-    }
 
-    public LocationControllerImpl getLocationControllerImpl(){
-        return mLocationControllerImpl;
-    }
 }
